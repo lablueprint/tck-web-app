@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Suppressed PropTypes in ESLint with comment
 /* eslint react/prop-types: 0 */
@@ -20,17 +20,23 @@ function BookPage({ bookId }) {
     });
   };
 
+  useEffect(() => {
+    getBookPage(bookId);
+  }, []);
+
   if (book != null) {
-    const title = book;
-    const dateAdded = book.date_added;
+    const title = book.get('title');
+    const dateAdded = book.get('date_added');
     return (
       <div>
-        <p>{title}</p>
-        <p>{dateAdded}</p>
+        {title}
+        ,
+        {' '}
+        {dateAdded}
       </div>
     );
   }
-  getBookPage(bookId);
+  return <div>Loading!</div>;
 }
 
 export default BookPage;
