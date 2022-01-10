@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
 
+import BookPage from './Components/BookPage';
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>Insert your component here!</div>
+        <div>
+          <BookPage bookId="rectqkZI0hdvX5CMP" />
+        </div>
       </header>
     </div>
   );
