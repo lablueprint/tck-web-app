@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-// import AuthorInfo from './AuthorInfo';
+import AuthorInfo from './AuthorInfo';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -14,15 +14,14 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function AuthorDisplay({ authId }) {
-  // const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState();
 
   const getPosts = () => {
     base('Creator').find(
       authId,
       (err, record) => {
         if (err) { console.error(err); return; }
-        // setPosts(record);
-        console.log(record);
+        setPosts(record);
       },
     );
   };
@@ -30,8 +29,16 @@ function AuthorDisplay({ authId }) {
   useEffect(getPosts, []);
 
   return (
-    <div />
-
+    <div>
+      { posts !== undefined
+    && (
+    <AuthorInfo
+      author={posts.fields.name}
+      bio={posts.fields.bio}
+      links={posts.fields.links}
+    />
+    ) }
+    </div>
   );
 }
 
