@@ -1,0 +1,21 @@
+.Header {
+    text-align: center;
+    color: royalblue;
+    font-size: 45px;
+    font-weight: 750;
+  }
+  
+  .Paragraph {
+    text-align: left;
+    font-size: 25px;
+  }
+
+  .Extra {
+      text-align: center;
+      font-size: 20px;
+  }
+
+  .WhiteSpace {
+    margin-top: 100px;
+    display: block;
+  }
