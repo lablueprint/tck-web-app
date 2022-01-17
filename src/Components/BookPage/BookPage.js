@@ -12,24 +12,35 @@ const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
 
 function BookPage({ bookId }) {
   const [book, setBook] = useState();
+  const [author, setAuthor] = useState();
+  const [illustrator, setIllustrator] = useState();
 
   useEffect(() => {
-    const getBookPage = function () {
-      base('Book').find(bookId, (err, record) => {
+    const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
+      base(tableName).find(entryId, (err, entryRecord) => {
         if (err) {
-          console.error(err);
-          return;
+          reject();
         }
-        setBook(record);
+        setter(entryRecord);
+        resolve(entryRecord);
       });
-    };
-    getBookPage(bookId);
-  }, []); // Runs only on mount if we pass dependency array
+    });
 
-  if (book != null) {
+    const getEntries = async () => {
+      const bookRecord = await getEntry('Book', bookId, setBook);
+      const authorId = bookRecord.get('author');
+      const illustratorId = bookRecord.get('illustrator');
+      getEntry('Creator', authorId, setAuthor);
+
+      getEntry('Creator', illustratorId, setIllustrator);
+    };
+    getEntries();
+  }, [bookId]); // Runs on mount and on change of bookId
+
+  if (book && author && illustrator) {
     const title = book.get('title');
-    // const dateAdded = book.get('date_added');
-    const author = book.get('author');
+    const authorName = author.get('name');
+    const illustratorName = illustrator.get('name');
     const desc = book.get('description');
     const image = book.get('image');
     const imageURL = image[0].url;
@@ -61,7 +72,12 @@ function BookPage({ bookId }) {
             <Typography variant="h5">
               by
               {' '}
-              {author}
+              {authorName}
+              ,
+              {' '}
+              {illustratorName}
+              {' '}
+              (illustrator)
             </Typography>
             <Typography variant="body2">
               {desc}
