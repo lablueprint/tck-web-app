@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import CardsDisplay from './CardsDisplay';
 import './App.css';
 
 function App() {
@@ -7,8 +7,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div id="book-card">
-          <Card title="Title" author="Author" image="<src?>" />
-          <Card title="abc" author="123" image="<src?>" />
+          <CardsDisplay />
+          <CardsDisplay />
         </div>
       </header>
     </div>
