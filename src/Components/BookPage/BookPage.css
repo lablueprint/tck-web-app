@@ -1,0 +1,4 @@
+.BookPage {
+    display: flex;
+    flex-direction: row;
+}
