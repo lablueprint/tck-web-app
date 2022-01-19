@@ -36,6 +36,7 @@ function AuthorDisplay({ authId }) {
       author={posts.fields.name}
       bio={posts.fields.bio}
       links={posts.fields.links}
+      authorPic={posts.fields.author_image[0].thumbnails.large.url}
     />
     ) }
     </div>
