@@ -6,12 +6,11 @@
   }
   
   .Paragraph {
-    text-align: left;
+    text-align: center;
     font-size: 25px;
   }
 
   .Extra {
-      text-align: center;
       font-size: 20px;
   }
-  
+
