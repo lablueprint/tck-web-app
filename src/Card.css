@@ -1,0 +1,14 @@
+#card {
+    width: 500px;
+    height: 150px;
+    background-color: grey;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    border: solid;
+}
+
+#book-cover {
+    width: 200px;
+    height: 500px;
+}

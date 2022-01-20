@@ -16,9 +16,10 @@ function CardsDisplay() {
   const [cards, setCards] = useState([]);
 
   const getCards = () => {
-    base('Cards').select({ view: 'Grid view' }).all()
+    base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setCards(records);
+        console.log(records);
       });
   };
 
@@ -27,9 +28,9 @@ function CardsDisplay() {
   return cards.map((card) => (
     <Card
       key={card.id}
-      title={card.fields.title}
-      author={card.fields.author}
-      image={card.fields.image}
+      title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
+      author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+      image={card.fields.image !== undefined ? card.fields.image.url : 'MISSING IMAGE'}
     />
   ));
 }
