@@ -1,15 +1,22 @@
 import React from 'react';
 // import logo from './logo.svg';
+import {
+  BrowserRouter as Router, Route, Routes, Link,
+} from 'react-router-dom';
 import './App.css';
 import AuthorDisplay from './Components/creatorPage/AuthorDisplay';
-import CreatedWorksCard from './Components/creatorPage/creatorAvnish';
 
 function App() {
   return (
-    <div>
-      <AuthorDisplay authId="recbWFQEU8NMQXASa" />
-      <CreatedWorksCard authorId="recbWFQEU8NMQXASa" />
-    </div>
+    <Router>
+      <div>
+        <Link to="/creator/recbWFQEU8NMQXASa">Creator Page</Link>
+        {/* <AuthorDisplay authId="recbWFQEU8NMQXASa" /> */}
+        <Routes>
+          <Route exact path="/creator/:id" element={<AuthorDisplay />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

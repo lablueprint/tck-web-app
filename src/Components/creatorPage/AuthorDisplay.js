@@ -1,6 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import propTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+// import propTypes from 'prop-types';
 import AuthorInfo from './AuthorInfo';
+import CreatedWorksCard from './creatorAvnish';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -13,8 +16,10 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function AuthorDisplay({ authId }) {
+function AuthorDisplay() {
   const [posts, setPosts] = useState();
+  const params = useParams();
+  const authId = params.id;
 
   const getPosts = () => {
     base('Creator').find(
@@ -39,12 +44,13 @@ function AuthorDisplay({ authId }) {
       authorPic={posts.fields.author_image[0].thumbnails.large.url}
     />
     ) }
+      <CreatedWorksCard authorId={authId} />
     </div>
   );
 }
 
-AuthorDisplay.propTypes = {
-  authId: propTypes.string.isRequired,
-};
+// AuthorDisplay.propTypes = {
+//   authId: propTypes.string.isRequired,
+// };
 
 export default AuthorDisplay;

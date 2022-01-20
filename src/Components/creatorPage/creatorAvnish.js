@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './creatorAvnish.css';
 // import { v4 as uuidv4 } from 'uuid';
 
@@ -83,6 +84,7 @@ function CreatedWorksCard({ authorId }) {
           <div key={element.id} className="related-works-card">
             <img width="120" height="72" src={element.image} alt="" />
             <div><h4>{element.title}</h4></div>
+            <Link to={`/creator/${element.id}`}>Book Page</Link>
           </div>
         ))}
       </div>
@@ -92,6 +94,4 @@ function CreatedWorksCard({ authorId }) {
 
 CreatedWorksCard.propTypes = {
   authorId: propTypes.string.isRequired,
-};
-
-export default CreatedWorksCard;
+}; export default CreatedWorksCard;
