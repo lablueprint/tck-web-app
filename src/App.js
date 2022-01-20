@@ -8,7 +8,6 @@ function App() {
       <header className="App-header">
         <div id="book-card">
           <CardsDisplay />
-          <CardsDisplay />
         </div>
       </header>
     </div>
