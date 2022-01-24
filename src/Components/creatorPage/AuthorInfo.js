@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import './Author.css';
 
+// Author name/bio/picture/link components
 export default function AuthorInfo({
   author, bio, links, authorPic,
 }) {
@@ -16,7 +17,10 @@ export default function AuthorInfo({
       </div>
       <br />
       <div className="Extra">
-        Click here to learn more!:
+        Check out
+        {' '}
+        {author}
+        &apos;s personal website:
       </div>
       <div>
         <a href={links}>{links}</a>
