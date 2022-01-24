@@ -26,22 +26,19 @@ export default function Card({ title, author, image }) {
 
   useEffect(authorRecords, []);
 
-  return ( // App.css is flexed as a column
-    <div id="card">
-      <div id="title">
-        Title:
+  return ( // horizontal scroll not implemented
+    <div className="card">
+      <div className="image">
+        <img className="book-cover" src={image} alt="missing_book_cover" />
+      </div>
+      <div className="title">
         {' '}
         {title}
       </div>
-      <div id="author">
-        Author:
+      <div className="author">
+        By
         {' '}
         { authorVar !== undefined ? (authorVar.fields.name) : 'loading'}
-      </div>
-      <div id="image">
-        Image:
-        <img id="book-cover" src={image} alt="book_cover" />
-        {image}
       </div>
     </div>
   );
