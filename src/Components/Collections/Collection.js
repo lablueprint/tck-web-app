@@ -24,9 +24,9 @@ export default function Collection({ Collid }) {
       const id = Collid;
       base('Collection').find(id, (err, record) => {
         setCollectionObj((lastVal) => lastVal.concat({
-          image: record.fields.image[0].thumbnails.large.url,
-          name: record.fields.name,
-          description: record.fields.description,
+          image: record.fields.image !== undefined ? record.fields.image[0].url : 'MISSING IMAGE',
+          name: record.fields.name !== undefined ? record.fields.name : 'MISSING TITLE',
+          description: record.fields.description !== undefined ? record.fields.description : 'MISSING DESCRIPTION',
           id: record.fields.id,
         }));
       });
