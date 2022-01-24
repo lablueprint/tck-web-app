@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardMedia, CardContent, Typography, Rating, Button,
+  Card, CardMedia, CardContent, Typography, Paper,
 } from '@mui/material';
 import './BookPage.css';
 
 const Airtable = require('airtable');
+
+/* This is the default image if TCK forgets to populate the image field. */
+const TCK_LOGO = 'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/119db2be-192f-4a50-94ff-2c4f021384e3/TCK_PNG_Logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220124T032111Z&X-Amz-Expires=86400&X-Amz-Signature=bf863cbd890a1ac3d8ef071ad1b02652642ae24de0e5f10c6fcc4bfcef62a97f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22TCK%2520PNG%2520Logo.png%22&x-id=GetObject';
 
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
   .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
@@ -37,43 +40,38 @@ function BookPage({ bookId }) {
     getEntries();
   }, [bookId]); // Runs on mount and on change of bookId
 
+  const getDefault = (x, defaultX) => {
+    if (x) {
+      return x;
+    }
+    return defaultX;
+  };
+
   if (book && author && illustrator) {
-    const title = book.get('title');
-    const authorName = author.get('name');
-    const illustratorName = illustrator.get('name');
-    const desc = book.get('description');
-    const image = book.get('image');
+    const title = getDefault(book.get('title'), 'Untitled Book');
+    const authorName = getDefault(author.get('name'), 'Unknown Author');
+    const illustratorName = getDefault(illustrator.get('name'), 'Unknown Illustrator');
+    const desc = getDefault(book.get('description'), 'It\'s a book. with words. **gasp**');
+    const image = getDefault(book.get('image'), [{ url: TCK_LOGO }]);
     const imageURL = image[0].url;
 
-    return (
-      <div className="BookPage">
-        <Card>
-          <CardMedia
-            component="img"
-            image={imageURL}
-            height="140"
-            alt="book img desc"
-          />
-          <CardContent sx={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between',
-          }}
-          >
-            <Button variant="outlined">
-              Want to read
-            </Button>
-            <Rating name="simple-controlled" value={3} precision={0.5} />
-          </CardContent>
-        </Card>
-        <Card variant="outlined" sx={{ minWidth: '50vw', textAlign: 'left' }}>
+    const synopsis = (
+      <div className="synopsis">
+        <CardMedia
+          component="img"
+          image={imageURL}
+          height="140"
+          alt="book img desc"
+        />
+        <Card variant="outlined" sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
           <CardContent>
-            <Typography gutterBottom variant="h3">
+            <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
               {title}
             </Typography>
             <Typography variant="h5">
-              by
-              {' '}
               {authorName}
-              ,
+              {' '}
+              |
               {' '}
               {illustratorName}
               {' '}
@@ -84,19 +82,21 @@ function BookPage({ bookId }) {
             </Typography>
           </CardContent>
         </Card>
+
       </div>
     );
 
     /*
-    return (
-      <div>
-        {title}
-        ,
-        {' '}
-        {imageURL}
-      </div>
-    );
+      readAloud := youtube embed
+      bookshop := link to bookshop
+      educator := link to educator guide
     */
+
+    return (
+      <Paper variant="outlined">
+        {synopsis}
+      </Paper>
+    );
   }
   return <div>Loading!</div>;
 }
@@ -106,3 +106,7 @@ BookPage.propTypes = {
 };
 
 export default BookPage;
+
+/* Notes for future development
+  1. For tags, use MaterialUI chips
+*/
