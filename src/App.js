@@ -1,4 +1,5 @@
 import React from 'react';
+// import logo from './logo.svg';
 import './App.css';
 import CollectionDisplay from './Components/Collections/CollectionDisplay';
 
