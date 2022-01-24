@@ -5,8 +5,6 @@ import './Author.css';
 export default function AuthorInfo({
   author, bio, links, authorPic,
 }) {
-  const linksArray = links.split('\n');
-  linksArray.pop();
   return (
     <>
       <div className="Header">
@@ -21,9 +19,7 @@ export default function AuthorInfo({
         Click here to learn more!:
       </div>
       <div>
-        {linksArray.map((element) => (
-          <p><a href={element}>{element}</a></p>
-        ))}
+        <a href={links}>{links}</a>
       </div>
     </>
   );
