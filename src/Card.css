@@ -1,14 +1,41 @@
-#card {
-    width: 500px;
-    height: 150px;
+.library-display {
+    width: 90vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    border-color: white;
+    border-style: solid;
+}
+
+.card {
+    margin: 10px 1.25% 10px 1.25%;
+    width: 17.5%;
+    height: 350px;
     background-color: grey;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    border: solid;
 }
 
-#book-cover {
-    width: 200px;
-    height: 500px;
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.author {
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.image {
+    height: 75%;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.book-cover {
+    width: 80%;
+    height: 100%;
 }
