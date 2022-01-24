@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './creatorAvnish.css';
+import './OtherWorks.css';
 // import { v4 as uuidv4 } from 'uuid';
 
 const Airtable = require('airtable');
@@ -13,6 +13,7 @@ const airtableConfig = {
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
+// Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
   const [imageTitleObject, setImageTitleObject] = useState([]);
   const [illustratedObject, setillustratedObject] = useState([]);
@@ -21,7 +22,6 @@ function CreatedWorksCard({ authorId }) {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
-        console.error(err);
         return;
       }
       const bookid = records.fields.authored;
@@ -30,7 +30,6 @@ function CreatedWorksCard({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.error(error);
               return;
             }
             setImageTitleObject((prevValue) => prevValue.concat(
@@ -47,7 +46,6 @@ function CreatedWorksCard({ authorId }) {
         illustratedId.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.error(error);
               return;
             }
             setillustratedObject((prevValue) => prevValue.concat(

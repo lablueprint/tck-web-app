@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import propTypes from 'prop-types';
-import AuthorInfo from './AuthorInfo';
-import CreatedWorksCard from './creatorAvnish';
+import AuthorInfo from '../Components/creatorPage/AuthorInfo';
+import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -16,7 +16,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function AuthorDisplay() {
+function CreatorPage() {
   const [posts, setPosts] = useState();
   const params = useParams();
   const authId = params.id;
@@ -25,7 +25,6 @@ function AuthorDisplay() {
     base('Creator').find(
       authId,
       (err, record) => {
-        if (err) { console.error(err); return; }
         setPosts(record);
       },
     );
@@ -49,8 +48,8 @@ function AuthorDisplay() {
   );
 }
 
-// AuthorDisplay.propTypes = {
+// CreatorPahe.propTypes = {
 //   authId: propTypes.string.isRequired,
 // };
 
-export default AuthorDisplay;
+export default CreatorPage;

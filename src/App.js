@@ -4,16 +4,16 @@ import {
   BrowserRouter as Router, Route, Routes, Link,
 } from 'react-router-dom';
 import './App.css';
-import AuthorDisplay from './Components/creatorPage/AuthorDisplay';
+import CreatorPage from './Pages/CreatorPage';
 
 function App() {
   return (
     <Router>
       <div>
         <Link to="/creator/recbWFQEU8NMQXASa">Creator Page</Link>
-        {/* <AuthorDisplay authId="recbWFQEU8NMQXASa" /> */}
+        {/* <CreatorPage authId="recbWFQEU8NMQXASa" /> */}
         <Routes>
-          <Route exact path="/creator/:id" element={<AuthorDisplay />} />
+          <Route exact path="/creator/:id" element={<CreatorPage />} />
         </Routes>
       </div>
     </Router>
