@@ -1,9 +1,18 @@
 import React from 'react';
+/*
+import {
+  BrowserRouter as Router, Route, Routes, Link,
+} from 'react-router-dom';
+*/
 import './App.css';
 
-import BookPage from './Components/BookPage/BookPage';
+import BookPage from './Pages/BookPage/BookPage';
 
 function App() {
+  return (
+    <BookPage bookId="rectqkZI0hdvX5CMP" />
+  );
+  /*
   return (
     <div className="App">
       <header className="App-header">
@@ -13,6 +22,7 @@ function App() {
       </header>
     </div>
   );
+  */
 }
 
 export default App;
