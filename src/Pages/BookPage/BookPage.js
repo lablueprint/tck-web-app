@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
-  Card, CardMedia, CardContent, Typography, Paper,
+  Card, CardMedia, CardContent, Typography, Paper, Link as LinkUI, List, ListItem, ListItemText,
 } from '@mui/material';
 import './BookPage.css';
+import { useParams } from 'react-router-dom';
 
 const Airtable = require('airtable');
 
@@ -13,10 +13,14 @@ const TCK_LOGO = 'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/11
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
   .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
 
-function BookPage({ bookId }) {
+function BookPage() {
   const [book, setBook] = useState();
   const [author, setAuthor] = useState();
   const [illustrator, setIllustrator] = useState();
+
+  // Instead of using props, we pull bookId from URL
+  const params = useParams();
+  const { bookId } = params;
 
   useEffect(() => {
     const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
@@ -29,6 +33,8 @@ function BookPage({ bookId }) {
       });
     });
 
+    // This is similar to promise chaining with .then() calls,
+    // but in a (hopefully) more succinct way
     const getEntries = async () => {
       const bookRecord = await getEntry('Book', bookId, setBook);
       const authorId = bookRecord.get('author');
@@ -54,6 +60,9 @@ function BookPage({ bookId }) {
     const desc = getDefault(book.get('description'), 'It\'s a book. with words. **gasp**');
     const image = getDefault(book.get('image'), [{ url: TCK_LOGO }]);
     const imageURL = image[0].url;
+    const readAloudURL = getDefault(book.get('read_aloud_link'), null);
+    const bookshopURL = getDefault(book.get('bookshop_link'), null);
+    const educatorURLs = getDefault(book.get('educator_guide_links'), []);
 
     const synopsis = (
       <div className="synopsis">
@@ -63,7 +72,7 @@ function BookPage({ bookId }) {
           height="140"
           alt="book img desc"
         />
-        <Card variant="outlined" sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
+        <Card sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
           <CardContent>
             <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
               {title}
@@ -86,24 +95,70 @@ function BookPage({ bookId }) {
       </div>
     );
 
-    /*
-      readAloud := youtube embed
-      bookshop := link to bookshop
-      educator := link to educator guide
-    */
+    /* READ_ALOUD EMBED */
+    let readAloud = (<div />);
+    if (readAloudURL) {
+      /*
+        read_aloud_link is defined as a 'watch' URL,
+        so we must extract the embed code from this URL
+          WARNING: This code will break if the read_aloud_link
+          is not in the form of (anything)('watch?v=')(video id)$
+      */
+      const videoId = readAloudURL.split('watch?v=')[1];
+      readAloud = (
+        <div className="video-responsive">
+          <iframe
+            width="853"
+            height="480"
+            src={`https://www.youtube.com/embed/${videoId}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
+        </div>
+      );
+    }
+
+    /* BOOKSHOP LINK, LinkUI from MaterialUI to not be confused with react-router */
+    let bookshop = <div />;
+    if (bookshopURL) {
+      bookshop = (
+        <LinkUI href={bookshopURL} rel="noreferrer" target="_blank">
+          Buy
+          {' '}
+          {title}
+          !
+        </LinkUI>
+      );
+    }
+
+    /* EDUCATOR GUIDE LINK */
+    let educators = <div />;
+    if (educatorURLs) {
+      educators = (
+        <List>
+          {educatorURLs.map((url) => (
+            <ListItem button component="a" href={url} key={url} alignItems="center">
+              <ListItemText sx={{ textAlign: 'center' }} primary={url} />
+            </ListItem>
+          ))}
+        </List>
+      );
+    }
 
     return (
       <Paper variant="outlined">
         {synopsis}
+        {readAloud}
+        {bookshop}
+        <h4>Educator Guides</h4>
+        {educators}
       </Paper>
     );
   }
-  return <div>Loading!</div>;
+  return <div>Scouring our library...</div>;
 }
-
-BookPage.propTypes = {
-  bookId: PropTypes.string.isRequired,
-};
 
 export default BookPage;
 
