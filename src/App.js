@@ -6,7 +6,7 @@ import { Dictionary, Home } from './Pages';
 import Header from './Components/Navigation/Header';
 import './App.css';
 
-import BookPage from './Pages/BookPage/BookPage';
+import BookPage from './Pages/BookPage';
 
 function App() {
   return (
