@@ -1,12 +1,20 @@
 import React from 'react';
-// import logo from './logo.svg';
+import {
+  Route, Routes,
+} from 'react-router-dom';
+import { Dictionary, Home } from './Pages';
+import Header from './Components';
 import './App.css';
-import CollectionDisplay from './Components/Collections/CollectionDisplay';
+// import CollectionDisplay from './Components/Collections/CollectionDisplay';
 
 function App() {
   return (
-    <div>
-      <CollectionDisplay />
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+      </Routes>
     </div>
   );
 }
