@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Card, CardMedia, CardContent, Typography, Paper, Link as LinkUI, List, ListItem, ListItemText,
 } from '@mui/material';
-import './BookPage.css';
 import { useParams } from 'react-router-dom';
 
 const Airtable = require('airtable');
