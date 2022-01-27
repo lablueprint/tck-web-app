@@ -1,8 +1,9 @@
 import React from 'react';
+import CardsDisplay from '../Components/bookHub/BookCardsDisplay';
 
 function Home() {
   return (
-    <div> Insert your component here to test!</div>
+    <div><CardsDisplay /></div>
   );
 }
 
