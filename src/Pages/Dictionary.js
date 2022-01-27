@@ -1,8 +1,9 @@
 import React from 'react';
+import WordTermDisplay from '../Components/WordTermDisplay';
 
 function Dictionary() {
   return (
-    <div> You can also test here for now!</div>
+    <WordTermDisplay />
   );
 }
 
