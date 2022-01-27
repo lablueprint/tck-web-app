@@ -65,7 +65,7 @@ function BookPage() {
     const educatorURLs = getDefault(book.get('educator_guide_links'), []);
 
     const synopsis = (
-      <div className="synopsis">
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
         <CardMedia
           component="img"
           image={imageURL}
