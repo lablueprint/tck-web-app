@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
-        <Route exact path="/book/:bookId" element={<BookPage bookId="recbWFQEU8NMQXASa" />} />
+        <Route exact path="/book/:bookId" element={<BookPage />} />
       </Routes>
     </div>
   );
