@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from './Card';
+import Card from './BookCard';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -19,7 +19,6 @@ function CardsDisplay() {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setCards(records);
-        console.log(records);
       });
   };
 
@@ -30,6 +29,7 @@ function CardsDisplay() {
       {cards.map((card) => (
         <Card
           key={card.id}
+          id={card.id}
           title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
           author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
           image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}

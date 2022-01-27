@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import './Card.css';
+
+import './BookCard.css';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -13,14 +15,15 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Card({ title, author, image }) {
+export default function Card({
+  id, title, author, image,
+}) {
   const [authorVar, setAuthor] = useState();
 
   const authorRecords = () => {
     base('Creator').find(author, (err, record) => {
       if (err) { console.error(err); }
       setAuthor(record);
-      console.log(record);
     });
   };
 
@@ -28,6 +31,7 @@ export default function Card({ title, author, image }) {
 
   return ( // horizontal scroll not implemented
     <div className="card">
+      <Link to={`/book/${id}`}>Book Page</Link>
       <div className="image">
         <img className="book-cover" src={image} alt="missing_book_cover" />
       </div>
@@ -49,6 +53,7 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   image: PropTypes.string,

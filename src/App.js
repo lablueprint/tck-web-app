@@ -1,13 +1,17 @@
 import React from 'react';
-import CardsDisplay from './CardsDisplay';
+import {
+  Route, Routes,
+} from 'react-router-dom';
+import { Dictionary, Home } from './Pages';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <CardsDisplay />
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+      </Routes>
     </div>
   );
 }
