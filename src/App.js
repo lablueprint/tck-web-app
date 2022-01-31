@@ -5,7 +5,6 @@ import {
 import { Dictionary, Home } from './Pages';
 import Header from './Components';
 import './App.css';
-// import CollectionDisplay from './Components/Collections/CollectionDisplay';
 
 function App() {
   return (

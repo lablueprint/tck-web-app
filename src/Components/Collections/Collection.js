@@ -1,13 +1,7 @@
-/* Create the component for an individual collection.
-Look at the requirements for additional detail!
-- Name
-- Image
-- Description */
-
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Collection.css';
-// airtable configuration
+
 const Airtable = require('airtable');
 
 const airtableConfig = {
@@ -20,19 +14,17 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 export default function Collection({ Collid }) {
   const [collectionObj, setCollectionObj] = useState([]);
   useEffect(() => {
-    function assignCollection() {
-      const id = Collid;
-      base('Collection').find(id, (err, record) => {
-        setCollectionObj((lastVal) => lastVal.concat({
-          image: record.fields.image !== undefined ? record.fields.image[0].url : 'MISSING IMAGE',
-          name: record.fields.name !== undefined ? record.fields.name : 'MISSING TITLE',
-          description: record.fields.description !== undefined ? record.fields.description : 'MISSING DESCRIPTION',
-          id: record.fields.id,
-        }));
-      });
-    }
-    assignCollection();
+    const id = Collid;
+    base('Collection').find(id, (err, record) => {
+      setCollectionObj((lastVal) => lastVal.concat({
+        image: record.fields.image !== undefined ? record.fields.image[0].url : 'MISSING IMAGE',
+        name: record.fields.name !== undefined ? record.fields.name : 'MISSING TITLE',
+        description: record.fields.description !== undefined ? record.fields.description : 'MISSING DESCRIPTION',
+        id: record.fields.id,
+      }));
+    });
   }, [Collid]);
+
   return (
     <div className="collectionCard">
       <body className="CollectionBody">
