@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './BookCard';
+import SearchBar from './SearchBar';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -25,16 +26,20 @@ function CardsDisplay() {
   useEffect(getCards, []);
 
   return (
-    <div className="library-display">
-      {cards.map((card) => (
-        <Card
-          key={card.id}
-          id={card.id}
-          title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-          author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
-          image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
-        />
-      ))}
+    <div>
+      <SearchBar />
+
+      <div className="library-display">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
+            author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+            image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
+          />
+        ))}
+      </div>
     </div>
   );
 }
