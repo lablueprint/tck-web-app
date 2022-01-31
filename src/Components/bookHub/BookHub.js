@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from './BookCard';
-import SearchBar from './SearchBar';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -27,8 +26,6 @@ function CardsDisplay() {
 
   return (
     <div>
-      <SearchBar />
-
       <div className="library-display">
         {cards.map((card) => (
           <Card
