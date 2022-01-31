@@ -21,27 +21,27 @@ function BookPage() {
   const params = useParams();
   const { bookId } = params;
 
-  useEffect(() => {
-    const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
-      base(tableName).find(entryId, (err, entryRecord) => {
-        if (err) {
-          reject();
-        }
-        setter(entryRecord);
-        resolve(entryRecord);
-      });
+  const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
+    base(tableName).find(entryId, (err, entryRecord) => {
+      if (err) {
+        reject();
+      }
+      setter(entryRecord);
+      resolve(entryRecord);
     });
+  });
 
-    // This is similar to promise chaining with .then() calls,
-    // but in a (hopefully) more succinct way
-    const getEntries = async () => {
-      const bookRecord = await getEntry('Book', bookId, setBook);
-      const authorId = bookRecord.get('author');
-      const illustratorId = bookRecord.get('illustrator');
-      getEntry('Creator', authorId, setAuthor);
+  // This is similar to promise chaining with .then() calls,
+  // but in a (hopefully) more succinct way
+  const getEntries = async () => {
+    const bookRecord = await getEntry('Book', bookId, setBook);
+    const authorId = bookRecord.get('author');
+    const illustratorId = bookRecord.get('illustrator');
+    getEntry('Creator', authorId, setAuthor);
 
-      getEntry('Creator', illustratorId, setIllustrator);
-    };
+    getEntry('Creator', illustratorId, setIllustrator);
+  };
+  useEffect(() => {
     getEntries();
   }, [bookId]); // Runs on mount and on change of bookId
 
