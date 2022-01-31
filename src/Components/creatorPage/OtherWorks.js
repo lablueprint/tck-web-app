@@ -22,7 +22,7 @@ function CreatedWorksCard({ authorId }) {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
-        console.log(err);
+        console.error(err);
       }
       const bookid = records.fields.authored;
       const illustratedId = records.fields.illustrated;
@@ -30,7 +30,7 @@ function CreatedWorksCard({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.log(err);
+              console.error(err);
             }
             setAuthoredWorks((prevValue) => prevValue.concat(
               {
@@ -46,7 +46,7 @@ function CreatedWorksCard({ authorId }) {
         illustratedId.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.log(err);
+              console.error(err);
             }
             setillustratedWorks((prevValue) => prevValue.concat(
               {
