@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsDisplay from '../Components/bookHub/BookCardsDisplay';
+import CardsDisplay from '../Components/bookHub/BookHub';
 
 function Home() {
   return (

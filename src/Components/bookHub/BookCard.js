@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import './BookCard.css';
+import { makeStyles } from '@mui/styles';
+import { CardActionArea, CardMedia } from '@mui/material';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -15,44 +19,68 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Card({
+const useStyles = makeStyles({
+  title: {
+    fontSize: '18px',
+    fontWeight: 'bold',
+    paddingBottom: '5px',
+  },
+
+  author: {
+    fontSize: '12px',
+    fontWeight: 100,
+  },
+});
+
+export default function BookCard({
   id, title, author, image,
 }) {
+  const classes = useStyles();
+
   const [authorVar, setAuthor] = useState();
 
-  const authorRecords = () => {
+  const getAuthor = () => {
     base('Creator').find(author, (err, record) => {
       if (err) { console.error(err); }
       setAuthor(record);
     });
   };
 
-  useEffect(authorRecords, []);
+  useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
-    <div className="card">
-      <Link to={`/book/${id}`}>Book Page</Link>
-      <div className="image">
-        <img className="book-cover" src={image} alt="missing_book_cover" />
-      </div>
-      <div className="title">
-        {' '}
-        {title}
-      </div>
-      <div className="author">
-        By
-        {' '}
-        { authorVar !== undefined ? (authorVar.fields.name) : 'loading'}
-      </div>
-    </div>
+    <Card className="card" sx={{ maxWidth: 345 }}>
+      <Link class="link" to={`/book/${id}`} target="_blank">
+        <CardActionArea className="cardActionArea">
+          <CardMedia
+            className="image"
+            component="img"
+            height="140"
+            image={image}
+            alt="missing_book_cover"
+          />
+
+          <CardContent>
+            <Typography className={classes.title}>
+              {title}
+            </Typography>
+            <Typography className={classes.author} color="text.secondary">
+              By
+              {' '}
+              {authorVar !== undefined ? (authorVar.fields.name) : author}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
+    </Card>
   );
 }
 
-Card.defaultProps = {
+BookCard.defaultProps = {
   image: '',
 };
 
-Card.propTypes = {
+BookCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
