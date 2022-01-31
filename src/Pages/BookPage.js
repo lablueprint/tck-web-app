@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Card, CardMedia, CardContent, Typography, Paper, Link as LinkUI, List, ListItem, ListItemText,
+  Paper, Link as LinkUI, List, ListItem, ListItemText,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import BookSynopsis from '../Components/BookSynopsis';
 
 const Airtable = require('airtable');
 
@@ -56,36 +57,10 @@ function BookPage() {
     const bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
     const educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links') : [];
 
-    const synopsis = (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <CardMedia
-          component="img"
-          image={imageURL}
-          height="140"
-          alt="book img desc"
-        />
-        <Card sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
-          <CardContent>
-            <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
-              {title}
-            </Typography>
-            <Typography variant="h5">
-              {authorName}
-              {' '}
-              |
-              {' '}
-              {illustratorName}
-              {' '}
-              (illustrator)
-            </Typography>
-            <Typography variant="body2">
-              {desc}
-            </Typography>
-          </CardContent>
-        </Card>
-
-      </div>
-    );
+    const synopsisProps = {
+      title, authorName, illustratorName, desc, imageURL,
+    };
+    const synopsis = <BookSynopsis {...synopsisProps} />;
 
     /* READ_ALOUD EMBED */
     let readAloud = (<div />);
