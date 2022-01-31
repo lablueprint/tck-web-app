@@ -47,7 +47,6 @@ function BookPage() {
   if (!book) {
     return <div>Scouring our library...</div>;
   }
-  // console.log('poggers');
 
   let title = 'Untitled Book';
   let authorName = 'Unknown Author';
