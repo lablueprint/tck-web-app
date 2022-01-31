@@ -45,23 +45,16 @@ function BookPage() {
     getEntries();
   }, [bookId]); // Runs on mount and on change of bookId
 
-  const getDefault = (x, defaultX) => {
-    if (x) {
-      return x;
-    }
-    return defaultX;
-  };
-
   if (book && author && illustrator) {
-    const title = getDefault(book.get('title'), 'Untitled Book');
-    const authorName = getDefault(author.get('name'), 'Unknown Author');
-    const illustratorName = getDefault(illustrator.get('name'), 'Unknown Illustrator');
-    const desc = getDefault(book.get('description'), 'It\'s a book. with words. **gasp**');
-    const image = getDefault(book.get('image'), [{ url: TCK_LOGO }]);
+    const title = (book.get('title')) ? book.get('title') : 'Untitled Book';
+    const authorName = (author.get('name')) ? author.get('name') : 'Unknown Author';
+    const illustratorName = (illustrator.get('name')) ? illustrator.get('name') : 'Unknown Illustrator';
+    const desc = (book.get('description')) ? book.get('description') : 'It\'s a book. with words. **gasp**';
+    const image = (book.get('image')) ? book.get('image') : [{ url: TCK_LOGO }];
     const imageURL = image[0].url;
-    const readAloudURL = getDefault(book.get('read_aloud_link'), null);
-    const bookshopURL = getDefault(book.get('bookshop_link'), null);
-    const educatorURLs = getDefault(book.get('educator_guide_links'), []);
+    const readAloudURL = (book.get('read_aloud_link')) ? book.get('read_aloud_link') : null;
+    const bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
+    const educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links') : [];
 
     const synopsis = (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
