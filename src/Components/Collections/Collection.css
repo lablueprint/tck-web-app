@@ -1,3 +1,9 @@
+.collectionsDisplay {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
 .collectionCard{
   margin: 20px;
   background: #fff;
@@ -11,7 +17,20 @@
   align-items: center;
   text-align: center;
 }
+
+.collectionImage {
+  margin: 10px;
+  max-width: 90%;
+  max-height: 50%;
+}
+
 .cardTitle{
     font-size: 60%;
     line-height: 60%;
+}
+
+.cardText {
+  margin: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden; 
 }
