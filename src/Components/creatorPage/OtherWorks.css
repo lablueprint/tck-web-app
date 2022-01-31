@@ -1,0 +1,7 @@
+.related-works-card{
+    display: flex;
+    flex-direction: row ;
+    column-gap:1em;
+    border:solid #c2c2c2;
+    width:25%;
+  }
