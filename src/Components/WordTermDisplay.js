@@ -13,18 +13,18 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function WordTermDisplay() {
-  const [posts, setPosts] = useState([]);
+  const [dictionaryDetails, setDictionaryDetails] = useState([]);
 
   const getPosts = () => {
     base('Definition').select({ view: 'Grid view' }).all()
       .then((records) => {
-        setPosts(records);
+        setDictionaryDetails(records);
       });
   };
 
   useEffect(getPosts, []);
 
-  return posts.map((post) => (
+  return dictionaryDetails.map((post) => (
     <WordTerm
       word={post.fields.word}
       def={post.fields.definition}
