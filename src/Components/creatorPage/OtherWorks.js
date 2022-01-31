@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './OtherWorks.css';
-// import { v4 as uuidv4 } from 'uuid';
+import AuthoredWorkCard from './AuthoredWorkCard';
+import IllustratedWorkCard from './IllustratedWorkCard';
 
 const Airtable = require('airtable');
 
@@ -15,14 +15,14 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 
 // Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
-  const [imageTitleObject, setImageTitleObject] = useState([]);
-  const [illustratedObject, setillustratedObject] = useState([]);
+  const [authoredWorks, setAuthoredWorks] = useState([]);
+  const [illustratedWorks, setillustratedWorks] = useState([]);
 
   function FindPosts() {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
-        return;
+        console.log(err);
       }
       const bookid = records.fields.authored;
       const illustratedId = records.fields.illustrated;
@@ -30,9 +30,9 @@ function CreatedWorksCard({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              return;
+              console.log(err);
             }
-            setImageTitleObject((prevValue) => prevValue.concat(
+            setAuthoredWorks((prevValue) => prevValue.concat(
               {
                 image: record.fields.image[0].thumbnails.large.url,
                 title: record.fields.title,
@@ -46,9 +46,9 @@ function CreatedWorksCard({ authorId }) {
         illustratedId.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              return;
+              console.log(err);
             }
-            setillustratedObject((prevValue) => prevValue.concat(
+            setillustratedWorks((prevValue) => prevValue.concat(
               {
                 image: record.fields.image[0].thumbnails.large.url,
                 title: record.fields.title,
@@ -67,23 +67,16 @@ function CreatedWorksCard({ authorId }) {
 
   return (
     <div>
-      {imageTitleObject.length && <div> Authored Works: </div>}
+      {authoredWorks.length && <div> Authored Works: </div>}
       <div>
-        {imageTitleObject.map((element) => (
-          <div key={element.id} className="related-works-card">
-            <img width="120" height="72" src={element.image} alt="" />
-            <div><h4>{element.title}</h4></div>
-          </div>
+        {authoredWorks.map((element) => (
+          <AuthoredWorkCard key={element.id} image={element.image} title={element.title} />
         ))}
       </div>
-      {illustratedObject.length && <div> Illustrated Works: </div>}
+      {illustratedWorks.length && <div> Illustrated Works: </div>}
       <div>
-        {illustratedObject.map((element) => (
-          <div key={element.id} className="related-works-card">
-            <img width="120" height="72" src={element.image} alt="" />
-            <div><h4>{element.title}</h4></div>
-            <Link to={`/creator/${element.id}`}>Book Page</Link>
-          </div>
+        {illustratedWorks.map((element) => (
+          <IllustratedWorkCard key={element.id} image={element.image} title={element.title} />
         ))}
       </div>
     </div>

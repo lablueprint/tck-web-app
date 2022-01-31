@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import propTypes from 'prop-types';
@@ -17,7 +16,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CreatorPage() {
-  const [posts, setPosts] = useState();
+  const [AuthorDetails, setAuthorDetails] = useState();
   const params = useParams();
   const authId = params.id;
 
@@ -25,7 +24,7 @@ function CreatorPage() {
     base('Creator').find(
       authId,
       (err, record) => {
-        setPosts(record);
+        setAuthorDetails(record);
       },
     );
   };
@@ -34,15 +33,15 @@ function CreatorPage() {
 
   return (
     <div>
-      { posts !== undefined
-    && (
-    <AuthorInfo
-      author={posts.fields.name}
-      bio={posts.fields.bio}
-      links={posts.fields.personal_site}
-      authorPic={posts.fields.image[0].thumbnails.large.url}
-    />
-    ) }
+      { AuthorDetails !== undefined
+        ? (
+          <AuthorInfo
+            author={AuthorDetails.fields.name}
+            bio={AuthorDetails.fields.bio}
+            links={AuthorDetails.fields.personal_site}
+            authorPic={AuthorDetails.fields.image[0].thumbnails.large.url}
+          />
+        ) : <p>No such author found!</p> }
       <CreatedWorksCard authorId={authId} />
     </div>
   );
