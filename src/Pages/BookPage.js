@@ -47,6 +47,7 @@ function BookPage() {
   if (!book) {
     return <div>Scouring our library...</div>;
   }
+  // console.log('poggers');
 
   let title = 'Untitled Book';
   let authorName = 'Unknown Author';
@@ -63,7 +64,7 @@ function BookPage() {
     image = (book.get('image')) ? book.get('image') : [{ url: Logo }];
     readAloudURL = (book.get('read_aloud_link')) ? book.get('read_aloud_link') : null;
     bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
-    educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links') : [];
+    educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links').split('\n') : [];
   }
 
   if (author) {
@@ -80,65 +81,47 @@ function BookPage() {
     title, authorName, illustratorName, desc, imageURL,
   };
 
-  /* READ_ALOUD EMBED */
-  let readAloud = (<div />);
-  if (readAloudURL) {
-    /*
-        read_aloud_link is defined as a 'watch' URL,
-        so we must extract the embed code from this URL
-          WARNING: This code will break if the read_aloud_link
-          is not in the form of (anything)('watch?v=')(video id)$
-      */
-    const videoId = readAloudURL.split('watch?v=')[1];
-    readAloud = (
-      <div className="video-responsive">
-        <iframe
-          width="853"
-          height="480"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="Embedded youtube"
-        />
-      </div>
-    );
-  }
+  const educatorLinks = educatorURLs.map((url) => (
+    <ListItem button component="a" href={url} key={url} alignItems="center">
+      <ListItemText sx={{ textAlign: 'center' }} primary={url} />
+    </ListItem>
+  ));
 
-  /* BOOKSHOP LINK, LinkUI from MaterialUI to not be confused with react-router */
-  let bookshop = <div />;
-  if (bookshopURL) {
-    bookshop = (
-      <LinkUI href={bookshopURL} rel="noreferrer" target="_blank">
-        Buy
-        {' '}
-        {title}
-        !
-      </LinkUI>
-    );
-  }
-
-  /* EDUCATOR GUIDE LINK */
-  let educators = <div />;
-  if (educatorURLs) {
-    educators = (
-      <List>
-        {educatorURLs.map((url) => (
-          <ListItem button component="a" href={url} key={url} alignItems="center">
-            <ListItemText sx={{ textAlign: 'center' }} primary={url} />
-          </ListItem>
-        ))}
-      </List>
-    );
+  if (title === 'Untitled Book') {
+    return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
   }
 
   return (
     <Paper variant="outlined">
       <BookSynopsis {...synopsisProps} />
-      {readAloud}
-      {bookshop}
+      {(readAloudURL) ? (
+        <div className="video-responsive">
+          <iframe
+            width="853"
+            height="480"
+            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
+        </div>
+      ) : <div />}
+      {(bookshopURL) ? (
+        <LinkUI href={bookshopURL} rel="noreferrer" target="_blank">
+          Buy
+          {' '}
+          {title}
+          !
+        </LinkUI>
+      ) : <div />}
       <h4>Educator Guides</h4>
-      {educators}
+      {(educatorURLs)
+        ? (
+          <List>
+            {educatorLinks}
+          </List>
+        ) : <div />}
     </Paper>
   );
 }
@@ -149,4 +132,7 @@ export default BookPage;
   1. For tags, use MaterialUI chips
   2. Q: For when Book or Creator is missing, do we want to display defaults or raise error
       saying that we couldn't pull the correct information for this entry?
+        - What is the necessary condition when we should *not* display available info
+          and just say that we couldn't pull the correct info?
+            - Currently when there is no book title
 */
