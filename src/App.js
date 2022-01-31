@@ -1,14 +1,19 @@
 import React from 'react';
 import {
-  BrowserRouter as Route, Routes,
+  Route, Routes,
 } from 'react-router-dom';
+import { Dictionary, Home } from './Pages';
+import Header from './Components';
 import './App.css';
 import CreatorPage from './Pages/CreatorPage';
 
 function App() {
   return (
-    <div>
+    <div className="App">
+      <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dictionary" element={<Dictionary />} />
         <Route exact path="/creator/:id" element={<CreatorPage />} />
       </Routes>
     </div>
