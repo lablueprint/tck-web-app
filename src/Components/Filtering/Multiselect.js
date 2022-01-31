@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-export default function MultiselectFilter({ onFilterChange, filterOptions }) {
+/* export default function MultiselectFilter({ onFilterChange, filterOptions }) {
   // const classes = useStyles();
   const [isChecked, setIsChecked] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  /* Resets all filters to be unchecked when reset clicked */
+  //Resets all filters to be unchecked when reset clicked
   const resetFilters = () => {
     const newChecked = [];
     onFilterChange(newChecked); // Pass empty [] back to markplace to reset filters
     setIsChecked(newChecked);
   };
 
-  /* Sets checkboxes to checked/unchecked when toggled */
+  //Sets checkboxes to checked/unchecked when toggled
   const handleToggle = (value) => function () {
     const currentIndex = isChecked.indexOf(value);
     const newChecked = [...isChecked];
@@ -29,7 +29,7 @@ export default function MultiselectFilter({ onFilterChange, filterOptions }) {
 
     return (
       <div>
-        {/* List of filter options only shows if expanded */}
+        {//List of filter options only shows if expanded }
         <div>
           <div
             dense
@@ -45,4 +45,4 @@ export default function MultiselectFilter({ onFilterChange, filterOptions }) {
       </div>
     );
   };
-}
+} */
