@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function WordTerm({ word, def }) {
   return (
-    <>
+    <div style={{ textAlign: 'start', paddingLeft: '2%' }}>
       <div>
         Word:
         {word}
@@ -15,7 +15,7 @@ export default function WordTerm({ word, def }) {
       <div>
         ------------
       </div>
-    </>
+    </div>
   );
 }
 

@@ -30,9 +30,9 @@ export default function Collection({ Collid }) {
       <body className="CollectionBody">
         {collectionObj.map((id) => (
           <div>
-            <img className="Collection-image" src={id.image} alt="description" />
+            <img className="collectionImage" src={id.image} alt="description" />
             <h5 className="card-title">{id.name}</h5>
-            <p className="card-text">{id.description}</p>
+            <p className="cardText">{id.description}</p>
           </div>
         ))}
       </body>
