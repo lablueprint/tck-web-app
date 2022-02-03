@@ -13,8 +13,24 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
+/*
+  SEARCHING
+    1. add searchTerms state to CardDisplay
+    2. pass setSearchTerms to SearchBar
+      - SearchBar will change the state of searchTerms
+    3. use searchTerms as a filtering parameter before we display cards
+
+  NOTES:
+    for now, we focus on the default behavior
+      - search by title:string, desc:string, identity:string
+    need to implement radio/toggle in order to test search by default / by creator
+
+  <SearchBar setSearchTerms={setSearchTerms}>
+
+  */
 function CardsDisplay() {
   const [cards, setCards] = useState([]);
+  const [searchTerms, setSearchTerms] = useState('');
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -25,12 +41,26 @@ function CardsDisplay() {
 
   useEffect(getCards, []);
 
+  const isMatch = (book) => {
+    // DEFAULT ROUTE, ADD OTHER FILTERING CRITERIA LATER
+    const title = book.title.toLowerCase();
+    const desc = book.title.toLowerCase();
+    const identity = book.title.toLowerCase();
+    let match;
+
+    match = title.includes(searchTerms)
+            || desc.includes(searchTerms)
+            || identity.includes(searchTerms);
+
+    return match;
+  };
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar setSearchTerms={setSearchTerms} />
 
       <div className="library-display">
-        {cards.map((card) => (
+        {cards.filter(isMatch).map((card) => (
           <Card
             key={card.id}
             id={card.id}
