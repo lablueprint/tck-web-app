@@ -1,15 +1,23 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import propTypes from 'prop-types';
 import RangeFilterCard from './RangeFilterCard';
 
-function RangeFilter() {
+function RangeFilter({ records }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [filterData, setFilterData] = useState({ age: { min: '', max: '' }, grade: { min: '', max: '' } });
   const open = Boolean(anchorEl);
-  const HandleSave = () => {
-    console.log('Here');
+  const handleSave = () => {
+    console.log(filterData);
+    console.log(records);
+    // records.map((element) => (element.grade_range.length ? console.log(parseInt(element.fields.grade_range[0].split('th')[0], 10)) : 'nothing'));
+    // records.filter((element) => (parseInt(element.fields.grade_range[0].split('th')[0], 10) >= filterData.grade.min
+    // && parseInt(element.fields.grade_range[0].split(' ')[2].split('th')[0], 10) <= filterData.grade.max)
+    // && parseInt(element.fields.age_range[0].split('-')[0], 10) >= filterData.age.min
+    // && parseInt(element.fields.age_range[0].split('-')[0], 10) <= filterData.age.max);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +43,6 @@ function RangeFilter() {
         { ...prevValue, grade: { max: event.target.value, min: prevValue.grade.min } }
       ));
     }
-    console.log(filterData);
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'column', rowGap: 100 }}>
@@ -58,25 +65,29 @@ function RangeFilter() {
         }}
       >
         <MenuItem>
-          <RangeFilterCard filterTitle="Grade" handleChange={HandleChange} />
+          <RangeFilterCard filterTitle="Grade" data={filterData} handleChange={HandleChange} />
         </MenuItem>
         <MenuItem>
-          <RangeFilterCard filterTitle="Age" handleChange={HandleChange} />
+          <RangeFilterCard filterTitle="Age" data={filterData} handleChange={HandleChange} />
         </MenuItem>
         <MenuItem>
-          <Button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={HandleSave}
+          <button
+            type="button"
+            // id="basic-button"
+            // aria-controls={open ? 'basic-menu' : undefined}
+            // aria-haspopup="true"
+            // aria-expanded={open ? 'true' : undefined}
+            onClick={handleSave}
           >
             Save
-          </Button>
+          </button>
         </MenuItem>
       </Menu>
     </div>
   );
 }
 
+RangeFilter.propTypes = {
+  records: propTypes.arrayOf.isRequired,
+};
 export default RangeFilter;

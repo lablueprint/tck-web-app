@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import propTypes from 'prop-types';
 
-function RangeFilterCard({ filterTitle, handleChange }) {
+function RangeFilterCard({ filterTitle, handleChange, data }) {
   return (
     <div>
       <p>{filterTitle}</p>
@@ -17,6 +17,7 @@ function RangeFilterCard({ filterTitle, handleChange }) {
           }}
           name={`${filterTitle}-min`}
           onChange={handleChange}
+          defaultValue={filterTitle === 'Age' ? data.age.min : data.grade.min}
         />
         <p>to</p>
         <TextField
@@ -29,6 +30,7 @@ function RangeFilterCard({ filterTitle, handleChange }) {
           }}
           name={`${filterTitle}-max`}
           onChange={handleChange}
+          defaultValue={filterTitle === 'Age' ? data.age.max : data.grade.max}
         />
       </div>
     </div>
@@ -38,6 +40,7 @@ function RangeFilterCard({ filterTitle, handleChange }) {
 RangeFilterCard.propTypes = {
   filterTitle: propTypes.string,
   handleChange: propTypes.func.isRequired,
+  data: propTypes.shape.isRequired,
 };
 
 RangeFilterCard.defaultProps = {
