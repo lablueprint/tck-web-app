@@ -1,10 +1,9 @@
 import React from 'react';
-import RangeFilter from '../Components/Filtering/RangeFilter';
+import CardsDisplay from '../Components/bookHub/BookHub';
 
 function Home() {
   return (
-    // <div> Insert your component here to test!</div>
-    <RangeFilter />
+    <div><CardsDisplay /></div>
   );
 }
 
