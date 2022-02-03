@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardMedia, CardContent, Typography,
+  Card, Paper, CardContent, Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
@@ -11,12 +11,9 @@ function BookSynopsis({
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <CardMedia
-        component="img"
-        image={imageURL}
-        height="140"
-        alt="book img desc"
-      />
+      <Paper variant="outlined">
+        <img src={imageURL} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
+      </Paper>
       <Card sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
         <CardContent>
           <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
