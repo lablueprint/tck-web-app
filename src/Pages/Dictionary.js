@@ -25,11 +25,13 @@ function WordTermDisplay() {
   useEffect(getWordInfo, []);
 
   return definitions.map((wordInfo) => (
-    <WordTerm
-      word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
-      def={wordInfo.fields.definition !== undefined ? wordInfo.fields.definition : 'MISSING DEFINTION'}
-      links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}
-    />
+    <div>
+      <WordTerm
+        word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
+        def={wordInfo.fields.definition !== undefined ? wordInfo.fields.definition : 'MISSING DEFINTION'}
+        links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}
+      />
+    </div>
   ));
 }
 
