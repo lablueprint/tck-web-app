@@ -20,6 +20,10 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
       - SearchBar will change the state of searchTerms
     3. use searchTerms as a filtering parameter before we display cards
 
+    FILTERING PIPELINE
+      1. map an array of promises using (books, isMatch)
+      2.
+
   NOTES:
     for now, we focus on the default behavior
       - search by title:string, desc:string, identity:string
@@ -29,18 +33,17 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
   */
 function CardsDisplay() {
-  const [cards, setCards] = useState([]);
+  const [books, setBooks] = useState([]);
+  // const [cards, setCards] = useState([]);
   const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
   const [defaultSearch, setDefaultSearch] = useState(true);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
-        setCards(records);
+        setBooks(records);
       });
   };
-
-  useEffect(getCards, [searchTerms, defaultSearch]);
 
   const getCreator = async (tableName, entryId) => new Promise((resolve, reject) => {
     base(tableName).find(entryId, (err, creatorRecord) => {
@@ -62,7 +65,7 @@ function CardsDisplay() {
     desc = (desc) ? desc.toLowerCase() : '';
     identity = (identity) ? identity.toLowerCase() : '';
 
-    let match;
+    let match = true;
     if (defaultSearch) {
       match = title.includes(searchTerms)
       || desc.includes(searchTerms)
@@ -80,15 +83,29 @@ function CardsDisplay() {
     // console.log(searchTerms);
     return match;
   };
-
-  console.log(searchTerms);
+  /*
+  const searchByTerm = async () => {
+    const toFilter = await Promise.all(books.map(isMatch));
+    const filtered = cards.filter((value, index) => toFilter[index]);
+    setCards(filtered);
+  };
+  */
+  useEffect(() => {
+    getCards();
+    /*
+    if (searchTerms) {
+      searchByTerm();
+    } else {
+      setCards(books);
+    } */
+  }, [searchTerms, defaultSearch]);
 
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
 
       <div className="library-display">
-        {cards.filter(isMatch).map((card) => (
+        {books.filter(isMatch).map((card) => (
           <Card
             key={card.id}
             id={card.id}

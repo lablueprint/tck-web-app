@@ -21,7 +21,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
 
   return (
     <div>
-      <FormControl autoWidth>
+      <FormControl variant="standard" autoWidth>
         <InputLabel id="search-by-label">search by</InputLabel>
         <Select
           labelId="search-by-label"
@@ -34,11 +34,12 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
           <MenuItem value={false}>Author, Illustrator</MenuItem>
         </Select>
       </FormControl>
+
       <TextField
         id="filled-basic"
         label="search"
         placeholder="Enter keyword"
-        variant="standard"
+        variant="filled"
         onKeyPress={handleChange}
       />
     </div>
