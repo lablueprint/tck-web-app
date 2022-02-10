@@ -30,7 +30,8 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   */
 function CardsDisplay() {
   const [cards, setCards] = useState([]);
-  const [searchTerms, setSearchTerms] = useState('');
+  const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
+  const [defaultSearch, setDefaultSearch] = useState(true);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -39,25 +40,52 @@ function CardsDisplay() {
       });
   };
 
-  useEffect(getCards, []);
+  useEffect(getCards, [searchTerms, defaultSearch]);
 
-  const isMatch = (book) => {
-    // DEFAULT ROUTE, ADD OTHER FILTERING CRITERIA LATER
-    const title = book.title.toLowerCase();
-    const desc = book.title.toLowerCase();
-    const identity = book.title.toLowerCase();
+  const getCreator = async (tableName, entryId) => new Promise((resolve, reject) => {
+    base(tableName).find(entryId, (err, creatorRecord) => {
+      if (err) {
+        reject();
+      }
+      resolve(creatorRecord);
+    });
+  });
+
+  // promise chaining ❌, async/await ✅
+  const isMatch = async (book) => {
+    let title = book.get('title');
+    let desc = book.get('description');
+    let identity = book.get('identity');
+
+    // need to error check before using toLowerCase()
+    title = (title) ? title.toLowerCase() : '';
+    desc = (desc) ? desc.toLowerCase() : '';
+    identity = (identity) ? identity.toLowerCase() : '';
+
     let match;
-
-    match = title.includes(searchTerms)
-            || desc.includes(searchTerms)
-            || identity.includes(searchTerms);
-
+    if (defaultSearch) {
+      match = title.includes(searchTerms)
+      || desc.includes(searchTerms)
+      || identity.includes(searchTerms);
+    } else {
+      const authorId = book.get('author');
+      const illustratorId = book.get('illustrator');
+      const author = await getCreator('Creator', authorId);
+      const illustrator = await getCreator('Creator', illustratorId);
+      const authorName = (author.get('name')) ? author.get('name').toLowerCase() : '';
+      const illustratorName = (illustrator.get('name')) ? illustrator.get('name').toLowerCase() : '';
+      match = authorName.includes(searchTerms) || illustratorName.includes(searchTerms);
+    }
+    // console.log(`checking ${title}: ${match}`);
+    // console.log(searchTerms);
     return match;
   };
 
+  console.log(searchTerms);
+
   return (
     <div>
-      <SearchBar setSearchTerms={setSearchTerms} />
+      <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
 
       <div className="library-display">
         {cards.filter(isMatch).map((card) => (
@@ -70,6 +98,7 @@ function CardsDisplay() {
           />
         ))}
       </div>
+
     </div>
   );
 }
