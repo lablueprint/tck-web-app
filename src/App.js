@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+// Route, Routes,
+} from 'react-router-dom';
+// import { Dictionary, Home } from './Pages';
+// import Header from './Components';
 import './App.css';
 import MultSelectElem from './Components/Filtering/Multiselect';
 // import Checkboxes from './Components/Filtering/Multiselect';
