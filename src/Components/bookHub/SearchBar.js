@@ -14,7 +14,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
       setSearchTerms(e.target.value);
       // setValue('');
     } else {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       // setValue(value + e.target.value);
     }
   };

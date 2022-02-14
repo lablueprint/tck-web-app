@@ -29,12 +29,15 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
       - search by title:string, desc:string, identity:string
     need to implement radio/toggle in order to test search by default / by creator
 
+    T/D/I
+      -{}
+
   <SearchBar setSearchTerms={setSearchTerms}>
 
   */
 function CardsDisplay() {
   const [books, setBooks] = useState([]);
-  // const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([]);
   const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
   const [defaultSearch, setDefaultSearch] = useState(true);
 
@@ -65,47 +68,82 @@ function CardsDisplay() {
     desc = (desc) ? desc.toLowerCase() : '';
     identity = (identity) ? identity.toLowerCase() : '';
 
-    let match = true;
+    let match = false;
     if (defaultSearch) {
       match = title.includes(searchTerms)
       || desc.includes(searchTerms)
       || identity.includes(searchTerms);
     } else {
+      const DEFAULT_CREATOR = { get: () => '' };
       const authorId = book.get('author');
       const illustratorId = book.get('illustrator');
-      const author = await getCreator('Creator', authorId);
-      const illustrator = await getCreator('Creator', illustratorId);
-      const authorName = (author.get('name')) ? author.get('name').toLowerCase() : '';
-      const illustratorName = (illustrator.get('name')) ? illustrator.get('name').toLowerCase() : '';
+      const author = (authorId) ? await getCreator('Creator', authorId) : DEFAULT_CREATOR;
+      const illustrator = (illustratorId) ? await getCreator('Creator', illustratorId) : DEFAULT_CREATOR;
+      const authorName = author.get('name').toLowerCase();
+      const illustratorName = illustrator.get('name').toLowerCase();
       match = authorName.includes(searchTerms) || illustratorName.includes(searchTerms);
     }
-    // console.log(`checking ${title}: ${match}`);
-    // console.log(searchTerms);
     return match;
   };
+
+  /*
+
+  name: Avnish Sengupta
+
+  searchTerms = avnish
+
+  'avnish sengupta' ==  'avnish'
+   */
+
+  const searchByTerm = () => {
+    base('Creator').select({
+      // Selecting the first 3 records in Grid view:
+      filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, authored, '')`,
+      maxRecords: 3,
+      view: 'Grid view',
+    }).eachPage((records, fetchNextPage) => {
+      // This function (`page`) will get called for each page of records.
+
+      records.forEach((record) => {
+        console.log('Retrieved', record.get('id'));
+        console.log(record.get('name'));
+      });
+
+      // To fetch the next page of records, call `fetchNextPage`.
+      // If there are more records, `page` will get called again.
+      // If there are no more records, `done` will get called.
+      fetchNextPage();
+    }, (err) => {
+      if (err) { console.error(err); }
+    });
+    console.log('EXT');
+  };
+
   /*
   const searchByTerm = async () => {
+    // console.log(defaultSearch);
     const toFilter = await Promise.all(books.map(isMatch));
-    const filtered = cards.filter((value, index) => toFilter[index]);
+    const filtered = cards.filter((_, index) => toFilter[index]);
     setCards(filtered);
+    // console.log(cards);
   };
   */
+
   useEffect(() => {
-    getCards();
-    /*
+    if (!books.length) { getCards(); }
     if (searchTerms) {
-      searchByTerm();
+      (async () => searchByTerm())();
     } else {
       setCards(books);
-    } */
-  }, [searchTerms, defaultSearch]);
+    }
+  }, [books, searchTerms, defaultSearch]);
 
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
 
       <div className="library-display">
-        {books.filter(isMatch).map((card) => (
+        {cards.filter(isMatch).map((card) => (
           <Card
             key={card.id}
             id={card.id}
