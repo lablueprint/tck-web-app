@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {
+  Card, CardActions, CardContent, Button, Typography,
+} from '@mui/material';
 
 export default function WordTerm({ word, def, links }) {
   const linksArray = links.split('\n');
-  linksArray.pop();
+  if (linksArray.length !== 0) { linksArray.pop(); }
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -24,7 +22,7 @@ export default function WordTerm({ word, def, links }) {
         </Typography>
       </CardContent>
       <CardActions style={{ justifyContent: 'center' }}>
-        {linksArray.map((url) => (
+        {linksArray.filter((v) => Object.keys(v).length).map((url) => (
           <Button
             variant="outlined"
             size="small"
