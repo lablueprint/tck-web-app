@@ -25,12 +25,11 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
       2.
 
   NOTES:
-    for now, we focus on the default behavior
-      - search by title:string, desc:string, identity:string
-    need to implement radio/toggle in order to test search by default / by creator
-
-    T/D/I
-      -{}
+    - base('creator').select only looks at authored field
+      - use another variable/function to include illustrator in formula
+    - restrcture "matching" code
+    - make sure cards are properly set after filtering
+    - fix maxRecords in base('creator').select call
 
   <SearchBar setSearchTerms={setSearchTerms}>
 
@@ -40,6 +39,8 @@ function CardsDisplay() {
   const [cards, setCards] = useState([]);
   const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
   const [defaultSearch, setDefaultSearch] = useState(true);
+
+  const [matchedBooks, setMatchedBooks] = useState([]);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -86,15 +87,6 @@ function CardsDisplay() {
     return match;
   };
 
-  /*
-
-  name: Avnish Sengupta
-
-  searchTerms = avnish
-
-  'avnish sengupta' ==  'avnish'
-   */
-
   const searchByTerm = () => {
     base('Creator').select({
       // Selecting the first 3 records in Grid view:
@@ -104,7 +96,15 @@ function CardsDisplay() {
     }).eachPage((records, fetchNextPage) => {
       // This function (`page`) will get called for each page of records.
 
+      // Records is array of Creators whose names match the searchTerms
       records.forEach((record) => {
+        /*
+        const arr1 = [1,2,3,4]
+        const arr2 = [5,6,7]
+        const arr3 = [...arr1, ...arr2]
+        console.log(arr3)
+        setMatchedBooks([matchBooks, newStuff])
+        */
         console.log('Retrieved', record.get('id'));
         console.log(record.get('name'));
       });
