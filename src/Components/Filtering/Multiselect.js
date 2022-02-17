@@ -1,10 +1,29 @@
-import React, { /* useState, useEffect */} from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import Button from '@mui/material/Button';
-import { PropTypes } from 'prop-types';
 import MultiSelectComponent from './MultiSelectComponent';
 
-export default function MultSelectElem({ filters /* records */ }) {
+const filters = [
+  {
+    filterName: 'Ethnicity',
+    filterOptions: ['Black/African American', 'White', 'Asian', 'Hawaiian/Pacific Islander', 'Hispanic',
+      'American Indian/Alaska Native'],
+  },
+  {
+    filterName: 'Religion',
+    filterOptions: ['Christian', 'Muslim', 'Hindu', 'Jewish', 'Atheist'],
+  },
+  {
+    filterName: 'Gender',
+    filterOptions: ['Male', 'Female', 'Nonbinary', 'Other'],
+  },
+  {
+    filterName: 'Sexuality',
+    filterOptions: ['Gay', 'Straight', 'Bisexual', 'Other'],
+  },
+];
+
+export default function MultSelectElem() {
   return (
     <div>
       {filters.map((option) => (
@@ -15,15 +34,7 @@ export default function MultSelectElem({ filters /* records */ }) {
           />
         </div>
       ))}
-      <Button variant="contained"/* onClick={handleChange(option.filterName)} */>Apply</Button>
+      <Button variant="contained">Apply</Button>
     </div>
   );
 }
-MultSelectElem.propTypes = {
-  filters: PropTypes.arrayOf(PropTypes.shape({
-    filterName: PropTypes.string,
-    filterOptions: PropTypes.string,
-  })).isRequired,
-  // updateFilter: PropTypes.func.isRequired,
-  // DemographicName: PropTypes.string.isRequired,
-};
