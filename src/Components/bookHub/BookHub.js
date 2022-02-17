@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import RangeFilter from '../Filtering/RangeFilter';
 import Card from './BookCard';
 
+const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -14,20 +17,44 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 function CardsDisplay() {
   const [cards, setCards] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [filterInput, setFilterInput] = useState({
+    age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
+    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+  });
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setCards(records);
+        setFilteredCards(records);
       });
   };
 
-  useEffect(getCards, []);
+  useEffect(() => {
+    const validGradeTags = gradeRangeMetadata.slice(
+      gradeRangeMetadata.indexOf(filterInput.grade.min),
+      gradeRangeMetadata.indexOf(filterInput.grade.max) + 1,
+    );
+    const validAgeTags = ageRangeMetadata.slice(
+      ageRangeMetadata.indexOf(filterInput.age.min),
+      ageRangeMetadata.indexOf(filterInput.age.max) + 1,
+    );
+    console.log(filterInput);
+    console.log(cards);
+    setFilteredCards(cards.filter(
+      (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
+      && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1)),
+    ));
+  }, [filterInput]);
+
+  useEffect(() => { getCards(); }, []);
 
   return (
     <div>
+      <RangeFilter setFilterState={setFilterInput} />
       <div className="library-display">
-        {cards.map((card) => (
+        {filteredCards.map((card) => (
           <Card
             key={card.id}
             id={card.id}

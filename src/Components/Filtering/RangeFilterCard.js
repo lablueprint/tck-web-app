@@ -44,7 +44,7 @@ RangeFilterCard.propTypes = {
   filterTitle: propTypes.string,
   handleChange: propTypes.func.isRequired,
   data: propTypes.shape.isRequired,
-  optionsArray: propTypes.arrayOf,
+  optionsArray: propTypes.arrayOf(propTypes.string),
 };
 
 RangeFilterCard.defaultProps = {
