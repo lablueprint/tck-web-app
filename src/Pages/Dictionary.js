@@ -1,8 +1,13 @@
 import React from 'react';
+import WordTermDisplay from '../Components/Dictionary/WordTermDisplay';
+import './PagesTemp.css';
 
 function Dictionary() {
   return (
-    <div> You can also test here for now!</div>
+    <div>
+      <h1 className="headings">Dictionary</h1>
+      <WordTermDisplay />
+    </div>
   );
 }
 

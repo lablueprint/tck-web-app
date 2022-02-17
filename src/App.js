@@ -1,32 +1,24 @@
 import React from 'react';
 import {
-// Route, Routes,
+  Route, Routes,
 } from 'react-router-dom';
-// import { Dictionary, Home } from './Pages';
-// import Header from './Components';
+import { Dictionary, Home } from './Pages';
+import Header from './Components';
 import './App.css';
-import MultSelectElem from './Components/Filtering/Multiselect';
-// import Checkboxes from './Components/Filtering/Multiselect';
-// import MultiselectComponent from './Components/Filtering/MultiSelectComponent';
-const filters = [
-  {
-    filterName: 'Ethnicity',
-    filterOptions: ['Black/African American', 'White', 'Asian', 'Hawaiian/Pacific Islander', 'Hispanic',
-      'American Indian/Alaska Native'],
-  },
-  {
-    filterName: 'Religion',
-    filterOptions: ['Christian', 'Muslim', 'Hindu', 'Jewish', 'Atheist'],
-  },
-  {
-    filterName: 'Gender',
-    filterOptions: ['Male', 'Female', 'Nonbinary', 'Other'],
-  },
-];
+import CreatorPage from './Pages/CreatorPage';
+
+import BookPage from './Pages/BookPage';
+
 function App() {
   return (
-    <div>
-      <MultSelectElem filters={filters} />
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+        <Route exact path="/book/:bookId" element={<BookPage />} />
+        <Route exact path="/creator/:id" element={<CreatorPage />} />
+      </Routes>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
@@ -6,18 +7,16 @@ import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
 import RangeFilterCard from './RangeFilterCard';
 
-function RangeFilter({ records }) {
+const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
+
+function RangeFilter({ setFilterState }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [filterData, setFilterData] = useState({ age: { min: '', max: '' }, grade: { min: '', max: '' } });
+  // const [filterName, setFilterName] = useState('');
+  const [filterData, setFilterData] = useState({ age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] }, grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] } });
   const open = Boolean(anchorEl);
   const handleSave = () => {
-    console.log(filterData);
-    console.log(records);
-    // records.map((element) => (element.grade_range.length ? console.log(parseInt(element.fields.grade_range[0].split('th')[0], 10)) : 'nothing'));
-    // records.filter((element) => (parseInt(element.fields.grade_range[0].split('th')[0], 10) >= filterData.grade.min
-    // && parseInt(element.fields.grade_range[0].split(' ')[2].split('th')[0], 10) <= filterData.grade.max)
-    // && parseInt(element.fields.age_range[0].split('-')[0], 10) >= filterData.age.min
-    // && parseInt(element.fields.age_range[0].split('-')[0], 10) <= filterData.age.max);
+    setFilterState(filterData);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,22 +24,23 @@ function RangeFilter({ records }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const HandleChange = (event) => {
-    if (event.target.name === 'Age-min') {
+
+  const HandleChange = (name, newValue, event) => {
+    if (name === 'Age-min') {
       setFilterData((prevValue) => (
-        { ...prevValue, age: { min: event.target.value, max: prevValue.age.max } }
+        { ...prevValue, age: { min: newValue, max: prevValue.age.max } }
       ));
-    } else if (event.target.name === 'Age-max') {
+    } else if (name === 'Age-max') {
       setFilterData((prevValue) => (
-        { ...prevValue, age: { max: event.target.value, min: prevValue.age.min } }
+        { ...prevValue, age: { max: newValue, min: prevValue.age.min } }
       ));
-    } else if (event.target.name === 'Grade-min') {
+    } else if (name === 'Grade-min') {
       setFilterData((prevValue) => (
-        { ...prevValue, grade: { min: event.target.value, max: prevValue.grade.max } }
+        { ...prevValue, grade: { min: newValue, max: prevValue.grade.max } }
       ));
-    } else if (event.target.name === 'Grade-max') {
+    } else if (name === 'Grade-max') {
       setFilterData((prevValue) => (
-        { ...prevValue, grade: { max: event.target.value, min: prevValue.grade.min } }
+        { ...prevValue, grade: { max: newValue, min: prevValue.grade.min } }
       ));
     }
   };
@@ -65,10 +65,10 @@ function RangeFilter({ records }) {
         }}
       >
         <MenuItem>
-          <RangeFilterCard filterTitle="Grade" data={filterData} handleChange={HandleChange} />
+          <RangeFilterCard filterTitle="Grade" data={filterData} optionsArray={gradeRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
         <MenuItem>
-          <RangeFilterCard filterTitle="Age" data={filterData} handleChange={HandleChange} />
+          <RangeFilterCard filterTitle="Age" data={filterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
         <MenuItem>
           <button
@@ -88,6 +88,6 @@ function RangeFilter({ records }) {
 }
 
 RangeFilter.propTypes = {
-  records: propTypes.arrayOf.isRequired,
+  setFilterState: propTypes.func.isRequired,
 };
 export default RangeFilter;

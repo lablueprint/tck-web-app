@@ -70,13 +70,23 @@ function CreatedWorksCard({ authorId }) {
       {authoredWorks.length && <div> Authored Works: </div>}
       <div>
         {authoredWorks.map((element) => (
-          <AuthoredWorkCard key={element.id} image={element.image} title={element.title} />
+          <AuthoredWorkCard
+            key={element.id}
+            id={element.id}
+            image={element.image}
+            title={element.title}
+          />
         ))}
       </div>
       {illustratedWorks.length && <div> Illustrated Works: </div>}
       <div>
         {illustratedWorks.map((element) => (
-          <IllustratedWorkCard key={element.id} image={element.image} title={element.title} />
+          <IllustratedWorkCard
+            key={element.id}
+            id={element.id}
+            image={element.image}
+            title={element.title}
+          />
         ))}
       </div>
     </div>
