@@ -43,7 +43,12 @@ function RangeFilterCard({
 RangeFilterCard.propTypes = {
   filterTitle: propTypes.string,
   handleChange: propTypes.func.isRequired,
-  data: propTypes.shape.isRequired,
+  data: propTypes.shape(
+    {
+      age: propTypes.shape({ min: propTypes.string.isRequired, max: propTypes.string.isRequired }),
+      grade: propTypes.shape({ min: propTypes.string.isRequired, max: propTypes.string }),
+    },
+  ).isRequired,
   optionsArray: propTypes.arrayOf(propTypes.string),
 };
 
