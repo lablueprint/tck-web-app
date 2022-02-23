@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import MultiSelectComponent from './MultiSelectComponent';
 
 const filters = [
@@ -34,7 +34,7 @@ export default function MultSelectElem() {
           />
         </div>
       ))}
-      <Button variant="contained">Apply</Button>
+      {/* <Button variant="contained">Apply</Button> */}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
 import RangeFilterCard from './RangeFilterCard';
+import MultSelectElem from './Multiselect';
 
 const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
@@ -70,6 +71,7 @@ function RangeFilter({ setFilterState }) {
         <MenuItem>
           <RangeFilterCard filterTitle="Age" data={filterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
+        <MenuItem><MultSelectElem /></MenuItem>
         <MenuItem>
           <button
             type="button"
