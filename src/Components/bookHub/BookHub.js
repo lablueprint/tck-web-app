@@ -22,6 +22,12 @@ function CardsDisplay() {
     age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
   });
+  const [userInput, setUserInput] = useState({
+    Ethnicity: [],
+    Religion: [],
+    Gender: [],
+    Sexuality: [],
+  });
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -49,10 +55,15 @@ function CardsDisplay() {
   }, [filterInput]);
 
   useEffect(() => { getCards(); }, []);
+  useEffect(() => { console.log(userInput); }, [userInput]);
 
   return (
     <div>
-      <RangeFilter setFilterState={setFilterInput} />
+      <RangeFilter
+        setFilterState={setFilterInput}
+        setMultiSelect={setUserInput}
+        MultiSelectInput={userInput}
+      />
       <div className="library-display">
         {filteredCards.map((card) => (
           <Card

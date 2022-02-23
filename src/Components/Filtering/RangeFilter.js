@@ -11,7 +11,7 @@ import MultSelectElem from './Multiselect';
 const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 
-function RangeFilter({ setFilterState }) {
+function RangeFilter({ setFilterState, setMultiSelect, MultiSelectInput }) {
   const [anchorEl, setAnchorEl] = useState(null);
   // const [filterName, setFilterName] = useState('');
   const [filterData, setFilterData] = useState({ age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] }, grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] } });
@@ -71,7 +71,7 @@ function RangeFilter({ setFilterState }) {
         <MenuItem>
           <RangeFilterCard filterTitle="Age" data={filterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
-        <MenuItem><MultSelectElem /></MenuItem>
+        <MenuItem><MultSelectElem setMultiSelect={setMultiSelect} userInput={MultiSelectInput} /></MenuItem>
         <MenuItem>
           <button
             type="button"
@@ -91,5 +91,12 @@ function RangeFilter({ setFilterState }) {
 
 RangeFilter.propTypes = {
   setFilterState: propTypes.func.isRequired,
+  setMultiSelect: propTypes.func.isRequired,
+  MultiSelectInput: propTypes.shape({
+    Ethnicity: propTypes.arrayOf.isRequired,
+    Religion: propTypes.arrayOf.isRequired,
+    Gender: propTypes.arrayOf.isRequired,
+    Sexuality: propTypes.arrayOf.isRequired,
+  }).isRequired,
 };
 export default RangeFilter;
