@@ -1,5 +1,5 @@
 import React/* , { useEffect, useState } */ from 'react';
-import CardsDisplay from '../Components/BookHub/BookHub';
+import CardsDisplay from '../Components/bookHub/BookHub';
 import CollectionDisplay from '../Components/Collections/CollectionDisplay';
 import './PagesTemp.css';
 // delete before pushing/////

@@ -8,7 +8,7 @@ export default function MultiselectComponent({ filterOptions }) {
   useEffect(() => {
     filterOptions.map((option) => setChecked({ ...checked, [option]: false }));
   }, []);
-
+  console.log(checked);
   const handleToggle = (value, name) => {
     const current = checked[name];
     setChecked({ ...checked, [name]: !current });
