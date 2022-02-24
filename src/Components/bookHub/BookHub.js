@@ -49,6 +49,7 @@ function CardsDisplay() {
       });
   };
 
+  /*
   const getCreator = async (tableName, entryId) => new Promise((resolve, reject) => {
     base(tableName).find(entryId, (err, creatorRecord) => {
       if (err) {
@@ -57,9 +58,14 @@ function CardsDisplay() {
       resolve(creatorRecord);
     });
   });
+  */
 
-  // promise chaining ❌, async/await ✅
-  const isMatch = async (book) => {
+  const isMatch = (book) => {
+    // Filter function for books stored in 'books' state
+    /* FOR FUTURE DEV
+        - we may want to match by a combo of title, description, identity
+            - refactor this to |= the _.includes() calls for each field
+    */
     let title = book.get('title');
     let desc = book.get('description');
     let identity = book.get('identity');
@@ -70,24 +76,91 @@ function CardsDisplay() {
     identity = (identity) ? identity.toLowerCase() : '';
 
     let match = false;
-    if (defaultSearch) {
-      match = title.includes(searchTerms)
-      || desc.includes(searchTerms)
-      || identity.includes(searchTerms);
-    } else {
-      const DEFAULT_CREATOR = { get: () => '' };
-      const authorId = book.get('author');
-      const illustratorId = book.get('illustrator');
-      const author = (authorId) ? await getCreator('Creator', authorId) : DEFAULT_CREATOR;
-      const illustrator = (illustratorId) ? await getCreator('Creator', illustratorId) : DEFAULT_CREATOR;
-      const authorName = author.get('name').toLowerCase();
-      const illustratorName = illustrator.get('name').toLowerCase();
-      match = authorName.includes(searchTerms) || illustratorName.includes(searchTerms);
-    }
+    match = title.includes(searchTerms)
+    || desc.includes(searchTerms)
+    || identity.includes(searchTerms);
     return match;
   };
 
+  /*
+    table: string for the airtable we wanna look at
+    field: string for the field of the table we wanna look at
+            authored
+            illustrated
+
+  */
+  function Filter(table, field) {
+    // Query Airtable {table} for records whose {field} value matches the search term
+    // This will mainly be for Creator table
+    base(table).select({
+      filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, ${field}, '')`,
+      maxRecords: 3,
+      view: 'Grid view',
+    }).eachPage((records, fetchNextPage) => {
+      records.forEach((record) => {
+        console.log('Retrieved', record.get('id'));
+        console.log(record.get('name'));
+        console.log(record.get('authored'));
+        console.log(record.get('illustrated'));
+
+        // store record
+        /*
+
+        const matchedBooks = [1,2,3,4]
+        const arr2 = [5,6,7]
+        const arr3 = [...arr1, ...arr2]
+
+        In Creators table, each record's authored/illustrated field is an array of bookIds,
+        but we want to store the book record in our matchedBook state
+
+        book.get('title');
+
+        for authoredId in bookIdRetrieved:
+          for each book in books:
+            if book.id == authoredId:
+              add book to matchedBooks
+
+        matchedBooks := array of Book object/records
+              book.get('title')
+              book.get(...)
+
+        */
+        const bookId = record.get('authored'); // array of strings (bookId)
+
+        for (let i = 0; i < bookId.length; i += 1) {
+          for (let j = 0; j < books.length; j += 1) {
+            if (bookId[i] === books[j].get('id')) {
+              // newArr = [...oldArr, x]
+              if (!matchedBooks.includes(books[j])) {
+                setMatchedBooks([...matchedBooks, books[j]]);
+              }
+            }
+          }
+        }
+      });
+      fetchNextPage();
+    }, (err) => {
+      if (err) { console.error(err); }
+    });
+
+    console.log('matched');
+    console.log(matchedBooks);
+  }
+
   const searchByTerm = () => {
+    if (defaultSearch) {
+      // title/description/identity
+      const matched = books.filter(isMatch);
+      setMatchedBooks(matched);
+    } else {
+      // we can figure out how to filter both fields at once later
+      Filter('Creator', 'authored');
+      Filter('Creator', 'illustrated');
+      console.log(matchedBooks);
+    }
+
+    setCards(matchedBooks);
+    /*
     base('Creator').select({
       // Selecting the first 3 records in Grid view:
       filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, authored, '')`,
@@ -98,13 +171,6 @@ function CardsDisplay() {
 
       // Records is array of Creators whose names match the searchTerms
       records.forEach((record) => {
-        /*
-        const arr1 = [1,2,3,4]
-        const arr2 = [5,6,7]
-        const arr3 = [...arr1, ...arr2]
-        console.log(arr3)
-        setMatchedBooks([matchBooks, newStuff])
-        */
         console.log('Retrieved', record.get('id'));
         console.log(record.get('name'));
       });
@@ -117,6 +183,7 @@ function CardsDisplay() {
       if (err) { console.error(err); }
     });
     console.log('EXT');
+    */
   };
 
   /*
@@ -132,7 +199,8 @@ function CardsDisplay() {
   useEffect(() => {
     if (!books.length) { getCards(); }
     if (searchTerms) {
-      (async () => searchByTerm())();
+      //  (async () => searchByTerm())();
+      searchByTerm();
     } else {
       setCards(books);
     }
