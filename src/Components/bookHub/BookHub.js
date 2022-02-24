@@ -40,7 +40,7 @@ function CardsDisplay() {
   const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
   const [defaultSearch, setDefaultSearch] = useState(true);
 
-  const [matchedBooks, setMatchedBooks] = useState([]);
+  // const [matchedBooks, setMatchedBooks] = useState([]);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -66,6 +66,7 @@ function CardsDisplay() {
         - we may want to match by a combo of title, description, identity
             - refactor this to |= the _.includes() calls for each field
     */
+    if (!book) return false;
     let title = book.get('title');
     let desc = book.get('description');
     let identity = book.get('identity');
@@ -89,42 +90,16 @@ function CardsDisplay() {
             illustrated
 
   */
-  function Filter(table, field) {
+  const Filter = (table, field) => new Promise((resolve, reject) => {
     // Query Airtable {table} for records whose {field} value matches the search term
     // This will mainly be for Creator table
+    /*
     base(table).select({
       filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, ${field}, '')`,
       maxRecords: 3,
       view: 'Grid view',
     }).eachPage((records, fetchNextPage) => {
       records.forEach((record) => {
-        console.log('Retrieved', record.get('id'));
-        console.log(record.get('name'));
-        console.log(record.get('authored'));
-        console.log(record.get('illustrated'));
-
-        // store record
-        /*
-
-        const matchedBooks = [1,2,3,4]
-        const arr2 = [5,6,7]
-        const arr3 = [...arr1, ...arr2]
-
-        In Creators table, each record's authored/illustrated field is an array of bookIds,
-        but we want to store the book record in our matchedBook state
-
-        book.get('title');
-
-        for authoredId in bookIdRetrieved:
-          for each book in books:
-            if book.id == authoredId:
-              add book to matchedBooks
-
-        matchedBooks := array of Book object/records
-              book.get('title')
-              book.get(...)
-
-        */
         const bookId = record.get('authored'); // array of strings (bookId)
 
         for (let i = 0; i < bookId.length; i += 1) {
@@ -140,26 +115,48 @@ function CardsDisplay() {
       });
       fetchNextPage();
     }, (err) => {
-      if (err) { console.error(err); }
+      if (err) { reject(err); }
     });
+    */
+    base(table).select({
+      filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, ${field}, '')`,
+      view: 'Grid view',
+    }).all()
+      .then((records) => {
+        console.log(records);
+        const res = [];
+        records.forEach((record) => {
+          const bookIds = record.get('authored'); // array of strings (bookId)
+          bookIds.forEach((bookId) => {
+            const book = books.find((x) => x.get('id') === bookId);
+            res.push(book);
+          });
+        });
+        resolve(res);
+      })
+      .catch((err) => { reject(err); });
+  });
 
-    console.log('matched');
-    console.log(matchedBooks);
-  }
-
-  const searchByTerm = () => {
+  const searchByTerm = async () => {
+    let matched = [];
     if (defaultSearch) {
       // title/description/identity
-      const matched = books.filter(isMatch);
-      setMatchedBooks(matched);
+      matched = books.filter(isMatch);
+      console.log(matched);
     } else {
       // we can figure out how to filter both fields at once later
-      Filter('Creator', 'authored');
-      Filter('Creator', 'illustrated');
-      console.log(matchedBooks);
-    }
+      let res = await Filter('Creator', 'authored');
+      matched.push(...res);
+      res = await Filter('Creator', 'illustrated');
+      matched.push(...res);
 
-    setCards(matchedBooks);
+      // remove duplicates
+      matched = [...new Set(matched)];
+    }
+    // setMatchedBooks(matched);
+    console.log(matched);
+    setCards(matched);
+
     /*
     base('Creator').select({
       // Selecting the first 3 records in Grid view:
@@ -186,21 +183,11 @@ function CardsDisplay() {
     */
   };
 
-  /*
-  const searchByTerm = async () => {
-    // console.log(defaultSearch);
-    const toFilter = await Promise.all(books.map(isMatch));
-    const filtered = cards.filter((_, index) => toFilter[index]);
-    setCards(filtered);
-    // console.log(cards);
-  };
-  */
-
   useEffect(() => {
     if (!books.length) { getCards(); }
     if (searchTerms) {
-      //  (async () => searchByTerm())();
-      searchByTerm();
+      (async () => searchByTerm())();
+      // searchByTerm();
     } else {
       setCards(books);
     }
@@ -211,14 +198,17 @@ function CardsDisplay() {
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
 
       <div className="library-display">
-        {cards.filter(isMatch).map((card) => (
-          <Card
-            key={card.id}
-            id={card.id}
-            title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-            author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
-            image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
-          />
+        {cards.map((card) => (
+          (card)
+            ? (
+              <Card
+                key={card.id}
+                id={card.id}
+                title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
+                author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+                image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
+              />
+            ) : null
         ))}
       </div>
 
