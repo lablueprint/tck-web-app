@@ -14,22 +14,13 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 /*
-  SEARCHING
-    1. add searchTerms state to CardDisplay
-    2. pass setSearchTerms to SearchBar
-      - SearchBar will change the state of searchTerms
-    3. use searchTerms as a filtering parameter before we display cards
-
-    FILTERING PIPELINE
-      1. map an array of promises using (books, isMatch)
-      2.
-
   NOTES:
-    - base('creator').select only looks at authored field
-      - use another variable/function to include illustrator in formula
-    - restrcture "matching" code
-    - make sure cards are properly set after filtering
-    - fix maxRecords in base('creator').select call
+    - inefficient lookup of a Creator's authored/illustrated
+      - maybe put all books into a some data structure that has fast lookup and pass it
+        to searchByTerm???
+          - books is a Map<bookId, book> instead of Array
+      - hard to see the current algorithm will be too slow for our purposes
+         without having a big amount of data alr
 
   <SearchBar setSearchTerms={setSearchTerms}>
 
