@@ -32,6 +32,7 @@ function BookInfo({ authorId }) {
               {
                 image: record.fields.image[0].thumbnails.large.url,
                 title: record.fields.title,
+                author: record.fields.author[0],
                 id: element,
               },
             ));
@@ -50,7 +51,12 @@ function BookInfo({ authorId }) {
       {authoredWorks.length && <div> Books in this collection: </div>}
       <div>
         {authoredWorks.map((element) => (
-          <AuthoredWorkCard key={element.id} image={element.image} title={element.title} />
+          <AuthoredWorkCard
+            key={element.id}
+            image={element.image}
+            title={element.title}
+            author={element.author[0]}
+          />
         ))}
       </div>
       <div />
