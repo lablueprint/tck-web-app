@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import AuthoredWorkCard from './AuthoredWorkCard';
+import BooksCard from './BooksCard';
+import './CollectionPage.css';
 
 const Airtable = require('airtable');
 
@@ -11,9 +12,8 @@ const airtableConfig = {
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
-// Authored and illustrated work components
 function BookInfo({ authorId }) {
-  const [authoredWorks, setAuthoredWorks] = useState([]);
+  const [books, setBooks] = useState([]);
 
   function FindPosts() {
     const id = authorId;
@@ -28,11 +28,11 @@ function BookInfo({ authorId }) {
             if (error) {
               console.error(err);
             }
-            setAuthoredWorks((prevValue) => prevValue.concat(
+            setBooks((prevValue) => prevValue.concat(
               {
                 image: record.fields.image[0].thumbnails.large.url,
                 title: record.fields.title,
-                author: record.fields.author[0],
+                author: record.fields.author,
                 id: element,
               },
             ));
@@ -48,14 +48,18 @@ function BookInfo({ authorId }) {
 
   return (
     <div>
-      {authoredWorks.length && <div> Books in this collection: </div>}
+      <div className="SubHeader">
+        Books in this collection:
+      </div>
       <div>
-        {authoredWorks.map((element) => (
-          <AuthoredWorkCard
-            key={element.id}
+        {books.map((element) => (
+          <BooksCard
             image={element.image}
             title={element.title}
-            author={element.author[0]}
+            author={element.author}
+          // Speical Prop
+            key={element.id}
+            id={element.id}
           />
         ))}
       </div>

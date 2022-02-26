@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './CreatorPage.css';
+import './CollectionPage.css';
 
 // Collection name/picture/description components
 export default function CollectionInfo({ name, picture, description }) {
@@ -9,6 +9,9 @@ export default function CollectionInfo({ name, picture, description }) {
       <div className="Header">
         {name}
         <img width="10%" height="10%" align="center" src={picture} alt="author" />
+      </div>
+      <div className="SubHeader">
+        About this collection
       </div>
       <div className="Paragraph">
         {description}
