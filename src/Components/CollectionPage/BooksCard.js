@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import './BookInfo.css';
+import './CollectionPage.css';
 import { makeStyles } from '@mui/styles';
 import { CardActionArea, CardMedia } from '@mui/material';
 
@@ -33,8 +33,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AuthoredWorkCard({
-  key, image, title, author,
+export default function BooksCard({
+  id, image, title, author,
 }) {
   const classes = useStyles();
 
@@ -49,9 +49,9 @@ export default function AuthoredWorkCard({
 
   useEffect(getAuthor, []);
 
-  return ( // horizontal scroll not implemented
+  return (
     <Card className="card" sx={{ maxWidth: 345 }}>
-      <Link class="link" to={`/book/${key}`} target="_blank">
+      <Link class="link" to={`/book/${id}`} target="_blank">
         <CardActionArea className="cardActionArea">
           <div className="cover">
             <CardMedia
@@ -75,13 +75,13 @@ export default function AuthoredWorkCard({
   );
 }
 
-AuthoredWorkCard.defaultProps = {
+BooksCard.defaultProps = {
   image: '',
 };
 
-AuthoredWorkCard.propTypes = {
-  key: PropTypes.number.isRequired,
-  image: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+BooksCard.propTypes = {
+  id: propTypes.string.isRequired,
+  image: propTypes.string,
+  title: propTypes.string.isRequired,
+  author: propTypes.string.isRequired,
 };
