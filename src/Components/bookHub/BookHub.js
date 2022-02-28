@@ -53,15 +53,24 @@ function CardsDisplay() {
     setFilteredCards(cards.filter(
       (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
       && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
-      && (multiSelectInput.Ethnicity.length === 0 || record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1))
+      && (multiSelectInput.Ethnicity.length === 0
+         || (record.fields['race/ethnicity'] !== undefined
+           ? record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1)
+           : true))
       && (multiSelectInput.Religion.length === 0
-        || record.fields.religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1))
+        || (record.fields.religion !== undefined
+          ? record.fields.religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1)
+          : true))
       && (multiSelectInput.Sexuality.length === 0
-        || record.fields.sexuality.some(
-          (value) => multiSelectInput.Sexuality.indexOf(value) !== -1,
+        || (record.fields.sexuality !== undefined
+          ? record.fields.sexuality.some((value) => multiSelectInput.Sexuality.indexOf(value)
+           !== -1)
+          : true
         ))
       && (multiSelectInput.Gender.length === 0
-        || record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)),
+        || (record.fields.gender !== undefined
+          ? record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)
+          : true)),
 
     ));
   }, [rangeInput, multiSelectInput]);
