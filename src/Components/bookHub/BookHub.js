@@ -14,19 +14,19 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CardsDisplay() {
-  const [books, setBooks] = useState([]);
-  const [cards, setCards] = useState([]);
-  const [searchTerms, setSearchTerms] = useState(''); // searchTerms should be all lowercase !!
+  const [allBooks, setAllBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [searchTerms, setSearchTerms] = useState('');
   const [defaultSearch, setDefaultSearch] = useState(true);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
-        setBooks(records);
+        setAllBooks(records);
       });
   };
 
-  const isMatch = (book) => {
+  const isMatchTitleDescIdentity = (book) => {
     // Filter function for books stored in 'books' state
     /* FOR FUTURE DEV
         - we may want to match by a combo of title, description, identity
@@ -62,7 +62,7 @@ function CardsDisplay() {
         records.forEach((record) => {
           const bookIds = record.get('authored'); // array of strings (bookId)
           bookIds.forEach((bookId) => {
-            const book = books.find((x) => x.get('id') === bookId);
+            const book = allBooks.find((x) => x.get('id') === bookId);
             res.push(book);
           });
         });
@@ -73,10 +73,10 @@ function CardsDisplay() {
 
   const searchByTerm = async () => {
     let matched = [];
+    setSearchTerms(searchTerms.toLowerCase());
     if (defaultSearch) {
       // title/description/identity
-      matched = books.filter(isMatch);
-      console.log(matched);
+      matched = allBooks.filter(isMatchTitleDescIdentity);
     } else {
       // we can figure out how to filter both fields at once later
       let res = await Filter('Creator', 'authored');
@@ -87,24 +87,23 @@ function CardsDisplay() {
       matched = [...new Set(matched)];
     }
 
-    setCards(matched);
+    setFilteredBooks(matched);
   };
 
   useEffect(() => {
-    if (!books.length) { getCards(); }
+    if (!allBooks.length) { getCards(); }
     if (searchTerms) {
       (async () => searchByTerm())();
     } else {
-      setCards(books);
+      setFilteredBooks(allBooks);
     }
-  }, [books, searchTerms, defaultSearch]);
+  }, [allBooks, searchTerms, defaultSearch]);
 
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
-
       <div className="library-display">
-        {cards.map((card) => (
+        {filteredBooks.map((card) => (
           (card)
             ? (
               <Card

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import './BookCard.css';
 import { makeStyles } from '@mui/styles';
@@ -21,13 +20,15 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 const useStyles = makeStyles({
   title: {
-    fontSize: '18px',
+    gridRowStart: 3,
+    fontSize: 14,
     fontWeight: 'bold',
     paddingBottom: '5px',
   },
 
   author: {
-    fontSize: '12px',
+    gridRowStart: 4,
+    fontSize: 12,
     fontWeight: 100,
   },
 });
@@ -50,26 +51,27 @@ export default function BookCard({
 
   return ( // horizontal scroll not implemented
     <Card className="card" sx={{ maxWidth: 345 }}>
-      <Link class="link" to={`/book/${id}`} target="_blank">
+      <Link class="link" to={`/book/${id}`}>
         <CardActionArea className="cardActionArea">
-          <CardMedia
-            className="image"
-            component="img"
-            height="140"
-            image={image}
-            alt="missing_book_cover"
-          />
+          <div className="cover">
+            <CardMedia
+              className="image"
+              component="img"
+              image={image}
+              alt="missing_book_cover"
+            />
+          </div>
 
-          <CardContent>
-            <Typography className={classes.title}>
-              {title}
-            </Typography>
+          <Typography className={classes.title}>
+            {title}
+          </Typography>
+          <Link class="link" to={`/creator/${author}`}>
             <Typography className={classes.author} color="text.secondary">
               By
               {' '}
               {authorVar !== undefined ? (authorVar.fields.name) : author}
             </Typography>
-          </CardContent>
+          </Link>
         </CardActionArea>
       </Link>
     </Card>
