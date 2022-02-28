@@ -18,11 +18,11 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 function CardsDisplay() {
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
-  const [filterInput, setFilterInput] = useState({
+  const [rangeInput, setRangeInput] = useState({
     age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
   });
-  const [userInput, setUserInput] = useState({
+  const [multiSelectInput, setMultiSelectInput] = useState({
     Ethnicity: [],
     Religion: [],
     Gender: [],
@@ -39,39 +39,43 @@ function CardsDisplay() {
 
   useEffect(() => {
     const validGradeTags = gradeRangeMetadata.slice(
-      gradeRangeMetadata.indexOf(filterInput.grade.min),
-      gradeRangeMetadata.indexOf(filterInput.grade.max) + 1,
+      gradeRangeMetadata.indexOf(rangeInput.grade.min),
+      gradeRangeMetadata.indexOf(rangeInput.grade.max) + 1,
     );
     const validAgeTags = ageRangeMetadata.slice(
-      ageRangeMetadata.indexOf(filterInput.age.min),
-      ageRangeMetadata.indexOf(filterInput.age.max) + 1,
+      ageRangeMetadata.indexOf(rangeInput.age.min),
+      ageRangeMetadata.indexOf(rangeInput.age.max) + 1,
     );
-    console.log(filterInput);
-    console.log(userInput);
+    console.log(rangeInput);
+    console.log(multiSelectInput);
     console.log(cards);
+
     setFilteredCards(cards.filter(
       (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
       && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
-      && record.fields['race/ethnicity'].some((value) => userInput.Ethnicity.indexOf(value) !== -1)
-      && record.fields.religion.some((value) => userInput.Religion.indexOf(value) !== -1)
-      && record.fields.sexuality.some((value) => userInput.Sexuality.indexOf(value) !== -1)
-      && record.fields.gender.some((value) => userInput.Gender.indexOf(value) !== -1),
+      && (multiSelectInput.Ethnicity.length === 0 || record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1))
+      && (multiSelectInput.Religion.length === 0
+        || record.fields.religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1))
+      && (multiSelectInput.Sexuality.length === 0
+        || record.fields.sexuality.some(
+          (value) => multiSelectInput.Sexuality.indexOf(value) !== -1,
+        ))
+      && (multiSelectInput.Gender.length === 0
+        || record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)),
 
     ));
-  }, [filterInput, userInput]);
+  }, [rangeInput, multiSelectInput]);
 
   useEffect(() => { getCards(); }, []);
-  // useEffect(() => {
-
-  //   console.log(userInput);
-  // }, [userInput]);
+  useEffect(() => {
+    console.log(filteredCards);
+  }, [filteredCards]);
 
   return (
     <div>
       <RangeFilter
-        setFilterState={setFilterInput}
-        setMultiSelect={setUserInput}
-        MultiSelectInput={userInput}
+        setRangeState={setRangeInput}
+        setMultiSelectInput={setMultiSelectInput}
       />
       <div className="library-display">
         {filteredCards.map((card) => (

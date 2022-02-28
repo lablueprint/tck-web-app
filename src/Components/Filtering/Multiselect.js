@@ -25,7 +25,7 @@ const filters = [
   },
 ];
 
-export default function MultSelectElem({ setMultiSelect, userInput }) {
+export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) {
   // console.log(userInput);
 
   return (
@@ -35,8 +35,8 @@ export default function MultSelectElem({ setMultiSelect, userInput }) {
           <Typography>{option.filterName}</Typography>
           <MultiSelectComponent
             filterOptions={option.filterOptions}
-            input={userInput}
-            setInput={setMultiSelect}
+            input={tempMultiSelect}
+            setInput={setTempMultiSelect}
             labelName={option.filterName}
           />
         </div>
@@ -47,8 +47,8 @@ export default function MultSelectElem({ setMultiSelect, userInput }) {
 }
 
 MultSelectElem.propTypes = {
-  setMultiSelect: propTypes.func.isRequired,
-  userInput: propTypes.shape({
+  setTempMultiSelect: propTypes.func.isRequired,
+  tempMultiSelect: propTypes.shape({
     Ethnicity: propTypes.arrayOf(propTypes.string).isRequired,
     Religion: propTypes.arrayOf(propTypes.string).isRequired,
     Gender: propTypes.arrayOf(propTypes.string).isRequired,

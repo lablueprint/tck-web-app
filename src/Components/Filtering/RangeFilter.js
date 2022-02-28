@@ -11,20 +11,22 @@ import MultSelectElem from './Multiselect';
 const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 
-function RangeFilter({ setFilterState, setMultiSelect }) {
+function RangeFilter({ setRangeState, setMultiSelectInput }) {
   const [anchorEl, setAnchorEl] = useState(null);
   // const [filterName, setFilterName] = useState('');
   const [filterData, setFilterData] = useState({ age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] }, grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] } });
-  const [MultiSel, setMultiSel] = useState({
+  const [tempMultiSelect, setTempMultiSelect] = useState({
     Ethnicity: [],
     Religion: [],
     Gender: [],
     Sexuality: [],
   });
   const open = Boolean(anchorEl);
+
   const handleSave = () => {
-    setFilterState(filterData);
-    setMultiSelect(MultiSel);
+    setRangeState(filterData);
+    setMultiSelectInput(tempMultiSelect);
+    console.log(tempMultiSelect);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -78,7 +80,7 @@ function RangeFilter({ setFilterState, setMultiSelect }) {
         <MenuItem>
           <RangeFilterCard filterTitle="Age" data={filterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
-        <MenuItem><MultSelectElem setMultiSelect={setMultiSel} userInput={MultiSel} /></MenuItem>
+        <MenuItem><MultSelectElem setTempMultiSelect={setTempMultiSelect} tempMultiSelect={tempMultiSelect} /></MenuItem>
         <MenuItem>
           <button
             type="button"
@@ -97,7 +99,7 @@ function RangeFilter({ setFilterState, setMultiSelect }) {
 }
 
 RangeFilter.propTypes = {
-  setFilterState: propTypes.func.isRequired,
-  setMultiSelect: propTypes.func.isRequired,
+  setRangeState: propTypes.func.isRequired,
+  setMultiSelectInput: propTypes.func.isRequired,
 };
 export default RangeFilter;
