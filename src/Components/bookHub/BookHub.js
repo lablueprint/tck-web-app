@@ -47,15 +47,24 @@ function CardsDisplay() {
       ageRangeMetadata.indexOf(filterInput.age.max) + 1,
     );
     console.log(filterInput);
+    console.log(userInput);
     console.log(cards);
     setFilteredCards(cards.filter(
       (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
-      && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1)),
+      && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
+      && record.fields['race/ethnicity'].some((value) => userInput.Ethnicity.indexOf(value) !== -1)
+      && record.fields.religion.some((value) => userInput.Religion.indexOf(value) !== -1)
+      && record.fields.sexuality.some((value) => userInput.Sexuality.indexOf(value) !== -1)
+      && record.fields.gender.some((value) => userInput.Gender.indexOf(value) !== -1),
+
     ));
   }, [filterInput]);
 
   useEffect(() => { getCards(); }, []);
-  useEffect(() => { console.log(userInput); }, [userInput]);
+  // useEffect(() => {
+
+  //   console.log(userInput);
+  // }, [userInput]);
 
   return (
     <div>

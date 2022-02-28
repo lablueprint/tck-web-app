@@ -15,9 +15,16 @@ function RangeFilter({ setFilterState, setMultiSelect, MultiSelectInput }) {
   const [anchorEl, setAnchorEl] = useState(null);
   // const [filterName, setFilterName] = useState('');
   const [filterData, setFilterData] = useState({ age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] }, grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] } });
+  const [MultiSel, setMultiSel] = useState({
+    Ethnicity: [],
+    Religion: [],
+    Gender: [],
+    Sexuality: [],
+  });
   const open = Boolean(anchorEl);
   const handleSave = () => {
     setFilterState(filterData);
+    setMultiSelect(MultiSel);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -71,7 +78,7 @@ function RangeFilter({ setFilterState, setMultiSelect, MultiSelectInput }) {
         <MenuItem>
           <RangeFilterCard filterTitle="Age" data={filterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
         </MenuItem>
-        <MenuItem><MultSelectElem setMultiSelect={setMultiSelect} userInput={MultiSelectInput} /></MenuItem>
+        <MenuItem><MultSelectElem setMultiSelect={setMultiSel} userInput={MultiSel} /></MenuItem>
         <MenuItem>
           <button
             type="button"

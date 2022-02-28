@@ -9,7 +9,7 @@ const filters = [
   {
     filterName: 'Ethnicity',
     filterOptions: ['Black/African American', 'White', 'Asian', 'Hawaiian/Pacific Islander', 'Hispanic',
-      'American Indian/Alaska Native'],
+      'American Indian/Alaska Native', 'Indian', 'American'],
   },
   {
     filterName: 'Religion',

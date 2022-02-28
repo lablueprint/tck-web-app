@@ -13,10 +13,11 @@ export default function MultiselectComponent({
 
   const handleToggle = (value, label, checked) => {
     if (checked) {
+      // flag = 1;
       setInput({ ...input, [label]: input[label].concat(value) });
     } else {
       setInput({ ...input, [label]: input[label].filter((element) => element !== value) });
-      console.log(input[label].splice(input[label].indexOf(value), 1));
+      // console.log(input[label].splice(input[label].indexOf(value), 1));
     }
   };
 
