@@ -5,17 +5,10 @@ import {
 } from '@mui/material';
 
 function SearchBar({ setSearchTerms, setDefaultSearch }) {
-  // const [value, setValue] = useState('');
-
   const handleChange = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      // console.log(e.target.value);
       setSearchTerms(e.target.value);
-      // setValue('');
-    } else {
-      // console.log(e.target.value);
-      // setValue(value + e.target.value);
     }
   };
 
