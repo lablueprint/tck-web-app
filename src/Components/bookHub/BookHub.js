@@ -58,7 +58,7 @@ function CardsDisplay() {
       && record.fields.gender.some((value) => userInput.Gender.indexOf(value) !== -1),
 
     ));
-  }, [filterInput]);
+  }, [filterInput, userInput]);
 
   useEffect(() => { getCards(); }, []);
   // useEffect(() => {

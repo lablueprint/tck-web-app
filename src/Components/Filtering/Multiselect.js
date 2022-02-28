@@ -49,9 +49,9 @@ export default function MultSelectElem({ setMultiSelect, userInput }) {
 MultSelectElem.propTypes = {
   setMultiSelect: propTypes.func.isRequired,
   userInput: propTypes.shape({
-    Ethnicity: propTypes.arrayOf.isRequired,
-    Religion: propTypes.arrayOf.isRequired,
-    Gender: propTypes.arrayOf.isRequired,
-    Sexuality: propTypes.arrayOf.isRequired,
+    Ethnicity: propTypes.arrayOf(propTypes.string).isRequired,
+    Religion: propTypes.arrayOf(propTypes.string).isRequired,
+    Gender: propTypes.arrayOf(propTypes.string).isRequired,
+    Sexuality: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
 };
