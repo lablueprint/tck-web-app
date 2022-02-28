@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import BooksCard from './BooksCard';
-import './CollectionPage.css';
+import BookCard from '../bookHub/BookCard';
+import '../bookHub/BookCard.css';
 
 const Airtable = require('airtable');
 
@@ -12,7 +12,7 @@ const airtableConfig = {
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
-function BookInfo({ authorId }) {
+function BooksInCollection({ authorId }) {
   const [books, setBooks] = useState([]);
 
   function FindPosts() {
@@ -51,9 +51,9 @@ function BookInfo({ authorId }) {
       <div className="SubHeader">
         Books in this collection:
       </div>
-      <div>
+      <div className="library-display">
         {books.map((element) => (
-          <BooksCard
+          <BookCard
             image={element.image}
             title={element.title}
             author={element.author}
@@ -68,6 +68,6 @@ function BookInfo({ authorId }) {
   );
 }
 
-BookInfo.propTypes = {
+BooksInCollection.propTypes = {
   authorId: propTypes.string.isRequired,
-}; export default BookInfo;
+}; export default BooksInCollection;

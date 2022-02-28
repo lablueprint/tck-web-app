@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
-import BookInfo from '../Components/CollectionPage/BookInfo';
+import BooksInCollection from '../Components/CollectionPage/BooksInCollectionI';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -40,9 +40,9 @@ function CollectionPage() {
             picture={CollectionDetails.fields.image[0].thumbnails.large.url}
           />
         ) : <p>No such collection found!</p> }
-      { BookInfo !== undefined
+      { BooksInCollection !== undefined
         ? (
-          <BookInfo authorId={collecID} />
+          <BooksInCollection authorId={collecID} />
         ) : <p>No such collection found!</p> }
     </div>
   );
