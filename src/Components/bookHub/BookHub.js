@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from './BookCard';
+import BookCard from './BookCard';
 import SearchBar from './SearchBar';
 
 // airtable configuration
@@ -106,7 +106,7 @@ function CardsDisplay() {
         {filteredBooks.map((card) => (
           (card)
             ? (
-              <Card
+              <BookCard
                 key={card.id}
                 id={card.id}
                 title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
