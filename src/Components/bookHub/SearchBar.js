@@ -45,3 +45,20 @@ SearchBar.propTypes = {
   setSearchTerms: PropTypes.func.isRequired,
   setDefaultSearch: PropTypes.func.isRequired,
 };
+
+/* NOTES
+  For finer granularity search
+    - Just need to add more menu items
+      - use string for value instead of bool
+        - allows for beyond binary option
+    - in BookHub, change defaultSearch<bool> to searchType<string>
+      - use string to determine which field we want to search by
+      - extension: multiple fields at once??
+        - use searchTypes<Array<string>>
+
+        e.g.
+          if (searchTypes.includes('title')) {
+            title = (title) ? title.toLowerCase() : '';
+            match |= title.includes(searchTerms)
+          }
+*/
