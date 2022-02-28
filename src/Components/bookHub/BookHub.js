@@ -49,13 +49,6 @@ function CardsDisplay() {
     return match;
   };
 
-  /*
-    table: string for the airtable we wanna look at
-    field: string for the field of the table we wanna look at
-            authored
-            illustrated
-
-  */
   const Filter = (table, field) => new Promise((resolve, reject) => {
     // Query Airtable {table} for records whose {field} value matches the search term
     // This will mainly be for Creator table
@@ -91,7 +84,6 @@ function CardsDisplay() {
       res = await Filter('Creator', 'illustrated');
       matched.push(...res);
 
-      // remove duplicates
       matched = [...new Set(matched)];
     }
 
