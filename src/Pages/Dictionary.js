@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WordTerm from '../Components/WordTerm';
+import WordTerm from '../Components/Dictionary/WordTerm';
 
 // airtable configuration
 const Airtable = require('airtable');
