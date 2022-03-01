@@ -1,0 +1,23 @@
+.Header {
+    text-align: center;
+    color: royalblue;
+    font-size: 45px;
+    font-weight: 750;
+  }
+  
+  .Paragraph {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .Extra {
+      font-size: 20px;
+  }
+
+  .SubHeader {
+    text-align: left;
+    color: royalblue;
+    font-size: 30px;
+    font-weight: 550;
+  }
+  
