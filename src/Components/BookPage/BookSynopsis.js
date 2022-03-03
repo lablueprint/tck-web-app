@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, Paper, CardContent, Typography,
+  Card, CardContent, Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
@@ -10,11 +10,19 @@ function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <Paper variant="outlined">
-        <img src={imageURL} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
-      </Paper>
-      <Card sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', marginTop: '6vh' }}>
+      <img
+        src={imageURL}
+        alt=""
+        style={{
+          height: '100%', width: '100%', maxWidth: '35vw', marginLeft: '6vw',
+        }}
+      />
+
+      <Card sx={{
+        minWidth: '50vw', textAlign: 'left', display: 'flex', marginRight: '6vw',
+      }}
+      >
         <CardContent>
           <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
             {title}
@@ -63,3 +71,19 @@ BookSynopsis.defaultProps = {
   desc: 'It\'s a book. with words. **gasp**',
   imageURL: Logo,
 };
+
+/** SANDBOX
+
+ <Paper
+        variant="outlined"
+        sx={{ marginLeft: '10vw', width: '510px' }}
+      >
+        <img
+          src={imageURL}
+          alt=""
+          style={{
+            height: '100%', width: '100%',
+          }}
+        />
+      </Paper>
+ */
