@@ -5,6 +5,7 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
+import BookRec from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
 
@@ -139,6 +140,7 @@ function BookPage() {
             {educatorLinks}
           </List>
         ) : <div />}
+      <BookRec />
     </Paper>
   );
 }
