@@ -37,7 +37,6 @@ function BookSynopsis({
           </Typography>
         </CardContent>
       </Card>
-
     </div>
   );
 }
