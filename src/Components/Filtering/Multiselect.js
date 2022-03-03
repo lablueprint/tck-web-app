@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { Typography } from '@mui/material';
-// import Button from '@mui/material/Button';
 import propTypes from 'prop-types';
 import MultiSelectComponent from './MultiSelectComponent';
 
@@ -26,8 +24,6 @@ const filters = [
 ];
 
 export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) {
-  // console.log(userInput);
-
   return (
     <div>
       {filters.map((option) => (
@@ -41,7 +37,6 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
           />
         </div>
       ))}
-      {/* <Button variant="contained">Apply</Button> */}
     </div>
   );
 }

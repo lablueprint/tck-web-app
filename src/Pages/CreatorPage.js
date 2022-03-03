@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import propTypes from 'prop-types';
-import AuthorInfo from '../Components/creatorPage/AuthorInfo';
-import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
+import AuthorInfo from '../Components/CreatorPage/AuthorInfo';
+import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -46,9 +45,5 @@ function CreatorPage() {
     </div>
   );
 }
-
-// CreatorPahe.propTypes = {
-//   authId: propTypes.string.isRequired,
-// };
 
 export default CreatorPage;

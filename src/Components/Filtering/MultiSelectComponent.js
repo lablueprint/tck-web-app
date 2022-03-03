@@ -6,18 +6,11 @@ import PropTypes from 'prop-types';
 export default function MultiselectComponent({
   filterOptions, input, setInput, labelName,
 }) {
-  // const [checked, setChecked] = useState({});
-  // useEffect(() => {
-  //   filterOptions.map((option) => setChecked({ ...checked, [option]: false }));
-  // }, []);
-
   const handleToggle = (value, label, checked) => {
     if (checked) {
-      // flag = 1;
       setInput({ ...input, [label]: input[label].concat(value) });
     } else {
       setInput({ ...input, [label]: input[label].filter((element) => element !== value) });
-      // console.log(input[label].splice(input[label].indexOf(value), 1));
     }
   };
 
