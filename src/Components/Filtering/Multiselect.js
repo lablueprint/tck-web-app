@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Typography } from '@mui/material';
-// import Button from '@mui/material/Button';
 import propTypes from 'prop-types';
 import MultiSelectComponent from './MultiSelectComponent';
 
