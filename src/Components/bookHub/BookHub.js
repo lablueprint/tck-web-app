@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Filter from '../Filtering/Filtering';
 import BookCard from './BookCard';
 import SearchBar from './SearchBar';
 
@@ -102,6 +103,10 @@ function CardsDisplay() {
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
+      <Filter
+        setRangeState={setRangeInput}
+        setMultiSelectInput={setMultiSelectInput}
+      />
       <div className="library-display">
         {filteredBooks.map((card) => (
           (card)
