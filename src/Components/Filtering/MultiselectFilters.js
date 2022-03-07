@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import propTypes from 'prop-types';
-import MultiSelectComponent from './MultiSelectComponent';
+import MultiSelectComponent from './MultiselectFilterOptions';
 
 const filters = [
   {
