@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/css';
 import AuthoredWorkCard from './AuthoredWorkCard';
 import IllustratedWorkCard from './IllustratedWorkCard';
 
@@ -66,20 +68,41 @@ function CreatedWorksCard({ authorId }) {
   }, []);
 
   return (
+    // <Swiper
+    //   spaceBetween={50}
+    //   slidesPerView={4}
+    //   onSlideChange={() => console.log('slide change')}
+    //   onSwiper={(swiper) => console.log(swiper)}
+    // >
     <div>
       {authoredWorks.length && <div> Authored Works: </div>}
       <div>
         {authoredWorks.map((element) => (
-          <AuthoredWorkCard key={element.id} image={element.image} title={element.title} />
+          // <SwiperSlide>
+          <AuthoredWorkCard
+            key={element.id}
+            id={element.id}
+            image={element.image}
+            title={element.title}
+          />
+          // </SwiperSlide>
         ))}
       </div>
       {illustratedWorks.length && <div> Illustrated Works: </div>}
       <div>
         {illustratedWorks.map((element) => (
-          <IllustratedWorkCard key={element.id} image={element.image} title={element.title} />
+          // <SwiperSlide>
+          <IllustratedWorkCard
+            key={element.id}
+            id={element.id}
+            image={element.image}
+            title={element.title}
+          />
+          // </SwiperSlide>
         ))}
       </div>
     </div>
+  // </Swiper>
   );
 }
 
