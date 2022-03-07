@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import propTypes from 'prop-types';
-import MultiSelectComponent from './MultiselectFilterOptions';
+import MultiselectComponent from './MultiselectFilterOptions';
 
 const filters = [
   {
@@ -29,7 +29,7 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
       {filters.map((option) => (
         <div>
           <Typography>{option.filterName}</Typography>
-          <MultiSelectComponent
+          <MultiselectComponent
             filterOptions={option.filterOptions}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}

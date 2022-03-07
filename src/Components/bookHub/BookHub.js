@@ -3,6 +3,9 @@ import Filter from '../Filtering/Filtering';
 import BookCard from './BookCard';
 import SearchBar from './SearchBar';
 
+const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
+
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -15,15 +18,30 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CardsDisplay() {
+  // Searching
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchTerms, setSearchTerms] = useState('');
   const [defaultSearch, setDefaultSearch] = useState(true);
 
+  // Filtering
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [rangeInput, setRangeInput] = useState({
+    age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
+    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+  });
+  const [multiSelectInput, setMultiSelectInput] = useState({
+    Ethnicity: [],
+    Religion: [],
+    Gender: [],
+    Sexuality: [],
+  });
+
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setAllBooks(records);
+        setFilteredCards(records);
       });
   };
 
@@ -50,7 +68,7 @@ function CardsDisplay() {
     return match;
   };
 
-  const Filter = (table, field) => new Promise((resolve, reject) => {
+  const SearchFilter = (table, field) => new Promise((resolve, reject) => {
     // Query Airtable {table} for records whose {field} value matches the search term
     // This will mainly be for Creator table
 
@@ -80,9 +98,9 @@ function CardsDisplay() {
       matched = allBooks.filter(isMatchTitleDescIdentity);
     } else {
       // we can figure out how to filter both fields at once later
-      let res = await Filter('Creator', 'authored');
+      let res = await SearchFilter('Creator', 'authored');
       matched.push(...res);
-      res = await Filter('Creator', 'illustrated');
+      res = await SearchFilter('Creator', 'illustrated');
       matched.push(...res);
 
       matched = [...new Set(matched)];
@@ -99,6 +117,49 @@ function CardsDisplay() {
       setFilteredBooks(allBooks);
     }
   }, [allBooks, searchTerms, defaultSearch]);
+
+  // Filter function
+  useEffect(() => {
+    const validGradeTags = gradeRangeMetadata.slice(
+      gradeRangeMetadata.indexOf(rangeInput.grade.min),
+      gradeRangeMetadata.indexOf(rangeInput.grade.max) + 1,
+    );
+    const validAgeTags = ageRangeMetadata.slice(
+      ageRangeMetadata.indexOf(rangeInput.age.min),
+      ageRangeMetadata.indexOf(rangeInput.age.max) + 1,
+    );
+    console.log(rangeInput);
+    console.log(multiSelectInput);
+    console.log(allBooks);
+
+    setFilteredCards(allBooks.filter(
+      (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
+    && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
+    && (multiSelectInput.Ethnicity.length === 0
+       || (record.fields['race/ethnicity'] !== undefined
+         ? record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1)
+         : true))
+    && (multiSelectInput.Religion.length === 0
+      || (record.fields.religion !== undefined
+        ? record.fields.religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1)
+        : true))
+    && (multiSelectInput.Sexuality.length === 0
+      || (record.fields.sexuality !== undefined
+        ? record.fields.sexuality.some((value) => multiSelectInput.Sexuality.indexOf(value)
+         !== -1)
+        : true
+      ))
+    && (multiSelectInput.Gender.length === 0
+      || (record.fields.gender !== undefined
+        ? record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)
+        : true)),
+
+    ));
+  }, [rangeInput, multiSelectInput]);
+
+  useEffect(() => { getCards(); }, []);
+  useEffect(() => {
+  }, [filteredCards]);
 
   return (
     <div>
