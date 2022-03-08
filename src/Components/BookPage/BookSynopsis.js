@@ -1,32 +1,34 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardMedia, CardContent, Typography,
+  Card, Paper, CardContent, Typography,
 } from '@mui/material';
-import Logo from '../Assets/Images/TCK PNG Logo.png';
+import { Link } from 'react-router-dom';
+import Logo from '../../Assets/Images/TCK PNG Logo.png';
 
 function BookSynopsis({
-  title, authorName, illustratorName, desc, imageURL,
+  title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <CardMedia
-        component="img"
-        image={imageURL}
-        height="140"
-        alt="book img desc"
-      />
+      <Paper variant="outlined">
+        <img src={imageURL} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain' }} />
+      </Paper>
       <Card sx={{ minWidth: '50vw', textAlign: 'left', display: 'flex' }}>
         <CardContent>
           <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
             {title}
           </Typography>
           <Typography variant="h5">
-            {authorName}
+            <Link class="link" to={`/creator/${authorID}`}>
+              {authorName}
+            </Link>
             {' '}
             |
             {' '}
-            {illustratorName}
+            <Link class="link" to={`/creator/${illustratorID}`}>
+              {illustratorName}
+            </Link>
             {' '}
             (illustrator)
           </Typography>
@@ -45,7 +47,9 @@ export default BookSynopsis;
 BookSynopsis.propTypes = {
   title: PropTypes.string,
   authorName: PropTypes.string,
+  authorID: PropTypes.string,
   illustratorName: PropTypes.string,
+  illustratorID: PropTypes.string,
   desc: PropTypes.string,
   imageURL: PropTypes.string,
 };
@@ -53,8 +57,9 @@ BookSynopsis.propTypes = {
 BookSynopsis.defaultProps = {
   title: 'Untitled Book',
   authorName: 'Unknown Author',
+  authorID: '',
   illustratorName: 'Unknown Illustrator',
+  illustratorID: '',
   desc: 'It\'s a book. with words. **gasp**',
   imageURL: Logo,
-
 };
