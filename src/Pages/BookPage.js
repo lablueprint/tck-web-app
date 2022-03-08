@@ -3,7 +3,7 @@ import {
   Paper, Link as LinkUI, List, ListItem, ListItemText,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import BookSynopsis from '../Components/BookSynopsis';
+import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
 
 const Airtable = require('airtable');
@@ -50,7 +50,9 @@ function BookPage() {
 
   let title = 'Untitled Book';
   let authorName = 'Unknown Author';
+  let authorID = '';
   let illustratorName = 'Unknown Illustrator';
+  let illustratorID = '';
   let desc = 'It\'s a book. with words. **gasp**';
   let image;
   let readAloudURL;
@@ -68,16 +70,18 @@ function BookPage() {
 
   if (author) {
     authorName = (author.get('name')) ? author.get('name') : authorName;
+    authorID = (author.get('id')) ? author.get('id') : authorID;
   }
 
   if (illustrator) {
     illustratorName = (illustrator.get('name')) ? illustrator.get('name') : illustratorName;
+    illustratorID = (illustrator.get('id')) ? illustrator.get('id') : illustratorID;
   }
 
   const imageURL = image[0].url;
 
   const synopsisProps = {
-    title, authorName, illustratorName, desc, imageURL,
+    title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
   };
 
   const isValidUrl = (string) => {

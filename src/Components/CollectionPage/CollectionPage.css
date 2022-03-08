@@ -13,3 +13,11 @@
   .Extra {
       font-size: 20px;
   }
+
+  .SubHeader {
+    text-align: left;
+    color: royalblue;
+    font-size: 30px;
+    font-weight: 550;
+  }
+  

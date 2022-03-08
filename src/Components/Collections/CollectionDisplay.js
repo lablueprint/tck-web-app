@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Collection from './Collection';
+import './Collection.css';
 
 const Airtable = require('airtable');
 
@@ -22,17 +22,15 @@ function CollectionDisplay() {
 
   useEffect(getCollections, []);
 
-  return collections.map((collection) => (
-    <div>
-      <Collection
-        Collid={collection.id}
-      />
+  return (
+    <div className="collectionsDisplay">
+      { collections.map((collection) => (
+        <Collection
+          Collid={collection.id}
+        />
+      ))}
     </div>
-  ));
+  );
 }
-
-CollectionDisplay.propTypes = {
-  numcollections: PropTypes.number.isRequired,
-};
 
 export default CollectionDisplay;

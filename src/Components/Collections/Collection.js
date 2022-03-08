@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Collection.css';
 
@@ -28,11 +29,13 @@ export default function Collection({ Collid }) {
   return (
     <div className="collectionCard">
       <body className="CollectionBody">
-        {collectionObj.map((id) => (
+        {collectionObj.map((object) => (
           <div>
-            <img className="Collection-image" src={id.image} alt="description" />
-            <h5 className="card-title">{id.name}</h5>
-            <p className="card-text">{id.description}</p>
+            <Link class="link" to={`/collection/${object.id}`}>
+              <img className="collectionImage" src={object.image} alt="description" />
+              <h5 className="card-title">{object.name}</h5>
+              <p className="cardText">{object.description}</p>
+            </Link>
           </div>
         ))}
       </body>

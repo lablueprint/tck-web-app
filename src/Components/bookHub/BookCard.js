@@ -51,7 +51,7 @@ export default function BookCard({
 
   return ( // horizontal scroll not implemented
     <Card className="card" sx={{ maxWidth: 345 }}>
-      <Link class="link" to={`/book/${id}`} target="_blank">
+      <Link class="link" to={`/book/${id}`}>
         <CardActionArea className="cardActionArea">
           <div className="cover">
             <CardMedia
@@ -65,11 +65,13 @@ export default function BookCard({
           <Typography className={classes.title}>
             {title}
           </Typography>
-          <Typography className={classes.author} color="text.secondary">
-            By
-            {' '}
-            {authorVar !== undefined ? (authorVar.fields.name) : author}
-          </Typography>
+          <Link class="link" to={`/creator/${author}`}>
+            <Typography className={classes.author} color="text.secondary">
+              By
+              {' '}
+              {authorVar !== undefined ? (authorVar.fields.name) : author}
+            </Typography>
+          </Link>
         </CardActionArea>
       </Link>
     </Card>
