@@ -5,43 +5,48 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
+import './BookSynopsis.css';
 
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', marginTop: '6vh' }}>
+    <div className="synopsis">
       <img
         src={imageURL}
-        alt=""
-        style={{
-          height: '100%', width: '100%', maxWidth: '35vw', marginLeft: '6vw',
-        }}
+        alt={`Book cover for ${title}`}
+        className="book-cover"
       />
 
       <Card sx={{
         minWidth: '50vw', textAlign: 'left', display: 'flex', marginRight: '6vw',
       }}
       >
-        <CardContent>
-          <Typography gutterBottom variant="h3" sx={{ marginBottom: '0' }}>
-            {title}
-          </Typography>
+        <CardContent sx={{ margin: '0 90px 0 90px' }}>
+          <p className="title">{title}</p>
           <Typography variant="h5">
-            <Link class="link" to={`/creator/${authorID}`}>
-              {authorName}
-            </Link>
-            {' '}
-            |
-            {' '}
-            <Link class="link" to={`/creator/${illustratorID}`}>
-              {illustratorName}
-            </Link>
-            {' '}
-            (illustrator)
+            <div className="creators">
+              <Link className="link" to={`/creator/${authorID}`}>
+                <p className="creators">
+                  {authorName}
+                </p>
+              </Link>
+              {' '}
+              |
+              {' '}
+              <Link className="link" to={`/creator/${illustratorID}`}>
+                <p className="creators">
+                  {illustratorName}
+                </p>
+              </Link>
+              {' '}
+              (illustrator)
+            </div>
           </Typography>
           <Typography variant="body2">
-            {desc}
+            <p className="text">
+              {desc}
+            </p>
           </Typography>
         </CardContent>
       </Card>
@@ -86,4 +91,8 @@ BookSynopsis.defaultProps = {
           }}
         />
       </Paper>
+
+   <Typography gutterBottom className="title" sx={{ fontSize: '3em', fontWeight: '700' }}>
+            {title}
+          </Typography>
  */

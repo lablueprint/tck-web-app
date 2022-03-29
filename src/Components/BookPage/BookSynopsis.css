@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+.synopsis {
+    display: flex;
+    flex-direction: row;
+    margin-top: 6vh;
+}
+
+.book-cover {
+    height: 100%;
+    width: 100%;
+    max-width: 35vw;
+    margin-left: 6vw;
+}
+
+.title {
+    margin: 0 auto 0 auto;
+    font-family: 'Arimo', sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 2.2em;
+}
+
+.creators {
+    display: inline;
+    font-family: 'Arimo', sans-serif;
+    color: #5A5A5A;
+    line-height: 1.05em;
+}
+
+.text {
+    display: inline;
+    font-family: 'Arimo', sans-serif;
+    font-size: 1.56em;
+    color: #000000;
+    line-height: 1.7em;
+}
+
+
+
