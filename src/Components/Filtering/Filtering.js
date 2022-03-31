@@ -29,7 +29,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     setMultiSelectInput(tempMultiSelect);
   };
   const handleClick = (event) => {
-    console.log(tempRangeFilterData);
+    // console.log(tempRangeFilterData);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {

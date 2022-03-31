@@ -106,7 +106,8 @@ function CardsDisplay() {
       matched = [...new Set(matched)];
     }
 
-    setFilteredBooks(matched);
+    setFilteredBooks(matched); // we dont need this
+    // setFilteredCard(matched);
   };
 
   useEffect(() => {
@@ -114,7 +115,7 @@ function CardsDisplay() {
     if (searchTerms) {
       (async () => searchByTerm())();
     } else {
-      setFilteredBooks(allBooks);
+      setFilteredBooks(allBooks); // whats the point of this
     }
   }, [allBooks, searchTerms, defaultSearch]);
 
@@ -169,7 +170,7 @@ function CardsDisplay() {
         setMultiSelectInput={setMultiSelectInput}
       />
       <div className="library-display">
-        {filteredBooks.map((card) => (
+        {filteredBooks.map((card) => ( // switch to filtered cards.
           (card)
             ? (
               <BookCard
