@@ -33,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BookCards({
+export default function BookRecCards({
   id, title, author, image,
 }) {
   const classes = useStyles();
@@ -78,11 +78,11 @@ export default function BookCards({
   );
 }
 
-BookCards.defaultProps = {
+BookRecCards.defaultProps = {
   image: '',
 };
 
-BookCards.propTypes = {
+BookRecCards.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
