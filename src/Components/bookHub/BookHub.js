@@ -129,9 +129,6 @@ function CardsDisplay() {
       ageRangeMetadata.indexOf(rangeInput.age.min),
       ageRangeMetadata.indexOf(rangeInput.age.max) + 1,
     );
-    console.log(rangeInput);
-    console.log(multiSelectInput);
-    console.log(allBooks);
 
     setFilteredCards(allBooks.filter(
       (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
