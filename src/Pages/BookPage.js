@@ -30,6 +30,30 @@ function BookPage() {
       resolve(entryRecord);
     });
   });
+  // Add book to localStorage
+  function pushToStorage() {
+    const bookArr = JSON.parse(localStorage.getItem('Recently Viewed'));
+
+    // check if localStorage contains books
+    if (bookArr) {
+      console.log(bookArr);
+      // check if book already in localStorage
+      if (bookArr.includes(bookId)) {
+        // remove book and add to front
+        const index = bookArr.indexOf(bookId);
+        if (index > -1) {
+          bookArr.splice(index, 1); // 2nd parameter means remove one item only
+        }
+      }
+      bookArr.unshift(bookId);
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArr));
+    } else {
+      console.log('nothing');
+      const bookArrTemp = [];
+      bookArrTemp.push(bookId);
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArrTemp));
+    }
+  }
 
   // This is similar to promise chaining with .then() calls,
   // but in a (hopefully) more succinct way
@@ -42,6 +66,7 @@ function BookPage() {
     getEntry('Creator', illustratorId, setIllustrator);
   };
   useEffect(() => {
+    pushToStorage();
     getEntries();
   }, [bookId]); // Runs on mount and on change of bookId
 
