@@ -94,8 +94,9 @@ function CreatedWorksCard({ authorId }) {
     >
       {authoredWorks.length && <div> Authored Works: </div>}
       <div className="swiper-container" style={{ background: '#FAFAFA' }}>
-        <div className="carousel-button-prev" style={{ display: 'flex', justifyContent: 'center' }}>
-          {/* <button
+        {/* <div className="carousel-button-prev"
+         style={{ display: 'flex', justifyContent: 'center' }}> */}
+        {/* <button
             type="button"
             style={{
               border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
@@ -104,7 +105,11 @@ function CreatedWorksCard({ authorId }) {
           >
             <img src={LeftArrow} alt="left navigation arrow" />
           </button> */}
-        </div>
+        {/* </div> */}
+        <button ref={navigationPrevRef} type="button">
+          <img src={LeftArrow} alt="Left navigation arrow" />
+
+        </button>
         <Swiper
           style={{
             zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '70%',
@@ -138,15 +143,14 @@ function CreatedWorksCard({ authorId }) {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           navigation={{
-            draggable: true,
             prevEl: navigationPrevRef.current,
             nextEl: navigationNextRef.current,
           }}
           onSlideChange={() => console.log('slide change')}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = navigationPrevRef.current;
-            swiper.params.navigation.nextEl = navigationNextRef.current;
-          }}
+          // onBeforeInit={(swiper) => {
+          //   swiper.params.navigation.prevEl = navigationPrevRef.current;
+          //   swiper.params.navigation.nextEl = navigationNextRef.current;
+          // }}
           modules={[Navigation, Pagination, Scrollbar, A11y]}
         >
           {authoredWorks.map((element) => (
@@ -164,14 +168,12 @@ function CreatedWorksCard({ authorId }) {
 
           ))}
         </Swiper>
-        <button ref={navigationPrevRef} type="button">
-          <img src={LeftArrow} alt="Right navigation arrow" />
+        <div>
+          <button ref={navigationNextRef} type="button">
+            <img src={RightArrow} alt="Right navigation arrow" />
 
-        </button>
-        <button ref={navigationNextRef} type="button">
-          <img src={RightArrow} alt="Right navigation arrow" />
-
-        </button>
+          </button>
+        </div>
       </div>
       {illustratedWorks.length && <div> Illustrated Works: </div>}
       <div>
@@ -211,7 +213,8 @@ function CreatedWorksCard({ authorId }) {
           ))}
         </Swiper>
       </div>
-      <div className="carousel-button-prev" style={{ display: 'flex', justifyContent: 'center' }} ref={navigationPrevRef}>
+      {/* <div className="carousel-button-prev"
+      style={{ display: 'flex', justifyContent: 'center' }} ref={navigationPrevRef}>
         <button
           type="button"
           style={{
@@ -220,7 +223,7 @@ function CreatedWorksCard({ authorId }) {
         >
           <img src={RightArrow} alt="left navigation arrow" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
