@@ -46,6 +46,9 @@ function BookPage() {
         }
       }
       bookArr.unshift(bookId);
+      if (bookArr.length > 14) {
+        bookArr.pop();
+      }
       localStorage.setItem('Recently Viewed', JSON.stringify(bookArr));
     } else {
       console.log('nothing');
