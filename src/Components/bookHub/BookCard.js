@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Card from '@mui/material/Card';
+// import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import './BookCard.css';
 import { makeStyles } from '@mui/styles';
-import { CardActionArea, CardMedia } from '@mui/material';
+// import { CardActionArea, CardMedia } from '@mui/material';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -50,21 +50,21 @@ export default function BookCard({
   useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
-    <Card className="card" sx={{ maxWidth: 345 }}>
+    <div className="card" sx={{ maxWidth: 345, background: 'none' }}>
       <Link class="link" to={`/book/${id}`}>
-        <CardActionArea className="cardActionArea">
-          <div className="cover">
-            <CardMedia
+        <div className="cardActionArea">
+          <div className="img-container">
+            <img
               className="image"
-              component="img"
-              image={image}
+              // component="img"
+              src={image}
               alt="missing_book_cover"
             />
           </div>
 
-          <Typography className={classes.title}>
+          <p className="book-card-text">
             {title}
-          </Typography>
+          </p>
           <Link class="link" to={`/creator/${author}`}>
             <Typography className={classes.author} color="text.secondary">
               By
@@ -72,9 +72,9 @@ export default function BookCard({
               {authorVar !== undefined ? (authorVar.fields.name) : author}
             </Typography>
           </Link>
-        </CardActionArea>
+        </div>
       </Link>
-    </Card>
+    </div>
   );
 }
 
