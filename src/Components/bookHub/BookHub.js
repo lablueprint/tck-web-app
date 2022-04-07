@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 import BookCard from './BookCard';
-import SearchBar from './SearchBar';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -13,11 +13,11 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function CardsDisplay() {
+function CardsDisplay({ searchTerms, defaultSearch }) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const [searchTerms, setSearchTerms] = useState('');
-  const [defaultSearch, setDefaultSearch] = useState(true);
+  // const [searchTerms, setSearchTerms] = useState('');
+  // const [defaultSearch, setDefaultSearch] = useState(true);
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -43,18 +43,20 @@ function CardsDisplay() {
     identity = (identity) ? identity.toLowerCase() : '';
 
     let match = false;
-    match = title.includes(searchTerms)
-    || desc.includes(searchTerms)
-    || identity.includes(searchTerms);
+    const lowercaseTerms = searchTerms.toLowerCase();
+    match = title.includes(lowercaseTerms)
+    || desc.includes(lowercaseTerms)
+    || identity.includes(lowercaseTerms);
     return match;
   };
 
   const Filter = (table, field) => new Promise((resolve, reject) => {
     // Query Airtable {table} for records whose {field} value matches the search term
     // This will mainly be for Creator table
+    const lowercaseTerms = searchTerms.toLowerCase();
 
     base(table).select({
-      filterByFormula: `IF(FIND(LOWER("${searchTerms}"), LOWER(name)) != 0, ${field}, '')`,
+      filterByFormula: `IF(FIND(LOWER("${lowercaseTerms}"), LOWER(name)) != 0, ${field}, '')`,
       view: 'Grid view',
     }).all()
       .then((records) => {
@@ -73,7 +75,7 @@ function CardsDisplay() {
 
   const searchByTerm = async () => {
     let matched = [];
-    setSearchTerms(searchTerms.toLowerCase());
+    // setSearchTerms(searchTerms.toLowerCase());
     if (defaultSearch) {
       // title/description/identity
       matched = allBooks.filter(isMatchTitleDescIdentity);
@@ -98,10 +100,10 @@ function CardsDisplay() {
       setFilteredBooks(allBooks);
     }
   }, [allBooks, searchTerms, defaultSearch]);
+  // <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
 
   return (
     <div>
-      <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
       <div className="library-display">
         {filteredBooks.map((card) => (
           (card)
@@ -122,6 +124,11 @@ function CardsDisplay() {
 }
 
 export default CardsDisplay;
+
+CardsDisplay.propTypes = {
+  searchTerms: PropTypes.string.isRequired,
+  defaultSearch: PropTypes.string.isRequired,
+};
 
 /*
   NOTES:
