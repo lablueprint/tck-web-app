@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -6,7 +5,6 @@ import BookCard from './BookCard';
 
 const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
-
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -19,10 +17,11 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function CardsDisplay({ searchTerms, defaultSearch, alignment, rangeInput, multiSelectInput }) {
+function CardsDisplay({
+  searchTerms, defaultSearch, alignment, rangeInput, multiSelectInput,
+}) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
-
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -103,18 +102,18 @@ function CardsDisplay({ searchTerms, defaultSearch, alignment, rangeInput, multi
 
   // Search function
   useEffect(() => {
-    if (alignment === "Search") {
+    if (alignment === 'Search') {
       if (searchTerms) {
         (async () => searchByTerm())();
       } else {
         setFilteredBooks(allBooks);
       }
-    } 
+    }
   }, [allBooks, searchTerms, defaultSearch, alignment]);
 
   // Filter function
   useEffect(() => {
-    if (alignment === "Filter") {
+    if (alignment === 'Filter') {
       const validGradeTags = gradeRangeMetadata.slice(
         gradeRangeMetadata.indexOf(rangeInput.grade.min),
         gradeRangeMetadata.indexOf(rangeInput.grade.max) + 1,
@@ -123,7 +122,7 @@ function CardsDisplay({ searchTerms, defaultSearch, alignment, rangeInput, multi
         ageRangeMetadata.indexOf(rangeInput.age.min),
         ageRangeMetadata.indexOf(rangeInput.age.max) + 1,
       );
-  
+
       setFilteredBooks(allBooks.filter(
         (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
       && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
@@ -145,9 +144,9 @@ function CardsDisplay({ searchTerms, defaultSearch, alignment, rangeInput, multi
         || (record.fields.gender !== undefined
           ? record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)
           : true)),
-  
+
       ));
-    };
+    }
   }, [rangeInput, multiSelectInput, alignment]);
 
   return (
@@ -177,8 +176,8 @@ CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
   defaultSearch: PropTypes.bool.isRequired,
   alignment: PropTypes.string.isRequired,
-  rangeInput: PropTypes.object.isRequired,
-  multiSelectInput: PropTypes.object.isRequired,
+  rangeInput: PropTypes.objectOf(PropTypes.object()).isRequired,
+  multiSelectInput: PropTypes.objectOf(PropTypes.object()).isRequired,
 };
 
 /*
@@ -190,12 +189,12 @@ CardsDisplay.propTypes = {
       - hard to see the current algorithm will be too slow for our purposes
          without having a big amount of data alr
 
-    MERGING  👹👹👹👹👹👹👹👹👹👹 
+    MERGING  👹👹👹👹👹👹👹👹👹👹
       - First need to refactor so that we only need filteredBooks for both features
         - add a prop that specifies whether we are searching or filtering
           - use this prop to determine which logic we need to use to populate filteredBooks
       = DONE
-         
+
       - need to move <Filter/> into BookBrowser
         - Move all Filter logic state up into BookBrowser
           - pass them down as props instead
@@ -203,11 +202,11 @@ CardsDisplay.propTypes = {
 
       - want to reset filteredBooks when we switch alignment?
         - search => filter: clear searchTerms in BookBrowser
-        - filter => search: 
-      
+        - filter => search:
+
       UI CHANGES
         filtering parameters should fit in "BrowserBody" in BookBrowser.js
           - this is the bottom half of the browser underneath the search/filter toggle
-          - currently is a popup menu 
+          - currently is a popup menu
 
 */
