@@ -176,8 +176,8 @@ CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
   defaultSearch: PropTypes.bool.isRequired,
   alignment: PropTypes.string.isRequired,
-  rangeInput: PropTypes.objectOf(PropTypes.object()).isRequired,
-  multiSelectInput: PropTypes.objectOf(PropTypes.object()).isRequired,
+  rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
+  multiSelectInput: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 /*
