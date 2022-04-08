@@ -33,13 +33,13 @@ function Carousel({
       <div
         // className="swiper-container"
         style={{
-          display: 'flex', flexDirection: 'row', background: '#FAFAFA', height: '300px', width: `${widthPercent}%`,
+          display: 'flex', flexDirection: 'row', background: '#FAFAFA', height: '350', width: `${widthPercent}%`,
         }}
       >
         <div
           className="carousel-button-prev"
           style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'items-end',
+            display: 'flex', justifyContent: 'end', flexGrow: 1, alignItems: 'center', marginRight: 46,
           }}
         >
           <button
@@ -62,7 +62,7 @@ function Carousel({
           // centeredSlides
         //   centerInsufficientSlides
         // width={745}
-          height={300}
+          height={350}
         //   autoHeight
           on="true"
           breakpoints={{
@@ -113,7 +113,7 @@ function Carousel({
         <div
           // className="carousel-button-prev"
           style={{
-            display: 'flex', justifyContent: 'center', marginLeft: '32px',
+            display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: 46,
           }}
         >
           <button
