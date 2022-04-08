@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import {
   ToggleButton, ToggleButtonGroup,
@@ -19,7 +18,6 @@ function BookBrowser() {
   const [defaultSearch, setDefaultSearch] = useState(true);
 
   // Filtering
-  const [filteredCards, setFilteredCards] = useState([]);
   const [rangeInput, setRangeInput] = useState({
     age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
@@ -63,25 +61,23 @@ function BookBrowser() {
                 setDefaultSearch={setDefaultSearch}
               />
             )
-            : (<Filter
-              setRangeState={setRangeInput}
-              setMultiSelectInput={setMultiSelectInput}
-            />)
+            : (
+              <Filter
+                setRangeState={setRangeInput}
+                setMultiSelectInput={setMultiSelectInput}
+              />
+            )
         }
 
         </div>
       </div>
-      {
-          
-              <CardsDisplay
-                searchTerms={searchTerms}
-                defaultSearch={defaultSearch}
-                alignment={alignment}
-                rangeInput={rangeInput}
-                multiSelectInput={multiSelectInput}
-              />
-            
-      }
+      <CardsDisplay
+        searchTerms={searchTerms}
+        defaultSearch={defaultSearch}
+        alignment={alignment}
+        rangeInput={rangeInput}
+        multiSelectInput={multiSelectInput}
+      />
     </div>
   );
 }

@@ -1,18 +1,17 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
+import { Search } from '@mui/icons-material';
 import RangeFilter from './RangeFilter';
 import MultSelectElem from './MultiselectFilters';
-import { Search } from '@mui/icons-material';
 
 const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 
 export default function Filter({ setRangeState, setMultiSelectInput }) {
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age:
     { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
@@ -24,12 +23,13 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     Gender: [],
     Sexuality: [],
   });
-  const open = Boolean(anchorEl);
+  // const open = Boolean(anchorEl);
 
   const handleSave = () => {
     setRangeState(tempRangeFilterData);
     setMultiSelectInput(tempMultiSelect);
   };
+  /*
   const handleClick = (event) => {
     // console.log(tempRangeFilterData);
     setAnchorEl(event.currentTarget);
@@ -37,8 +37,9 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  */
   const handleCancel = () => {
-    console.log("L + ratio")
+    console.log('L + ratio');
     setTempRangeFilterData({
       age:
       { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
@@ -103,7 +104,6 @@ Filter.propTypes = {
 /*
 
 need to add functionality for cancel such that the fields reset when we press cancel
-
 
 OLD CODE:
 <div style={{ display: 'flex', flexDirection: 'column', rowGap: 100 }}>
