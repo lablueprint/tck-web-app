@@ -3,7 +3,7 @@
 /* eslint-disable import/no-unresolved */
 import 'swiper/css/bundle';
 import 'swiper/css';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +12,7 @@ import SwiperCore, {
 } from 'swiper';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
-
+import Carousel from './Carousel';
 // import AuthoredWorkCard from './AuthoredWorkCard';
 // import IllustratedWorkCard from './IllustratedWorkCard';
 import BookCard from '../bookHub/BookCard';
@@ -31,8 +31,6 @@ function CreatedWorksCard({ authorId }) {
   SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
   // const swiperHook = useSwiper();
   // const swiper = useSwiper();
 
@@ -86,39 +84,45 @@ function CreatedWorksCard({ authorId }) {
   }, []);
 
   return (
-  // <div style={{ background: '#f2f2f2' }}>
-
     <div style={{
       display: 'flex', flexDirection: 'column', rowGap: '3rem',
     }}
     >
       {authoredWorks.length && <div> Authored Works: </div>}
-      <div className="swiper-container" style={{ background: '#FAFAFA' }}>
-        {/* <div className="carousel-button-prev"
-         style={{ display: 'flex', justifyContent: 'center' }}> */}
-        {/* <button
-            type="button"
+      <Carousel
+        elementArray={authoredWorks}
+        slidesAtATime={7}
+        prevArrow={LeftArrow}
+        nextArrow={RightArrow}
+        widthPercent={100}
+        spaceBetweenEntries={35}
+      />
+      {/* <div className="swiper-container" style={{ background: '#FAFAFA', height: '300px' }}>
+        <div
+          className="carousel-button-prev"
+          style={{
+            display: 'flex', flexGrow: 1, justifyContent: 'center', alignItems: 'items-end',
+          }}
+        >
+          <button
+            ref={navigationPrevRef}
             style={{
               border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
             }}
-            ref={navigationPrevRef}
+            type="button"
           >
-            <img src={LeftArrow} alt="left navigation arrow" />
-          </button> */}
-        {/* </div> */}
-        <button ref={navigationPrevRef} type="button">
-          <img src={LeftArrow} alt="Left navigation arrow" />
+            <img src={LeftArrow} alt="Left navigation arrow" />
 
-        </button>
+          </button>
+        </div>
         <Swiper
           style={{
             zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '70%',
           }}
-          spaceBetween={27}
           // loop
           // createElements
           // centeredSlides
-          // centerInsufficientSlides
+          centerInsufficientSlides
         // width={745}
           // height={242.22}
           autoHeight
@@ -136,7 +140,7 @@ function CreatedWorksCard({ authorId }) {
             // when window width is >= 640px
             640: {
               slidesPerView: 4,
-              spaceBetween: 40,
+              // spaceBetween: 40,
             },
           }}
           direction="horizontal"
@@ -168,13 +172,24 @@ function CreatedWorksCard({ authorId }) {
 
           ))}
         </Swiper>
-        <div>
-          <button ref={navigationNextRef} type="button">
+        <div
+          // className="carousel-button-prev"
+          style={{
+            display: 'flex', justifyContent: 'center', marginRight: '32px', flexGrow: 1,
+          }}
+        >
+          <button
+            ref={navigationNextRef}
+            style={{
+              border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
+            }}
+            type="button"
+          >
             <img src={RightArrow} alt="Right navigation arrow" />
 
           </button>
         </div>
-      </div>
+      </div> */}
       {illustratedWorks.length && <div> Illustrated Works: </div>}
       <div>
         <Swiper

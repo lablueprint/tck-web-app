@@ -50,7 +50,7 @@ export default function BookCard({
   useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
-    <div className="card" sx={{ maxWidth: 345, background: 'none' }}>
+    <div className="card" style={{ maxWidth: 320, maxHeight: 300, background: 'none' }}>
       <Link class="link" to={`/book/${id}`}>
         <div className="cardActionArea">
           <div className="img-container">
