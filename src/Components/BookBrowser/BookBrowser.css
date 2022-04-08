@@ -8,32 +8,32 @@
     width: 55vw;
     margin: 70px auto;
     /*border-radius: 6px; */
-    outline: 2px dotted red;
+    
 }
 
 .BrowserQuote {
     margin: 4vh 3vw auto;
     font-size: 1.625em;
     font-family: 'IBM Plex Sans', sans-serif;
-    outline: 2px dotted green;
+    
 }
 .BrowserHead {
     background: #FFFFFF;
     margin: 70px auto 0 auto;
     box-shadow: 0 2px 0 rgb(77, 76, 83);
-    border-radius: 54px 54px 0px 0px;
+    border-radius: 40px 40px 0px 0px;
     
     overflow: hidden;
     text-align: left;
 
     line-height: 33px;
-    outline: 2px dotted blue;
+    
 
 }
 
 .BrowserBody {
     background: #F9F9F9;
-    border-radius: 0px 0px 54px 54px;
-    outline: 2px dotted yellow;
+    border-radius: 0px 0px 40px 40px;
+    padding-top: 1vh;
     white-space: pre-wrap;
 }
