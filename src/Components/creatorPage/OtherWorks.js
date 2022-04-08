@@ -1,21 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-import 'swiper/css/bundle';
-import 'swiper/css';
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, Pagination, Scrollbar, A11y,
 } from 'swiper';
+import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
+import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from './Carousel';
-// import AuthoredWorkCard from './AuthoredWorkCard';
-// import IllustratedWorkCard from './IllustratedWorkCard';
-import BookCard from '../bookHub/BookCard';
 
 const Airtable = require('airtable');
 
@@ -91,154 +87,22 @@ function CreatedWorksCard({ authorId }) {
       {authoredWorks.length && <div> Authored Works: </div>}
       <Carousel
         elementArray={authoredWorks}
+        slidesAtATime={3}
+        prevArrow={LeftArrowAuthorPage}
+        nextArrow={RightArrowAuthorPage}
+        widthPercent={50}
+        spaceBetweenEntries={29}
+      />
+      {illustratedWorks.length && <div> Illustrated Works: </div>}
+      <Carousel
+        elementArray={illustratedWorks}
         slidesAtATime={7}
         prevArrow={LeftArrow}
         nextArrow={RightArrow}
         widthPercent={100}
         spaceBetweenEntries={35}
       />
-      {/* <div className="swiper-container" style={{ background: '#FAFAFA', height: '300px' }}>
-        <div
-          className="carousel-button-prev"
-          style={{
-            display: 'flex', flexGrow: 1, justifyContent: 'center', alignItems: 'items-end',
-          }}
-        >
-          <button
-            ref={navigationPrevRef}
-            style={{
-              border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
-            }}
-            type="button"
-          >
-            <img src={LeftArrow} alt="Left navigation arrow" />
 
-          </button>
-        </div>
-        <Swiper
-          style={{
-            zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '70%',
-          }}
-          // loop
-          // createElements
-          // centeredSlides
-          centerInsufficientSlides
-        // width={745}
-          // height={242.22}
-          autoHeight
-          on="true"
-          breakpoints={{
-            320: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            // when window width is >= 480px
-            480: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-            // when window width is >= 640px
-            640: {
-              slidesPerView: 4,
-              // spaceBetween: 40,
-            },
-          }}
-          direction="horizontal"
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          navigation={{
-            prevEl: navigationPrevRef.current,
-            nextEl: navigationNextRef.current,
-          }}
-          onSlideChange={() => console.log('slide change')}
-          // onBeforeInit={(swiper) => {
-          //   swiper.params.navigation.prevEl = navigationPrevRef.current;
-          //   swiper.params.navigation.nextEl = navigationNextRef.current;
-          // }}
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-        >
-          {authoredWorks.map((element) => (
-            <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-              <SwiperSlide>
-                <BookCard
-                  key={element.id}
-                  id={element.id}
-                  image={element.image}
-                  title={element.title}
-                  author={element.author}
-                />
-              </SwiperSlide>
-            </div>
-
-          ))}
-        </Swiper>
-        <div
-          // className="carousel-button-prev"
-          style={{
-            display: 'flex', justifyContent: 'center', marginRight: '32px', flexGrow: 1,
-          }}
-        >
-          <button
-            ref={navigationNextRef}
-            style={{
-              border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
-            }}
-            type="button"
-          >
-            <img src={RightArrow} alt="Right navigation arrow" />
-
-          </button>
-        </div>
-      </div> */}
-      {illustratedWorks.length && <div> Illustrated Works: </div>}
-      <div>
-        <Swiper
-          style={{ zIndex: '0' }}
-          spaceBetween={59.05}
-          // loop
-          // createElements
-          // centeredSlides
-          // centerInsufficientSlides
-        // width={745}
-          // height={242.22}
-          autoHeight
-          on="true"
-          slidesPerView={4}
-          slidesPerGroup={4}
-          direction="horizontal"
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-        >
-          {illustratedWorks.map((element) => (
-
-            <SwiperSlide>
-              <BookCard
-                key={element.id}
-                id={element.id}
-                image={element.image}
-                title={element.title}
-                author={element.author}
-              />
-            </SwiperSlide>
-
-          ))}
-        </Swiper>
-      </div>
-      {/* <div className="carousel-button-prev"
-      style={{ display: 'flex', justifyContent: 'center' }} ref={navigationPrevRef}>
-        <button
-          type="button"
-          style={{
-            border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
-          }}
-        >
-          <img src={RightArrow} alt="left navigation arrow" />
-        </button>
-      </div> */}
     </div>
   );
 }
