@@ -1,17 +1,35 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import {
   ToggleButton, ToggleButtonGroup,
 } from '@mui/material';
 import CardsDisplay from '../bookHub/BookHub';
 import SearchBar from '../SearchBar/SearchBar';
+import Filter from '../Filtering/Filtering';
 
 import './BookBrowser.css';
+
+const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Search');
 
   const [searchTerms, setSearchTerms] = useState('');
   const [defaultSearch, setDefaultSearch] = useState(true);
+
+  // Filtering
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [rangeInput, setRangeInput] = useState({
+    age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
+    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+  });
+  const [multiSelectInput, setMultiSelectInput] = useState({
+    Ethnicity: [],
+    Religion: [],
+    Gender: [],
+    Sexuality: [],
+  });
 
   const handleChange = (event, newAlignment) => {
     if (newAlignment !== null) {
@@ -39,15 +57,30 @@ function BookBrowser() {
         <div className="BrowserBody">
           {
           (alignment === 'Search')
-            ? <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
-            : <p> filtering parameters to comeee</p>
+            ? (
+              <SearchBar
+                setSearchTerms={setSearchTerms}
+                setDefaultSearch={setDefaultSearch}
+              />
+            )
+            : (<Filter
+              setRangeState={setRangeInput}
+              setMultiSelectInput={setMultiSelectInput}
+            />)
         }
 
         </div>
       </div>
       {
-          (alignment === 'Search') ? <CardsDisplay searchTerms={searchTerms} defaultSearch={defaultSearch} />
-            : <p>filtering n shet</p>
+          
+              <CardsDisplay
+                searchTerms={searchTerms}
+                defaultSearch={defaultSearch}
+                alignment={alignment}
+                rangeInput={rangeInput}
+                multiSelectInput={multiSelectInput}
+              />
+            
       }
     </div>
   );
