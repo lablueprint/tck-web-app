@@ -11,7 +11,7 @@ import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.sv
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
-import Carousel from './Carousel';
+import Carousel from './BookCarousel';
 
 const Airtable = require('airtable');
 

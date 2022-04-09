@@ -8,7 +8,7 @@ import propTypes from 'prop-types';
 import './OtherWorks.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
-  Navigation, Pagination, Scrollbar, A11y,
+  Navigation, A11y,
 } from 'swiper';
 
 // import AuthoredWorkCard from './AuthoredWorkCard';
@@ -19,7 +19,7 @@ import BookCard from '../bookHub/BookCard';
 function Carousel({
   elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries,
 }) {
-  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   // const swiperHook = useSwiper();
@@ -82,18 +82,12 @@ function Carousel({
             },
           }}
           direction="horizontal"
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
           navigation={{
             prevEl: navigationPrevRef.current,
             nextEl: navigationNextRef.current,
           }}
           onSlideChange={() => console.log('slide change')}
-          // onBeforeInit={(swiper) => {
-          //   swiper.params.navigation.prevEl = navigationPrevRef.current;
-          //   swiper.params.navigation.nextEl = navigationNextRef.current;
-          // }}
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, A11y]}
         >
           {elementArray.map((element) => (
             <div style={{ paddingTop: '20', paddingBottom: '20' }}>
