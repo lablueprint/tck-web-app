@@ -33,7 +33,7 @@ export default function Collection({
   return (
   // <div>
   // {/* {collectionObj.map((object) => ( */}
-    <div className="collectionCard" style={{ background: 'red' }}>
+    <div className="collectionCard" style={{ background: '#2E3E64' }}>
       <body className="CollectionBody">
         <Link class="link" to={`/collection/${Collid}`} style={{ display: 'flex', flexirection: 'row', color: 'white' }}>
           <div style={{
