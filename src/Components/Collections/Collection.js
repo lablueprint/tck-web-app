@@ -43,7 +43,7 @@ export default function Collection({
             <img className="collectionImage" src={image} alt="description" />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <h5 className="card-title">{name}</h5>
+            <h5 className="card-title" style={{ marginLeft: '5%' }}>{name}</h5>
           </div>
           {/* <p className="cardText">{description}</p> */}
         </Link>

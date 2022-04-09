@@ -33,7 +33,7 @@ function Carousel({
       <div
         // className="swiper-container"
         style={{
-          display: 'flex', flexDirection: 'row', background: '#FAFAFA', height: '350', width: `${widthPercent}%`,
+          display: 'flex', flexDirection: 'row', height: '350', width: `${widthPercent}%`,
         }}
       >
         <div

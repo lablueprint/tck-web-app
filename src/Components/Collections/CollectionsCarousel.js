@@ -30,7 +30,7 @@ function CollectionsCarousel({
     <div
         // className="swiper-container"
       style={{
-        display: 'flex', flexDirection: 'row', background: '#FAFAFA', height: '350', width: `${widthPercent}%`,
+        display: 'flex', flexDirection: 'row', height: '350', width: `${widthPercent}%`,
       }}
     >
       <div
@@ -103,7 +103,7 @@ function CollectionsCarousel({
       <div
           // className="carousel-button-prev"
         style={{
-          display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: 46,
+          display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: '10',
         }}
       >
         <button
