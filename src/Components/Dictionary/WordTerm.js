@@ -29,15 +29,17 @@ export default function WordTerm({
             ]
           </span>
         </span>
-        {def.length < 250 ? def
-          : (
-            <div className="Body">
-              {showMore ? def : `${def.substring(0, 250)}`}
-              <Button onClick={() => setShowMore(!showMore)}>
-                {showMore ? 'See less' : 'See more'}
-              </Button>
-            </div>
-          )}
+        <span className="Body">
+          {def.length < 250 ? def
+            : (
+              <div className="Body">
+                {showMore ? def : `${def.substring(0, 250)}`}
+                <Button onClick={() => setShowMore(!showMore)}>
+                  {showMore ? 'See less' : 'See more'}
+                </Button>
+              </div>
+            )}
+        </span>
       </CardContent>
       <span src={{ padding: 10 }}>
         { linksArray.length !== 0 ? (

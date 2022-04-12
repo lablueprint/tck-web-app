@@ -41,15 +41,9 @@
     flex-direction: row;
 }
 
-.ShowMore {
-
-}
-
 .Links 
 {
     size: 'small';
     overflow: 'hidden';
     white-space: "nowrap";
-    background-color: '#eefbfb';
-    color: '#607AAD';
 }
