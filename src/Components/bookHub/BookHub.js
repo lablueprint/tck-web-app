@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
 import BookCard from './BookCard';
-import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/Filtering';
+import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/RangeFilter';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -129,8 +129,8 @@ function CardsDisplay({
             gradeRangeMetadata.indexOf(record.fields.grade_max) + 1,
           );
           const incomingAgeTags = ageRangeMetadata.slice(
-            ageRangeMetadata.indexOf(record.fields.age_min),
-            ageRangeMetadata.indexOf(record.fields.age_max) + 1,
+            ageRangeMetadata.indexOf(`${record.fields.age_min}`),
+            ageRangeMetadata.indexOf(`${record.fields.age_max}`) + 1,
           );
           console.log(incomingAgeTags);
           console.log(validAgeTags);

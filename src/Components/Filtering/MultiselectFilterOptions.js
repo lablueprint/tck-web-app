@@ -6,33 +6,35 @@ import TextField from '@mui/material/TextField';
 export default function MultiselectComponent({
   filterOptions, input, setInput, labelName,
 }) {
-  const result = filterOptions.split(/[, ]+/);
+  const result = filterOptions ? filterOptions.split(',') : null;
   const handleToggle = (val, label) => {
     setInput({ ...input, [label]: input[label].concat(val) });
   };
   return (
-    <Autocomplete
-      multiple
-      options={result}
-      filterSelectedOptions
-      onChange={(event, value) => handleToggle(
-        value,
-        labelName,
-        event,
-      )}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          label={labelName}
-          placeholder={`'${filterOptions[0]}...'`}
-        />
-      )}
-    />
+    filterOptions ? (
+      <Autocomplete
+        multiple
+        options={result}
+        filterSelectedOptions
+        onChange={(event, value) => handleToggle(
+          value,
+          labelName,
+          event,
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label={labelName}
+            placeholder={filterOptions ? `'${filterOptions[0]}...'` : null}
+          />
+        )}
+      />
+    ) : null
   );
 }
 
 MultiselectComponent.propTypes = {
-  filterOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
     Ethnicity: PropTypes.arrayOf(PropTypes.string).isRequired,
     Religion: PropTypes.arrayOf(PropTypes.string).isRequired,

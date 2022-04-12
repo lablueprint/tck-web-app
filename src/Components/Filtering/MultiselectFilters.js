@@ -28,10 +28,11 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
       width: '90%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', margin: '1vh auto 1vh auto',
     }}
     >
-      {filters.map((option) => (
+      {filters && filters.map((option) => (
         <div style={{ width: '45%', margin: '1vh 1vw 1vh 1vw' }}>
           <MultiselectComponent
-            filterOptions={option.fields.options}
+            key={option.fields.id}
+            filterOptions={(option.fields.options)}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}
             labelName={option.fields.name}
