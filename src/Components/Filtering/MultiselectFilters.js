@@ -46,9 +46,11 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
 MultSelectElem.propTypes = {
   setTempMultiSelect: propTypes.func.isRequired,
   tempMultiSelect: propTypes.shape({
-    Ethnicity: propTypes.arrayOf(propTypes.string).isRequired,
+    'Race/Ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    'Identity Tags': propTypes.arrayOf(propTypes.string).isRequired,
     Religion: propTypes.arrayOf(propTypes.string).isRequired,
-    Gender: propTypes.arrayOf(propTypes.string).isRequired,
-    Sexuality: propTypes.arrayOf(propTypes.string).isRequired,
+    Genre: propTypes.arrayOf(propTypes.string).isRequired,
+    'Theme/Lessons': propTypes.arrayOf(propTypes.string).isRequired,
+    'Book Type': propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
 };

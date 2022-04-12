@@ -123,7 +123,7 @@ function CardsDisplay({
 
       setFilteredBooks(allBooks.filter(
         (record) => {
-          console.log(record);
+          // console.log(record);
           const incomingGradeTags = gradeRangeMetadata.slice(
             gradeRangeMetadata.indexOf(record.fields.grade_min),
             gradeRangeMetadata.indexOf(record.fields.grade_max) + 1,
@@ -132,30 +132,42 @@ function CardsDisplay({
             ageRangeMetadata.indexOf(`${record.fields.age_min}`),
             ageRangeMetadata.indexOf(`${record.fields.age_max}`) + 1,
           );
-          console.log(incomingAgeTags);
-          console.log(validAgeTags);
-          console.log(incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1));
+          // console.log(incomingAgeTags);
+          // console.log(validAgeTags);
+          // console.log(incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1));
 
           return ((incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1)
       && incomingGradeTags.some((value) => validGradeTags.indexOf(value) !== -1))
-      && (multiSelectInput.Ethnicity.length === 0
-         || (record.fields['race/ethnicity'] !== undefined
-           ? record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1)
-           : true))
+      && (multiSelectInput['Race/Ethnicity'].length === 0
+         || (record.fields['Race/Ethnicity'] !== undefined
+           ? record.fields['Race/Ethnicity'].some((value) => multiSelectInput['Race/Ethnicity'].indexOf(value) !== -1)
+           : false))
       && (multiSelectInput.Religion.length === 0
-        || (record.fields.religion !== undefined
-          ? record.fields.religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1)
-          : true))
-      && (multiSelectInput.Sexuality.length === 0
-        || (record.fields.sexuality !== undefined
-          ? record.fields.sexuality.some((value) => multiSelectInput.Sexuality.indexOf(value)
+        || (record.fields.Religion !== undefined
+          ? record.fields.Religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1)
+          : false))
+      && (multiSelectInput['Identity Tags'].length === 0
+        || (record.fields['Identity Tags'] !== undefined
+          ? record.fields['Identity Tags'].some((value) => multiSelectInput['Identity Tags'].indexOf(value)
            !== -1)
-          : true
+          : false
         ))
-      && (multiSelectInput.Gender.length === 0
-        || (record.fields.gender !== undefined
-          ? record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)
-          : true)));
+      && (multiSelectInput['Theme/Lessons'].length === 0
+        || (record.fields['Theme/Lessons'] !== undefined
+          ? record.fields['Theme/Lessons'].some((value) => multiSelectInput['Theme/Lessons'].indexOf(value)
+           !== -1)
+          : false
+        ))
+      && (multiSelectInput['Book Type'].length === 0
+        || (record.fields['Book Type'] !== undefined
+          ? record.fields['Book Type'].some((value) => multiSelectInput['Book Type'].indexOf(value)
+           !== -1)
+          : false
+        ))
+      && (multiSelectInput.Genre.length === 0
+        || (record.fields.Genre !== undefined
+          ? record.fields.Genre.some((value) => multiSelectInput.Genre.indexOf(value) !== -1)
+          : false)));
         },
 
       ));

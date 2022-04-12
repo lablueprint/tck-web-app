@@ -15,10 +15,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
-    Ethnicity: [],
+    'Race/Ethnicity': [],
+    'Identity Tags': [],
     Religion: [],
-    Gender: [],
-    Sexuality: [],
+    Genre: [],
+    'Theme/Lessons': [],
+    'Book Type': [],
   });
   // const open = Boolean(anchorEl);
 
@@ -42,10 +44,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setTempMultiSelect({
-      Ethnicity: [],
+      'Race/Ethnicity': [],
+      'Identity Tags': [],
       Religion: [],
-      Gender: [],
-      Sexuality: [],
+      Genre: [],
+      'Theme/Lessons': [],
+      'Book Type': [],
     });
     setRangeState({
       age:
@@ -53,10 +57,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setMultiSelectInput({
-      Ethnicity: [],
+      'Race/Ethnicity': [],
+      'Identity Tags': [],
       Religion: [],
-      Gender: [],
-      Sexuality: [],
+      Genre: [],
+      'Theme/Lessons': [],
+      'Book Type': [],
     });
   };
 

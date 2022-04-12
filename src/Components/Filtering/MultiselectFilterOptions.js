@@ -8,8 +8,10 @@ export default function MultiselectComponent({
 }) {
   const result = filterOptions ? filterOptions.split(',') : null;
   const handleToggle = (val, label) => {
-    setInput({ ...input, [label]: input[label].concat(val) });
+    setInput({ ...input, [label]: val });
   };
+
+  console.log(input);
   return (
     filterOptions ? (
       <Autocomplete
@@ -36,10 +38,12 @@ export default function MultiselectComponent({
 MultiselectComponent.propTypes = {
   filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
-    Ethnicity: PropTypes.arrayOf(PropTypes.string).isRequired,
+    'Race/Ethnicity': PropTypes.arrayOf(PropTypes.string).isRequired,
+    'Identity Tags': PropTypes.arrayOf(PropTypes.string).isRequired,
     Religion: PropTypes.arrayOf(PropTypes.string).isRequired,
-    Gender: PropTypes.arrayOf(PropTypes.string).isRequired,
-    Sexuality: PropTypes.arrayOf(PropTypes.string).isRequired,
+    Genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+    'Theme/Lessons': PropTypes.arrayOf(PropTypes.string).isRequired,
+    'Book Type': PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   setInput: PropTypes.func.isRequired,
   labelName: PropTypes.string.isRequired,
