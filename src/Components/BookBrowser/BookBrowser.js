@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import CardsDisplay from '../bookHub/BookHub';
 import SearchBar from '../SearchBar/SearchBar';
-import Filter from '../Filtering/Filtering';
+import { Filter } from '../Filtering/Filtering';
 
 import './BookBrowser.css';
 

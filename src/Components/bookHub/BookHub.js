@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
 import BookCard from './BookCard';
-
-const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
+import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/Filtering';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -124,8 +122,22 @@ function CardsDisplay({
       );
 
       setFilteredBooks(allBooks.filter(
-        (record) => (record.fields.age_range.some((val) => validAgeTags.indexOf(val) !== -1)
-      && record.fields.grade_range.some((value) => validGradeTags.indexOf(value) !== -1))
+        (record) => {
+          console.log(record);
+          const incomingGradeTags = gradeRangeMetadata.slice(
+            gradeRangeMetadata.indexOf(record.fields.grade_min),
+            gradeRangeMetadata.indexOf(record.fields.grade_max) + 1,
+          );
+          const incomingAgeTags = ageRangeMetadata.slice(
+            ageRangeMetadata.indexOf(record.fields.age_min),
+            ageRangeMetadata.indexOf(record.fields.age_max) + 1,
+          );
+          console.log(incomingAgeTags);
+          console.log(validAgeTags);
+          console.log(incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1));
+
+          return ((incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1)
+      && incomingGradeTags.some((value) => validGradeTags.indexOf(value) !== -1))
       && (multiSelectInput.Ethnicity.length === 0
          || (record.fields['race/ethnicity'] !== undefined
            ? record.fields['race/ethnicity'].some((value) => multiSelectInput.Ethnicity.indexOf(value) !== -1)
@@ -143,7 +155,8 @@ function CardsDisplay({
       && (multiSelectInput.Gender.length === 0
         || (record.fields.gender !== undefined
           ? record.fields.gender.some((value) => multiSelectInput.Gender.indexOf(value) !== -1)
-          : true)),
+          : true)));
+        },
 
       ));
     }
