@@ -6,13 +6,15 @@ import TextField from '@mui/material/TextField';
 export default function MultiselectComponent({
   filterOptions, input, setInput, labelName,
 }) {
+  const result = filterOptions.split(/[, ]+/);
+  console.log(result);
   const handleToggle = (val, label) => {
     setInput({ ...input, [label]: input[label].concat(val) });
   };
   return (
     <Autocomplete
       multiple
-      options={filterOptions}
+      options={result}
       filterSelectedOptions
       onChange={(event, value) => handleToggle(
         value,
@@ -30,7 +32,7 @@ export default function MultiselectComponent({
 }
 
 MultiselectComponent.propTypes = {
-  filterOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
     Ethnicity: PropTypes.arrayOf(PropTypes.string).isRequired,
     Religion: PropTypes.arrayOf(PropTypes.string).isRequired,
