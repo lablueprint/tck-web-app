@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import MultiselectComponent from './MultiselectFilterOptions';
 
-const filters = [
-  {
-    filterName: 'Ethnicity',
-    filterOptions: ['Black/African American', 'White', 'Asian', 'Hawaiian/Pacific Islander', 'Hispanic',
-      'American Indian/Alaska Native', 'Indian', 'American'],
-  },
-  {
-    filterName: 'Religion',
-    filterOptions: ['Christian', 'Muslim', 'Hindu', 'Jewish', 'Atheist'],
-  },
-  {
-    filterName: 'Gender',
-    filterOptions: ['Male', 'Female', 'Nonbinary', 'Other'],
-  },
-  {
-    filterName: 'Sexuality',
-    filterOptions: ['Gay', 'Straight', 'Bisexual', 'Other'],
-  },
-];
+// airtable configuration
+const Airtable = require('airtable');
+
+const airtableConfig = {
+  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
+  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
+};
+const base = new Airtable({ apiKey: airtableConfig.apiKey })
+  .base(airtableConfig.baseKey);
 
 export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) {
+  const [filters, setFilters] = useState([]);
+
+  const getFilters = () => {
+    base('Book Tag Metadata').select({ view: 'Grid view' }).all()
+      .then((records) => {
+        setFilters(records);
+      });
+  };
+
+  useEffect(getFilters, []);
   return (
     <div style={{
       width: '90%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', margin: '1vh auto 1vh auto',
@@ -31,10 +31,10 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
       {filters.map((option) => (
         <div style={{ width: '45%', margin: '1vh 1vw 1vh 1vw' }}>
           <MultiselectComponent
-            filterOptions={option.filterOptions}
+            filterOptions={option.fields.options}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}
-            labelName={option.filterName}
+            labelName={option.fields.name}
           />
         </div>
       ))}
