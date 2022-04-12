@@ -39,7 +39,6 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   };
   */
   const handleCancel = () => {
-    console.log('L + ratio');
     setTempRangeFilterData({
       age:
       { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
@@ -65,7 +64,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', rowGap: 100 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', rowGap: 10 }}>
 
       <RangeFilter
         rangeFilterData={tempRangeFilterData}
@@ -104,6 +103,7 @@ Filter.propTypes = {
 /*
 
 need to add functionality for cancel such that the fields reset when we press cancel
+  -possible??? idk
 
 OLD CODE:
 <div style={{ display: 'flex', flexDirection: 'column', rowGap: 100 }}>

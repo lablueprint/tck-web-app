@@ -9,8 +9,8 @@ function RangeFilterCard({
   const minref = useRef();
   const maxref = useRef();
   return (
-    <div>
-      <p>{filterTitle}</p>
+    <div style={{ padding: '1vh 1vw 1vh 1vw' }}>
+      <p style={{ textAlign: 'left' }}>{filterTitle}</p>
       <div style={{ display: 'flex', flexDirection: 'row', columnGap: 50 }}>
         <Autocomplete
           disablePortal
