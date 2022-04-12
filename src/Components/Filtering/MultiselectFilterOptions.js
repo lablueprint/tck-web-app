@@ -23,6 +23,7 @@ export default function MultiselectComponent({
         <TextField
           {...params}
           label={labelName}
+          placeholder={`'${filterOptions[0]}...'`}
         />
       )}
     />

@@ -24,9 +24,12 @@ const filters = [
 
 export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{
+      width: '90%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', margin: '1vh auto 1vh auto',
+    }}
+    >
       {filters.map((option) => (
-        <div style={{ width: '100%', padding: '20px' }}>
+        <div style={{ width: '45%', margin: '1vh 1vw 1vh 1vw' }}>
           <MultiselectComponent
             filterOptions={option.filterOptions}
             input={tempMultiSelect}

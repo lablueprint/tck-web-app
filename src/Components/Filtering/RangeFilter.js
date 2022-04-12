@@ -27,12 +27,11 @@ function RangeFilter({ rangeFilterData, setRangeFilterData }) {
   };
   return (
     <div>
-      <div>
-        <RangeFilterCard filterTitle="Grade" data={rangeFilterData} optionsArray={gradeRangeMetadata} handleChange={HandleChange} />
-      </div>
-      <div>
-        <RangeFilterCard filterTitle="Age" data={rangeFilterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
-      </div>
+
+      <RangeFilterCard filterTitle="Grade" data={rangeFilterData} optionsArray={gradeRangeMetadata} handleChange={HandleChange} />
+
+      <RangeFilterCard filterTitle="Age" data={rangeFilterData} optionsArray={ageRangeMetadata} handleChange={HandleChange} />
+
     </div>
   );
 }
