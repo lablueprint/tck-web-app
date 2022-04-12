@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 });
 
 export default function BookCard({
-  id, title, author, image,
+  id, title, author, image, inCarousel,
 }) {
   const classes = useStyles();
 
@@ -50,7 +50,7 @@ export default function BookCard({
   useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
-    <div className="card" style={{ maxWidth: 320, maxHeight: 300, background: 'none' }}>
+    <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px' }}>
       <Link class="link" to={`/book/${id}`}>
         <div className="cardActionArea">
           <div className="img-container">
@@ -87,4 +87,5 @@ BookCard.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   image: PropTypes.string,
+  inCarousel: PropTypes.bool.isRequired,
 };

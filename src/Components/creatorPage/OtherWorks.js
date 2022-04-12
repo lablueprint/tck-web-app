@@ -91,7 +91,7 @@ function CreatedWorksCard({ authorId }) {
         prevArrow={LeftArrowAuthorPage}
         nextArrow={RightArrowAuthorPage}
         widthPercent={50}
-        spaceBetweenEntries={29}
+        spaceBetweenEntries={16}
       />
       {illustratedWorks.length && <div> Illustrated Works: </div>}
       <Carousel
@@ -100,7 +100,7 @@ function CreatedWorksCard({ authorId }) {
         prevArrow={LeftArrow}
         nextArrow={RightArrow}
         widthPercent={100}
-        spaceBetweenEntries={35}
+        spaceBetweenEntries={16}
       />
 
     </div>
