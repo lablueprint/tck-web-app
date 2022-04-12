@@ -55,14 +55,14 @@ function Carousel({
         </div>
         <Swiper
           style={{
-            zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '70%',
+            zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '100%', height: '400px',
           }}
           // loop
           // createElements
           // centeredSlides
         //   centerInsufficientSlides
         // width={745}
-          height={350}
+          // height={350}
         //   autoHeight
           on="true"
           breakpoints={{
@@ -98,6 +98,7 @@ function Carousel({
                   image={element.image}
                   title={element.title}
                   author={element.author}
+                  inCarousel
                 />
               </SwiperSlide>
             </div>
