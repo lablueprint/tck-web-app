@@ -30,6 +30,7 @@ function WordTermDisplay() {
         word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
         def={wordInfo.fields.definition !== undefined ? wordInfo.fields.definition : 'MISSING DEFINTION'}
         links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}
+        wordBreakdown={wordInfo.fields.phonetic_spelling !== undefined ? wordInfo.fields.phonetic_spelling : 'Missing phonetic spelling'}
       />
     </div>
   ));

@@ -1,0 +1,55 @@
+.Term {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28.15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.WordBreakdown {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23.44px;
+    line-height: 100%;
+    letter-spacing: 0.5px;
+    padding-top: 32px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Body {
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 32.13px;
+    margin-left: 150px;
+    margin-right: 118px;
+    padding: 15px;
+}
+
+.MoreResources {
+    font-family: 'Palanquin', sans-serif;
+    font-size: 24px;
+}
+
+.Img {
+    display: flex;
+    flex-direction: row;
+}
+
+.ShowMore {
+
+}
+
+.Links 
+{
+    size: 'small';
+    overflow: 'hidden';
+    white-space: "nowrap";
+    background-color: '#eefbfb';
+    color: '#607AAD';
+}
