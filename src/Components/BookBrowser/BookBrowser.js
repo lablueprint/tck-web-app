@@ -4,12 +4,10 @@ import {
 } from '@mui/material';
 import CardsDisplay from '../bookHub/BookHub';
 import SearchBar from '../SearchBar/SearchBar';
-import { Filter } from '../Filtering/Filtering';
+import Filter from '../Filtering/Filtering';
+import { ageRangeMetadata, gradeRangeMetadata } from '../Filtering/RangeFilter';
 
 import './BookBrowser.css';
-
-const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-const ageRangeMetadata = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Search');
@@ -20,7 +18,7 @@ function BookBrowser() {
   // Filtering
   const [rangeInput, setRangeInput] = useState({
     age: { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
   });
   const [multiSelectInput, setMultiSelectInput] = useState({
     Ethnicity: [],

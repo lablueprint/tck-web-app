@@ -4,18 +4,15 @@ import Button from '@mui/material/Button';
 // import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
 import { Search } from '@mui/icons-material';
-import RangeFilter from './RangeFilter';
+import { RangeFilter, gradeRangeMetadata, ageRangeMetadata } from './RangeFilter';
 import MultSelectElem from './MultiselectFilters';
 
-export const gradeRangeMetadata = ['0 to Pre-K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-export const ageRangeMetadata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-
-export function Filter({ setRangeState, setMultiSelectInput }) {
+export default function Filter({ setRangeState, setMultiSelectInput }) {
   // const [anchorEl, setAnchorEl] = useState(null);
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age:
     { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
     Ethnicity: [],
@@ -42,7 +39,7 @@ export function Filter({ setRangeState, setMultiSelectInput }) {
     setTempRangeFilterData({
       age:
       { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setTempMultiSelect({
       Ethnicity: [],
@@ -53,7 +50,7 @@ export function Filter({ setRangeState, setMultiSelectInput }) {
     setRangeState({
       age:
       { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[12] },
+      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setMultiSelectInput({
       Ethnicity: [],
