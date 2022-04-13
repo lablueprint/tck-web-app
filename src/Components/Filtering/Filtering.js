@@ -79,7 +79,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
         tempMultiSelect={tempMultiSelect}
       />
 
-      <div className="Buttons">
+      <div style={{ textAlign: 'right', textTransform: 'none', margin: '1vh 2vw 1vh 2vw' }}>
         <Button onClick={handleCancel}>
           Cancel
         </Button>
@@ -152,5 +152,11 @@ OLD CODE:
         </MenuItem>
       </Menu>
     </div>
+
+    .Buttons {
+    text-align: right;
+    margin: 1vh 2vw 1vh 2vw;
+    text-transform: none;
+}
 
  */
