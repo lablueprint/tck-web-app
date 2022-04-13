@@ -38,7 +38,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
         <FormControl
           variant="outlined"
           margin="none"
-          sx={{ width: '20%' }}
+          sx={{ width: '20%', background: '#EEEEEE' }}
           size="small"
         >
           <InputLabel id="search-by-label">search by</InputLabel>
@@ -55,7 +55,9 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
         </FormControl>
 
         <TextField
-          sx={{ width: '70%', position: 'relative', zIndex: '1' }}
+          sx={{
+            width: '70%', position: 'relative', zIndex: '1',
+          }}
           size="small"
           id="outlined-basic"
           hiddenLabel
@@ -87,8 +89,18 @@ SearchBar.propTypes = {
 };
 
 /* NOTES
-  Cancel will not clear the text field
-    - For future development, one can use refs to access the text field, clear
-      the text field when 'cancel' is pressed, but for now it'll just reset
-      search results
+  Cannot 'push' button underneath TextField
+    - outline shows through the button
+
+  We now need to separate title, desc, identity sadge
+
+  TO-DO:
+    Create state in BookBrowser for Title, Author, Illustrator, Identity, or Book Description
+      category, setCategory
+      - represent as strings
+          title, author, illustrator, identity, description
+      - pass down setCategory to SearchBar
+        - need to change MenuItem values to strings
+      - pass down category to BookHub
+        - separate category logic in there
 */
