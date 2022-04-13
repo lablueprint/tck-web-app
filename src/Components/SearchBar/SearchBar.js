@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   TextField, Select, FormControl, InputLabel, MenuItem, InputAdornment, Button,
@@ -9,7 +9,6 @@ import { Search } from '@mui/icons-material';
 import './SearchBar.css';
 
 function SearchBar({ setSearchTerms, setDefaultSearch }) {
-  const textRef = useRef();
   const [value, setValue] = useState('');
   /*
   const handleChange = (e) => {
@@ -30,11 +29,6 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
 
   const handleGo = () => {
     setSearchTerms(value);
-  };
-
-  const handleCancel = () => {
-    setSearchTerms('');
-    textRef.current.value = '';
   };
 
   return (
@@ -64,12 +58,8 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
         InputProps={{
           startAdornment: <InputAdornment position="start"><Search /></InputAdornment>,
         }}
-        inputRef={textRef}
       />
       <div className="Buttons">
-        <Button onClick={handleCancel}>
-          Cancel
-        </Button>
         <Button
           type="submit"
           variant="contained"
