@@ -34,9 +34,10 @@
   
 }
 .cardText {
-  margin: 10px;
+  margin-right: 10px;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
+  font-family:'Work Sans';
 }
 
 .swiper-slide .swiper-slide-active{
