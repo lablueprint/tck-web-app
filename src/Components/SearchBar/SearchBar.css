@@ -5,3 +5,10 @@
     margin: 1vh 2vw 1vh 2vw;
     text-transform: none;
 }
+
+.SearchBar {
+    display: inline-block;
+    width: 90%;
+    outline: 2px dotted green;
+    padding: 1vh 1vw 1vh 1vw;
+}
