@@ -32,39 +32,49 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
   };
 
   return (
-    <div className="SearchBar">
-      <FormControl variant="standard" sx={{ width: '20%' }}>
-        <InputLabel id="search-by-label">search by</InputLabel>
-        <Select
-          labelId="search-by-label"
-          id="search-by"
-          defaultValue
-          label="search by"
-          onChange={(e) => setDefaultSearch(e.target.value)}
+    <div>
+      <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
+      <div className="SearchBar">
+        <FormControl
+          variant="outlined"
+          margin="none"
+          sx={{ width: '20%' }}
+          size="small"
         >
-          <MenuItem value>Title, Description, Identity</MenuItem>
-          <MenuItem value={false}>Author, Illustrator</MenuItem>
-        </Select>
-      </FormControl>
+          <InputLabel id="search-by-label">search by</InputLabel>
+          <Select
+            labelId="search-by-label"
+            id="search-by"
+            defaultValue
+            label="search by"
+            onChange={(e) => setDefaultSearch(e.target.value)}
+          >
+            <MenuItem value>Title, Description, Identity</MenuItem>
+            <MenuItem value={false}>Author, Illustrator</MenuItem>
+          </Select>
+        </FormControl>
 
-      <TextField
-        sx={{ width: '70%' }}
-        id="filled-basic"
-        hiddenLabel
-        placeholder="Search Titles, Authors, Identities..."
-        variant="standard"
-        margin="normal"
-        onKeyUp={handleChange}
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        onClick={handleGo}
-        sx={{ height: '100%', width: '10%', borderRadius: '0 12px 12px 0' }}
-      >
-        <Search fontSize="large" />
-      </Button>
+        <TextField
+          sx={{ width: '70%', position: 'relative', zIndex: '1' }}
+          size="small"
+          id="outlined-basic"
+          hiddenLabel
+          variant="outlined"
+          margin="none"
+          onKeyUp={handleChange}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          onClick={handleGo}
+          sx={{
+            width: '5%', borderRadius: '0 12px 12px 0', marginLeft: '-1vh', position: 'relative', zIndex: '2',
+          }}
+          size="large"
+          endIcon={<Search />}
+        />
 
+      </div>
     </div>
   );
 }
