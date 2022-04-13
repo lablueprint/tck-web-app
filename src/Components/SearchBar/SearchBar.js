@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  TextField, Select, FormControl, InputLabel, MenuItem, InputAdornment, Button,
+  TextField, Select, FormControl, InputLabel, MenuItem, Button,
 } from '@mui/material';
 
 import { Search } from '@mui/icons-material';
@@ -32,8 +32,8 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
   };
 
   return (
-    <div style={{ display: 'inline-block', width: '90%' }}>
-      <FormControl variant="standard" autoWidth>
+    <div className="SearchBar">
+      <FormControl variant="standard" sx={{ width: '20%' }}>
         <InputLabel id="search-by-label">search by</InputLabel>
         <Select
           labelId="search-by-label"
@@ -48,28 +48,23 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
       </FormControl>
 
       <TextField
-        fullWidth
+        sx={{ width: '70%' }}
         id="filled-basic"
         hiddenLabel
         placeholder="Search Titles, Authors, Identities..."
         variant="standard"
         margin="normal"
         onKeyUp={handleChange}
-        InputProps={{
-          startAdornment: <InputAdornment position="start"><Search /></InputAdornment>,
-        }}
       />
-      <div className="Buttons">
-        <Button
-          type="submit"
-          variant="contained"
-          startIcon={<Search />}
-          onClick={handleGo}
-          sx={{ borderRadius: '12px' }}
-        >
-          Go!
-        </Button>
-      </div>
+      <Button
+        type="submit"
+        variant="contained"
+        onClick={handleGo}
+        sx={{ height: '100%', width: '10%', borderRadius: '0 12px 12px 0' }}
+      >
+        <Search fontSize="large" />
+      </Button>
+
     </div>
   );
 }
