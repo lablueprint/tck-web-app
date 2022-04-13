@@ -37,7 +37,6 @@ function BookBrowser() {
 
   return (
     <div id="background">
-
       <div className="Browser">
         <div className="BrowserHead">
           <div className="BrowserQuote">Browse For Books</div>
