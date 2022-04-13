@@ -66,7 +66,7 @@ export default function BookCard({
             {title}
           </p>
           <Link class="link" to={`/creator/${author}`}>
-            <Typography className={classes.author} color="text.secondary">
+            <Typography className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
               By
               {' '}
               {authorVar !== undefined ? (authorVar.fields.name) : author}
