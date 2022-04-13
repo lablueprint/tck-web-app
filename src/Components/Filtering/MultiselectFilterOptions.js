@@ -11,7 +11,7 @@ export default function MultiselectComponent({
     setInput({ ...input, [label]: val });
   };
 
-  console.log(input);
+  // console.log(input);
   return (
     filterOptions ? (
       <Autocomplete
