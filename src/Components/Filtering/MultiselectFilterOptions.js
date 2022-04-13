@@ -28,6 +28,7 @@ export default function MultiselectComponent({
             {...params}
             label={labelName}
             placeholder={filterOptions ? `'${filterOptions[0]}...'` : null}
+            size="small"
           />
         )}
       />

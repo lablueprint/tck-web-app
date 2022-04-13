@@ -56,7 +56,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
 
         <TextField
           sx={{
-            width: '70%', position: 'relative', zIndex: '1',
+            width: '70%', position: 'relative', zIndex: '2', background: '#F9F9F9',
           }}
           size="small"
           id="outlined-basic"
@@ -70,7 +70,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
           variant="contained"
           onClick={handleGo}
           sx={{
-            width: '5%', borderRadius: '0 12px 12px 0', marginLeft: '-1vh', position: 'relative', zIndex: '2',
+            width: '5%', borderRadius: '0 12px 12px 0', marginLeft: '-1vw', position: 'relative', zIndex: '1',
           }}
           size="large"
           endIcon={<Search />}
