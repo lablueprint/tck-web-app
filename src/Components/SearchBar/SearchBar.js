@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  TextField, Select, FormControl, InputLabel, MenuItem, InputAdornment, Button,
+  TextField, Select, FormControl, InputLabel, MenuItem, Button,
 } from '@mui/material';
 
 import { Search } from '@mui/icons-material';
@@ -9,7 +9,6 @@ import { Search } from '@mui/icons-material';
 import './SearchBar.css';
 
 function SearchBar({ setSearchTerms, setDefaultSearch }) {
-  const textRef = useRef();
   const [value, setValue] = useState('');
   /*
   const handleChange = (e) => {
@@ -32,53 +31,51 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
     setSearchTerms(value);
   };
 
-  const handleCancel = () => {
-    setSearchTerms('');
-    textRef.current.value = '';
-  };
-
   return (
-    <div style={{ display: 'inline-block', width: '90%' }}>
-      <FormControl variant="standard" autoWidth>
-        <InputLabel id="search-by-label">search by</InputLabel>
-        <Select
-          labelId="search-by-label"
-          id="search-by"
-          defaultValue
-          label="search by"
-          onChange={(e) => setDefaultSearch(e.target.value)}
+    <div>
+      <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
+      <div className="SearchBar">
+        <FormControl
+          variant="outlined"
+          margin="none"
+          sx={{ width: '20%', background: '#EEEEEE' }}
+          size="small"
         >
-          <MenuItem value>Title, Description, Identity</MenuItem>
-          <MenuItem value={false}>Author, Illustrator</MenuItem>
-        </Select>
-      </FormControl>
+          <InputLabel id="search-by-label">search by</InputLabel>
+          <Select
+            labelId="search-by-label"
+            id="search-by"
+            defaultValue
+            label="search by"
+            onChange={(e) => setDefaultSearch(e.target.value)}
+          >
+            <MenuItem value>Title, Description, Identity</MenuItem>
+            <MenuItem value={false}>Author, Illustrator</MenuItem>
+          </Select>
+        </FormControl>
 
-      <TextField
-        fullWidth
-        id="filled-basic"
-        hiddenLabel
-        placeholder="Search Titles, Authors, Identities..."
-        variant="standard"
-        margin="normal"
-        onKeyUp={handleChange}
-        InputProps={{
-          startAdornment: <InputAdornment position="start"><Search /></InputAdornment>,
-        }}
-        inputRef={textRef}
-      />
-      <div className="Buttons">
-        <Button onClick={handleCancel}>
-          Cancel
-        </Button>
+        <TextField
+          sx={{
+            width: '70%', position: 'relative', zIndex: '1',
+          }}
+          size="small"
+          id="outlined-basic"
+          hiddenLabel
+          variant="outlined"
+          margin="none"
+          onKeyUp={handleChange}
+        />
         <Button
           type="submit"
           variant="contained"
-          startIcon={<Search />}
           onClick={handleGo}
-          sx={{ borderRadius: '12px' }}
-        >
-          Go!
-        </Button>
+          sx={{
+            width: '5%', borderRadius: '0 12px 12px 0', marginLeft: '-1vh', position: 'relative', zIndex: '2',
+          }}
+          size="large"
+          endIcon={<Search />}
+        />
+
       </div>
     </div>
   );
@@ -92,8 +89,18 @@ SearchBar.propTypes = {
 };
 
 /* NOTES
-  Cancel will not clear the text field
-    - For future development, one can use refs to access the text field, clear
-      the text field when 'cancel' is pressed, but for now it'll just reset
-      search results
+  Cannot 'push' button underneath TextField
+    - outline shows through the button
+
+  We now need to separate title, desc, identity sadge
+
+  TO-DO:
+    Create state in BookBrowser for Title, Author, Illustrator, Identity, or Book Description
+      category, setCategory
+      - represent as strings
+          title, author, illustrator, identity, description
+      - pass down setCategory to SearchBar
+        - need to change MenuItem values to strings
+      - pass down category to BookHub
+        - separate category logic in there
 */

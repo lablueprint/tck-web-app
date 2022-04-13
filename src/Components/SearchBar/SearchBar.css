@@ -1,7 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
 
-.Buttons {
-    text-align: right;
-    margin: 1vh 2vw 1vh 2vw;
-    text-transform: none;
+.Subtitle {
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: large;
+    line-height: 28px;
+    color: #5F5F5F;
+    margin: 3vh auto 1vh auto;
+}
+
+.SearchBar {
+    font-family: 'Work Sans', sans-serif;
+    display: inline-block;
+    width: 90%;
+    /*outline: 2px dotted green;*/
+    padding: 1vh 1vw 1vh 1vw;
+    margin: 1vh 1vw 4vh 1vw;
 }

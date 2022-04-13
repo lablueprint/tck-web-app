@@ -64,7 +64,7 @@ function CardsDisplay({
       .then((records) => {
         const res = [];
         records.forEach((record) => {
-          const bookIds = record.get('authored'); // array of strings (bookId)
+          const bookIds = record.get(field); // array of strings (bookId)
           bookIds.forEach((bookId) => {
             const book = allBooks.find((x) => x.get('id') === bookId);
             res.push(book);
