@@ -36,10 +36,12 @@ function CreatorPage() {
       { AuthorDetails !== undefined
         ? (
           <AuthorInfo
-            author={AuthorDetails.fields.name}
-            bio={AuthorDetails.fields.bio}
-            links={AuthorDetails.fields.personal_site}
-            authorPic={AuthorDetails.fields.image[0].thumbnails.large.url}
+            author={AuthorDetails.fields.name !== undefined ? AuthorDetails.fields.name : 'Anonymous'}
+            bio={AuthorDetails.fields.bio !== undefined ? AuthorDetails.fields.bio : ''}
+            links={AuthorDetails.fields.personal_site !== undefined
+              ? AuthorDetails.fields.personal_site : ''}
+            authorPic={AuthorDetails.fields.image !== undefined
+              ? AuthorDetails.fields.image[0].url : ''}
           />
         ) : <p>No such author found!</p> }
       <CreatedWorksCard authorId={authId} />

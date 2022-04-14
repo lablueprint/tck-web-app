@@ -34,7 +34,7 @@ export default function Collection({
   // <div>
   // {/* {collectionObj.map((object) => ( */}
     <div className="collectionCard" style={{ background: '#2E3E64' }}>
-      <body className="CollectionBody">
+      <div className="CollectionBody">
         <Link class="link" to={`/collection/${Collid}`} style={{ display: 'flex', flexirection: 'row', color: 'white' }}>
           <div style={{
             flexBasis: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center',
@@ -47,7 +47,7 @@ export default function Collection({
           </div>
           {/* <p className="cardText">{description}</p> */}
         </Link>
-      </body>
+      </div>
     </div>
   // {/* ))} */}
   // </div>
