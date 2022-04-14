@@ -122,7 +122,7 @@ function CollectionsCarousel({
           prevEl: navigationPrevRef.current,
           nextEl: navigationNextRef.current,
         }}
-        onSlideChange={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
+        onSlideChangeTransitionEnd={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element, index) => (
