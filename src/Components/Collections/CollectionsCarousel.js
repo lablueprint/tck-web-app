@@ -1,13 +1,14 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import 'swiper/css/bundle';
 import 'swiper/css';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import './Collection.css';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
@@ -17,25 +18,46 @@ import { renderToString } from 'react-dom/server';
 // import IllustratedWorkCard from './IllustratedWorkCard';
 import Collection from './Collection';
 
+let init = 1;
 const defaultOnSlideChange = () => { };
 // Authored and illustrated work components
 function CollectionsCarousel({
   elementArray, slidesAtATime, prevArrow, nextArrow,
   widthPercent, spaceBetweenEntries, swiperHeight, cardImageHeightPercent,
-  cardImageWidthPercent, shouldLoop, centeredSlides, isCollectionPageHeader, setCollecID,
+  cardImageWidthPercent, shouldLoop, centeredSlides, isCollectionPageHeader, setCollecID, initialID,
 }) {
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const swiperRef = useRef(null);
   const [swiperInst, setSwiper] = useState(null);
 
   const OnSlideChange = () => {
-    const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
-    // const element = String(document);
-    const href = document.split('/')[2].split('" ');
-    // console.log(href[0]);
-    setCollecID(href[0]);
+    if (!init) {
+      const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
+      // const element = String(document);
+      const href = document.split('/')[2].split('" ');
+      // console.log(href[0]);
+      setCollecID(href[0]);
+    }
+    // }
   };
+  useEffect(() => {
+    if (isCollectionPageHeader) {
+      console.log(initialID);
+      const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0]);
+      // swiperArray;
+      swiperRef.current.swiper.slideTo(
+        swiperArray.findIndex((element) => initialID === element),
+      );
+      // const realNum = swiperInst.activeIndex + 1;
+      // swiperRef.current.swiper.slideTo(realNum);
+      console.log(swiperRef.current.swiper.realIndex);
+      console.log(swiperArray.findIndex((element) => initialID === element));
+      console.log(swiperArray);
+      init = 0;
+    }
+  }, [elementArray]);
   return (
 
     <div
@@ -62,9 +84,14 @@ function CollectionsCarousel({
         </button>
       </div>
       <Swiper
+        ref={swiperRef}
+        // initialSlide={isCollectionPageHeader
+        //   ? elementArray.findIndex((element) => initialID === element.id) : 0}
+        // init={false}
         style={{
           zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '90%',
         }}
+        // initialSlide={}
         loop={shouldLoop}
           // createElements
         centeredSlides={centeredSlides}
@@ -92,7 +119,8 @@ function CollectionsCarousel({
         }}
         // runCallbacksOnInit
         direction="horizontal"
-        // onInit={(swiper) => { swiperInst = swiper; }}
+        // onTransitionStart={onInit}
+        // onInit={onInit}
         navigation={{
           prevEl: navigationPrevRef.current,
           nextEl: navigationNextRef.current,
@@ -100,11 +128,10 @@ function CollectionsCarousel({
         onSlideChange={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
         modules={[Navigation, A11y]}
       >
-        {elementArray.map((element) => (
+        {elementArray.map((element, index) => (
           // <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-          <SwiperSlide>
+          <SwiperSlide key={element.id}>
             <Collection
-              key={element.id}
               Collid={element.id}
               image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
               name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
@@ -144,7 +171,7 @@ CollectionsCarousel.propTypes = {
     author: propTypes.string,
     image: propTypes.string,
     title: propTypes.string,
-    id: propTypes.number,
+    id: propTypes.string,
   })).isRequired,
 
   slidesAtATime: propTypes.number.isRequired,
@@ -159,6 +186,7 @@ CollectionsCarousel.propTypes = {
   centeredSlides: propTypes.bool,
   isCollectionPageHeader: propTypes.bool,
   setCollecID: propTypes.func,
+  initialID: propTypes.string,
 };
 
 CollectionsCarousel.defaultProps = {
@@ -169,6 +197,7 @@ CollectionsCarousel.defaultProps = {
   centeredSlides: false,
   isCollectionPageHeader: false,
   setCollecID: defaultOnSlideChange,
+  initialID: '',
 };
 
 export default CollectionsCarousel;

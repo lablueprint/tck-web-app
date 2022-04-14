@@ -15,7 +15,7 @@ import './Collection.css';
 
 export default function Collection({
   Collid, image, name, description, imageHeightPercent,
-  imageWidthPercent, cardFontSize, isCollectionPageHeader,
+  imageWidthPercent, isCollectionPageHeader,
 }) {
   // const [collectionObj, setCollectionObj] = useState([]);
   // useEffect(() => {
@@ -34,6 +34,10 @@ export default function Collection({
   return (
   // <div>
   // {/* {collectionObj.map((object) => ( */}
+
+  // WARNING: IF YOU RESTYLE THIS, IT WILL BREAK THE COLLECTION PAGE'S ONSLIDECHANGE FUNCTION!!
+  // UPDATE THE FUNCTION SO THAT IT CAN READ THE COLLECTION
+  // ID FROM HERE AFTER IT HAS BEEN RESTRUCTURED
     <Link
       class="link"
       to={`/collection/${Collid}`}
@@ -70,7 +74,7 @@ Collection.propTypes = {
   description: PropTypes.string,
   imageHeightPercent: PropTypes.number.isRequired,
   imageWidthPercent: PropTypes.number.isRequired,
-  cardFontSize: PropTypes.number.isRequired,
+  // cardFontSize: PropTypes.number.isRequired,
   isCollectionPageHeader: PropTypes.bool,
 };
 

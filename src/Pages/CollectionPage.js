@@ -57,6 +57,7 @@ function CollectionPage() {
         shouldLoop
         isCollectionPageHeader
         setCollecID={setCollecID}
+        initialID={collecID}
       />
       { CollectionDetails !== undefined
         ? (
