@@ -11,6 +11,14 @@
     Filter:
       must make sure that the same book is not shown
 
+    How to make sure prioritization is in the correct range:
+      - run the filter function once for each category
+        and put all filtered books into a state/map. O(n)
+      - priorisation: books that have the most correct matches to the top tier.
+      - top tier: age_range, grade_range, race/ethnicity
+      - if books have same number of correct matches,
+        prioritize age_range > grade_range > race_ethnicity
+
 */
 
 import React, { useState, useEffect } from 'react';
@@ -58,7 +66,12 @@ export default function RecCardsDisplay() {
       setBook(records);
       records.forEach((record) => {
         console.log('Retrieved', record.get('id'));
-        // setBook(record);
+        // setBook(record)
+        console.log('age min: ', record.fields.age_min);
+        console.log('age max: ', record.fields.age_max);
+        console.log('grade min: ', record.fields.grade_min);
+        console.log('grade_max: ', record.fields.grade_max);
+        console.log(record.fields['Race/Ethnicity']);
       });
       console.log(fieldKeyword);
       // To fetch the next page of records, call `fetchNextPage`.

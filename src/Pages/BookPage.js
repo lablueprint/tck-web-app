@@ -36,7 +36,7 @@ function BookPage() {
 
     // check if localStorage contains books
     if (bookArr) {
-      console.log(bookArr);
+      // console.log(bookArr);
       // check if book already in localStorage
       if (bookArr.includes(bookId)) {
         // remove book and add to front
@@ -51,7 +51,7 @@ function BookPage() {
       }
       localStorage.setItem('Recently Viewed', JSON.stringify(bookArr));
     } else {
-      console.log('nothing');
+      console.log('nothing in localStorage');
       const bookArrTemp = [];
       bookArrTemp.push(bookId);
       localStorage.setItem('Recently Viewed', JSON.stringify(bookArrTemp));
