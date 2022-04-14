@@ -1,36 +1,47 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import 'swiper/css/bundle';
 import 'swiper/css';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import propTypes from 'prop-types';
 import './Collection.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
+import { renderToString } from 'react-dom/server';
 
 // import AuthoredWorkCard from './AuthoredWorkCard';
 // import IllustratedWorkCard from './IllustratedWorkCard';
 import Collection from './Collection';
 
+const defaultOnSlideChange = () => { };
 // Authored and illustrated work components
 function CollectionsCarousel({
-  elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries,
+  elementArray, slidesAtATime, prevArrow, nextArrow,
+  widthPercent, spaceBetweenEntries, swiperHeight, cardImageHeightPercent,
+  cardImageWidthPercent, shouldLoop, centeredSlides, isCollectionPageHeader, setCollecID,
 }) {
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-  // const swiperHook = useSwiper();
-  // const swiper = useSwiper();
+  const [swiperInst, setSwiper] = useState(null);
 
+  const OnSlideChange = () => {
+    const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
+    // const element = String(document);
+    const href = document.split('/')[2].split('" ');
+    // console.log(href[0]);
+    setCollecID(href[0]);
+  };
   return (
 
     <div
         // className="swiper-container"
       style={{
-        display: 'flex', flexDirection: 'row', height: '350', width: `${widthPercent}%`,
+        display: 'flex', flexDirection: 'row', height: `${swiperHeight}px`, width: `${widthPercent}%`,
       }}
     >
       <div
@@ -54,14 +65,15 @@ function CollectionsCarousel({
         style={{
           zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '90%',
         }}
-          // loop
+        loop={shouldLoop}
           // createElements
-          // centeredSlides
+        centeredSlides={centeredSlides}
         //   centerInsufficientSlides
         // width={745}
-        height={350}
+        // height={350}
         //   autoHeight
         on="true"
+        onSwiper={setSwiper}
         breakpoints={{
           320: {
             slidesPerView: 2,
@@ -78,26 +90,31 @@ function CollectionsCarousel({
             spaceBetween: spaceBetweenEntries,
           },
         }}
+        // runCallbacksOnInit
         direction="horizontal"
+        // onInit={(swiper) => { swiperInst = swiper; }}
         navigation={{
           prevEl: navigationPrevRef.current,
           nextEl: navigationNextRef.current,
         }}
-        onSlideChange={() => console.log('slide change')}
+        onSlideChange={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element) => (
-          <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-            <SwiperSlide>
-              <Collection
-                key={element.id}
-                Collid={element.id}
-                image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
-                name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
-                description={element.fields.description !== undefined ? element.fields.description : 'MISSING DESCRIPTION'}
-              />
-            </SwiperSlide>
-          </div>
+          // <div style={{ paddingTop: '20', paddingBottom: '20' }}>
+          <SwiperSlide>
+            <Collection
+              key={element.id}
+              Collid={element.id}
+              image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
+              name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
+              description={element.fields.description !== undefined ? element.fields.description : 'MISSING DESCRIPTION'}
+              imageHeightPercent={cardImageHeightPercent}
+              imageWidthPercent={cardImageWidthPercent}
+              isCollectionPageHeader={isCollectionPageHeader}
+            />
+          </SwiperSlide>
+          // </div>
 
         ))}
       </Swiper>
@@ -135,11 +152,23 @@ CollectionsCarousel.propTypes = {
   nextArrow: propTypes.string.isRequired,
   widthPercent: propTypes.number,
   spaceBetweenEntries: propTypes.number,
+  swiperHeight: propTypes.number,
+  cardImageHeightPercent: propTypes.number.isRequired,
+  cardImageWidthPercent: propTypes.number.isRequired,
+  shouldLoop: propTypes.bool,
+  centeredSlides: propTypes.bool,
+  isCollectionPageHeader: propTypes.bool,
+  setCollecID: propTypes.func,
 };
 
 CollectionsCarousel.defaultProps = {
   widthPercent: 100,
   spaceBetweenEntries: 0,
+  swiperHeight: 150,
+  shouldLoop: false,
+  centeredSlides: false,
+  isCollectionPageHeader: false,
+  setCollecID: defaultOnSlideChange,
 };
 
 export default CollectionsCarousel;

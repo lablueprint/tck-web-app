@@ -35,6 +35,9 @@ function CollectionDisplay() {
         nextArrow={RightArrow}
         widthPercent={100}
         spaceBetweenEntries={16}
+        swiperHeight={120}
+        cardImageHeightPercent={80}
+        cardImageWidthPercent={80}
       />
     </div>
   );
