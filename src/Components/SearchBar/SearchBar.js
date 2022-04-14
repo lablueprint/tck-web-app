@@ -8,16 +8,12 @@ import { Search } from '@mui/icons-material';
 
 import './SearchBar.css';
 
-function SearchBar({ setSearchTerms, setDefaultSearch }) {
+function SearchBar({ setSearchTerms, category, setCategory }) {
   const [value, setValue] = useState('');
-  /*
-  const handleChange = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      setSearchTerms(e.target.value);
-    }
+
+  const handleSelect = (e) => {
+    setCategory(e.target.value);
   };
-*/
 
   const handleChange = (e) => {
     if (e.key === 'Enter') {
@@ -45,12 +41,16 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
           <Select
             labelId="search-by-label"
             id="search-by"
-            defaultValue
+            value={category}
             label="search by"
-            onChange={(e) => setDefaultSearch(e.target.value)}
+            onChange={handleSelect}
+            sx={{ textAlign: 'left', fontFamily: "'DM Sans', sans-serif" }}
           >
-            <MenuItem value>Title, Description, Identity</MenuItem>
-            <MenuItem value={false}>Author, Illustrator</MenuItem>
+            <MenuItem value="title">Title</MenuItem>
+            <MenuItem value="description">Description</MenuItem>
+            <MenuItem value="identity">Identity</MenuItem>
+            <MenuItem value="author">Author</MenuItem>
+            <MenuItem value="illustrator">Illustrator</MenuItem>
           </Select>
         </FormControl>
 
@@ -85,13 +85,11 @@ export default SearchBar;
 
 SearchBar.propTypes = {
   setSearchTerms: PropTypes.func.isRequired,
-  setDefaultSearch: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  setCategory: PropTypes.func.isRequired,
 };
 
 /* NOTES
-  Cannot 'push' button underneath TextField
-    - outline shows through the button
-
   We now need to separate title, desc, identity sadge
 
   TO-DO:
@@ -103,4 +101,28 @@ SearchBar.propTypes = {
         - need to change MenuItem values to strings
       - pass down category to BookHub
         - separate category logic in there
+    This will necessarily retire the defaultSearch state
+
+      <div>
+      <div className="Subtitle">Search by Title, Author, Illustrator,
+      Identity, or Book Description</div>
+      <div className="SearchBar">
+        <FormControl
+          variant="outlined"
+          margin="none"
+          sx={{ width: '20%', background: '#EEEEEE' }}
+          size="small"
+        >
+          <InputLabel id="search-by-label">search by</InputLabel>
+          <Select
+            labelId="search-by-label"
+            id="search-by"
+            defaultValue
+            label="search by"
+            onChange={(e) => setDefaultSearch(e.target.value)}
+          >
+            <MenuItem value>Title, Description, Identity</MenuItem>
+            <MenuItem value={false}>Author, Illustrator</MenuItem>
+          </Select>
+        </FormControl>
 */
