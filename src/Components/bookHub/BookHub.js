@@ -16,7 +16,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CardsDisplay({
-  searchTerms, defaultSearch, alignment, rangeInput, multiSelectInput,
+  searchTerms, category, alignment, rangeInput, multiSelectInput,
 }) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
@@ -31,8 +31,10 @@ function CardsDisplay({
   const isMatchTitleDescIdentity = (book) => {
     // Filter function for books stored in 'books' state
     /* FOR FUTURE DEV
-        - we may want to match by a combo of title, description, identity
-            - refactor this to |= the _.includes() calls for each field
+        On Airtable, there is identity_tags and identity. We may need to change this
+        code to reflect that depending on final design.
+          - identities = identity_tags.map(tag => tag.toLowerCase())
+          - any(identities.map(identity => identity.includes(lowercaseTerms)))
     */
     if (!book) return false;
     let title = book.get('title');
@@ -46,9 +48,16 @@ function CardsDisplay({
 
     let match = false;
     const lowercaseTerms = searchTerms.toLowerCase();
+    /*
     match = title.includes(lowercaseTerms)
     || desc.includes(lowercaseTerms)
     || identity.includes(lowercaseTerms);
+    */
+
+    if (category === 'title') match = title.includes(lowercaseTerms);
+    if (category === 'description') match = desc.includes(lowercaseTerms);
+    if (category === 'identity') match = identity.includes(lowercaseTerms);
+
     return match;
   };
 
@@ -78,15 +87,20 @@ function CardsDisplay({
   const searchByTerm = async () => {
     let matched = [];
     // setSearchTerms(searchTerms.toLowerCase());
-    if (defaultSearch) {
+    if (category === 'title' || category === 'description' || category === 'identity') {
       // title/description/identity
       matched = allBooks.filter(isMatchTitleDescIdentity);
     } else {
       // we can figure out how to filter both fields at once later
-      let res = await SearchFilter('Creator', 'authored');
-      matched.push(...res);
-      res = await SearchFilter('Creator', 'illustrated');
-      matched.push(...res);
+      let res;
+      if (category === 'author') {
+        res = await SearchFilter('Creator', 'authored');
+        matched.push(...res);
+      }
+      if (category === 'illustrator') {
+        res = await SearchFilter('Creator', 'illustrated');
+        matched.push(...res);
+      }
 
       matched = [...new Set(matched)];
     }
@@ -107,7 +121,7 @@ function CardsDisplay({
         setFilteredBooks(allBooks);
       }
     }
-  }, [allBooks, searchTerms, defaultSearch, alignment]);
+  }, [allBooks, searchTerms, category, alignment]);
 
   // Filter function
   useEffect(() => {
@@ -199,7 +213,7 @@ export default CardsDisplay;
 
 CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
-  defaultSearch: PropTypes.bool.isRequired,
+  category: PropTypes.bool.isRequired,
   alignment: PropTypes.string.isRequired,
   rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
   multiSelectInput: PropTypes.objectOf(PropTypes.object).isRequired,

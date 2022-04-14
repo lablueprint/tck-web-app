@@ -8,7 +8,6 @@ import { RangeFilter, gradeRangeMetadata, ageRangeMetadata } from './RangeFilter
 import MultSelectElem from './MultiselectFilters';
 
 export default function Filter({ setRangeState, setMultiSelectInput }) {
-  // const [anchorEl, setAnchorEl] = useState(null);
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age:
     { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
@@ -22,21 +21,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     'Theme/Lessons': [],
     'Book Type': [],
   });
-  // const open = Boolean(anchorEl);
 
   const handleSave = () => {
     setRangeState(tempRangeFilterData);
     setMultiSelectInput(tempMultiSelect);
   };
-  /*
-  const handleClick = (event) => {
-    // console.log(tempRangeFilterData);
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  */
+
   const handleCancel = () => {
     setTempRangeFilterData({
       age:
@@ -152,11 +142,4 @@ OLD CODE:
         </MenuItem>
       </Menu>
     </div>
-
-    .Buttons {
-    text-align: right;
-    margin: 1vh 2vw 1vh 2vw;
-    text-transform: none;
-}
-
  */
