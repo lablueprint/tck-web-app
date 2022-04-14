@@ -23,7 +23,7 @@
 
 .Body {
     font-size: 18px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans';
     font-weight: 400;
     line-height: 32.13px;
     margin-left: 150px;
@@ -32,7 +32,7 @@
 }
 
 .MoreResources {
-    font-family: 'Palanquin', sans-serif;
+    font-family: 'DM Sans';
     font-size: 24px;
 }
 
