@@ -35,7 +35,7 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
             filterOptions={(option.fields.options)}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}
-            labelName={option.fields.name}
+            labelName={option.fields.display}
           />
         </div>
       ))}
@@ -46,11 +46,11 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
 MultSelectElem.propTypes = {
   setTempMultiSelect: propTypes.func.isRequired,
   tempMultiSelect: propTypes.shape({
-    'Race/Ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
-    'Identity Tags': propTypes.arrayOf(propTypes.string).isRequired,
-    Religion: propTypes.arrayOf(propTypes.string).isRequired,
-    Genre: propTypes.arrayOf(propTypes.string).isRequired,
-    'Theme/Lessons': propTypes.arrayOf(propTypes.string).isRequired,
-    'Book Type': propTypes.arrayOf(propTypes.string).isRequired,
+    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    'identity tags': propTypes.arrayOf(propTypes.string).isRequired,
+    religion: propTypes.arrayOf(propTypes.string).isRequired,
+    genre: propTypes.arrayOf(propTypes.string).isRequired,
+    'theme/lessons': propTypes.arrayOf(propTypes.string).isRequired,
+    'Book type': propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
 };

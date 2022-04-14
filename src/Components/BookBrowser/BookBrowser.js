@@ -21,12 +21,12 @@ function BookBrowser() {
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
   });
   const [multiSelectInput, setMultiSelectInput] = useState({
-    'Race/Ethnicity': [],
-    'Identity Tags': [],
-    Religion: [],
-    Genre: [],
-    'Theme/Lessons': [],
-    'Book Type': [],
+    'race/ethnicity': [],
+    'identity tags': [],
+    religion: [],
+    genre: [],
+    'theme/lessons': [],
+    'Book type': [],
   });
 
   const handleChange = (event, newAlignment) => {
