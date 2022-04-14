@@ -1,12 +1,6 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
-import SwiperCore, {
-  Navigation, Pagination, Scrollbar, A11y,
-} from 'swiper';
 import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
@@ -24,7 +18,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 
 // Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
-  SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  // SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
   // const swiperHook = useSwiper();
@@ -42,13 +36,13 @@ function CreatedWorksCard({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.error(err);
+              console.error(error);
             }
             setAuthoredWorks((prevValue) => prevValue.concat(
               {
-                author: record.fields.author,
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
+                author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
             ));
@@ -63,9 +57,9 @@ function CreatedWorksCard({ authorId }) {
             }
             setillustratedWorks((prevValue) => prevValue.concat(
               {
-                author: record.fields.author,
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
+                author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
             ));

@@ -41,6 +41,7 @@ export default function BookCard({
   const [authorVar, setAuthor] = useState();
 
   const getAuthor = () => {
+    if (author === 'MISSING AUTHOR') { setAuthor('Anonymous'); return; }
     base('Creator').find(author, (err, record) => {
       if (err) { console.error(err); }
       setAuthor(record);
@@ -50,7 +51,7 @@ export default function BookCard({
   useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
-    <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px' }}>
+    <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px', display: 'flex', flexDirection: 'column' }}>
       <Link class="link" to={`/book/${id}`}>
         <div className="cardActionArea">
           <div className="img-container">
@@ -65,14 +66,15 @@ export default function BookCard({
           <p className="book-card-text">
             {title}
           </p>
-          <Link class="link" to={`/creator/${author}`}>
-            <Typography className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
-              By
-              {' '}
-              {authorVar !== undefined ? (authorVar.fields.name) : author}
-            </Typography>
-          </Link>
+
         </div>
+      </Link>
+      <Link class="link" to={`/creator/${author}`}>
+        <Typography className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
+          By
+          {' '}
+          {(authorVar !== undefined && authorVar !== 'Anonymous') ? (authorVar.fields.name) : 'Anonymous'}
+        </Typography>
       </Link>
     </div>
   );
@@ -87,5 +89,9 @@ BookCard.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   image: PropTypes.string,
-  inCarousel: PropTypes.bool.isRequired,
+  inCarousel: PropTypes.bool,
+};
+
+BookCard.defaultProps = {
+  inCarousel: false,
 };

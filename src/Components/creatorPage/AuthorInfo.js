@@ -30,8 +30,14 @@ export default function AuthorInfo({
 }
 
 AuthorInfo.propTypes = {
-  author: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  links: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  bio: PropTypes.string,
+  links: PropTypes.string,
   authorPic: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
+
+AuthorInfo.defaultProps = {
+  author: '',
+  bio: '',
+  links: '',
 };

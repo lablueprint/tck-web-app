@@ -20,4 +20,10 @@
     font-size: 30px;
     font-weight: 550;
   }
+
+  .collection-card-image{
+    width:10%;
+    height:10%;
+    align:center;
+  }
   

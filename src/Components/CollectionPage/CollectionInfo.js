@@ -8,7 +8,7 @@ export default function CollectionInfo({ name, picture, description }) {
     <div>
       <div className="Header">
         {name}
-        <img width="10%" height="10%" align="center" src={picture} alt="author" />
+        <img className="collection-card-image" src={picture} alt="author" />
       </div>
       <div className="SubHeader">
         About this collection

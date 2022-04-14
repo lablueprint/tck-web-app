@@ -90,6 +90,7 @@ function CollectionsCarousel({
           <div style={{ paddingTop: '20', paddingBottom: '20' }}>
             <SwiperSlide>
               <Collection
+                key={element.id}
                 Collid={element.id}
                 image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
                 name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
