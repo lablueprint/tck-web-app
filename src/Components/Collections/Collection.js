@@ -14,7 +14,8 @@ import './Collection.css';
 //   .base(airtableConfig.baseKey);
 
 export default function Collection({
-  Collid, image, name, description,
+  Collid, image, name, description, imageHeightPercent,
+  imageWidthPercent, cardFontSize, isCollectionPageHeader,
 }) {
   // const [collectionObj, setCollectionObj] = useState([]);
   // useEffect(() => {
@@ -33,24 +34,31 @@ export default function Collection({
   return (
   // <div>
   // {/* {collectionObj.map((object) => ( */}
-    <div className="collectionCard" style={{ background: '#2E3E64' }}>
-      <div className="CollectionBody">
-        <Link class="link" to={`/collection/${Collid}`} style={{ display: 'flex', flexirection: 'row', color: 'white' }}>
-          <div style={{
-            flexBasis: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center',
-          }}
-          >
-            <img className="collectionImage" src={image} alt="description" />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <h5 className="card-title" style={{ marginLeft: '5%' }}>{name}</h5>
-          </div>
-          {/* <p className="cardText">{description}</p> */}
-        </Link>
+    <Link
+      class="link"
+      to={`/collection/${Collid}`}
+      style={{
+        display: 'flex', flexDirection: 'row', color: 'white', width: '100%', background: '#2E3E64', textDecoration: 'none',
+      }}
+      id="collectionCard"
+    >
+      <div style={{
+        flexBasis: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%',
+      }}
+      >
+        <img className="collectionImage" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
       </div>
-    </div>
-  // {/* ))} */}
-  // </div>
+
+      <p
+        className="cardTitle"
+        style={{
+          width: '100%', height: '100%', fontSize: isCollectionPageHeader ? '3rem' : '1.05rem', display: 'flex', alignItems: 'center', flexBasis: '50%', fontFamily: 'Work Sans', fontWeight: 'bolder',
+        }}
+      >
+        {name}
+      </p>
+      {/* <p className="cardText">{description}</p> */}
+    </Link>
 
   );
 }
@@ -60,10 +68,15 @@ Collection.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
+  imageHeightPercent: PropTypes.number.isRequired,
+  imageWidthPercent: PropTypes.number.isRequired,
+  cardFontSize: PropTypes.number.isRequired,
+  isCollectionPageHeader: PropTypes.bool,
 };
 
 Collection.defaultProps = {
   image: 'MISSING IMAGE',
   name: 'MISSING NAME',
   description: 'MISSING DESCRIPTION',
+  isCollectionPageHeader: false,
 };

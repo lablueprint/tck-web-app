@@ -4,27 +4,25 @@
   justify-content: center;
 }
 
-.collectionCard{
-  background: #fff;
+#collectionCard{
+  /* background: #fff; */
   height: 100%;
   width: 100%;
   border-radius: 20px;
   display: flex;
   flex-flow: row;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   text-align: center;
 }
 
 .collectionImage {
   margin: 10px;
-  max-width: 90%;
-  max-height: 50%;
 }
 
 .cardTitle{
-    font-size: 60%;
-    line-height: 60%;
+    line-height: 100%;
+    margin: 5px;
     color:white;
 }
 
