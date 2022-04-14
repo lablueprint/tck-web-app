@@ -152,35 +152,35 @@ function CardsDisplay({
 
           return ((incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1)
       && incomingGradeTags.some((value) => validGradeTags.indexOf(value) !== -1))
-      && (multiSelectInput['Race/Ethnicity'].length === 0
-         || (record.fields['Race/Ethnicity'] !== undefined
-           ? record.fields['Race/Ethnicity'].some((value) => multiSelectInput['Race/Ethnicity'].indexOf(value) !== -1)
+      && (multiSelectInput['race/ethnicity'].length === 0
+         || (record.fields['race/ethnicity'] !== undefined
+           ? record.fields['race/ethnicity'].some((value) => multiSelectInput['race/ethnicity'].indexOf(value) !== -1)
            : false))
-      && (multiSelectInput.Religion.length === 0
-        || (record.fields.Religion !== undefined
-          ? record.fields.Religion.some((value) => multiSelectInput.Religion.indexOf(value) !== -1)
+      && (multiSelectInput.religion.length === 0
+        || (record.fields.religion !== undefined
+          ? record.fields.religion.some((value) => multiSelectInput.religion.indexOf(value) !== -1)
           : false))
-      && (multiSelectInput['Identity Tags'].length === 0
-        || (record.fields['Identity Tags'] !== undefined
-          ? record.fields['Identity Tags'].some((value) => multiSelectInput['Identity Tags'].indexOf(value)
+      && (multiSelectInput['identity tags'].length === 0
+        || (record.fields['identity tags'] !== undefined
+          ? record.fields['identity tags'].some((value) => multiSelectInput['identity tags'].indexOf(value)
            !== -1)
           : false
         ))
-      && (multiSelectInput['Theme/Lessons'].length === 0
-        || (record.fields['Theme/Lessons'] !== undefined
-          ? record.fields['Theme/Lessons'].some((value) => multiSelectInput['Theme/Lessons'].indexOf(value)
+      && (multiSelectInput['theme/lessons'].length === 0
+        || (record.fields['theme/lessons'] !== undefined
+          ? record.fields['theme/lessons'].some((value) => multiSelectInput['theme/lessons'].indexOf(value)
            !== -1)
           : false
         ))
-      && (multiSelectInput['Book Type'].length === 0
-        || (record.fields['Book Type'] !== undefined
-          ? record.fields['Book Type'].some((value) => multiSelectInput['Book Type'].indexOf(value)
+      && (multiSelectInput['Book type'].length === 0
+        || (record.fields['Book type'] !== undefined
+          ? record.fields['Book type'].some((value) => multiSelectInput['Book type'].indexOf(value)
            !== -1)
           : false
         ))
-      && (multiSelectInput.Genre.length === 0
-        || (record.fields.Genre !== undefined
-          ? record.fields.Genre.some((value) => multiSelectInput.Genre.indexOf(value) !== -1)
+      && (multiSelectInput.genre.length === 0
+        || (record.fields.genre !== undefined
+          ? record.fields.genre.some((value) => multiSelectInput.genre.indexOf(value) !== -1)
           : false)));
         },
 

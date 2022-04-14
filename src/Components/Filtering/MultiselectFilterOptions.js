@@ -39,12 +39,12 @@ export default function MultiselectComponent({
 MultiselectComponent.propTypes = {
   filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
-    'Race/Ethnicity': PropTypes.arrayOf(PropTypes.string).isRequired,
-    'Identity Tags': PropTypes.arrayOf(PropTypes.string).isRequired,
-    Religion: PropTypes.arrayOf(PropTypes.string).isRequired,
-    Genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-    'Theme/Lessons': PropTypes.arrayOf(PropTypes.string).isRequired,
-    'Book Type': PropTypes.arrayOf(PropTypes.string).isRequired,
+    'race/ethnicity': PropTypes.arrayOf(PropTypes.string).isRequired,
+    'identity tags': PropTypes.arrayOf(PropTypes.string).isRequired,
+    religion: PropTypes.arrayOf(PropTypes.string).isRequired,
+    genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+    'theme/lessons': PropTypes.arrayOf(PropTypes.string).isRequired,
+    'Book type': PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   setInput: PropTypes.func.isRequired,
   labelName: PropTypes.string.isRequired,

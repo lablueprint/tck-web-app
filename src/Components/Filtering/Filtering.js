@@ -14,12 +14,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
-    'Race/Ethnicity': [],
-    'Identity Tags': [],
-    Religion: [],
-    Genre: [],
-    'Theme/Lessons': [],
-    'Book Type': [],
+    'race/ethnicity': [],
+    'identity tags': [],
+    religion: [],
+    genre: [],
+    'theme/lessons': [],
+    'Book type': [],
   });
 
   const handleSave = () => {
@@ -34,12 +34,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setTempMultiSelect({
-      'Race/Ethnicity': [],
-      'Identity Tags': [],
-      Religion: [],
-      Genre: [],
-      'Theme/Lessons': [],
-      'Book Type': [],
+      'race/ethnicity': [],
+      'identity tags': [],
+      religion: [],
+      genre: [],
+      'theme/lessons': [],
+      'Book type': [],
     });
     setRangeState({
       age:
@@ -47,12 +47,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
     });
     setMultiSelectInput({
-      'Race/Ethnicity': [],
-      'Identity Tags': [],
-      Religion: [],
-      Genre: [],
-      'Theme/Lessons': [],
-      'Book Type': [],
+      'race/ethnicity': [],
+      'identity tags': [],
+      religion: [],
+      genre: [],
+      'theme/lessons': [],
+      'Book type': [],
     });
   };
 
