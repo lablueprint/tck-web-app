@@ -18,7 +18,7 @@ import { renderToString } from 'react-dom/server';
 // import IllustratedWorkCard from './IllustratedWorkCard';
 import Collection from './Collection';
 
-let init = 1;
+// let init = 1;
 const defaultOnSlideChange = () => { };
 // Authored and illustrated work components
 function CollectionsCarousel({
@@ -33,15 +33,11 @@ function CollectionsCarousel({
   const [swiperInst, setSwiper] = useState(null);
 
   const OnSlideChange = () => {
-    if (!init) {
-      const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
-      // const element = String(document);
-      const href = document.split('/')[2].split('" ');
-      // console.log(href[0]);
-      setCollecID(href[0]);
-    }
-    // }
+    const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
+    const href = document.split('/')[2].split('" ');
+    setCollecID(href[0]);
   };
+
   useEffect(() => {
     if (isCollectionPageHeader) {
       console.log(initialID);
@@ -50,12 +46,13 @@ function CollectionsCarousel({
       swiperRef.current.swiper.slideTo(
         swiperArray.findIndex((element) => initialID === element),
       );
+      setCollecID(initialID);
       // const realNum = swiperInst.activeIndex + 1;
       // swiperRef.current.swiper.slideTo(realNum);
       console.log(swiperRef.current.swiper.realIndex);
       console.log(swiperArray.findIndex((element) => initialID === element));
       console.log(swiperArray);
-      init = 0;
+      // init = 0;
     }
   }, [elementArray]);
   return (
