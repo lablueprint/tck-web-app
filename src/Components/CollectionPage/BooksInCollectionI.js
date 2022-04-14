@@ -22,7 +22,7 @@ function BooksInCollection({ authorId }) {
         console.error(err);
       }
       const bookid = records.fields.books;
-      if (bookid.length) {
+      if (bookid !== undefined && bookid.length) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
