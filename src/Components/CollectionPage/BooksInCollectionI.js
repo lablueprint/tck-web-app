@@ -43,8 +43,9 @@ function BooksInCollection({ authorId }) {
   }
 
   useEffect(() => {
+    setBooks([]);
     FindPosts();
-  }, []);
+  }, [authorId]);
 
   return (
     <div>

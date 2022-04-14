@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import BooksInCollection from '../Components/CollectionPage/BooksInCollectionI';
@@ -38,6 +38,8 @@ function CollectionPage() {
     );
   };
 
+  const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
+
   useEffect(getPosts, [collecID]);
   useEffect(getCollections, []);
   return (
@@ -56,8 +58,8 @@ function CollectionPage() {
         centeredSlides
         shouldLoop
         isCollectionPageHeader
-        setCollecID={setCollecID}
-        initialID={collecID}
+        setCollecID={updateCollecID}
+        initialID={params.id}
       />
       { CollectionDetails !== undefined
         ? (
