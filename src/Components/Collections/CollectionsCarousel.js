@@ -102,16 +102,19 @@ function CollectionsCarousel({
           320: {
             slidesPerView: 2,
             spaceBetween: 20,
+            slidesPerGroup: isCollectionPageHeader ? 1 : 2,
           },
           // when window width is >= 480px
           480: {
             slidesPerView: 3,
             spaceBetween: 30,
+            slidesPerGroup: isCollectionPageHeader ? 1 : 3,
           },
           // when window width is >= 640px
           640: {
             slidesPerView: slidesAtATime,
             spaceBetween: spaceBetweenEntries,
+            slidesPerGroup: isCollectionPageHeader ? 1 : slidesAtATime,
           },
         }}
         // runCallbacksOnInit
