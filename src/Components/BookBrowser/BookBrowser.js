@@ -12,6 +12,7 @@ import './BookBrowser.css';
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Search');
 
+  // Searching
   const [searchTerms, setSearchTerms] = useState('');
   const [category, setCategory] = useState('title');
 
@@ -91,7 +92,6 @@ export default BookBrowser;
  *  - BrowserHead
  *      Holds the toggle and "Browse For Books"
  *  - BrowserBody
- *      IF THIS IS EASY ALL I SHOULD NEED TO DO IS SWAP THE COMPONENTS OUT
  *      Search
  *        Search bar
  *      Filter

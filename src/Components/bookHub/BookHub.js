@@ -48,11 +48,6 @@ function CardsDisplay({
 
     let match = false;
     const lowercaseTerms = searchTerms.toLowerCase();
-    /*
-    match = title.includes(lowercaseTerms)
-    || desc.includes(lowercaseTerms)
-    || identity.includes(lowercaseTerms);
-    */
 
     if (category === 'title') match = title.includes(lowercaseTerms);
     if (category === 'description') match = desc.includes(lowercaseTerms);
@@ -86,12 +81,10 @@ function CardsDisplay({
 
   const searchByTerm = async () => {
     let matched = [];
-    // setSearchTerms(searchTerms.toLowerCase());
     if (category === 'title' || category === 'description' || category === 'identity') {
       // title/description/identity
       matched = allBooks.filter(isMatchTitleDescIdentity);
     } else {
-      // we can figure out how to filter both fields at once later
       let res;
       if (category === 'author') {
         res = await SearchFilter('Creator', 'authored');
@@ -137,7 +130,6 @@ function CardsDisplay({
 
       setFilteredBooks(allBooks.filter(
         (record) => {
-          // console.log(record);
           const incomingGradeTags = gradeRangeMetadata.slice(
             gradeRangeMetadata.indexOf(record.fields.grade_min),
             gradeRangeMetadata.indexOf(record.fields.grade_max) + 1,
@@ -146,9 +138,6 @@ function CardsDisplay({
             ageRangeMetadata.indexOf(`${record.fields.age_min}`),
             ageRangeMetadata.indexOf(`${record.fields.age_max}`) + 1,
           );
-          // console.log(incomingAgeTags);
-          // console.log(validAgeTags);
-          // console.log(incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1));
 
           return ((incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1)
       && incomingGradeTags.some((value) => validGradeTags.indexOf(value) !== -1))
@@ -227,25 +216,4 @@ CardsDisplay.propTypes = {
           - books is a Map<bookId, book> instead of Array
       - hard to see the current algorithm will be too slow for our purposes
          without having a big amount of data alr
-
-    MERGING  👹👹👹👹👹👹👹👹👹👹
-      - First need to refactor so that we only need filteredBooks for both features
-        - add a prop that specifies whether we are searching or filtering
-          - use this prop to determine which logic we need to use to populate filteredBooks
-      = DONE
-
-      - need to move <Filter/> into BookBrowser
-        - Move all Filter logic state up into BookBrowser
-          - pass them down as props instead
-      = DONE
-
-      - want to reset filteredBooks when we switch alignment?
-        - search => filter: clear searchTerms in BookBrowser
-        - filter => search:
-
-      UI CHANGES
-        filtering parameters should fit in "BrowserBody" in BookBrowser.js
-          - this is the bottom half of the browser underneath the search/filter toggle
-          - currently is a popup menu
-
 */
