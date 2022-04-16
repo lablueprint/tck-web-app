@@ -19,6 +19,10 @@
       - if books have same number of correct matches,
         prioritize age_range > grade_range > race_ethnicity
 
+    Challenges:
+      - Tweak filter that can work with array of data
+      - Tweak filter to work with range of values
+
 */
 
 import React, { useState, useEffect } from 'react';
@@ -57,23 +61,28 @@ export default function RecCardsDisplay() {
 
   // Airtable Filter implementation
   function RecFilter(field, fieldKeyword) {
+    // const map1 = new Map();
     base('Book').select({
-      filterByFormula: `SEARCH("${fieldKeyword}", {${field}})`,
+      filterByFormula: `IF(${field} = {id}, SEARCH("search for age_range", "id"), IF("", "", SEARCH("${fieldKeyword}", {${field}})))`,
       maxRecords: 3,
       view: 'Grid view',
     }).eachPage((records, fetchNextPage) => {
-    // This function (`page`) will get called for each page of records.
       setBook(records);
       records.forEach((record) => {
+        console.log(fieldKeyword);
         console.log('Retrieved', record.get('id'));
-        // setBook(record)
         console.log('age min: ', record.fields.age_min);
         console.log('age max: ', record.fields.age_max);
         console.log('grade min: ', record.fields.grade_min);
         console.log('grade_max: ', record.fields.grade_max);
-        console.log(record.fields['Race/Ethnicity']);
+        console.log(record.fields['race/ethnicity']);
       });
       console.log(fieldKeyword);
+      /*
+      book.forEach((record) => {
+
+      });
+      */
       // To fetch the next page of records, call `fetchNextPage`.
       // If there are more records, `page` will get called again.
       // If there are no more records, `done` will get called.
