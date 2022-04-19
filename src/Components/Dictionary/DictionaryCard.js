@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import {
   Card, CardActions, CardContent, Button, Grid, Avatar,
 } from '@mui/material';
-import './WordTerm.css';
+import './DictionaryCard.css';
 
-export default function WordTerm({
-  word, def, links, wordBreakdown,
+export default function DictionaryCard({
+  word, def, links, phoeneticSpelling,
 }) {
   const [showMore, setShowMore] = useState(false);
   const linksArray = links.split('\n');
@@ -18,36 +18,36 @@ export default function WordTerm({
     }}
     >
       <CardContent>
-        <span className="Img">
-          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src="https://s3-alpha-sig.figma.com/img/5c11/914c/7b5e6390a3acbfe6997d4d7844dc27d5?Expires=1650240000&Signature=MBK60MWYKwVBakBNPjnxqsie7AXk67onKNxsLoNdK~HmRfhVMSgjHtigzVpVsKrSrSsdT~uALB4UiYOcSfsjDtXMLc2ROyalufnMaIYfL1GnX82iccS3Kej3CUBbpdD4sYtgxdljpwOaRZBVE-pJko4~r06Bpg9LgKAi15dSapcdvpsF519ry0bnlHc23jOvT8xPLApeCRBEDDXQC2vH3npr4zajhXgXycC0oRh~3Lvq4fsuDFY9YI8CTtF8cJIPToHdl46yNBb3OYloNKHao-6oXatJDUtE9j3SWUzKmUhQ9e8C-ZeKGbllcchGZcuk8jrqPwb7xO8wKGZUZcJNMw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
-          <span className="Term">
+        <div className="img">
+          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src="https://s3-alpha-sig.figma.com/img/cdf3/8f12/dd7dc80a699c7b042305b07487abb14a?Expires=1651449600&Signature=G5zsVsD1S2f55Nby1uu~w87yOv71xEx9cVIEgw3Xvn5ekN~9j~FHizLWiY1~NP9ojNWN7nnaqAscFx8~6Y1Km8aZdtnfnUVKfZDgrVY~yzteGQ8XBgqEVs4N-LTx8YJzuzKjPH2Dv0BgQD-axt40s3-JKScphqgm-6v7YFhl1bqsvWUtdgDtvwitalLNqG-e9tqLzTxm57swJqJA6rxmcVRJhe4B-s7~ib0WUcZd~ztQDs2Pl4cN2tI4J-lS~VZON3q-aEGmudube7W9Ox6oCIC1oOikLy1R4cmWhv-o7ZWJ-10vLTONAvaBN5Sg07sygqekuoz~GmU-GxCk1ThKBw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
+          <div className="term">
             {word}
-          </span>
-          <span className="WordBreakdown">
+          </div>
+          <div className="phonetic-spelling">
             [
-            {wordBreakdown}
+            {phoeneticSpelling}
             ]
-          </span>
-        </span>
-        <span className="Body">
+          </div>
+        </div>
+        <div className="body">
           {def.length < 250 ? def
             : (
-              <div className="Body">
+              <div>
                 {showMore ? def : `${def.substring(0, 250)}`}
                 <Button onClick={() => setShowMore(!showMore)}>
                   {showMore ? 'See less' : 'See more'}
                 </Button>
               </div>
             )}
-        </span>
+        </div>
       </CardContent>
-      <span src={{ padding: 10 }}>
+      <div>
         { linksArray.length !== 0 ? (
-          <div className="MoreResources">
+          <div className="more-resources">
             More Resources:
           </div>
         ) : ''}
-      </span>
+      </div>
       <span style={{ padding: 20 }}>
         <CardActions style={{ justifyContent: 'left', marginLeft: 75 }}>
           <Grid
@@ -58,7 +58,7 @@ export default function WordTerm({
           >
             {linksArray.filter((v) => Object.keys(v).length).map((url) => (
               <Button
-                className="Links"
+                className="links"
                 style={{ backgroundColor: '#eefbfb', color: '#607AAD' }}
                 variant="contained"
                 href={url}
@@ -74,9 +74,9 @@ export default function WordTerm({
   );
 }
 
-WordTerm.propTypes = {
+DictionaryCard.propTypes = {
   word: PropTypes.string.isRequired,
   def: PropTypes.string.isRequired,
   links: PropTypes.string.isRequired,
-  wordBreakdown: PropTypes.string.isRequired,
+  phoeneticSpelling: PropTypes.string.isRequired,
 };
