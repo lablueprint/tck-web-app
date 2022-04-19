@@ -47,8 +47,4 @@ function CreatorPage() {
   );
 }
 
-// CreatorPahe.propTypes = {
-//   authId: propTypes.string.isRequired,
-// };
-
 export default CreatorPage;
