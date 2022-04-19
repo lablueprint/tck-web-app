@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { Pagination } from '@mui/material';
+import { Pagination, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
+import BookCard from '../bookHub/BookCard';
 
 function BookList({ books }) {
     const [page, setPage] = useState(1);
-    const [booksPerPage, setBooksPerPage] = useState(18);
+    const [booksPerPage, setBooksPerPage] = useState(3);
 
     const handleChange = (e, value) => {
         setPage(value);
@@ -15,10 +16,10 @@ function BookList({ books }) {
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-    const count = Math.ceil(currentBooks.length / postsPerPage);
+    const count = Math.ceil(books.length / booksPerPage);
 
     return (
-        <div>
+        <div style={{ alignItems: 'center'}}>
             <div className="library-display">
                 {currentBooks.map((book) => (
                 <BookCard
@@ -30,7 +31,13 @@ function BookList({ books }) {
                 />
                 ))}
             </div>
-            <Pagination count={count} page={page} onChange={handleChange} />
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Pagination 
+                    count={count} 
+                    page={page} 
+                    onChange={handleChange} 
+                />
+            </div>
         </div>
     );
     
