@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import BookCard from '../bookHub/BookCard';
+// import BookCard from '../bookHub/BookCard';
+import BookList from '../BookList/BookList';
 import '../bookHub/BookCard.css';
 
 const Airtable = require('airtable');
@@ -51,6 +52,21 @@ function BooksInCollection({ authorId }) {
       <div className="SubHeader">
         Books in this collection:
       </div>
+      <BookList books={books} />
+    </div>
+  );
+}
+
+BooksInCollection.propTypes = {
+  authorId: propTypes.string.isRequired,
+}; export default BooksInCollection;
+
+/*
+OLD CODE
+<div>
+      <div className="SubHeader">
+        Books in this collection:
+      </div>
       <div className="library-display">
         {books.map((element) => (
           <BookCard
@@ -65,9 +81,4 @@ function BooksInCollection({ authorId }) {
       </div>
       <div />
     </div>
-  );
-}
-
-BooksInCollection.propTypes = {
-  authorId: propTypes.string.isRequired,
-}; export default BooksInCollection;
+*/
