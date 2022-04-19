@@ -7,6 +7,7 @@ import Header from './Components';
 import './App.css';
 import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
+import Quiz from './Components/Quiz/quiz';
 
 import BookPage from './Pages/BookPage';
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/book/:bookId" element={<BookPage />} />
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
+        <Route exact path="/quiz" element={<Quiz />} />
       </Routes>
     </div>
   );
