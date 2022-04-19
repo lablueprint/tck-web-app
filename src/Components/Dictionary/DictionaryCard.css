@@ -1,4 +1,4 @@
-.Term {
+.term {
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     font-size: 24px;
@@ -8,7 +8,7 @@
     flex-direction: row;
 }
 
-.WordBreakdown {
+.phonetic-spelling {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 18px;
@@ -21,27 +21,28 @@
     flex-direction: row;
 }
 
-.Body {
+.body {
     font-size: 18px;
     font-family: 'DM Sans';
     font-weight: 400;
     line-height: 32.13px;
     margin-left: 150px;
     margin-right: 118px;
-    padding: 15px;
+    padding: 5px;
+    text-align: left;
 }
 
-.MoreResources {
+.more-resources {
     font-family: 'DM Sans';
     font-size: 24px;
 }
 
-.Img {
+.img {
     display: flex;
     flex-direction: row;
 }
 
-.Links 
+.links 
 {
     size: 'small';
     overflow: 'hidden';
