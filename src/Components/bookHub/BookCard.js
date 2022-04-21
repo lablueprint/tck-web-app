@@ -38,7 +38,6 @@ export default function BookCard({
   const [authorVar, setAuthor] = useState([]);
 
   const getAuthor = (isApiSubscribed) => {
-    console.log(author);
     author.forEach((name) => {
       if (name === 'MISSING AUTHOR' && isApiSubscribed) { setAuthor('Anonymous'); return; }
       base('Creator').find(name, (err, record) => {
@@ -58,9 +57,8 @@ export default function BookCard({
     };
   }, []);
 
-  console.log(authorVar);
   return ( // horizontal scroll not implemented
-    <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px', display: 'flex', flexDirection: 'column' }}>
+    <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px' }}>
       <Link className="link" to={`/book/${id}`}>
         <div className="cardActionArea">
           <div className="img-container">

@@ -81,7 +81,6 @@ function Carousel({
             prevEl: navigationPrevRef.current,
             nextEl: navigationNextRef.current,
           }}
-          onSlideChange={() => console.log('slide change')}
           modules={[Navigation, A11y]}
         >
           {elementArray.map((element) => (
