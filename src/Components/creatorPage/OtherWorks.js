@@ -18,13 +18,10 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 
 // Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
-  // SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
-  // const swiperHook = useSwiper();
-  // const swiper = useSwiper();
 
-  function FindPosts() {
+  function FindPosts(isApiSubscribed) {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
@@ -38,14 +35,16 @@ function CreatedWorksCard({ authorId }) {
             if (error) {
               console.error(error);
             }
-            setAuthoredWorks((prevValue) => prevValue.concat(
-              {
-                author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
-                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
-                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-                id: element,
-              },
-            ));
+            if (isApiSubscribed) {
+              setAuthoredWorks((prevValue) => prevValue.concat(
+                {
+                  author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
+                  image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                  title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+                  id: element,
+                },
+              ));
+            }
           });
         });
       }
@@ -55,14 +54,16 @@ function CreatedWorksCard({ authorId }) {
             if (error) {
               console.error(err);
             }
-            setillustratedWorks((prevValue) => prevValue.concat(
-              {
-                author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
-                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
-                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-                id: element,
-              },
-            ));
+            if (isApiSubscribed) {
+              setillustratedWorks((prevValue) => prevValue.concat(
+                {
+                  author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
+                  image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                  title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+                  id: element,
+                },
+              ));
+            }
           });
         });
       }
@@ -70,7 +71,11 @@ function CreatedWorksCard({ authorId }) {
   }
 
   useEffect(() => {
-    FindPosts();
+    let isApiSubscribed = true;
+    FindPosts(isApiSubscribed);
+    return () => {
+      isApiSubscribed = false;
+    };
   }, []);
 
   return (
@@ -104,12 +109,3 @@ function CreatedWorksCard({ authorId }) {
 CreatedWorksCard.propTypes = {
   authorId: propTypes.string.isRequired,
 }; export default CreatedWorksCard;
-
-// refactor the carousel to make these editable:
-// slides per view
-// slides per group
-// background color
-// arrow color
-// width
-// space between entries
-// looping

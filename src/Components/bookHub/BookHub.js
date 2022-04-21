@@ -91,12 +91,18 @@ function CardsDisplay() {
   };
 
   useEffect(() => {
-    if (!allBooks.length) { getCards(); }
-    if (searchTerms) {
-      (async () => searchByTerm())();
-    } else {
-      setFilteredBooks(allBooks);
+    let isApiSubscribed = true;
+    if (isApiSubscribed) {
+      if (!allBooks.length) { getCards(); }
+      if (searchTerms) {
+        (async () => searchByTerm())();
+      } else {
+        setFilteredBooks(allBooks);
+      }
     }
+    return () => {
+      isApiSubscribed = false;
+    };
   }, [allBooks, searchTerms, defaultSearch]);
 
   return (
@@ -110,7 +116,7 @@ function CardsDisplay() {
                 key={card.id}
                 id={card.id}
                 title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+                author={card.fields.author !== undefined ? card.fields.author : ['MISSING AUTHOR']}
                 image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
               />
             ) : null

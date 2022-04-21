@@ -24,6 +24,7 @@ export default function WordTerm({ word, def, links }) {
       <CardActions style={{ justifyContent: 'center' }}>
         {linksArray.filter((v) => Object.keys(v).length).map((url) => (
           <Button
+            key={url}
             variant="outlined"
             size="small"
             href={url}

@@ -12,10 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
-import { renderToString } from 'react-dom/server';
-
-// import AuthoredWorkCard from './AuthoredWorkCard';
-// import IllustratedWorkCard from './IllustratedWorkCard';
+import { v4 as uuidv4 } from 'uuid';
 import Collection from './Collection';
 
 // let init = 1;
@@ -40,25 +37,16 @@ function CollectionsCarousel({
 
   useEffect(() => {
     if (isCollectionPageHeader) {
-      console.log(initialID);
       const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0]);
-      // swiperArray;
       swiperRef.current.swiper.slideTo(
         swiperArray.findIndex((element) => initialID === element),
       );
       setCollecID(initialID);
-      // const realNum = swiperInst.activeIndex + 1;
-      // swiperRef.current.swiper.slideTo(realNum);
-      console.log(swiperRef.current.swiper.realIndex);
-      console.log(swiperArray.findIndex((element) => initialID === element));
-      console.log(swiperArray);
-      // init = 0;
     }
   }, [elementArray]);
   return (
 
     <div
-        // className="swiper-container"
       style={{
         display: 'flex', flexDirection: 'row', height: `${swiperHeight}px`, width: `${widthPercent}%`,
       }}
@@ -82,20 +70,12 @@ function CollectionsCarousel({
       </div>
       <Swiper
         ref={swiperRef}
-        // initialSlide={isCollectionPageHeader
-        //   ? elementArray.findIndex((element) => initialID === element.id) : 0}
-        // init={false}
         style={{
           zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '90%',
         }}
-        // initialSlide={}
         loop={shouldLoop}
-          // createElements
         centeredSlides={centeredSlides}
         //   centerInsufficientSlides
-        // width={745}
-        // height={350}
-        //   autoHeight
         on="true"
         onSwiper={setSwiper}
         breakpoints={{
@@ -129,8 +109,7 @@ function CollectionsCarousel({
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element, index) => (
-          // <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-          <SwiperSlide key={element.id}>
+          <SwiperSlide key={uuidv4()}>
             <Collection
               Collid={element.id}
               image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
@@ -141,12 +120,10 @@ function CollectionsCarousel({
               isCollectionPageHeader={isCollectionPageHeader}
             />
           </SwiperSlide>
-          // </div>
 
         ))}
       </Swiper>
       <div
-          // className="carousel-button-prev"
         style={{
           display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: '10',
         }}
@@ -201,11 +178,3 @@ CollectionsCarousel.defaultProps = {
 };
 
 export default CollectionsCarousel;
-
-// refactor the carousel to make these editable:
-// slides per view
-// background color
-// arrow color
-// width
-// space between entries
-// looping
