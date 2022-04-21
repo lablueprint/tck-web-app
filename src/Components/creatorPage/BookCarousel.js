@@ -71,17 +71,15 @@ function Carousel({
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element) => (
-          <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-            <SwiperSlide key={uuidv4()}>
-              <BookCard
-                id={element.id}
-                image={element.image}
-                title={element.title}
-                author={element.author}
-                inCarousel
-              />
-            </SwiperSlide>
-          </div>
+          <SwiperSlide key={uuidv4()} style={{ paddingTop: '20', paddingBottom: '20' }}>
+            <BookCard
+              id={element.id}
+              image={element.image}
+              title={element.title}
+              author={element.author}
+              inCarousel
+            />
+          </SwiperSlide>
 
         ))}
       </Swiper>
