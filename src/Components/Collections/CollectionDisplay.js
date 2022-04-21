@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import Collection from './Collection';
 import './Collection.css';
 import CollectionsCarousel from './CollectionsCarousel';
-// import CollectionCarousel from './CollectionsCarousel';
 import LeftArrow from '../../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../../Assets/Images/right-arrow-author-page.svg';
 
