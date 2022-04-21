@@ -168,7 +168,7 @@ function BookPage() {
             {educatorLinks}
           </List>
         ) : <div />}
-      <BookRec />
+      <BookRec bookAgeMin={book} />
     </Paper>
   );
 }
