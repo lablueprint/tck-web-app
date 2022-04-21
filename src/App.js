@@ -8,6 +8,7 @@ import './App.css';
 import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
+import QuizGroup from './Components/Quiz/QuizGroup';
 
 import BookPage from './Pages/BookPage';
 
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
         <Route exact path="/quiz" element={<StartPage />} />
+        <Route exact path="/quiz/questions" element={<QuizGroup />} />
       </Routes>
     </div>
   );
