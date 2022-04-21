@@ -7,7 +7,7 @@ import 'swiper/css/bundle';
 import 'swiper/css';
 import React, { useRef, useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import './Collection.css';
+import './CollectionCarousel.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
@@ -53,15 +53,9 @@ function CollectionsCarousel({
     >
       <div
         className="carousel-button-prev"
-        style={{
-          display: 'flex', justifyContent: 'end', flexGrow: 1, alignItems: 'center', marginRight: '10',
-        }}
       >
         <button
           ref={navigationPrevRef}
-          style={{
-            border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
-          }}
           type="button"
         >
           <img src={prevArrow} alt="Left navigation arrow" />
@@ -70,9 +64,6 @@ function CollectionsCarousel({
       </div>
       <Swiper
         ref={swiperRef}
-        style={{
-          zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '90%',
-        }}
         loop={shouldLoop}
         centeredSlides={centeredSlides}
         //   centerInsufficientSlides
@@ -124,15 +115,10 @@ function CollectionsCarousel({
         ))}
       </Swiper>
       <div
-        style={{
-          display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: '10',
-        }}
+        className="carousel-button-next"
       >
         <button
           ref={navigationNextRef}
-          style={{
-            border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0', marginLeft: '10%',
-          }}
           type="button"
         >
           <img src={nextArrow} alt="Right navigation arrow" />

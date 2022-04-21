@@ -9,7 +9,8 @@
     margin: 30px 16px 10px 16px;
     display: flex;
     justify-content: center;
-    background: 'none';
+    background: none;
+    flex-direction: column;
     
 }
 
