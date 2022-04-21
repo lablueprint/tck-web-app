@@ -31,13 +31,13 @@ function CollectionsCarousel({
 
   const OnSlideChange = () => {
     const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
-    const href = document.split('/')[2].split('" ');
+    const href = document.split('/')[2].split('"');
     setCollecID(href[0]);
   };
 
   useEffect(() => {
     if (isCollectionPageHeader) {
-      const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0]);
+      const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
       swiperRef.current.swiper.slideTo(
         swiperArray.findIndex((element) => initialID === element),
       );
@@ -47,8 +47,9 @@ function CollectionsCarousel({
   return (
 
     <div
+      className="collection-carousel-wrapper"
       style={{
-        display: 'flex', flexDirection: 'row', height: `${swiperHeight}px`, width: `${widthPercent}%`,
+        height: `${swiperHeight}px`, width: `${widthPercent}%`,
       }}
     >
       <div
@@ -63,10 +64,11 @@ function CollectionsCarousel({
         </button>
       </div>
       <Swiper
+        style={{ zIndex: '0', width: '90%' }}
         ref={swiperRef}
         loop={shouldLoop}
         centeredSlides={centeredSlides}
-        //   centerInsufficientSlides
+        centerInsufficientSlides
         on="true"
         onSwiper={setSwiper}
         breakpoints={{
@@ -88,10 +90,7 @@ function CollectionsCarousel({
             slidesPerGroup: isCollectionPageHeader ? 1 : slidesAtATime,
           },
         }}
-        // runCallbacksOnInit
         direction="horizontal"
-        // onTransitionStart={onInit}
-        // onInit={onInit}
         navigation={{
           prevEl: navigationPrevRef.current,
           nextEl: navigationNextRef.current,

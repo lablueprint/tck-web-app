@@ -21,7 +21,7 @@ function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
 
-  function FindPosts(isApiSubscribed) {
+  function FindPosts() {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
@@ -35,16 +35,14 @@ function CreatedWorksCard({ authorId }) {
             if (error) {
               console.error(error);
             }
-            if (isApiSubscribed) {
-              setAuthoredWorks((prevValue) => prevValue.concat(
-                {
-                  author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
-                  image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
-                  title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-                  id: element,
-                },
-              ));
-            }
+            setAuthoredWorks((prevValue) => prevValue.concat(
+              {
+                author: (record.fields.author !== undefined ? record.fields.author : ['Anonymous']),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+                id: element,
+              },
+            ));
           });
         });
       }
@@ -54,29 +52,21 @@ function CreatedWorksCard({ authorId }) {
             if (error) {
               console.error(err);
             }
-            if (isApiSubscribed) {
-              setillustratedWorks((prevValue) => prevValue.concat(
-                {
-                  author: (record.fields.author !== undefined ? record.fields.author : 'Anonymous'),
-                  image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
-                  title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-                  id: element,
-                },
-              ));
-            }
+            setillustratedWorks((prevValue) => prevValue.concat(
+              {
+                author: (record.fields.author !== undefined ? record.fields.author : ['Anonymous']),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+                id: element,
+              },
+            ));
           });
         });
       }
     });
   }
 
-  useEffect(() => {
-    let isApiSubscribed = true;
-    FindPosts(isApiSubscribed);
-    return () => {
-      isApiSubscribed = false;
-    };
-  }, []);
+  useEffect(FindPosts, []);
 
   return (
     <div style={{

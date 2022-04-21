@@ -91,18 +91,12 @@ function CardsDisplay() {
   };
 
   useEffect(() => {
-    let isApiSubscribed = true;
-    if (isApiSubscribed) {
-      if (!allBooks.length) { getCards(); }
-      if (searchTerms) {
-        (async () => searchByTerm())();
-      } else {
-        setFilteredBooks(allBooks);
-      }
+    if (!allBooks.length) { getCards(); }
+    if (searchTerms) {
+      (async () => searchByTerm())();
+    } else {
+      setFilteredBooks(allBooks);
     }
-    return () => {
-      isApiSubscribed = false;
-    };
   }, [allBooks, searchTerms, defaultSearch]);
 
   return (
