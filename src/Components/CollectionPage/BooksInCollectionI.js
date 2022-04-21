@@ -35,6 +35,8 @@ function BooksInCollection({ authorId }) {
                 title: record.fields.title,
                 author: record.fields.author,
                 id: element,
+                date_added: record.fields.date_added,
+                date_published: record.fields.date_published,
               },
             ));
           });
