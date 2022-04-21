@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import propTypes from 'prop-types';
 import AuthorInfo from '../Components/creatorPage/AuthorInfo';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
 
@@ -48,9 +47,5 @@ function CreatorPage() {
     </div>
   );
 }
-
-// CreatorPahe.propTypes = {
-//   authId: propTypes.string.isRequired,
-// };
 
 export default CreatorPage;

@@ -17,23 +17,14 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 function CollectionDisplay() {
   const [collections, setCollections] = useState([]);
-  const getCollections = (isApiSubscribed) => {
+  const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
-        if (isApiSubscribed) { setCollections(records); }
+        setCollections(records);
       });
   };
 
-  useEffect(
-    () => {
-      let isApiSubscribed = true;
-      getCollections(isApiSubscribed);
-      return () => {
-        isApiSubscribed = false;
-      };
-    },
-    [],
-  );
+  useEffect(getCollections, []);
 
   return (
     <div className="collectionsDisplay">

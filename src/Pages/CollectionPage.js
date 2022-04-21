@@ -21,7 +21,6 @@ function CollectionPage() {
   const [CollectionDetails, setCollectionDetails] = useState();
   const params = useParams();
   const [collecID, setCollecID] = useState(params.id);
-  // const collecID = params.id;
   const [collections, setCollections] = useState([]);
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records

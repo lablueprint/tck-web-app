@@ -5,7 +5,7 @@ import 'swiper/css/bundle';
 import 'swiper/css';
 import React, { useRef } from 'react';
 import propTypes from 'prop-types';
-import './OtherWorks.css';
+import './BookCarousel.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
@@ -22,98 +22,79 @@ function Carousel({
   const navigationNextRef = useRef(null);
 
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', rowGap: '3rem',
-    }}
+    <div
+      className="book-carousel-wrapper"
+      style={{
+        width: `${widthPercent}%`,
+      }}
     >
       <div
-        style={{
-          display: 'flex', flexDirection: 'row', height: '350', width: `${widthPercent}%`,
-        }}
+        className="book-carousel-button-prev"
       >
-        <div
-          className="carousel-button-prev"
-          style={{
-            display: 'flex', justifyContent: 'end', flexGrow: 1, alignItems: 'center', marginRight: 46,
-          }}
+        <button
+          ref={navigationPrevRef}
+          type="button"
         >
-          <button
-            ref={navigationPrevRef}
-            style={{
-              border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0',
-            }}
-            type="button"
-          >
-            <img src={prevArrow} alt="Left navigation arrow" />
+          <img src={prevArrow} alt="Left navigation arrow" />
 
-          </button>
-        </div>
-        <Swiper
-          style={{
-            zIndex: '0', marginLeft: 'auto', marginRight: 'auto', width: '100%', height: '400px',
-          }}
-          // loop
-          // createElements
-          // centeredSlides
-        //   centerInsufficientSlides
-        // width={745}
-          // height={350}
-        //   autoHeight
-          on="true"
-          breakpoints={{
-            320: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            // when window width is >= 480px
-            480: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-            // when window width is >= 640px
-            640: {
-              slidesPerView: slidesAtATime,
-              spaceBetween: spaceBetweenEntries,
-            },
-          }}
-          direction="horizontal"
-          navigation={{
-            prevEl: navigationPrevRef.current,
-            nextEl: navigationNextRef.current,
-          }}
-          modules={[Navigation, A11y]}
+        </button>
+      </div>
+      <Swiper
+        style={{
+          zIndex: '0',
+          width: '100%',
+          height: '400px',
+        }}
+        on="true"
+        centerInsufficientSlides
+        breakpoints={{
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          // when window width is >= 480px
+          480: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          // when window width is >= 640px
+          640: {
+            slidesPerView: slidesAtATime,
+            spaceBetween: spaceBetweenEntries,
+          },
+        }}
+        direction="horizontal"
+        navigation={{
+          prevEl: navigationPrevRef.current,
+          nextEl: navigationNextRef.current,
+        }}
+        modules={[Navigation, A11y]}
+      >
+        {elementArray.map((element) => (
+          <div style={{ paddingTop: '20', paddingBottom: '20' }}>
+            <SwiperSlide key={uuidv4()}>
+              <BookCard
+                id={element.id}
+                image={element.image}
+                title={element.title}
+                author={element.author}
+                inCarousel
+              />
+            </SwiperSlide>
+          </div>
+
+        ))}
+      </Swiper>
+      <div
+        className="book-carousel-button-next"
+      >
+        <button
+          ref={navigationNextRef}
+          type="button"
         >
-          {elementArray.map((element) => (
-            <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-              <SwiperSlide key={uuidv4()}>
-                <BookCard
-                  id={element.id}
-                  image={element.image}
-                  title={element.title}
-                  author={element.author}
-                  inCarousel
-                />
-              </SwiperSlide>
-            </div>
+          <img src={nextArrow} alt="Right navigation arrow" />
 
-          ))}
-        </Swiper>
-        <div
-          style={{
-            display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: 46,
-          }}
-        >
-          <button
-            ref={navigationNextRef}
-            style={{
-              border: 'none', borderRadius: '9999px', background: 'none', color: '#D0D0D0', marginLeft: '10%',
-            }}
-            type="button"
-          >
-            <img src={nextArrow} alt="Right navigation arrow" />
-
-          </button>
-        </div>
+        </button>
       </div>
     </div>
   );
@@ -121,7 +102,7 @@ function Carousel({
 
 Carousel.propTypes = {
   elementArray: propTypes.arrayOf(propTypes.shape({
-    author: propTypes.arrayOf(propTypes.string),
+    author: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]),
     image: propTypes.string,
     title: propTypes.string,
     id: propTypes.string,

@@ -37,25 +37,17 @@ export default function BookCard({
 
   const [authorVar, setAuthor] = useState([]);
 
-  const getAuthor = (isApiSubscribed) => {
+  const getAuthor = () => {
     author.forEach((name) => {
-      if (name === 'MISSING AUTHOR' && isApiSubscribed) { setAuthor('Anonymous'); return; }
+      if (name === 'MISSING AUTHOR' || name === 'Anonymous') { setAuthor('Anonymous'); return; }
       base('Creator').find(name, (err, record) => {
         if (err) { console.error(err); }
-        if (isApiSubscribed) {
-          setAuthor((prevValue) => prevValue.concat(record));
-        }
+        setAuthor((prevValue) => prevValue.concat(record));
       });
     });
   };
 
-  useEffect(() => {
-    let isApiSubscribed = true;
-    getAuthor(isApiSubscribed);
-    return () => {
-      isApiSubscribed = false;
-    };
-  }, []);
+  useEffect(getAuthor, []);
 
   return ( // horizontal scroll not implemented
     <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px' }}>
@@ -103,11 +95,12 @@ BookCard.defaultProps = {
 BookCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  author: PropTypes.arrayOf(PropTypes.string).isRequired,
+  author: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
   image: PropTypes.string,
   inCarousel: PropTypes.bool,
 };
 
 BookCard.defaultProps = {
   inCarousel: false,
+  image: '',
 };

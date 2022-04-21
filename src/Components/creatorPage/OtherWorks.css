@@ -14,20 +14,3 @@
   max-width: 100%;
   display: block;
 }
-
-.swiper-slide .swiper-slide-active{
-  display:flex;
-  align-items:center;
-}
-
-.swiper-button-lock{
-    color: #000; 
-    opacity:0.7;
-    display:block;
-    z-index:20;
-}
-
-.swiper-container{
-  display:flex;
-  flex-direction: row;
-}

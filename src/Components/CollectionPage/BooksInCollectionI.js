@@ -16,7 +16,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 function BooksInCollection({ authorId }) {
   const [books, setBooks] = useState([]);
 
-  function FindPosts(isApiSubscribed) {
+  function FindPosts() {
     const id = authorId;
     base('Collection').find(id, (err, records) => {
       if (err) {
@@ -29,16 +29,14 @@ function BooksInCollection({ authorId }) {
             if (error) {
               console.error(err);
             }
-            if (isApiSubscribed) {
-              setBooks((prevValue) => prevValue.concat(
-                {
-                  image: record.fields.image[0].thumbnails.large.url,
-                  title: record.fields.title,
-                  author: record.fields.author,
-                  id: element,
-                },
-              ));
-            }
+            setBooks((prevValue) => prevValue.concat(
+              {
+                image: record.fields.image[0].thumbnails.large.url,
+                title: record.fields.title,
+                author: record.fields.author,
+                id: element,
+              },
+            ));
           });
         });
       }
@@ -46,14 +44,8 @@ function BooksInCollection({ authorId }) {
   }
 
   useEffect(() => {
-    let isApiSubscribed = true;
-    if (isApiSubscribed) {
-      setBooks([]);
-      FindPosts(isApiSubscribed);
-    }
-    return () => {
-      isApiSubscribed = false;
-    };
+    setBooks([]);
+    FindPosts();
   }, [authorId]);
 
   return (
