@@ -10,9 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
-
-// import AuthoredWorkCard from './AuthoredWorkCard';
-// import IllustratedWorkCard from './IllustratedWorkCard';
+import { v4 as uuidv4 } from 'uuid';
 import BookCard from '../bookHub/BookCard';
 
 // Authored and illustrated work components
@@ -22,8 +20,6 @@ function Carousel({
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-  // const swiperHook = useSwiper();
-  // const swiper = useSwiper();
 
   return (
     <div style={{
@@ -31,7 +27,6 @@ function Carousel({
     }}
     >
       <div
-        // className="swiper-container"
         style={{
           display: 'flex', flexDirection: 'row', height: '350', width: `${widthPercent}%`,
         }}
@@ -91,9 +86,8 @@ function Carousel({
         >
           {elementArray.map((element) => (
             <div style={{ paddingTop: '20', paddingBottom: '20' }}>
-              <SwiperSlide>
+              <SwiperSlide key={uuidv4()}>
                 <BookCard
-                  key={element.id}
                   id={element.id}
                   image={element.image}
                   title={element.title}
@@ -106,7 +100,6 @@ function Carousel({
           ))}
         </Swiper>
         <div
-          // className="carousel-button-prev"
           style={{
             display: 'flex', justifyContent: 'start', flexGrow: 1, alignItems: 'center', marginLeft: 46,
           }}
@@ -129,10 +122,10 @@ function Carousel({
 
 Carousel.propTypes = {
   elementArray: propTypes.arrayOf(propTypes.shape({
-    author: propTypes.string,
+    author: propTypes.arrayOf(propTypes.string),
     image: propTypes.string,
     title: propTypes.string,
-    id: propTypes.number,
+    id: propTypes.string,
   })).isRequired,
 
   slidesAtATime: propTypes.number.isRequired,
@@ -148,11 +141,3 @@ Carousel.defaultProps = {
 };
 
 export default Carousel;
-
-// refactor the carousel to make these editable:
-// slides per view
-// background color
-// arrow color
-// width
-// space between entries
-// looping

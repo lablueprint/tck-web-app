@@ -22,6 +22,6 @@ export default function CollectionInfo({ name, picture, description }) {
 
 CollectionInfo.propTypes = {
   name: PropTypes.string.isRequired,
-  picture: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  picture: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

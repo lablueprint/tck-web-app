@@ -27,6 +27,7 @@ function WordTermDisplay() {
   return definitions.map((wordInfo) => (
     <div>
       <WordTerm
+        key={wordInfo.id}
         word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
         def={wordInfo.fields.definition !== undefined ? wordInfo.fields.definition : 'MISSING DEFINTION'}
         links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}

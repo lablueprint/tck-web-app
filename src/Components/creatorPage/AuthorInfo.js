@@ -33,7 +33,7 @@ AuthorInfo.propTypes = {
   author: PropTypes.string,
   bio: PropTypes.string,
   links: PropTypes.string,
-  authorPic: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  authorPic: PropTypes.string.isRequired,
 };
 
 AuthorInfo.defaultProps = {
