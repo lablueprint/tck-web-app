@@ -16,7 +16,6 @@ const airtableConfig = {
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
-// Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
@@ -37,7 +36,7 @@ function CreatedWorksCard({ authorId }) {
             }
             setAuthoredWorks((prevValue) => prevValue.concat(
               {
-                author: (record.fields.author !== undefined ? record.fields.author : ['Anonymous']),
+                author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
                 image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
                 title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
@@ -54,7 +53,7 @@ function CreatedWorksCard({ authorId }) {
             }
             setillustratedWorks((prevValue) => prevValue.concat(
               {
-                author: (record.fields.author !== undefined ? record.fields.author : ['Anonymous']),
+                author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
                 image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
                 title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
