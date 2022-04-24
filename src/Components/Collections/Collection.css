@@ -1,10 +1,10 @@
-.collectionsDisplay {
+.collections-display {
   display: flex;
   flex-flow: row;
   justify-content: center;
 }
 
-#collectionCard{
+#collection-card{
   height: 100%;
   width: 100%;
   border-radius: 20px;
@@ -18,7 +18,7 @@
   text-decoration: none,
 }
 
-.collectionImageContainer{
+.collection-image-container{
   flex-basis: 50%;
   display: flex;
   justify-content: center;
@@ -27,11 +27,11 @@
   width: 100%,
 }
 
-.collectionImage {
+.collection-image {
   margin: 10px;
 }
 
-.cardTitle{
+.card-title{
     line-height: 100%;
     margin: 5px;
     color:white;
@@ -44,9 +44,3 @@
     font-weight: 'bolder',
 }
 
-.cardText {
-  margin-right: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-family:'Work Sans';
-}

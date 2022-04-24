@@ -50,7 +50,7 @@ function BooksInCollection({ authorId }) {
 
   return (
     <div>
-      <div className="SubHeader">
+      <div>
         Books in this collection:
       </div>
       <div className="library-display">

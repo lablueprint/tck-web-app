@@ -52,7 +52,7 @@ export default function BookCard({
   return ( // horizontal scroll not implemented
     <div className="card" style={{ margin: inCarousel ? '0' : '30px 16px 10px 16px' }}>
       <Link className="link" to={`/book/${id}`}>
-        <div className="cardActionArea">
+        <div className="card-action-area">
           <div className="img-container">
             <img
               className="image"

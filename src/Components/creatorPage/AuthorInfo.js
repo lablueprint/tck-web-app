@@ -8,15 +8,15 @@ export default function AuthorInfo({
 }) {
   return (
     <>
-      <div className="Header">
+      <div className="header">
         {author}
         <img width="10%" height="10%" align="center" src={authorPic} alt="author" />
       </div>
-      <div className="Paragraph">
+      <div className="paragraph">
         {bio}
       </div>
       <br />
-      <div className="Extra">
+      <div className="extra">
         Check out
         {' '}
         {author}
