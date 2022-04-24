@@ -110,7 +110,7 @@ function CardsDisplay({
         matched.push(...res);
       }
 
-      // matched.filter((book) => book); // Remove undefined values
+      matched.filter((book) => book); // Remove undefined values
       matched = [...new Set(matched)]; // Remove duplicates
     }
 
