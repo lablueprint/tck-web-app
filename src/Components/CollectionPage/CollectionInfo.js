@@ -6,14 +6,14 @@ import './CollectionPage.css';
 export default function CollectionInfo({ name, picture, description }) {
   return (
     <div>
-      <div className="Header">
+      <div className="header">
         {name}
         <img className="collection-card-image" src={picture} alt="author" />
       </div>
-      <div className="SubHeader">
+      <div className="sub-header">
         About this collection
       </div>
-      <div className="Paragraph">
+      <div className="paragraph">
         {description}
       </div>
     </div>

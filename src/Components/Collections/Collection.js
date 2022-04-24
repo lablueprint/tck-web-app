@@ -16,14 +16,14 @@ export default function Collection({
     <Link
       className="link"
       to={`/collection/${Collid}`}
-      id="collectionCard"
+      id="collection-card"
     >
-      <div className="collectionImageContainer">
-        <img className="collectionImage" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
+      <div className="collection-image-container">
+        <img className="collection-image" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
       </div>
 
       <p
-        className="cardTitle"
+        className="card-title"
         style={{
           fontSize: isCollectionPageHeader ? '3rem' : '1.05rem',
         }}

@@ -25,7 +25,7 @@ function CollectionDisplay() {
   useEffect(getCollections, []);
 
   return (
-    <div className="collectionsDisplay">
+    <div className="collections-display">
       <CollectionsCarousel
         elementArray={collections}
         slidesAtATime={6}

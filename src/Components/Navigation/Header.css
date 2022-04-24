@@ -31,6 +31,7 @@
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
+    font-size:1.5rem;
 }
 
 .nav-link-active {
@@ -39,6 +40,7 @@
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
+    font-size:1.5rem;
 }
 
 .logo {
