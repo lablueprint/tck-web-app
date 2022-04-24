@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   ToggleButton, ToggleButtonGroup,
 } from '@mui/material';
+import { Tune, Search } from '@mui/icons-material';
 import CardsDisplay from '../bookHub/BookHub';
 import SearchBar from '../SearchBar/SearchBar';
 import Filter from '../Filtering/Filtering';
@@ -48,8 +49,14 @@ function BookBrowser() {
             onChange={handleChange}
             sx={{ margin: '3vh 3vw auto' }}
           >
-            <ToggleButton value="Search">Search</ToggleButton>
-            <ToggleButton value="Filter">Filter</ToggleButton>
+            <ToggleButton value="Search">
+              <Search />
+              Search
+            </ToggleButton>
+            <ToggleButton value="Filter">
+              <Tune />
+              Filter
+            </ToggleButton>
           </ToggleButtonGroup>
         </div>
         <div className="browser-body">
