@@ -3,7 +3,8 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 28.15px;
-    padding: 30px;
+    padding: 35px;
+    padding-bottom: 25px;
     display: flex;
     flex-direction: row;
 }
@@ -26,15 +27,18 @@
     font-family: 'DM Sans';
     font-weight: 400;
     line-height: 32.13px;
-    margin-left: 150px;
-    margin-right: 118px;
-    padding: 5px;
+    padding-right: 13%;
+    padding-left: 13%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     text-align: left;
 }
 
 .more-resources {
     font-family: 'DM Sans';
-    font-size: 24px;
+    font-size: 22px;
+    padding-top: 3%;
+    padding-bottom: 20%;
 }
 
 .img {
@@ -42,9 +46,13 @@
     flex-direction: row;
 }
 
-.links 
+.title 
 {
-    size: 'small';
-    overflow: 'hidden';
-    white-space: "nowrap";
+    font-size: 35px;
+    font-family: 'DM Sans';
+    font-weight: 600;
+    text-align: left;
+    padding-left: 6%;
+    padding-top: 5%;
+    padding-bottom: 2%;
 }

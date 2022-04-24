@@ -34,42 +34,41 @@ export default function DictionaryCard({
             : (
               <div>
                 {showMore ? def : `${def.substring(0, 250)}`}
-                <Button onClick={() => setShowMore(!showMore)}>
+                <Button style={{ textTransform: 'none', color: '#607AAD' }} onClick={() => setShowMore(!showMore)}>
                   {showMore ? 'See less' : 'See more'}
                 </Button>
               </div>
             )}
         </div>
       </CardContent>
-      <div>
-        { linksArray.length !== 0 ? (
-          <div className="more-resources">
-            More Resources:
-          </div>
-        ) : ''}
-      </div>
-      <span style={{ padding: 20 }}>
+      <div style={{ padding: 10 }}>
         <CardActions style={{ justifyContent: 'left', marginLeft: 75 }}>
-          <Grid
-            style={{ padding: 10 }}
-            sx={{
-              display: 'grid', gridTemplateColumns: 'repeat(3, auto)', rowGap: 2, columnGap: 2,
-            }}
-          >
-            {linksArray.filter((v) => Object.keys(v).length).map((url) => (
-              <Button
-                className="links"
-                style={{ backgroundColor: '#eefbfb', color: '#607AAD' }}
-                variant="contained"
-                href={url}
-                sx={{ borderRadius: 7 }}
+          <div>
+            { linksArray.length !== 0 ? (
+              <Grid
+                style={{ paddingLeft: 15 }}
+                sx={{
+                  display: 'grid', gridTemplateColumns: 'repeat(4, auto)', rowGap: 2, columnGap: 2,
+                }}
               >
-                {url}
-              </Button>
-            ))}
-          </Grid>
+                <div className="more-resources">
+                  More Resources:
+                </div>
+                <div>
+                  {linksArray.filter((v) => Object.keys(v).length).map((url) => (
+                    <Button
+                      style={{ textTransform: 'none', color: '#607AAD', fontSize: '15px' }}
+                      href={url}
+                    >
+                      {url}
+                    </Button>
+                  ))}
+                </div>
+              </Grid>
+            ) : ''}
+          </div>
         </CardActions>
-      </span>
+      </div>
     </Card>
   );
 }
