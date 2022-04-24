@@ -61,6 +61,18 @@ const pageOptions = [
     },
 ];
 
+const PaginationSX = {
+    ".MuiPaginationItem-root": {
+        backgroundColor: 'rgba(42, 133, 239, 0.1)',
+        color: "#2A84EF"
+      },
+    ".Mui-selected": {
+        backgroundColor: "rgba(42, 133, 239, 0.25)",
+        color: "#2A84EF"
+    },
+
+  };
+
 function BookList({ books }) {
     const [page, setPage] = useState(ALPHA);
     const [booksPerPage, setBooksPerPage] = useState(18);
@@ -86,8 +98,8 @@ function BookList({ books }) {
     const count = Math.ceil(books.length / booksPerPage);
 
     return (
-        <div style={{ alignItems: 'center', outline: '2px dotted red', width: '90vw', margin: 'auto'}}>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{ alignItems: 'center', width: '90vw', margin: 'auto'}}>
+            <div style={{display: 'flex', flexDirection: 'row', fontFamily: 'Work Sans'}}>
                 <ListMenu 
                     menuText="Sort"
                     menuIcon={<Sort/>}
@@ -116,12 +128,12 @@ function BookList({ books }) {
                 />
                 ))}
             </div>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', fontFamily: 'Work Sans'}}>
                 <Pagination 
-                    color="primary"
                     count={count} 
                     page={page} 
-                    onChange={handleChange} 
+                    onChange={handleChange}
+                    sx={PaginationSX}
                 />
             </div>
         </div>
