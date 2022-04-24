@@ -39,7 +39,7 @@ export default function BookCard({
 
   const getAuthor = () => {
     author.forEach((name) => {
-      if (name === 'MISSING AUTHOR' || name === 'Anonymous') { setAuthor('Anonymous'); return; }
+      if (name === 'MISSING CREATOR') { setAuthor(name); return; }
       base('Creator').find(name, (err, record) => {
         if (err) { console.error(err); }
         setAuthor((prevValue) => prevValue.concat(record));
@@ -70,7 +70,7 @@ export default function BookCard({
       <div className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
         By
         {' '}
-        {authorVar !== undefined && (authorVar !== 'Anonymous' ? authorVar.map((element) => (
+        {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element) => (
           <Link key={element.id} className="link" to={`/creator/${element.id}`}>
             {element.fields.name}
             <br />
@@ -78,7 +78,7 @@ export default function BookCard({
         ))
           : (
             <div className="link">
-              Anonymous
+              Unknown
               <br />
             </div>
           ))}

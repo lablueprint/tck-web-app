@@ -59,7 +59,6 @@ function BooksInCollection({ authorId }) {
             image={element.image}
             title={element.title}
             author={element.author}
-          // Speical Prop
             key={uuidv4()}
             id={element.id}
           />

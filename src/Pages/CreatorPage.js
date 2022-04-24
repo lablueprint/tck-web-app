@@ -35,7 +35,7 @@ function CreatorPage() {
       { AuthorDetails !== undefined
         ? (
           <AuthorInfo
-            author={AuthorDetails.fields.name !== undefined ? AuthorDetails.fields.name : 'Anonymous'}
+            author={AuthorDetails.fields.name !== undefined ? AuthorDetails.fields.name : 'MISSING CREATOR'}
             bio={AuthorDetails.fields.bio !== undefined ? AuthorDetails.fields.bio : ''}
             links={AuthorDetails.fields.personal_site !== undefined
               ? AuthorDetails.fields.personal_site : ''}
