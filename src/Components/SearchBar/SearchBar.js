@@ -10,11 +10,11 @@ import './SearchBar.css';
 
 const MENU_STYLE = { fontFamily: "'DM Sans', sans-serif" };
 
-function SearchBar({ setSearchTerms, category, setCategory }) {
+function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
   const [value, setValue] = useState('');
 
   const handleSelect = (e) => {
-    setCategory(e.target.value);
+    setSearchCategory(e.target.value);
   };
 
   const handleChange = (e) => {
@@ -43,7 +43,7 @@ function SearchBar({ setSearchTerms, category, setCategory }) {
           <Select
             labelId="search-by-label"
             id="search-by"
-            value={category}
+            value={searchCategory}
             label="search by"
             onChange={handleSelect}
             sx={{
@@ -90,44 +90,6 @@ export default SearchBar;
 
 SearchBar.propTypes = {
   setSearchTerms: PropTypes.func.isRequired,
-  category: PropTypes.string.isRequired,
-  setCategory: PropTypes.func.isRequired,
+  searchCategory: PropTypes.string.isRequired,
+  setSearchCategory: PropTypes.func.isRequired,
 };
-
-/* NOTES
-  We now need to separate title, desc, identity sadge
-
-  TO-DO:
-    Create state in BookBrowser for Title, Author, Illustrator, Identity, or Book Description
-      category, setCategory
-      - represent as strings
-          title, author, illustrator, identity, description
-      - pass down setCategory to SearchBar
-        - need to change MenuItem values to strings
-      - pass down category to BookHub
-        - separate category logic in there
-    This will necessarily retire the defaultSearch state
-
-      <div>
-      <div className="Subtitle">Search by Title, Author, Illustrator,
-      Identity, or Book Description</div>
-      <div className="SearchBar">
-        <FormControl
-          variant="outlined"
-          margin="none"
-          sx={{ width: '20%', background: '#EEEEEE' }}
-          size="small"
-        >
-          <InputLabel id="search-by-label">search by</InputLabel>
-          <Select
-            labelId="search-by-label"
-            id="search-by"
-            defaultValue
-            label="search by"
-            onChange={(e) => setDefaultSearch(e.target.value)}
-          >
-            <MenuItem value>Title, Description, Identity</MenuItem>
-            <MenuItem value={false}>Author, Illustrator</MenuItem>
-          </Select>
-        </FormControl>
-*/
