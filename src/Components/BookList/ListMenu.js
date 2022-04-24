@@ -5,6 +5,8 @@ import { Check } from '@mui/icons-material';
 
 const BUTTON_SX = {
     textTransform: 'none', 
+    borderRadius: '10px',
+    margin: '2vh 0 1vh 1vw'
 };
 
 
@@ -43,8 +45,10 @@ function ListMenu({ menuText, menuIcon, options, value, handleChange }) {
             <Button 
                 sx={BUTTON_SX}
                 id='basic-button'
+                variant="outlined"
                 onClick={handleClick}
                 endIcon={menuIcon}
+                size="small"
             >
                 {menuText}
             </Button>

@@ -86,7 +86,7 @@ function BookList({ books }) {
     const count = Math.ceil(books.length / booksPerPage);
 
     return (
-        <div style={{ alignItems: 'center'}}>
+        <div style={{ alignItems: 'center', outline: '2px dotted red', width: '90vw', margin: 'auto'}}>
             <div style={{display: 'flex', flexDirection: 'row'}}>
                 <ListMenu 
                     menuText="Sort"
@@ -118,6 +118,7 @@ function BookList({ books }) {
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Pagination 
+                    color="primary"
                     count={count} 
                     page={page} 
                     onChange={handleChange} 
