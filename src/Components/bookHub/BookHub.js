@@ -53,6 +53,12 @@ function CardsDisplay({
     if (searchCategory === 'description') match = desc.includes(lowercaseTerms);
     if (searchCategory === 'identity') match = identity.includes(lowercaseTerms);
 
+    if (searchCategory === 'all') {
+      match = title.includes(lowercaseTerms)
+              || desc.includes(lowercaseTerms)
+              || identity.includes(lowercaseTerms);
+    }
+
     return match;
   };
 
@@ -81,21 +87,31 @@ function CardsDisplay({
 
   const searchByTerm = async () => {
     let matched = [];
-    if (searchCategory === 'title' || searchCategory === 'description' || searchCategory === 'identity') {
-      // title/description/identity
-      matched = allBooks.filter(isMatchTitleDescIdentity);
-    } else {
+    const isTitleDescIdentity = searchCategory === 'all'
+                              || searchCategory === 'title'
+                              || searchCategory === 'description'
+                              || searchCategory === 'identity';
+
+    const isAuthorIllustrator = searchCategory === 'all'
+                              || searchCategory === 'author'
+                              || searchCategory === 'illustrator';
+
+    if (isTitleDescIdentity) {
+      matched.push(...allBooks.filter(isMatchTitleDescIdentity));
+    }
+    if (isAuthorIllustrator) {
       let res;
-      if (searchCategory === 'author') {
+      if (searchCategory === 'author' || searchCategory === 'all') {
         res = await SearchFilter('Creator', 'authored');
         matched.push(...res);
       }
-      if (searchCategory === 'illustrator') {
+      if (searchCategory === 'illustrator' || searchCategory === 'all') {
         res = await SearchFilter('Creator', 'illustrated');
         matched.push(...res);
       }
 
-      matched = [...new Set(matched)];
+      // matched.filter((book) => book); // Remove undefined values
+      matched = [...new Set(matched)]; // Remove duplicates
     }
 
     setFilteredBooks(matched);
@@ -202,7 +218,7 @@ export default CardsDisplay;
 
 CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
-  searchCategory: PropTypes.bool.isRequired,
+  searchCategory: PropTypes.string.isRequired,
   alignment: PropTypes.string.isRequired,
   rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
   multiSelectInput: PropTypes.objectOf(PropTypes.object).isRequired,
