@@ -5,7 +5,7 @@
     background: blue; 
 }
 
-.Browser {
+.browser {
     width: 55vw;
     margin: 70px auto;
     /*border-radius: 6px; */
@@ -13,13 +13,13 @@
     
 }
 
-.BrowserQuote {
+.browser-quote {
     margin: 4vh 3vw auto;
     font-size: 1.625em;
     font-family: 'IBM Plex Sans', sans-serif;
     
 }
-.BrowserHead {
+.browser-head {
     background: #FFFFFF;
     margin: 70px auto 0 auto;
     box-shadow: 0 2px 0 rgb(77, 76, 83);
@@ -33,7 +33,7 @@
 
 }
 
-.BrowserBody {
+.browser-body {
     background: #F9F9F9;
     border-radius: 0px 0px 40px 40px;
     padding-top: 1vh;
@@ -42,6 +42,6 @@
     backdrop-filter: blur(30px);
 }
 
-.Filter {
+.filter {
     font-family: 'Arimo', sans-serif;
 }

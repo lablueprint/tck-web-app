@@ -38,9 +38,9 @@ function BookBrowser() {
 
   return (
     <div id="background">
-      <div className="Browser">
-        <div className="BrowserHead">
-          <div className="BrowserQuote">Browse For Books</div>
+      <div className="browser">
+        <div className="browser-head">
+          <div className="browser-quote">Browse For Books</div>
           <ToggleButtonGroup
             color="primary"
             value={alignment}
@@ -52,7 +52,7 @@ function BookBrowser() {
             <ToggleButton value="Filter">Filter</ToggleButton>
           </ToggleButtonGroup>
         </div>
-        <div className="BrowserBody">
+        <div className="browser-body">
           {
           (alignment === 'Search')
             ? (
@@ -63,7 +63,7 @@ function BookBrowser() {
               />
             )
             : (
-              <div className="Filter">
+              <div className="filter">
                 <Filter
                   setRangeState={setRangeInput}
                   setMultiSelectInput={setMultiSelectInput}
@@ -97,21 +97,7 @@ export default BookBrowser;
  *      Filter
  *        ranges, checks, whateva
  *
- *  ?? Results body ???
+ *  Results body
  *
  *
- *  TO-DO
- *  ------
- *    1. need to separate search bar from results
- *        Pass searchTerms and defaultSearch to CardsDisplay as props rather than having it as state
- *          <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
- *          <CardsDisplay searchTerms={searchTerms} defaultSearch={defaultSearch}
- *        DONE
- *    2. Use JS and CSS instead of MaterialUI/ToggleButton to allow for easier styling??
- *       Or figure out how to customize the ToggleButton so it matches the Figma
- *
- *  COMPROMISES
- *   Neue Haas Grotesk Text Pro -> IBM PLEX
- *      Change if find out a way to get the original font,
- *      otherwise similar + free Google Font will be used
  */
