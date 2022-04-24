@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './Author.css';
+import './Creator.css';
 
 // Author name/bio/picture/link components
 export default function AuthorInfo({

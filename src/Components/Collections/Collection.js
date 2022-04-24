@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Collection.css';
@@ -22,14 +21,36 @@ export default function Collection({
         <img className="collection-image" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
       </div>
 
-      <p
-        className="card-title"
-        style={{
-          fontSize: isCollectionPageHeader ? '3rem' : '1.05rem',
-        }}
-      >
-        {name}
-      </p>
+      {isCollectionPageHeader
+        ? (
+          <div className="card-text-container">
+            <p
+              className="card-title"
+              style={{
+                fontSize: '3rem',
+                alignItems: 'end',
+              }}
+            >
+              {name}
+            </p>
+            <div className="card-description-wrapper">
+              <p className="card-description">
+                {description}
+              </p>
+            </div>
+          </div>
+        )
+        : (
+          <p
+            className="card-title"
+            style={{
+              fontSize: '1.05rem',
+              alignItems: 'center',
+            }}
+          >
+            {name}
+          </p>
+        )}
     </Link>
 
   );

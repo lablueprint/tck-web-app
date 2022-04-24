@@ -1,7 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import 'swiper/css/bundle';
 import 'swiper/css';
@@ -98,7 +94,7 @@ function CollectionsCarousel({
         onSlideChangeTransitionEnd={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
         modules={[Navigation, A11y]}
       >
-        {elementArray.map((element, index) => (
+        {elementArray.map((element) => (
           <SwiperSlide key={uuidv4()}>
             <Collection
               Collid={element.id}

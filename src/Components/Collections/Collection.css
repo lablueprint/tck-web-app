@@ -6,7 +6,6 @@
 
 #collection-card{
   height: 100%;
-  width: 100%;
   border-radius: 20px;
   display: flex;
   flex-flow: row;
@@ -15,32 +14,57 @@
   flex-direction: row;
   color: white;
   background:#2E3E64;
-  text-decoration: none,
+  text-decoration: none;
+  width:inherit;
 }
 
 .collection-image-container{
-  flex-basis: 50%;
+  flex:1 0 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%,
 }
 
 .collection-image {
   margin: 10px;
 }
 
+.card-text-container{
+  display: flex;
+  flex-direction: column;
+  flex:0 1 60%;
+}
 .card-title{
     line-height: 100%;
-    margin: 5px;
     color:white;
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-    flex-basis: 50%;
     font-family: 'Work Sans';
-    font-weight: 'bolder',
+    font-weight: bolder;
+    justify-content: center;
+    margin:0;
 }
 
+.card-description-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.card-description{
+   line-height: 1.5rem;
+   max-height:4.5rem;
+    color:white;
+    width: 80%;
+    font-family: 'Work Sans';
+    font-weight: bolder;
+    font-size: 1.05rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    
+}
