@@ -1,8 +1,7 @@
-/* eslint-disable import/no-unresolved */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
-import BooksInCollection from '../Components/CollectionPage/BooksInCollectionI';
+import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/Collections/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/electric-boogaloo-previous-arrow.svg';
 import NextArrow from '../Assets/Images/electric-boogaloo-next-arrow.svg';

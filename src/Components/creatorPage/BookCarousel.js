@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import 'swiper/css/bundle';
 import 'swiper/css';

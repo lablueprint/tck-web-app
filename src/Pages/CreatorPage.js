@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AuthorInfo from '../Components/creatorPage/AuthorInfo';
+import AuthorInfo from '../Components/creatorPage/Creator';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
 
 // airtable configuration
