@@ -14,7 +14,7 @@ function BookBrowser() {
 
   // Searching
   const [searchTerms, setSearchTerms] = useState('');
-  const [category, setCategory] = useState('title');
+  const [searchCategory, setSearchCategory] = useState('title');
 
   // Filtering
   const [rangeInput, setRangeInput] = useState({
@@ -58,8 +58,8 @@ function BookBrowser() {
             ? (
               <SearchBar
                 setSearchTerms={setSearchTerms}
-                category={category}
-                setCategory={setCategory}
+                searchCategory={searchCategory}
+                setSearchCategory={setSearchCategory}
               />
             )
             : (
@@ -76,7 +76,7 @@ function BookBrowser() {
       </div>
       <CardsDisplay
         searchTerms={searchTerms}
-        category={category}
+        searchCategory={searchCategory}
         alignment={alignment}
         rangeInput={rangeInput}
         multiSelectInput={multiSelectInput}

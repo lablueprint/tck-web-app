@@ -16,7 +16,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CardsDisplay({
-  searchTerms, category, alignment, rangeInput, multiSelectInput,
+  searchTerms, searchCategory, alignment, rangeInput, multiSelectInput,
 }) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
@@ -49,9 +49,9 @@ function CardsDisplay({
     let match = false;
     const lowercaseTerms = searchTerms.toLowerCase();
 
-    if (category === 'title') match = title.includes(lowercaseTerms);
-    if (category === 'description') match = desc.includes(lowercaseTerms);
-    if (category === 'identity') match = identity.includes(lowercaseTerms);
+    if (searchCategory === 'title') match = title.includes(lowercaseTerms);
+    if (searchCategory === 'description') match = desc.includes(lowercaseTerms);
+    if (searchCategory === 'identity') match = identity.includes(lowercaseTerms);
 
     return match;
   };
@@ -81,16 +81,16 @@ function CardsDisplay({
 
   const searchByTerm = async () => {
     let matched = [];
-    if (category === 'title' || category === 'description' || category === 'identity') {
+    if (searchCategory === 'title' || searchCategory === 'description' || searchCategory === 'identity') {
       // title/description/identity
       matched = allBooks.filter(isMatchTitleDescIdentity);
     } else {
       let res;
-      if (category === 'author') {
+      if (searchCategory === 'author') {
         res = await SearchFilter('Creator', 'authored');
         matched.push(...res);
       }
-      if (category === 'illustrator') {
+      if (searchCategory === 'illustrator') {
         res = await SearchFilter('Creator', 'illustrated');
         matched.push(...res);
       }
@@ -114,7 +114,7 @@ function CardsDisplay({
         setFilteredBooks(allBooks);
       }
     }
-  }, [allBooks, searchTerms, category, alignment]);
+  }, [allBooks, searchTerms, searchCategory, alignment]);
 
   // Filter function
   useEffect(() => {
@@ -202,7 +202,7 @@ export default CardsDisplay;
 
 CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
-  category: PropTypes.bool.isRequired,
+  searchCategory: PropTypes.bool.isRequired,
   alignment: PropTypes.string.isRequired,
   rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
   multiSelectInput: PropTypes.objectOf(PropTypes.object).isRequired,
