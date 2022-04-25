@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import WordTerm from '../Components/Dictionary/WordTerm';
+import DictionaryCard from '../Components/Dictionary/DictionaryCard';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -12,7 +12,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function WordTermDisplay() {
+function DictionaryCardDisplay() {
   const [definitions, setDefinitions] = useState([]);
 
   const getWordInfo = () => {
@@ -26,13 +26,14 @@ function WordTermDisplay() {
 
   return definitions.map((wordInfo) => (
     <div>
-      <WordTerm
+      <DictionaryCard
         word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
         def={wordInfo.fields.definition !== undefined ? wordInfo.fields.definition : 'MISSING DEFINTION'}
         links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}
+        phoeneticSpelling={wordInfo.fields.phonetic_spelling !== undefined ? wordInfo.fields.phonetic_spelling : 'Missing phonetic spelling'}
       />
     </div>
   ));
 }
 
-export default WordTermDisplay;
+export default DictionaryCardDisplay;
