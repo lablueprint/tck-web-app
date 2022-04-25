@@ -7,6 +7,7 @@ import Header from './Components';
 import './App.css';
 import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
+import DictionaryTitle from './Components/Dictionary/DictionaryTitle';
 
 import BookPage from './Pages/BookPage';
 
@@ -16,7 +17,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/dictionary" element={[<DictionaryTitle />, <Dictionary />]} />
         <Route exact path="/book/:bookId" element={<BookPage />} />
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
