@@ -9,9 +9,8 @@ import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
 import { v4 as uuidv4 } from 'uuid';
-import Collection from './Collection';
+import CollectionCard from './CollectionCard';
 
-// let init = 1;
 const defaultOnSlideChange = () => { };
 // Authored and illustrated work components
 function CollectionsCarousel({
@@ -96,7 +95,7 @@ function CollectionsCarousel({
       >
         {elementArray.map((element) => (
           <SwiperSlide key={uuidv4()}>
-            <Collection
+            <CollectionCard
               Collid={element.id}
               image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
               name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
