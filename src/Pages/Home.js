@@ -8,7 +8,7 @@ function Home() {
     <div>
       <h1 className="headings">Book Recommendation Hub</h1>
       <h2 className="headings">Collections</h2>
-      <CollectionDisplay />
+      <CollectionDisplay style={{ display: 'flex', justifyContent: 'center' }} />
       <h2 className="headings">Books</h2>
       <CardsDisplay />
     </div>

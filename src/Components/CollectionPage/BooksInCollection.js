@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import BookCard from '../bookHub/BookCard';
 import '../bookHub/BookCard.css';
 
@@ -22,7 +23,7 @@ function BooksInCollection({ authorId }) {
         console.error(err);
       }
       const bookid = records.fields.books;
-      if (bookid.length) {
+      if (bookid !== undefined && bookid.length) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
@@ -43,12 +44,13 @@ function BooksInCollection({ authorId }) {
   }
 
   useEffect(() => {
+    setBooks([]);
     FindPosts();
-  }, []);
+  }, [authorId]);
 
   return (
     <div>
-      <div className="SubHeader">
+      <div>
         Books in this collection:
       </div>
       <div className="library-display">
@@ -57,8 +59,7 @@ function BooksInCollection({ authorId }) {
             image={element.image}
             title={element.title}
             author={element.author}
-          // Special Prop
-            key={element.id}
+            key={uuidv4()}
             id={element.id}
           />
         ))}

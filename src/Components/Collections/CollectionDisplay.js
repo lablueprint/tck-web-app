@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Collection from './Collection';
 import './Collection.css';
+import CollectionsCarousel from './CollectionsCarousel';
+import LeftArrow from '../../Assets/Images/left-arrow-author-page.svg';
+import RightArrow from '../../Assets/Images/right-arrow-author-page.svg';
 
 const Airtable = require('airtable');
 
@@ -23,12 +25,18 @@ function CollectionDisplay() {
   useEffect(getCollections, []);
 
   return (
-    <div className="collectionsDisplay">
-      { collections.map((collection) => (
-        <Collection
-          Collid={collection.id}
-        />
-      ))}
+    <div className="collections-display">
+      <CollectionsCarousel
+        elementArray={collections}
+        slidesAtATime={6}
+        prevArrow={LeftArrow}
+        nextArrow={RightArrow}
+        widthPercent={100}
+        spaceBetweenEntries={16}
+        swiperHeight={120}
+        cardImageHeightPercent={80}
+        cardImageWidthPercent={80}
+      />
     </div>
   );
 }
