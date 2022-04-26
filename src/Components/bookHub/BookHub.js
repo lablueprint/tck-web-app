@@ -134,6 +134,7 @@ function CardsDisplay({
 
   // Filter function
   useEffect(() => {
+    console.log(multiSelectInput);
     if (alignment === 'Filter') {
       const validGradeTags = gradeRangeMetadata.slice(
         gradeRangeMetadata.indexOf(rangeInput.grade.min),
@@ -167,8 +168,10 @@ function CardsDisplay({
           : false))
       && (multiSelectInput.identity_tags.length === 0
         || (record.fields.identity_tags !== undefined
-          ? record.fields.identity_tags.some((value) => multiSelectInput['identity tags'].indexOf(value)
-           !== -1)
+          ? record.fields.identity_tags.some(
+            (value) => multiSelectInput.identity_tags.indexOf(value)
+           !== -1,
+          )
           : false
         ))
       && (multiSelectInput['theme/lessons'].length === 0
@@ -179,7 +182,7 @@ function CardsDisplay({
         ))
       && (multiSelectInput.book_type.length === 0
         || (record.fields.book_type !== undefined
-          ? record.fields.book_type.some((value) => multiSelectInput['Book type'].indexOf(value)
+          ? record.fields.book_type.some((value) => multiSelectInput.book_type.indexOf(value)
            !== -1)
           : false
         ))
@@ -191,8 +194,11 @@ function CardsDisplay({
 
       ));
     }
+    console.log('from UseEffect');
+    console.log(filteredBooks);
   }, [rangeInput, multiSelectInput, alignment]);
-
+  console.log('Not UseEffect');
+  console.log(filteredBooks);
   return (
     <div>
       <div className="library-display">

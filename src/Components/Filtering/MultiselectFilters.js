@@ -35,7 +35,8 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
             filterOptions={(option.fields.options)}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}
-            labelName={option.fields.display}
+            filterLabel={option.fields.display}
+            filterName={option.fields.name}
           />
         </div>
       ))}
