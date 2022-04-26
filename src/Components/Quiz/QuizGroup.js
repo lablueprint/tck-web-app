@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './QuizGroup.css';
 import {
   Button, Avatar, Box, Card,
@@ -19,7 +19,44 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
+function reducer(state, action) {
+  // let newState;
+  switch (action.type) {
+    case 'parent':
+      return {
+        ...state,
+        isParent: true,
+      };
+      // return { ...state, isRunning: true };
+      // return (
+      //   <Button />
+      // );
+    case 'child':
+      // return { ...state, isRunning: false };
+      return {
+        ...state,
+      };
+    case 'educator':
+      // return { isRunning: false, time: 0 };
+      return {
+        ...state,
+      };
+    default:
+      throw new Error();
+  }
+}
+
 export default function QuizGroup() {
+  const initialState = {
+    isParent: false,
+  };
+  // eslint-disable-next-line
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { isParent } = state;
+
+  // const action = {
+  //   type: 'ActionType',
+  // };
   return (
     <Card sx={{
       borderRadius: 5, boxShadow: 5, margin: 10,
@@ -30,9 +67,11 @@ export default function QuizGroup() {
           Are you a parent, educator, or kid?
         </h2>
         <Box>
-          <Button class="button" sx={{ m: 7 }} component={Link} to="/quiz/questions/adult" size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src="https://s3-alpha-sig.figma.com/img/d9f4/7470/d691947a53a8eddaa6a09fd66be195b8?Expires=1651449600&Signature=SM1G1Hy2cLBBvVyP9wGtsJZB4oQeHAmUbP9XKSZtbepagoz7W1sPE6v~JTFqm2t4SI34zbxc~gQSFl3-RasyO9qeAvkj6FvDp9kc5s3LkOakQCxnCtRxSKOnX6Ty1TlKWInmQ7gLju7BbcsM-ckNnz5wchlWoNe0DgtZinmec1s8ZHDYsObZtYf2PItzd3XTxFItpxwrTeAm1pWMdckjgD4EH-NN19JC-rGUSFojQVbISYEKetnBr5xPAHFPM21MtQgx8tj-AXHpWSnKyag8rkVNAX-0fD-QvZREsIOi3Xe7gvND-FC8ELeAVzLovxrx7Mz8TX4m2P62SpOztA3DaA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style={{ borderRadius: 0 }} />}>
+          <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src="https://s3-alpha-sig.figma.com/img/d9f4/7470/d691947a53a8eddaa6a09fd66be195b8?Expires=1651449600&Signature=SM1G1Hy2cLBBvVyP9wGtsJZB4oQeHAmUbP9XKSZtbepagoz7W1sPE6v~JTFqm2t4SI34zbxc~gQSFl3-RasyO9qeAvkj6FvDp9kc5s3LkOakQCxnCtRxSKOnX6Ty1TlKWInmQ7gLju7BbcsM-ckNnz5wchlWoNe0DgtZinmec1s8ZHDYsObZtYf2PItzd3XTxFItpxwrTeAm1pWMdckjgD4EH-NN19JC-rGUSFojQVbISYEKetnBr5xPAHFPM21MtQgx8tj-AXHpWSnKyag8rkVNAX-0fD-QvZREsIOi3Xe7gvND-FC8ELeAVzLovxrx7Mz8TX4m2P62SpOztA3DaA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style={{ borderRadius: 0 }} />}>
             <p>Parent</p>
           </Button>
+          <Button variant="outlined" onClick={() => dispatch({ type: 'parent' })}>Parent</Button>
+          {isParent ? (<div>parent parent</div>) : (<div>not parent</div>)}
           <Button class="button" sx={{ m: 7 }} component={Link} to="/quiz/questions/adult" size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src="https://s3-alpha-sig.figma.com/img/ff4b/3d97/aeba26c0e7785d58d0912eb329b1bef3?Expires=1651449600&Signature=QqpMsdEPwetA8OoJ~IfQVdWd8JA-q4tgVw7BM3WXFRHp68wE6SAEWMbieVGi5Ke94iTCX0tqnwN3TO4HCsXsxhj1UFF3qQjh3pP-NUDAP3F~rRD8r2Xvt0~5q3zSferJ06ifMLI~7XEJT~I8cuunDrEQp5Sy3xMM8Boh8ns1nHMcfbXM67CoWbURCAzd9gMZO~wTVNW-8L1kRsJDkflePOTlM7sRVADJMSwzsjvP547dUsijnm61~OWkr8UTTe2E6rjGX~GStNw1dY690aPrv3P~P39dU0erNsfOkgz9YESHzIOR9O2oAvPeeF7tUm8HdVjlMmx9JTRyGFBmxeGE1w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style={{ borderRadius: 0 }} />}>
             <p>Educator</p>
           </Button>
