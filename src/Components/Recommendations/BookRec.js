@@ -30,7 +30,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import BookCards from './BookRecCards';
 
 // airtable configuration
@@ -44,8 +44,11 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function RecCardsDisplay(/* { bookAgeMin, bookGradeMin, bookEth } */) {
+export default function RecCardsDisplay({
+  minAge, maxAge, minGrade, maxGrade, raceEthnicity,
+}) {
   const [book, setBook] = useState([]);
+  // const prioMap = new Map();
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
   /*
@@ -73,16 +76,25 @@ IF(
         IF("", "", SEARCH("${fieldKeyword}", {${field}}))
       )
   */
+  console.log({ minAge });
+  console.log({ maxAge });
+  console.log({ minGrade });
+  console.log({ maxGrade });
+  console.log({ raceEthnicity });
 
   function RecFilter(field, fieldKeyword) {
     // const map1 = new Map();
     base('Book').select({
-      filterByFormula: `SEARCH("${fieldKeyword}", {${field}})`,
-      maxRecords: 3,
       view: 'Grid view',
     }).eachPage((records, fetchNextPage) => {
       setBook(records);
       records.forEach((record) => {
+        // let priority = 0;
+        if (((minAge >= record.fields.age_min) && (minAge <= record.fields.age_max))
+        || ((maxAge >= record.fields.age_min) && (maxAge <= record.fields.age_max))) {
+          console.log('TRUE');
+        }
+
         console.log(fieldKeyword);
         console.log('Retrieved', record.get('id'));
         console.log('age min: ', record.fields.age_min);
@@ -134,11 +146,18 @@ IF(
   );
 }
 
-/*
-// in line 171 BookPage.js, add these 3 vars
 RecCardsDisplay.propTypes = {
-  bookAgeMin: PropTypes.number,
-  bookGradeMin: PropTypes.string,
-  bookEth: PropTypes.string,
+  minAge: PropTypes.number,
+  maxAge: PropTypes.number,
+  minGrade: PropTypes.string,
+  maxGrade: PropTypes.string,
+  raceEthnicity: PropTypes.string,
 };
-*/
+
+RecCardsDisplay.defaultProps = {
+  minAge: 0,
+  maxAge: 0,
+  minGrade: '0',
+  maxGrade: '0',
+  raceEthnicity: '0',
+};
