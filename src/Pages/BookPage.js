@@ -68,6 +68,7 @@ function BookPage() {
 
     getEntry('Creator', illustratorId, setIllustrator);
   };
+
   useEffect(() => {
     pushToStorage();
     getEntries();
@@ -168,7 +169,14 @@ function BookPage() {
             {educatorLinks}
           </List>
         ) : <div />}
-      <BookRec bookAgeMin={book} />
+
+      <BookRec
+        minAge={book.fields.age_min}
+        maxAge={book.fields.age_max}
+        minGrade={book.fields.grade_min}
+        maxGrade={book.fields.grade_max}
+        raceEthnicity={book.fields['race/ethnicity']}
+      />
     </Paper>
   );
 }
