@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
 export default function MultiselectComponent({
-  filterOptions, input, setInput, labelName,
+  filterOptions, input, setInput, filterLabel, filterName,
 }) {
   const result = filterOptions ? filterOptions.split(',') : null;
   const handleToggle = (val, label) => {
@@ -20,13 +20,13 @@ export default function MultiselectComponent({
         filterSelectedOptions
         onChange={(event, value) => handleToggle(
           value,
-          labelName,
+          filterName,
           event,
         )}
         renderInput={(params) => (
           <TextField
             {...params}
-            label={labelName}
+            label={filterLabel}
             placeholder={filterOptions ? `'${filterOptions[0]}...'` : null}
             size="small"
           />
@@ -47,5 +47,6 @@ MultiselectComponent.propTypes = {
     book_type: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   setInput: PropTypes.func.isRequired,
-  labelName: PropTypes.string.isRequired,
+  filterLabel: PropTypes.string.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
