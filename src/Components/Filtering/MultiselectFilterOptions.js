@@ -40,11 +40,11 @@ MultiselectComponent.propTypes = {
   filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
     'race/ethnicity': PropTypes.arrayOf(PropTypes.string).isRequired,
-    'identity tags': PropTypes.arrayOf(PropTypes.string).isRequired,
+    identity_tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     religion: PropTypes.arrayOf(PropTypes.string).isRequired,
     genre: PropTypes.arrayOf(PropTypes.string).isRequired,
     'theme/lessons': PropTypes.arrayOf(PropTypes.string).isRequired,
-    'Book type': PropTypes.arrayOf(PropTypes.string).isRequired,
+    book_type: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   setInput: PropTypes.func.isRequired,
   labelName: PropTypes.string.isRequired,

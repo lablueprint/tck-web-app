@@ -12,7 +12,7 @@
 }
 
 .header-container {
-    width: 80%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,8 +22,9 @@
     list-style: none;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-content: center;
     justify-content: end;
+    margin: 0;
 }
 
 .nav-link {
@@ -32,6 +33,7 @@
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
+    font-size:1rem;
 }
 
 .nav-link-active {
@@ -40,6 +42,7 @@
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
+    font-size:1rem;
 }
 
 .logo {

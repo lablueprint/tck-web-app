@@ -47,10 +47,10 @@ MultSelectElem.propTypes = {
   setTempMultiSelect: propTypes.func.isRequired,
   tempMultiSelect: propTypes.shape({
     'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
-    'identity tags': propTypes.arrayOf(propTypes.string).isRequired,
+    identity_tags: propTypes.arrayOf(propTypes.string).isRequired,
     religion: propTypes.arrayOf(propTypes.string).isRequired,
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     'theme/lessons': propTypes.arrayOf(propTypes.string).isRequired,
-    'Book type': propTypes.arrayOf(propTypes.string).isRequired,
+    book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
 };

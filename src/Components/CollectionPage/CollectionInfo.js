@@ -5,23 +5,23 @@ import './CollectionPage.css';
 // Collection name/picture/description components
 export default function CollectionInfo({ name, picture, description }) {
   return (
-    <>
-      <div className="Header">
+    <div>
+      <div className="header">
         {name}
-        <img width="10%" height="10%" align="center" src={picture} alt="author" />
+        <img className="collection-card-image" src={picture} alt="author" />
       </div>
-      <div className="SubHeader">
+      <div className="sub-header">
         About this collection
       </div>
-      <div className="Paragraph">
+      <div className="paragraph">
         {description}
       </div>
-    </>
+    </div>
   );
 }
 
 CollectionInfo.propTypes = {
   name: PropTypes.string.isRequired,
-  picture: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  picture: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
