@@ -24,11 +24,11 @@ function BookBrowser() {
   });
   const [multiSelectInput, setMultiSelectInput] = useState({
     'race/ethnicity': [],
-    'identity tags': [],
+    identity_tags: [],
     religion: [],
     genre: [],
     'theme/lessons': [],
-    'Book type': [],
+    book_type: [],
   });
 
   const handleChange = (event, newAlignment) => {

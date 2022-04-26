@@ -165,9 +165,9 @@ function CardsDisplay({
         || (record.fields.religion !== undefined
           ? record.fields.religion.some((value) => multiSelectInput.religion.indexOf(value) !== -1)
           : false))
-      && (multiSelectInput['identity tags'].length === 0
-        || (record.fields['identity tags'] !== undefined
-          ? record.fields['identity tags'].some((value) => multiSelectInput['identity tags'].indexOf(value)
+      && (multiSelectInput.identity_tags.length === 0
+        || (record.fields.identity_tags !== undefined
+          ? record.fields.identity_tags.some((value) => multiSelectInput['identity tags'].indexOf(value)
            !== -1)
           : false
         ))
@@ -177,9 +177,9 @@ function CardsDisplay({
            !== -1)
           : false
         ))
-      && (multiSelectInput['Book type'].length === 0
-        || (record.fields['Book type'] !== undefined
-          ? record.fields['Book type'].some((value) => multiSelectInput['Book type'].indexOf(value)
+      && (multiSelectInput.book_type.length === 0
+        || (record.fields.book_type !== undefined
+          ? record.fields.book_type.some((value) => multiSelectInput['Book type'].indexOf(value)
            !== -1)
           : false
         ))
@@ -203,7 +203,7 @@ function CardsDisplay({
                 key={card.id}
                 id={card.id}
                 title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+                author={card.fields.author !== undefined ? card.fields.author : ['MISSING CREATOR']}
                 image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
               />
             ) : null

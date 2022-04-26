@@ -15,11 +15,11 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
     'race/ethnicity': [],
-    'identity tags': [],
+    identity_tags: [],
     religion: [],
     genre: [],
     'theme/lessons': [],
-    'Book type': [],
+    book_type: [],
   });
 
   const handleSave = () => {
@@ -35,11 +35,11 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     });
     setTempMultiSelect({
       'race/ethnicity': [],
-      'identity tags': [],
+      identity_tags: [],
       religion: [],
       genre: [],
       'theme/lessons': [],
-      'Book type': [],
+      book_type: [],
     });
     setRangeState({
       age:
@@ -48,11 +48,11 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     });
     setMultiSelectInput({
       'race/ethnicity': [],
-      'identity tags': [],
+      identity_tags: [],
       religion: [],
       genre: [],
       'theme/lessons': [],
-      'Book type': [],
+      book_type: [],
     });
   };
 

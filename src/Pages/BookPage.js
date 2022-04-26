@@ -40,9 +40,7 @@ function BookPage() {
 
     getEntry('Creator', illustratorId, setIllustrator);
   };
-  useEffect(() => {
-    getEntries();
-  }, [bookId]); // Runs on mount and on change of bookId
+  useEffect(getEntries, [bookId]); // Runs on mount and on change of bookId
 
   if (!book) {
     return <div>Scouring our library...</div>;
