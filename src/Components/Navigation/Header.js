@@ -7,7 +7,7 @@ import logo from '../../Assets/Images/TCK PNG Logo.png';
 
 function Header() {
   return (
-    <nav className="header" style={{ zIndex: '1' }}>
+    <nav className="header">
       <div className="header-container">
         <NavLink
           to="/"

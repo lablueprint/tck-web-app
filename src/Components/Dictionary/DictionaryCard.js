@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {
   Card, CardActions, CardContent, Button, Grid, Avatar,
 } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import './DictionaryCard.css';
 
 export default function DictionaryCard({
@@ -57,6 +58,7 @@ export default function DictionaryCard({
                 <div>
                   {linksArray.filter((v) => Object.keys(v).length).map((url) => (
                     <Button
+                      key={uuidv4()}
                       style={{ textTransform: 'none', color: '#607AAD', fontSize: '15px' }}
                       href={url}
                     >

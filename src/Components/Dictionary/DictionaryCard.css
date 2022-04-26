@@ -46,14 +46,3 @@
     display: flex;
     flex-direction: row;
 }
-
-.title 
-{
-    font-size: 35px;
-    font-family: 'DM Sans';
-    font-weight: 600;
-    text-align: left;
-    padding-left: 6%;
-    padding-top: 5%;
-    padding-bottom: 2%;
-}

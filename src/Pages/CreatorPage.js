@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AuthorInfo from '../Components/creatorPage/Creator';
-import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
+import AuthorInfo from '../Components/CreatorPage/Creator';
+import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
 
 // airtable configuration
 const Airtable = require('airtable');

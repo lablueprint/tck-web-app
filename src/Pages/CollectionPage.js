@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
-import CollectionsCarousel from '../Components/Collections/CollectionsCarousel';
+import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/electric-boogaloo-previous-arrow.svg';
 import NextArrow from '../Assets/Images/electric-boogaloo-next-arrow.svg';
 // airtable configuration
