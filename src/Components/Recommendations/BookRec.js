@@ -30,7 +30,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import BookCards from './BookRecCards';
 
 // airtable configuration
@@ -44,7 +44,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function RecCardsDisplay({ bookAgeMin, bookGradeMin, bookEth }) {
+export default function RecCardsDisplay(/* { bookAgeMin, bookGradeMin, bookEth } */) {
   const [book, setBook] = useState([]);
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
@@ -66,14 +66,18 @@ export default function RecCardsDisplay({ bookAgeMin, bookGradeMin, bookEth }) {
   // Airtable Filter implementation
   // filterByFormula: `IF(${field} = {id},
   // SEARCH("search for age_range", "id"), IF("", "", SEARCH("${fieldKeyword}", {${field}})))`
+  /*
+IF(
+        ${field} = {id},
+        SEARCH("search for age_range", "id"),
+        IF("", "", SEARCH("${fieldKeyword}", {${field}}))
+      )
+  */
+
   function RecFilter(field, fieldKeyword) {
     // const map1 = new Map();
     base('Book').select({
-      filterByFormula: `IF(
-        ${field} = {id}, 
-        SEARCH("search for age_range", "id"), 
-        IF("", "", SEARCH("${fieldKeyword}", {${field}}))
-      )`,
+      filterByFormula: `SEARCH("${fieldKeyword}", {${field}})`,
       maxRecords: 3,
       view: 'Grid view',
     }).eachPage((records, fetchNextPage) => {
@@ -109,7 +113,7 @@ export default function RecCardsDisplay({ bookAgeMin, bookGradeMin, bookEth }) {
   useEffect(() => {
     // getCards();
     RecFilter('id', bookId);
-    console.log(curBook.record);
+    // console.log(curBook.record);
   }, []);
 
   return (
@@ -130,9 +134,11 @@ export default function RecCardsDisplay({ bookAgeMin, bookGradeMin, bookEth }) {
   );
 }
 
+/*
 // in line 171 BookPage.js, add these 3 vars
 RecCardsDisplay.propTypes = {
   bookAgeMin: PropTypes.number,
   bookGradeMin: PropTypes.string,
   bookEth: PropTypes.string,
 };
+*/
