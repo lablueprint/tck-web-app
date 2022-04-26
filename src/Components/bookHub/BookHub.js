@@ -20,6 +20,10 @@ function CardsDisplay({
 }) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const incomingGradeIndices = [0, 0];
+  const incomingAgeIndices = [0, 0];
+  const recordAgeIndices = [0, 0];
+  const recordGradeIndices = [0, 0];
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -134,30 +138,23 @@ function CardsDisplay({
 
   // Filter function
   useEffect(() => {
-    console.log(multiSelectInput);
     if (alignment === 'Filter') {
-      const validGradeTags = gradeRangeMetadata.slice(
-        gradeRangeMetadata.indexOf(rangeInput.grade.min),
-        gradeRangeMetadata.indexOf(rangeInput.grade.max) + 1,
-      );
-      const validAgeTags = ageRangeMetadata.slice(
-        ageRangeMetadata.indexOf(rangeInput.age.min),
-        ageRangeMetadata.indexOf(rangeInput.age.max) + 1,
-      );
+      incomingGradeIndices[0] = gradeRangeMetadata.indexOf(rangeInput.grade.min);
+      incomingGradeIndices[1] = gradeRangeMetadata.indexOf(rangeInput.grade.max);
+      incomingAgeIndices[0] = ageRangeMetadata.indexOf(rangeInput.age.min);
+      incomingAgeIndices[1] = ageRangeMetadata.indexOf(rangeInput.age.max);
 
       setFilteredBooks(allBooks.filter(
         (record) => {
-          const incomingGradeTags = gradeRangeMetadata.slice(
-            gradeRangeMetadata.indexOf(record.fields.grade_min),
-            gradeRangeMetadata.indexOf(record.fields.grade_max) + 1,
-          );
-          const incomingAgeTags = ageRangeMetadata.slice(
-            ageRangeMetadata.indexOf(`${record.fields.age_min}`),
-            ageRangeMetadata.indexOf(`${record.fields.age_max}`) + 1,
-          );
-
-          return ((incomingAgeTags.some((val) => validAgeTags.indexOf(val) !== -1)
-      && incomingGradeTags.some((value) => validGradeTags.indexOf(value) !== -1))
+          recordGradeIndices[0] = gradeRangeMetadata.indexOf(record.fields.grade_min);
+          recordGradeIndices[1] = gradeRangeMetadata.indexOf(record.fields.grade_max);
+          recordAgeIndices[0] = ageRangeMetadata.indexOf(record.fields.age_min);
+          recordAgeIndices[1] = ageRangeMetadata.indexOf(record.fields.age_max);
+          return (
+            (incomingGradeIndices[0] <= recordGradeIndices[1])
+            && (incomingGradeIndices[1] >= recordGradeIndices[0])
+        && (incomingAgeIndices[0] <= recordAgeIndices[1])
+        && (incomingAgeIndices[1] >= recordAgeIndices[0])
       && (multiSelectInput['race/ethnicity'].length === 0
          || (record.fields['race/ethnicity'] !== undefined
            ? record.fields['race/ethnicity'].some((value) => multiSelectInput['race/ethnicity'].indexOf(value) !== -1)
@@ -194,11 +191,7 @@ function CardsDisplay({
 
       ));
     }
-    console.log('from UseEffect');
-    console.log(filteredBooks);
   }, [rangeInput, multiSelectInput, alignment]);
-  console.log('Not UseEffect');
-  console.log(filteredBooks);
   return (
     <div>
       <div className="library-display">
