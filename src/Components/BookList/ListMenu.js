@@ -13,6 +13,12 @@ const BUTTON_SX = {
   fontWeight: '600',
 };
 
+const MENULIST_SX = {
+  '.MuiMenu-paper': {
+    borderRadius: '15px',
+  },
+};
+
 function ListMenu({
   menuText, menuIcon, options, value, handleChange,
 }) {
@@ -35,7 +41,9 @@ function ListMenu({
       key={option.id}
       value={option.value}
       onClick={handleChoose}
-      sx={{ minWidth: '15vw', fontFamily: 'Work Sans', fontWeight: '600' }}
+      sx={{
+        minWidth: '15vw', fontFamily: 'Work Sans', fontWeight: '600',
+      }}
     >
       {
                 (option.icon) ? <ListItemIcon>{option.icon}</ListItemIcon> : <div />
@@ -68,6 +76,7 @@ function ListMenu({
         MenuListProps={{
           onClick: handleClose,
         }}
+        sx={MENULIST_SX}
       >
         { menuItems }
 
