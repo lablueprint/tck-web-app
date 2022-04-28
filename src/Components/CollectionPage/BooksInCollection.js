@@ -29,16 +29,7 @@ function BooksInCollection({ authorId }) {
             if (error) {
               console.error(err);
             }
-            setBooks((prevValue) => prevValue.concat(
-              {
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
-                author: record.fields.author,
-                id: element,
-                date_added: record.fields.date_added,
-                date_published: record.fields.date_published,
-              },
-            ));
+            setBooks((prevBooks) => [...prevBooks, record]);
           });
         });
       }
@@ -83,4 +74,34 @@ OLD CODE
       </div>
       <div />
     </div>
+
+    ======
+    function FindPosts() {
+    const id = authorId;
+    base('Collection').find(id, (err, records) => {
+      if (err) {
+        console.error(err);
+      }
+      const bookid = records.fields.books;
+      if (bookid !== undefined && bookid.length) {
+        bookid.forEach((element) => {
+          base('Book').find(element, (error, record) => {
+            if (error) {
+              console.error(err);
+            }
+            setBooks((prevValue) => prevValue.concat(
+              {
+                image: record.fields.image[0].thumbnails.large.url,
+                title: record.fields.title,
+                author: record.fields.author,
+                id: element,
+                date_added: record.fields.date_added,
+                date_published: record.fields.date_published,
+              },
+            ));
+          });
+        });
+      }
+    });
+  }
 */
