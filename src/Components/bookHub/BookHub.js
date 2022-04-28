@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import BookCard from './BookCard';
+// import BookCard from './BookCard';
 import SearchBar from './SearchBar';
-// import BookList from '../BookList/BookList';
+import BookList from '../BookList/BookList';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -106,20 +106,7 @@ function CardsDisplay() {
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
-      <div className="library-display">
-        {filteredBooks.map((card) => (
-          (card)
-            ? (
-              <BookCard
-                key={card.id}
-                id={card.id}
-                title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author : ['MISSING CREATOR']}
-                image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
-              />
-            ) : null
-        ))}
-      </div>
+      <BookList books={filteredBooks} />
     </div>
   );
 }
