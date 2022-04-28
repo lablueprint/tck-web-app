@@ -1,15 +1,15 @@
-.collectionHeading {
+.collection-heading {
     text-align: left;
     color:#333333;
-    font-size: 45px;
+    font-size: 3.3rem;
     font-weight: 750;
     margin: 2rem 0rem 1rem 4rem;
   }
   
-  .collectionParagraph {
+  .collection-paragraph {
     text-align: left;
     color: #333333;
-    font-size: 25px;
+    font-size: 1.4rem;
     margin: 0rem 0rem 1rem 4rem;
   }
 
