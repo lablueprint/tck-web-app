@@ -41,30 +41,30 @@ function CollectionPage() {
   useEffect(getPosts, [collecID]);
   useEffect(getCollections, []);
   return (
-    <div>
+    <div style={{ margin: '4rem 7rem 0rem 7rem' }}>
       <CollectionsCarousel
         elementArray={collections}
-        slidesAtATime={1.5}
+        slidesAtATime={1.98}
         prevArrow={PrevArrow}
         nextArrow={NextArrow}
         widthPercent={100}
-        spaceBetweenEntries={40}
-        swiperHeight={277}
-        cardImageHeightPercent={90}
-        cardImageWidthPercent={90}
+        spaceBetweenEntries={20}
+        swiperHeight={237}
+        cardImageHeightPercent={70}
+        cardImageWidthPercent={70}
         cardFontSize={100}
         centeredSlides
         shouldLoop
         isCollectionPageHeader
         setCollecID={updateCollecID}
         initialID={params.id}
+        activeSlideString="Currently Viewing"
       />
       { CollectionDetails !== undefined
         ? (
           <CollectionInfo
             name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
             description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
-            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].thumbnails.large.url : ''}
           />
         ) : <p>No such collection found!</p> }
       { BooksInCollection !== undefined
