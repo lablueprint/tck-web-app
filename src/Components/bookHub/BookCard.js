@@ -54,7 +54,7 @@ export default function BookCard({
       className="card"
       style={{
         margin: inCarousel ? '0' : '30px 16px 10px 16px',
-        maxWidth: '15vw',
+        maxWidth: '13vw',
       }}
     >
       <Link className="link" to={`/book/${id}`}>

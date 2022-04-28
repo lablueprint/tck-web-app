@@ -128,7 +128,7 @@ function BookList({ books }) {
   };
 
   return (books.length) ? (
-    <div style={{ alignItems: 'center', width: '90vw', margin: 'auto' }}>
+    <div style={{ alignItems: 'center', width: '82vw', margin: 'auto' }}>
       <div style={{ display: 'flex', flexDirection: 'row', fontFamily: 'Work Sans' }}>
         <ListMenu
           menuText="Sort"
