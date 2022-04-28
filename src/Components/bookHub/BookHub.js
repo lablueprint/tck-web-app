@@ -110,7 +110,7 @@ function CardsDisplay() {
                 key={card.id}
                 id={card.id}
                 title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author[0] : 'MISSING AUTHOR'}
+                author={card.fields.author !== undefined ? card.fields.author : ['MISSING CREATOR']}
                 image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
               />
             ) : null
