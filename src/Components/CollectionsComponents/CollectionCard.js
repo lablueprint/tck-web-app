@@ -5,7 +5,7 @@ import './Collection.css';
 
 export default function Collection({
   Collid, image, name, imageHeightPercent,
-  imageWidthPercent, isCollectionPageHeader, isSlideActive,
+  imageWidthPercent, isCollectionPageHeader, isSlideActive, color,
 }) {
   return (
 
@@ -16,6 +16,7 @@ export default function Collection({
       className="link"
       to={`/collection/${Collid}`}
       id="collection-card"
+      style={{ background: color }}
     >
       <div className="collection-image-container">
         <img className="collection-image" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
@@ -28,6 +29,7 @@ export default function Collection({
               className="card-title"
               style={{
                 fontSize: '1.75rem',
+                alignItems: isSlideActive ? 'end' : 'center',
               }}
             >
               {name}
@@ -65,6 +67,7 @@ Collection.propTypes = {
   imageWidthPercent: PropTypes.number.isRequired,
   isCollectionPageHeader: PropTypes.bool,
   isSlideActive: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 Collection.defaultProps = {
@@ -72,4 +75,5 @@ Collection.defaultProps = {
   name: 'MISSING NAME',
   isCollectionPageHeader: false,
   isSlideActive: false,
+  color: '#2E3E64',
 };
