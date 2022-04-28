@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import BookCard from './BookCard';
 import SearchBar from './SearchBar';
 import BookList from '../BookList/BookList';
 
@@ -101,8 +100,6 @@ function CardsDisplay() {
     }
   }, [allBooks, searchTerms, defaultSearch]);
 
-  if (filteredBooks.length) console.log(filteredBooks[0]);
-
   return (
     <div>
       <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
@@ -122,18 +119,4 @@ export default CardsDisplay;
       - hard to see the current algorithm will be too slow for our purposes
          without having a big amount of data alr
 
-  <div className="library-display">
-        {filteredBooks.map((card) => (
-          (card)
-            ? (
-              <BookCard
-                key={card.id}
-                id={card.id}
-                title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author : ['MISSING CREATOR']}
-                image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
-              />
-            ) : null
-        ))}
-      </div>
 */
