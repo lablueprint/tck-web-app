@@ -6,7 +6,11 @@ import { Sort, SortByAlpha, DateRange, StarBorder } from '@mui/icons-material';
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
 
-const sortAlpha = (a, b) => (a.fields.title.toLowerCase() < b.fields.title.toLowerCase() ? -1 : 1); // alphabetical
+const sortAlpha = (a, b) => {  // alphabetical
+    if (a.fields.title === undefined) return 1;
+    if (b.fields.title === undefined) return -1;
+    return (a.fields.title.toLowerCase() < b.fields.title.toLowerCase() ? -1 : 1);
+}; 
 const sortRelease = (a, b) => (a.fields.date_published < b.fields.date_published ? 1 : -1);  // Most recently published first
 const sortAdded = (a, b) =>  (a.fields.date_added < b.fields.date_added ? 1 : -1);  // Most recently added first
 
@@ -135,9 +139,9 @@ function BookList({ books }) {
             <div className="library-display">
                 {currentBooks.map((book) => (
                 <BookCard
-                    image={book.fields.image[0].thumbnails.large.url}
-                    title={book.fields.title}
-                    author={book.fields.author}
+                    title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
+                    author={book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR']}
+                    image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
                     key={book.fields.id}
                     id={book.fields.id}
                 />
