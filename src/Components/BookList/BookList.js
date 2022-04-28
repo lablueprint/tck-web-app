@@ -64,18 +64,22 @@ const pageOptions = [
 const PaginationSX = {
     ".MuiPaginationItem-root": {
         backgroundColor: 'rgba(42, 133, 239, 0.1)',
-        color: "#2A84EF"
+        borderColor: 'rgba(42, 133, 239, 0.1)',
+        color: "#2A84EF",
+        "&.Mui-selected": {
+            backgroundColor: "rgba(42, 133, 239, .25)",
+            borderColor: 'rgba(42, 133, 239, 0.25)',
+            color: "#2A84EF"
+        },
+        fontFamily: "Work Sans",
+        fontWeight: "600"
       },
-    ".Mui-selected": {
-        backgroundColor: "rgba(42, 133, 239, 0.25)",
-        color: "#2A84EF"
-    },
 
   };
 
 function BookList({ books }) {
-    const [page, setPage] = useState(ALPHA);
-    const [booksPerPage, setBooksPerPage] = useState(18);
+    const [page, setPage] = useState(1);
+    const [booksPerPage, setBooksPerPage] = useState(2);
 
     // Menu states
     const [sort, setSort] = useState(ALPHA);
@@ -97,7 +101,18 @@ function BookList({ books }) {
 
     const count = Math.ceil(books.length / booksPerPage);
 
-    return (
+    const handleSort = (sortBy) => {
+        setPage(1);
+        setSort(sortBy);
+    };
+
+    const handleBooksPerPage = (bookCount) => {
+        // When we change booksPerPage, we will go back to page 1 and apply booksPerPage
+        setPage(1);
+        setBooksPerPage(bookCount);
+    };
+
+    return (books.length) ? (
         <div style={{ alignItems: 'center', width: '90vw', margin: 'auto'}}>
             <div style={{display: 'flex', flexDirection: 'row', fontFamily: 'Work Sans'}}>
                 <ListMenu 
@@ -105,7 +120,7 @@ function BookList({ books }) {
                     menuIcon={<Sort/>}
                     options={sortOptions}
                     value={sort}
-                    handleChange={setSort}
+                    handleChange={handleSort}
                     />
 
                 <ListMenu
@@ -113,7 +128,7 @@ function BookList({ books }) {
                     menuIcon={null}
                     options={pageOptions}
                     value={booksPerPage}
-                    handleChange={setBooksPerPage}
+                    handleChange={handleBooksPerPage}
                 />
             </div>
             
@@ -130,6 +145,7 @@ function BookList({ books }) {
             </div>
             <div style={{display: 'flex', justifyContent: 'center', fontFamily: 'Work Sans'}}>
                 <Pagination 
+                    variant="outlined"
                     count={count} 
                     page={page} 
                     onChange={handleChange}
@@ -137,6 +153,8 @@ function BookList({ books }) {
                 />
             </div>
         </div>
+    ) : (
+        <h1>Sorry, there's no books here! 😰</h1>
     );
     
 
@@ -148,15 +166,14 @@ export default BookList;
     PAGINATION
         - const [page, setPage] = useState(1);
         - const [postsPerPage, setPostsPerPage] = useState(18);
-            - 18, 36, 54, 72
-        Pagination is ready to go, just pass currentPage, handleChange
-        <Pagination count={books.length / postsPerPage} page={page} onChange={handleChange} />
-            WARNING: if books includes null, count may not be accurate
+        - 18, 36, 54, 72 granularity
+        WARNING: if books includes null, count may not be accurate
     SORTING
         - alphabetically (default), release date, recently added
-        - const [sortBy, setSortBy] = useState('alphabetic')
-
-    
+        - sort codes are defined as 
+            - ALPHA = 1
+            - RECENT = 2
+            - ADDED = 3
 
     <ListMenu 
         menuText="Sort"
