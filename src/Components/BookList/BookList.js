@@ -140,7 +140,6 @@ function BookList({ books }) {
 
         <ListMenu
           menuText="items per page"
-          menuIcon={null}
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}
@@ -174,7 +173,7 @@ function BookList({ books }) {
 }
 
 BookList.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.object)).isRequired,
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default BookList;
@@ -193,4 +192,11 @@ export default BookList;
 
     books format:
         books is to be an array of Records pulled from Airtable.
+        shape({
+    fields: {
+      title: PropTypes.string.isRequired,
+      author: PropTypes.arrayOf(PropTypes.string),
+      image: PropTypes.
+    },
+  })
 */
