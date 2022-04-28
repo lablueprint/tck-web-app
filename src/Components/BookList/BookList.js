@@ -76,6 +76,7 @@ const pageOptions = [
 ];
 
 const PaginationSX = {
+  margin: '2vh auto 2vh auto',
   '.MuiPaginationItem-root': {
     backgroundColor: 'rgba(42, 133, 239, 0.1)',
     borderColor: 'rgba(42, 133, 239, 0.1)',
@@ -93,7 +94,7 @@ const PaginationSX = {
 
 function BookList({ books }) {
   const [page, setPage] = useState(1);
-  const [booksPerPage, setBooksPerPage] = useState(2);
+  const [booksPerPage, setBooksPerPage] = useState(18);
 
   // Menu states
   const [sort, setSort] = useState(ALPHA);
