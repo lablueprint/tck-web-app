@@ -11,8 +11,16 @@ const sortAlpha = (a, b) => {  // alphabetical
     if (b.fields.title === undefined) return -1;
     return (a.fields.title.toLowerCase() < b.fields.title.toLowerCase() ? -1 : 1);
 }; 
-const sortRelease = (a, b) => (a.fields.date_published < b.fields.date_published ? 1 : -1);  // Most recently published first
-const sortAdded = (a, b) =>  (a.fields.date_added < b.fields.date_added ? 1 : -1);  // Most recently added first
+const sortRelease = (a, b) => {  // Most recently published first
+    if (a.fields.date_published === undefined) return -1;
+    if (b.fields.date_published === undefined) return 1;
+    return (a.fields.date_published < b.fields.date_published ? 1 : -1);
+};  
+const sortAdded = (a, b) => {  // Most recently added first
+    if (a.fields.date_added === undefined) return -1;
+    if (b.fields.date_added === undefined) return 1;
+    return (a.fields.date_added < b.fields.date_added ? 1 : -1);
+};
 
 const ALPHA = 1;
 const RELEASE = 2;
