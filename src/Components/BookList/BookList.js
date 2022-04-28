@@ -6,9 +6,9 @@ import { Sort, SortByAlpha, DateRange, StarBorder } from '@mui/icons-material';
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
 
-const sortAlpha = (a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1); // alphabetical
-const sortRelease = (a, b) => (a.date_published < b.date_published ? 1 : -1);  // Most recently published first
-const sortAdded = (a, b) =>  (a.date_added < b.date_added ? 1 : -1);  // Most recently added first
+const sortAlpha = (a, b) => (a.fields.title.toLowerCase() < b.fields.title.toLowerCase() ? -1 : 1); // alphabetical
+const sortRelease = (a, b) => (a.fields.date_published < b.fields.date_published ? 1 : -1);  // Most recently published first
+const sortAdded = (a, b) =>  (a.fields.date_added < b.fields.date_added ? 1 : -1);  // Most recently added first
 
 const ALPHA = 1;
 const RELEASE = 2;
@@ -89,7 +89,7 @@ function BookList({ books }) {
     };
 
     // Sort books
-    const sortedBooks = books;
+    const sortedBooks = books.filter(book => book !== undefined);  // Remove any undefined beforehand;
     if (sort === ALPHA) sortedBooks.sort(sortAlpha);
     if (sort === RELEASE) sortedBooks.sort(sortRelease);
     if (sort === ADDED) sortedBooks.sort(sortAdded);
@@ -135,11 +135,11 @@ function BookList({ books }) {
             <div className="library-display">
                 {currentBooks.map((book) => (
                 <BookCard
-                    image={book.image}
-                    title={book.title}
-                    author={book.author}
-                    key={book.id}
-                    id={book.id}
+                    image={book.fields.image[0].thumbnails.large.url}
+                    title={book.fields.title}
+                    author={book.fields.author}
+                    key={book.fields.id}
+                    id={book.fields.id}
                 />
                 ))}
             </div>
@@ -174,6 +174,9 @@ export default BookList;
             - ALPHA = 1
             - RECENT = 2
             - ADDED = 3
+
+    books format:
+        books is to be an array of Records pulled from Airtable.
 
     <ListMenu 
         menuText="Sort"
