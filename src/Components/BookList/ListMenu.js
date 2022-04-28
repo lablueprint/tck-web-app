@@ -78,10 +78,14 @@ function ListMenu({
 
 export default ListMenu;
 
+ListMenu.defaultProps = {
+  menuIcon: null,
+};
+
 ListMenu.propTypes = {
   menuText: PropTypes.string.isRequired,
-  menuIcon: PropTypes.elementType.isRequired,
-  options: PropTypes.PropTypes.arrayOf(PropTypes.elementType).isRequired,
+  menuIcon: PropTypes.element,
+  options: PropTypes.PropTypes.arrayOf(PropTypes.object).isRequired,
   value: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
