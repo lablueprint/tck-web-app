@@ -174,7 +174,7 @@ function BookList({ books }) {
 }
 
 BookList.propTypes = {
-  books: PropTypes.PropTypes.arrayOf(PropTypes.objectOf(PropTypes.object)).isRequired,
+  books: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.object)).isRequired,
 };
 
 export default BookList;
@@ -184,7 +184,6 @@ export default BookList;
         - const [page, setPage] = useState(1);
         - const [postsPerPage, setPostsPerPage] = useState(18);
         - 18, 36, 54, 72 granularity
-        WARNING: if books includes null, count may not be accurate
     SORTING
         - alphabetically (default), release date, recently added
         - sort codes are defined as
@@ -194,12 +193,4 @@ export default BookList;
 
     books format:
         books is to be an array of Records pulled from Airtable.
-
-    <ListMenu
-        menuText="Sort"
-        menuIcon={<Sort/>}
-        options={sortOptions}
-        value={sort}
-        handleChange={setSort}
-    />
 */
