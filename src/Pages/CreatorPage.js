@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import propTypes from 'prop-types';
-import AuthorInfo from '../Components/CreatorPage/AuthorInfo';
+import AuthorInfo from '../Components/CreatorPage/Creator';
 import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
 
 // airtable configuration
@@ -36,10 +35,12 @@ function CreatorPage() {
       { AuthorDetails !== undefined
         ? (
           <AuthorInfo
-            author={AuthorDetails.fields.name}
-            bio={AuthorDetails.fields.bio}
-            links={AuthorDetails.fields.personal_site}
-            authorPic={AuthorDetails.fields.image[0].thumbnails.large.url}
+            author={AuthorDetails.fields.name !== undefined ? AuthorDetails.fields.name : 'MISSING CREATOR'}
+            bio={AuthorDetails.fields.bio !== undefined ? AuthorDetails.fields.bio : ''}
+            links={AuthorDetails.fields.personal_site !== undefined
+              ? AuthorDetails.fields.personal_site : ''}
+            authorPic={AuthorDetails.fields.image !== undefined
+              ? AuthorDetails.fields.image[0].url : ''}
           />
         ) : <p>No such author found!</p> }
       <CreatedWorksCard authorId={authId} />
