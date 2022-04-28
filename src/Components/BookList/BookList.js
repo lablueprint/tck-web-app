@@ -75,7 +75,7 @@ const pageOptions = [
   },
 ];
 
-const PaginationSX = {
+const paginationSX = {
   margin: '2vh auto 2vh auto',
   '.MuiPaginationItem-root': {
     backgroundColor: 'rgba(42, 133, 239, 0.1)',
@@ -164,7 +164,7 @@ function BookList({ books }) {
           count={count}
           page={page}
           onChange={handleChange}
-          sx={PaginationSX}
+          sx={paginationSX}
         />
       </div>
     </div>
