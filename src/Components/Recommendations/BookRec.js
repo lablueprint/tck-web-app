@@ -91,36 +91,42 @@ IF(
       setBook(records);
       records.forEach((record) => {
         // do not check with the identical book
+        if (bookId !== record.get('id')) {
+          let priority = 0;
+          if ((minAge <= record.fields.age_max) && (maxAge >= record.fields.age_min)) {
+            priority += 2;
+          }
 
-        // let priority = 0;
-        /*
-        if (((minAge >= record.fields.age_min) && (minAge <= record.fields.age_max))
-        || ((maxAge >= record.fields.age_min) && (maxAge <= record.fields.age_max))) {
-          console.log('TRUE');
-        }
+          const minGradeIndex = gradeList.indexOf(minGrade, 0);
+          const maxGradeIndex = gradeList.indexOf(maxGrade, 0);
+          const minGradeIndexRecord = gradeList.indexOf(record.fields.grade_min, 0);
+          const maxGradeIndexRecord = gradeList.indexOf(record.fields.grade_max, 0);
+
+          if ((minGradeIndex <= maxGradeIndexRecord) && (maxGradeIndex >= minGradeIndexRecord)) {
+            priority += 2;
+          }
+
+          if (raceEthnicity && record.fields['race/ethnicity']) {
+            for (let i = 0; i < raceEthnicity.length; i += 1) {
+              if (record.fields['race/ethnicity'].includes(raceEthnicity[i])) {
+                priority += 1;
+              }
+            }
+          }
+          /*
+          race
+          identity
+          genre
         */
-        const minGradeIndex = gradeList.indexOf(minGrade, 0);
-        const maxGradeIndex = gradeList.indexOf(maxGrade, 0);
-        const minGradeIndexRecord = gradeList.indexOf(record.fields.grade_min, 0);
-        const maxGradeIndexRecord = gradeList.indexOf(record.fields.grade_max, 0);
-
-        if ((minGradeIndex <= maxGradeIndexRecord) && (maxGradeIndex >= minGradeIndexRecord)) {
-          console.log('TRUETRUE');
+          // console.log(fieldKeyword);
+          console.log('Retrieved', record.get('id'));
+          // console.log('age min: ', record.fields.age_min);
+          // console.log('age max: ', record.fields.age_max);
+          // console.log('grade min: ', record.fields.grade_min);
+          // console.log('grade_max: ', record.fields.grade_max);
+          // console.log(record.fields['race/ethnicity']);
+          console.log(priority);
         }
-        /*
-        if (((minGradeIndex >= minGradeIndexRecord) && (minGradeIndex <= maxGradeIndexRecord))
-        || ((maxGradeIndex >= minGradeIndexRecord) && (maxGradeIndex <= maxGradeIndexRecord))) {
-          console.log('TRUETRUE');
-        }
-        */
-
-        // console.log(fieldKeyword);
-        console.log('Retrieved', record.get('id'));
-        // console.log('age min: ', record.fields.age_min);
-        // console.log('age max: ', record.fields.age_max);
-        console.log('grade min: ', record.fields.grade_min);
-        console.log('grade_max: ', record.fields.grade_max);
-        console.log(record.fields['race/ethnicity']);
       });
       console.log(fieldKeyword);
       console.log(bookId);
