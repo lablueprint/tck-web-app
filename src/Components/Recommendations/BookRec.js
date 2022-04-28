@@ -48,6 +48,7 @@ export default function RecCardsDisplay({
   minAge, maxAge, minGrade, maxGrade, raceEthnicity,
 }) {
   const [book, setBook] = useState([]);
+  const gradeList = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
   // const prioMap = new Map();
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
@@ -89,16 +90,34 @@ IF(
     }).eachPage((records, fetchNextPage) => {
       setBook(records);
       records.forEach((record) => {
+        // do not check with the identical book
+
         // let priority = 0;
+        /*
         if (((minAge >= record.fields.age_min) && (minAge <= record.fields.age_max))
         || ((maxAge >= record.fields.age_min) && (maxAge <= record.fields.age_max))) {
           console.log('TRUE');
         }
+        */
+        const minGradeIndex = gradeList.indexOf(minGrade, 0);
+        const maxGradeIndex = gradeList.indexOf(maxGrade, 0);
+        const minGradeIndexRecord = gradeList.indexOf(record.fields.grade_min, 0);
+        const maxGradeIndexRecord = gradeList.indexOf(record.fields.grade_max, 0);
 
-        console.log(fieldKeyword);
+        if ((minGradeIndex <= maxGradeIndexRecord) && (maxGradeIndex >= minGradeIndexRecord)) {
+          console.log('TRUETRUE');
+        }
+        /*
+        if (((minGradeIndex >= minGradeIndexRecord) && (minGradeIndex <= maxGradeIndexRecord))
+        || ((maxGradeIndex >= minGradeIndexRecord) && (maxGradeIndex <= maxGradeIndexRecord))) {
+          console.log('TRUETRUE');
+        }
+        */
+
+        // console.log(fieldKeyword);
         console.log('Retrieved', record.get('id'));
-        console.log('age min: ', record.fields.age_min);
-        console.log('age max: ', record.fields.age_max);
+        // console.log('age min: ', record.fields.age_min);
+        // console.log('age max: ', record.fields.age_max);
         console.log('grade min: ', record.fields.grade_min);
         console.log('grade_max: ', record.fields.grade_max);
         console.log(record.fields['race/ethnicity']);
