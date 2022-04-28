@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import './Collection.css';
 
 export default function Collection({
-  Collid, image, name, description, imageHeightPercent,
-  imageWidthPercent, isCollectionPageHeader,
+  Collid, image, name, imageHeightPercent,
+  imageWidthPercent, isCollectionPageHeader, isSlideActive,
 }) {
   return (
 
@@ -27,17 +27,19 @@ export default function Collection({
             <p
               className="card-title"
               style={{
-                fontSize: '3rem',
-                alignItems: 'end',
+                fontSize: '1.75rem',
               }}
             >
               {name}
             </p>
+            {isSlideActive
+            && (
             <div className="card-description-wrapper">
               <p className="card-description">
-                {description}
+                Currently Viewing
               </p>
             </div>
+            )}
           </div>
         )
         : (
@@ -45,7 +47,6 @@ export default function Collection({
             className="card-title"
             style={{
               fontSize: '1.05rem',
-              alignItems: 'center',
             }}
           >
             {name}
@@ -60,15 +61,15 @@ Collection.propTypes = {
   Collid: PropTypes.string.isRequired,
   image: PropTypes.string,
   name: PropTypes.string,
-  description: PropTypes.string,
   imageHeightPercent: PropTypes.number.isRequired,
   imageWidthPercent: PropTypes.number.isRequired,
   isCollectionPageHeader: PropTypes.bool,
+  isSlideActive: PropTypes.bool,
 };
 
 Collection.defaultProps = {
   image: 'MISSING IMAGE',
   name: 'MISSING NAME',
-  description: 'MISSING DESCRIPTION',
   isCollectionPageHeader: false,
+  isSlideActive: false,
 };

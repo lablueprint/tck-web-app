@@ -6,7 +6,7 @@
 
 #collection-card{
   height: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   flex-flow: row;
   text-align: center;
@@ -44,6 +44,7 @@
     font-family: 'Work Sans';
     font-weight: bolder;
     justify-content: center;
+    align-items: center;
     margin:0;
 }
 
@@ -61,10 +62,11 @@
     font-family: 'Work Sans';
     font-weight: bolder;
     font-size: 1.05rem;
-    overflow: hidden;
+    /* overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-line-clamp: 3; number of lines to show */
     
 }
+

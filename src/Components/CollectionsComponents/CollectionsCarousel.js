@@ -99,7 +99,6 @@ function CollectionsCarousel({
               Collid={element.id}
               image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
               name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
-              description={element.fields.description !== undefined ? element.fields.description : 'MISSING DESCRIPTION'}
               imageHeightPercent={cardImageHeightPercent}
               imageWidthPercent={cardImageWidthPercent}
               isCollectionPageHeader={isCollectionPageHeader}
@@ -144,6 +143,7 @@ CollectionsCarousel.propTypes = {
   isCollectionPageHeader: propTypes.bool,
   setCollecID: propTypes.func,
   initialID: propTypes.string,
+  // activeSlideString: propTypes.string,
 };
 
 CollectionsCarousel.defaultProps = {
@@ -155,6 +155,7 @@ CollectionsCarousel.defaultProps = {
   isCollectionPageHeader: false,
   setCollecID: defaultOnSlideChange,
   initialID: '',
+  // activeSlideString: '',
 };
 
 export default CollectionsCarousel;
