@@ -49,7 +49,8 @@ export default function RecCardsDisplay({
 }) {
   const [book, setBook] = useState([]);
   const gradeList = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-  // const prioMap = new Map();
+  const prioMap = new Map();
+  const [recList, setRecList] = useState([]);
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
   /*
@@ -113,19 +114,46 @@ IF(
               }
             }
           }
+          console.log(record.get('id'), priority);
           /*
           race
           identity
           genre
         */
-          // console.log(fieldKeyword);
-          console.log('Retrieved', record.get('id'));
-          // console.log('age min: ', record.fields.age_min);
-          // console.log('age max: ', record.fields.age_max);
-          // console.log('grade min: ', record.fields.grade_min);
-          // console.log('grade_max: ', record.fields.grade_max);
+          // Storing book ID based on its priority in a Map data structure
+          // Key is priority; Value is an array of corresponding bookIDs
+          if (prioMap.has(priority)) {
+            const array = [];
+            const prioList = array.concat(prioMap.get(priority));
+            const newPrioList = prioList.concat(record.get('id'));
+            prioMap.set(priority, newPrioList);
+          } else {
+            prioMap.set(priority, record.get('id'));
+          }
+          console.log(prioMap);
+          /*
           // console.log(record.fields['race/ethnicity']);
-          console.log(priority);
+          if (record.fields['race/ethnicity'] === undefined) {
+            console.log('Race/Ethnicity is undefined');
+          } else if (prioMap.has(priority)) {
+            const prioList = prioMap.get(priority);
+            let newPrioList = prioList;
+            for (let i = 0; i < record.fields['race/ethnicity'].length; i += 1) {
+              if (!prioList.includes(record.fields['race/ethnicity'][i])) {
+                newPrioList = prioList.concat(record.fields['race/ethnicity'][i]);
+              }
+            }
+            prioMap.set(priority, newPrioList);
+          } else {
+            prioMap.set(priority, record.fields['race/ethnicity']);
+          }
+          // console.log(prioMap);
+          console.log('.');
+          */
+
+          for (const [key, value] of prioMap) {
+            console.log(`${key}=${value}`);
+          }
         }
       });
       console.log(fieldKeyword);
