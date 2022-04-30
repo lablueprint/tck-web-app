@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import { NavLink } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
 import facebookLogo from '../../Assets/Images/facebook-footer-logo.svg';
 import instagramLogo from '../../Assets/Images/instagram-footer-logo.svg';
@@ -15,18 +16,30 @@ function Footer() {
         <p className="menu-title">
           Menu
         </p>
-        <p className="menu-options">
+        <NavLink
+          to="/"
+          className="menu-options"
+        >
           Home
-        </p>
-        <p className="menu-options">
+        </NavLink>
+        <NavLink
+          to="/"
+          className="menu-options"
+        >
           Collections
-        </p>
-        <p className="menu-options">
+        </NavLink>
+        <NavLink
+          to="/quiz"
+          className="menu-options"
+        >
           Book Recommendation Quiz
-        </p>
-        <p className="menu-options">
+        </NavLink>
+        <NavLink
+          to="/dictionary"
+          className="menu-options"
+        >
           Racial Literacy Dictionary
-        </p>
+        </NavLink>
       </div>
       <div className="resources-wrapper">
         <p className="resources-title">
