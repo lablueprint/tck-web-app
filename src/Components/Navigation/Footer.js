@@ -12,7 +12,7 @@ function Footer() {
         <img src={Logo} alt="The Conscious Kid Logo" className="tck-logo-img" />
       </div>
       <div className="menu-wrapper">
-        <p className="menu-text">
+        <p className="menu-title">
           Menu
         </p>
         <p className="menu-options">
