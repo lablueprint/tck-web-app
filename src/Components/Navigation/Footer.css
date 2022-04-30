@@ -1,0 +1,93 @@
+.footer-wrapper{
+    display: flex;
+    height: 362px;
+    background: #FCFCFC;
+    box-shadow: 0 -7px 10px rgba(0, 0, 0, 0.15);
+    align-items: start;
+    justify-content: start;
+    margin: 5rem 0 0 0;
+    padding: 0 2%;
+    column-gap: 2rem;
+}
+
+.tck-logo-wrapper{
+    flex-basis: 22%;
+    margin-top: 5em;
+}
+
+.tck-logo-img{
+     max-width: 50%;
+     max-height: 50%; 
+}
+
+.menu-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 22%;
+    text-align: left;
+}
+
+.menu-text{
+    font-family: 'Work Sans';
+    font-weight: normal;
+    font-size: 1.5em;
+    margin-top: 3em; 
+    margin-bottom: 0;
+}
+
+.menu-options{
+    font-size: 1rem;
+    font-family: 'DM Sans';
+    margin-left: 0.2em;
+    margin-bottom: 0;
+}
+
+.resources-wrapper{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.resources-title{
+    font-family: 'Work Sans';
+    font-size: 1.5em;
+    margin: 2.5em 0 0 0;
+}
+
+.resources-text{
+    margin-bottom: 2em;
+    margin-left: 0.2em;
+}
+
+.donate-button{
+    background: #3477DE;
+    border-radius: 0.8125em;
+    color: white;
+    font-family: 'Work Sans';
+    font-weight: bold;
+    width: 124px;
+    height: 63px;
+    border: None;
+}
+
+.follow-us-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 22%;
+}
+
+.follow-us-text{
+    font-family: 'Work Sans';
+    font-weight: normal;
+    font-size: 1.5em;
+    text-align: left;
+    margin-top: 3em;
+}
+
+.social-icons-box{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+    align-items: center;
+}

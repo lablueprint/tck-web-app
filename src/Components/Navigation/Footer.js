@@ -7,79 +7,44 @@ import twitterLogo from '../../Assets/Images/twitter-footer-logo.svg';
 
 function Footer() {
   return (
-    <div style={{
-      display: 'flex', height: '362px', background: '#FCFCFC', boxShadow: '0 -7px 10px rgba(0, 0, 0, 0.15)', alignItems: 'start', justifyContent: 'start', margin: '5rem 0 0 0', padding: '0 2%', columnGap: '2rem',
-    }}
-    >
-      <div style={{ flexBasis: '22%', marginTop: '5em' }}>
-        <img src={Logo} alt="The Conscious Kid Logo" style={{ maxWidth: '50%', maxHeight: '50%' }} />
+    <div className="footer-wrapper">
+      <div className="tck-logo-wrapper">
+        <img src={Logo} alt="The Conscious Kid Logo" className="tck-logo-img" />
       </div>
-      <div style={{
-        display: 'flex', flexDirection: 'column', flexBasis: '22%', textAlign: 'left',
-      }}
-      >
-        <p style={{
-          fontFamily: 'Work Sans', fontWeight: 'normal', fontSize: '1.5em', marginTop: '3em', marginBottom: '0',
-        }}
-        >
+      <div className="menu-wrapper">
+        <p className="menu-text">
           Menu
         </p>
-        <p style={{
-          fontSize: '1rem', fontFamily: 'DM Sans', marginLeft: '0.2em', marginBottom: '0',
-        }}
-        >
+        <p className="menu-options">
           Home
         </p>
-        <p style={{
-          fontSize: '1rem', fontFamily: 'DM Sans', marginLeft: '0.2em', marginBottom: '0',
-        }}
-        >
+        <p className="menu-options">
           Collections
         </p>
-        <p style={{
-          fontSize: '1rem', fontFamily: 'DM Sans', marginLeft: '0.2em', marginBottom: '0',
-        }}
-        >
+        <p className="menu-options">
           Book Recommendation Quiz
         </p>
-        <p style={{
-          fontSize: '1rem', fontFamily: 'DM Sans', marginLeft: '0.2em', marginBottom: '0',
-        }}
-        >
+        <p className="menu-options">
           Racial Literacy Dictionary
         </p>
       </div>
-      <div style={{
-        display: 'flex', flexDirection: 'column', textAlign: 'left', flexGrow: '1',
-      }}
-      >
-        <p style={{
-          fontFamily: 'Work Sans', fontSize: '1.5em', margin: '2.5em 0 0 0',
-        }}
-        >
+      <div className="resources-wrapper">
+        <p className="resources-title">
           More from The Conscious Kid
         </p>
-        <p style={{ marginBottom: '2em', marginLeft: '0.2em' }}>Resources</p>
+        <p className="resources-text">Resources</p>
         <button
           type="button"
-          style={{
-            background: '#3477DE', borderRadius: '0.8125rem', color: 'white', fontFamily: 'Work Sans', fontWeight: 'bold', width: '124px', height: '63px', border: 'None',
-          }}
+          className="donate-button"
         >
           Donate
         </button>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', flexBasis: '22%' }}>
-        <p style={{
-          fontFamily: 'Work Sans', fontWeight: 'normal', fontSize: '1.5em', textAlign: 'left', marginTop: '3em',
-        }}
-        >
+      <div className="follow-us-wrapper">
+        <p className="follow-us-text">
           Follow Us
         </p>
-        <div style={{
-          display: 'flex', flexDirection: 'row', columnGap: '2em', alignItems: 'center',
-        }}
-        >
+        <div className="social-icons-box">
           <img src={facebookLogo} alt="facebook icon linking to the TCK facebook page" />
           <img src={instagramLogo} alt="instagram icon linking to the TCK instagram page" />
           <img src={twitterLogo} alt="twitter icon linking to the TCK twitter page" />
