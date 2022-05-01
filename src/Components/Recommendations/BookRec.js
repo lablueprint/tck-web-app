@@ -50,7 +50,7 @@ export default function RecCardsDisplay({
   const [book, setBook] = useState([]);
   const gradeList = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
   const prioMap = new Map();
-  // const [recList, setRecList] = useState([]);
+  const [recList, setRecList] = useState([]);
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
   /*
@@ -78,11 +78,11 @@ IF(
         IF("", "", SEARCH("${fieldKeyword}", {${field}}))
       )
   */
-  console.log({ minAge });
-  console.log({ maxAge });
-  console.log({ minGrade });
-  console.log({ maxGrade });
-  console.log({ raceEthnicity });
+  // console.log({ minAge });
+  // console.log({ maxAge });
+  // console.log({ minGrade });
+  // console.log({ maxGrade });
+  // console.log({ raceEthnicity });
 
   function RecFilter(field, fieldKeyword) {
     // const map1 = new Map();
@@ -184,6 +184,8 @@ IF(
         }
       }
       console.log(finalArr);
+      setRecList(finalArr); // This part does not get updated due to lack of async
+      console.log(recList);
       /*
       book.forEach((record) => {
 
