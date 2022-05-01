@@ -50,7 +50,7 @@ export default function RecCardsDisplay({
   const [book, setBook] = useState([]);
   const gradeList = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
   const prioMap = new Map();
-  const [recList, setRecList] = useState([]);
+  // const [recList, setRecList] = useState([]);
   // const [ageRange, setAgeRange] = useState([]);
   // const [gradeRange, setGradeRange] = useState([]);
   /*
@@ -114,7 +114,7 @@ IF(
               }
             }
           }
-          console.log(record.get('id'), priority);
+          // console.log(record.get('id'), priority);
           /*
           race
           identity
@@ -130,7 +130,7 @@ IF(
           } else {
             prioMap.set(priority, record.get('id'));
           }
-          console.log(prioMap);
+          // console.log(prioMap);
           /*
           // console.log(record.fields['race/ethnicity']);
           if (record.fields['race/ethnicity'] === undefined) {
@@ -150,14 +150,37 @@ IF(
           // console.log(prioMap);
           console.log('.');
           */
-
-          for (const [key, value] of prioMap) {
-            console.log(`${key}=${value}`);
-          }
         }
       });
       console.log(fieldKeyword);
       console.log(bookId);
+
+      const sortedArr = [];
+      prioMap.forEach((value, key) => {
+        sortedArr.push(key);
+      });
+      sortedArr.sort();
+      sortedArr.reverse();
+      console.log(sortedArr);
+
+      const finalArr = [];
+      let counter = 0;
+      for (let i = 0; i < sortedArr.length; i += 1) {
+        if (counter === 14) {
+          break;
+        }
+        const value = prioMap.get(sortedArr[i]);
+        if (value.isArray()) {
+          for (let j = 0; j < value.length; j += 1) {
+            finalArr.push(value[j]);
+            counter += 1;
+          }
+        } else {
+          finalArr.push(value);
+          counter += 1;
+        }
+      }
+      console.log(finalArr);
       /*
       book.forEach((record) => {
 
