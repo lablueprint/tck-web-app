@@ -26,7 +26,7 @@ function Footer() {
           Home
         </NavLink>
         <NavLink
-          to="/"
+          to="/collection/init"
           className="menu-options"
         >
           Collections
