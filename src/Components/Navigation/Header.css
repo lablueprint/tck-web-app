@@ -24,6 +24,7 @@
     flex-direction: row;
     align-content: center;
     justify-content: end;
+    column-gap:0.75em;
     margin: 0;
 }
 
@@ -34,15 +35,17 @@
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
     font-size:1rem;
+    font-family:'Work Sans';
 }
 
 .nav-link-active {
-    font-weight: bold;
+    font-weight: bolder;
     text-decoration: none;
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
     font-size:1rem;
+    font-family:'Work Sans';
 }
 
 .logo {
