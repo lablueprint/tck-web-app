@@ -26,10 +26,26 @@ function Header() {
           </li>
           <li>
             <NavLink
+              to="/browse"
+              className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+            >
+              Book Browser
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/collection"
+              className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+            >
+              Collections
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/quiz"
               className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
             >
-              Book Recommendation Quiz
+              Book Rec Quiz
             </NavLink>
           </li>
           <li>
@@ -37,7 +53,7 @@ function Header() {
               to="/dictionary"
               className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
             >
-              Dictionary
+              Racial Literacy Dictionary
             </NavLink>
           </li>
         </ul>
