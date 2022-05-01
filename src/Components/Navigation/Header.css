@@ -36,6 +36,8 @@
     height: 100%;
     font-size:1rem;
     font-family:'Work Sans';
+    display:flex;
+    place-items:center;
 }
 
 .nav-link-active {
@@ -46,8 +48,16 @@
     height: 100%;
     font-size:1rem;
     font-family:'Work Sans';
+    display:flex;
+    place-items:center;
 }
 
 .logo {
-    width: 55px;
+    width: 100%;
+}
+
+.logo-img-container{
+    flex-shrink:0;
+    margin:0;
+    width:260px;
 }
