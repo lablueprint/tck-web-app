@@ -34,7 +34,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/collection"
+              to="/collection/init"
               className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
             >
               Collections

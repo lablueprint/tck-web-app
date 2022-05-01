@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import React from 'react';
 import './CollectionPage.css';
 
@@ -10,6 +11,7 @@ export default function CollectionInfo({ name, picture, description }) {
         {name}
         <img className="collection-card-image" src={picture} alt="author" />
       </div>
+
       <div className="sub-header">
         About this collection
       </div>

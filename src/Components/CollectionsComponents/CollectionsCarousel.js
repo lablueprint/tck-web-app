@@ -25,9 +25,11 @@ function CollectionsCarousel({
   const [swiperInst, setSwiper] = useState(null);
 
   const OnSlideChange = () => {
-    const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
-    const href = document.split('/')[2].split('"');
-    setCollecID(href[0]);
+    if (swiperInst !== null) {
+      const document = swiperInst.slides[swiperInst.activeIndex].innerHTML;
+      const href = document.split('/')[2].split('"');
+      setCollecID(href[0]);
+    }
   };
 
   useEffect(() => {
