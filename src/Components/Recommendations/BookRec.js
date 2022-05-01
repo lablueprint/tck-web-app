@@ -154,7 +154,7 @@ IF(
       });
       console.log(fieldKeyword);
       console.log(bookId);
-
+      console.log(prioMap);
       const sortedArr = [];
       prioMap.forEach((value, key) => {
         sortedArr.push(key);
@@ -170,8 +170,11 @@ IF(
           break;
         }
         const value = prioMap.get(sortedArr[i]);
-        if (value.isArray()) {
+        if (Array.isArray(value)) {
           for (let j = 0; j < value.length; j += 1) {
+            if (counter === 14) {
+              break;
+            }
             finalArr.push(value[j]);
             counter += 1;
           }
