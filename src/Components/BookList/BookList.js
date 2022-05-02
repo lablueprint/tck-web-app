@@ -103,7 +103,7 @@ function BookList({ books }) {
   // Menu states
   const [sort, setSort] = useState(ALPHA);
 
-  const handleChange = (e, value) => {
+  const handlePageChange = (e, value) => {
     setPage(value);
   };
 
@@ -166,7 +166,7 @@ function BookList({ books }) {
           variant="outlined"
           count={count}
           page={page}
-          onChange={handleChange}
+          onChange={handlePageChange}
           sx={PAGINATION_SX}
         />
       </div>
