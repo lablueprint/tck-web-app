@@ -19,6 +19,10 @@ const MENULIST_SX = {
   },
 };
 
+const MENUITEM_SX = {
+  minWidth: '15vw', fontFamily: 'Work Sans', fontWeight: '600',
+};
+
 function ListMenu({
   menuText, menuIcon, options, value, handleChange,
 }) {
@@ -41,9 +45,7 @@ function ListMenu({
       key={option.id}
       value={option.value}
       onClick={handleChoose}
-      sx={{
-        minWidth: '15vw', fontFamily: 'Work Sans', fontWeight: '600',
-      }}
+      sx={MENUITEM_SX}
     >
       {
                 (option.icon) ? <ListItemIcon>{option.icon}</ListItemIcon> : <div />
