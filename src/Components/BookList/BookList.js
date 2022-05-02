@@ -8,6 +8,7 @@ import {
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
 
+// Sort functions for each sorting mode
 const sortAlpha = (a, b) => { // alphabetical
   if (a.fields.title === undefined) return 1;
   if (b.fields.title === undefined) return -1;
@@ -24,6 +25,7 @@ const sortAdded = (a, b) => { // Most recently added first
   return (a.fields.date_added < b.fields.date_added ? 1 : -1);
 };
 
+// Sort options for ListMenu child component
 const ALPHA = 1;
 const RELEASE = 2;
 const ADDED = 3;
@@ -48,6 +50,7 @@ const sortOptions = [
   },
 ];
 
+// Pagination options for ListMenu child component
 const pageOptions = [
   {
     id: 1,
@@ -75,6 +78,7 @@ const pageOptions = [
   },
 ];
 
+// Styles for Pagination component
 const PAGINATION_SX = {
   margin: '2vh auto 2vh auto',
   '.MuiPaginationItem-root': {
