@@ -4,7 +4,6 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
 import './PagesTemp.css';
-import Footer from '../Components/Navigation/Footer';
 
 const Airtable = require('airtable');
 
@@ -42,7 +41,6 @@ function Home() {
       />
       <h2 className="headings">Books</h2>
       <CardsDisplay />
-      <Footer />
     </div>
   );
 }
