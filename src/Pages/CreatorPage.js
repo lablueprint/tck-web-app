@@ -1,10 +1,8 @@
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
-import AuthorInfoCard from '../Components/creatorPage/AuthorInfoCard'
 import { useParams } from 'react-router-dom';
-import AuthorInfo from '../Components/creatorPage/AuthorInfo';
+import AuthorInfoCard from '../Components/creatorPage/AuthorInfoCard';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
-import '../styles/fonts.css'
+import '../styles/fonts.css';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -34,16 +32,14 @@ function CreatorPage() {
   useEffect(getPosts, []);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       {AuthorDetails !== undefined ? (
-       <>
         <AuthorInfoCard
-        authorName={AuthorDetails.fields.name}
+          authorName={AuthorDetails.fields.name}
           authorBio={AuthorDetails.fields.bio}
           authorWebsite={AuthorDetails.fields.personal_site}
           authorImage={AuthorDetails.fields.image[0].thumbnails.large.url}
-          />
-          </>
+        />
       ) : (
         <p>No such author found!</p>
       )}
