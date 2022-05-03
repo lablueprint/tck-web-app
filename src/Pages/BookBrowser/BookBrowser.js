@@ -3,10 +3,10 @@ import {
   ToggleButton, ToggleButtonGroup,
 } from '@mui/material';
 import { Tune, Search } from '@mui/icons-material';
-import CardsDisplay from '../bookHub/BookHub';
-import SearchBar from '../SearchBar/SearchBar';
-import Filter from '../Filtering/Filtering';
-import { ageRangeMetadata, gradeRangeMetadata } from '../Filtering/RangeFilter';
+import CardsDisplay from '../../Components/BookBrowser/BookHub';
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import Filter from '../../Components/Filtering/Filtering';
+import { ageRangeMetadata, gradeRangeMetadata } from '../../Components/Filtering/RangeFilter';
 
 import './BookBrowser.css';
 

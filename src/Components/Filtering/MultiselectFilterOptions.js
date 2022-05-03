@@ -10,7 +10,6 @@ export default function MultiselectComponent({
   const handleToggle = (val, label) => {
     setInput({ ...input, [label]: val });
   };
-
   return (
     filterOptions ? (
       <Autocomplete
@@ -26,7 +25,7 @@ export default function MultiselectComponent({
           <TextField
             {...params}
             label={filterLabel}
-            placeholder={filterOptions ? `'${filterOptions[0]}...'` : null}
+            placeholder={filterOptions ? `'${result[0]}...'` : null}
             size="small"
           />
         )}

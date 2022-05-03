@@ -9,7 +9,7 @@ import SwiperCore, {
   Navigation, A11y,
 } from 'swiper';
 import { v4 as uuidv4 } from 'uuid';
-import BookCard from '../bookHub/BookCard';
+import BookCard from '../BookBrowser/BookCard';
 
 // Authored and illustrated work components
 function Carousel({
