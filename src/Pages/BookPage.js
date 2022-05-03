@@ -174,6 +174,7 @@ function BookPage() {
         minGrade={book.fields.grade_min}
         maxGrade={book.fields.grade_max}
         raceEthnicity={book.fields['race/ethnicity']}
+        genre={book.fields.genre}
       />
     </Paper>
   );
