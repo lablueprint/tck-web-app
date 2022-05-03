@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import BookCard from '../bookHub/BookCard';
+import BookList from '../BookList/BookList';
 import '../bookHub/BookCard.css';
 
 const Airtable = require('airtable');
@@ -22,20 +22,13 @@ function BooksInCollection({ authorId }) {
         console.error(err);
       }
       const bookid = records.fields.books;
-      if (bookid.length) {
+      if (bookid !== undefined && bookid.length) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
               console.error(err);
             }
-            setBooks((prevValue) => prevValue.concat(
-              {
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
-                author: record.fields.author,
-                id: element,
-              },
-            ));
+            setBooks((prevBooks) => [...prevBooks, record]);
           });
         });
       }
@@ -43,27 +36,16 @@ function BooksInCollection({ authorId }) {
   }
 
   useEffect(() => {
+    setBooks([]);
     FindPosts();
-  }, []);
+  }, [authorId]);
 
   return (
     <div>
-      <div className="SubHeader">
+      <div>
         Books in this collection:
       </div>
-      <div className="library-display">
-        {books.map((element) => (
-          <BookCard
-            image={element.image}
-            title={element.title}
-            author={element.author}
-          // Speical Prop
-            key={element.id}
-            id={element.id}
-          />
-        ))}
-      </div>
-      <div />
+      <BookList books={books} />
     </div>
   );
 }

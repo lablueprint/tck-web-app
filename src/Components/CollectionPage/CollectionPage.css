@@ -1,23 +1,26 @@
-.Header {
+.header {
     text-align: center;
     color: royalblue;
     font-size: 45px;
     font-weight: 750;
   }
   
-  .Paragraph {
+  .paragraph {
     text-align: center;
     font-size: 25px;
   }
 
-  .Extra {
-      font-size: 20px;
-  }
-
-  .SubHeader {
+  
+  .sub-header {
     text-align: left;
     color: royalblue;
     font-size: 30px;
     font-weight: 550;
+  }
+
+  .collection-card-image{
+    width:10%;
+    height:10%;
+    align:center;
   }
   
