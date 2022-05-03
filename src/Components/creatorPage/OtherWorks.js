@@ -4,6 +4,12 @@ import './OtherWorks.css';
 import AuthoredWorkCard from './AuthoredWorkCard';
 import IllustratedWorkCard from './IllustratedWorkCard';
 
+const styles = {
+  root: {
+    width: '55%',
+  },
+};
+
 const Airtable = require('airtable');
 
 const airtableConfig = {
@@ -66,7 +72,7 @@ function CreatedWorksCard({ authorId }) {
   }, []);
 
   return (
-    <div>
+    <div style={styles.root}>
       {authoredWorks.length && <div> Authored Works: </div>}
       <div>
         {authoredWorks.map((element) => (

@@ -1,8 +1,10 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
+import AuthorInfoCard from '../Components/creatorPage/AuthorInfoCard'
 import { useParams } from 'react-router-dom';
-// import propTypes from 'prop-types';
 import AuthorInfo from '../Components/creatorPage/AuthorInfo';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
+import '../styles/fonts.css'
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -32,23 +34,22 @@ function CreatorPage() {
   useEffect(getPosts, []);
 
   return (
-    <div>
-      { AuthorDetails !== undefined
-        ? (
-          <AuthorInfo
-            author={AuthorDetails.fields.name}
-            bio={AuthorDetails.fields.bio}
-            links={AuthorDetails.fields.personal_site}
-            authorPic={AuthorDetails.fields.image[0].thumbnails.large.url}
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      {AuthorDetails !== undefined ? (
+       <>
+        <AuthorInfoCard
+        authorName={AuthorDetails.fields.name}
+          authorBio={AuthorDetails.fields.bio}
+          authorWebsite={AuthorDetails.fields.personal_site}
+          authorImage={AuthorDetails.fields.image[0].thumbnails.large.url}
           />
-        ) : <p>No such author found!</p> }
+          </>
+      ) : (
+        <p>No such author found!</p>
+      )}
       <CreatedWorksCard authorId={authId} />
     </div>
   );
 }
-
-// CreatorPahe.propTypes = {
-//   authId: propTypes.string.isRequired,
-// };
 
 export default CreatorPage;
