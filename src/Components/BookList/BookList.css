@@ -1,0 +1,17 @@
+.book-list {
+    align-items: center;
+    width: 82vw;
+    margin: auto;
+}
+
+.book-list-menus {
+    display: flex;
+    flex-direction: row;
+    font-family: Work Sans;
+}
+
+.book-list-pagination {
+    display: flex;
+    justify-content: center;
+    font-family: Work Sans;
+}
