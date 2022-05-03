@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Collection.css';
 
 export default function Collection({
-  Collid, image, name, imageHeightPercent,
+  collectionId, image, name, imageHeightPercent,
   imageWidthPercent, isCollectionPageHeader, isSlideActive, color,
 }) {
   return (
@@ -14,7 +14,7 @@ export default function Collection({
   // ID FROM HERE AFTER IT HAS BEEN RESTRUCTURED
     <Link
       className="link"
-      to={`/collection/${Collid}`}
+      to={`/collection/${collectionId}`}
       id="collection-card"
       style={{ background: color }}
     >
@@ -60,7 +60,7 @@ export default function Collection({
 }
 
 Collection.propTypes = {
-  Collid: PropTypes.string.isRequired,
+  collectionId: PropTypes.string.isRequired,
   image: PropTypes.string,
   name: PropTypes.string,
   imageHeightPercent: PropTypes.number.isRequired,

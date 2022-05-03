@@ -11,7 +11,7 @@ import SwiperCore, {
 import { v4 as uuidv4 } from 'uuid';
 import CollectionCard from './CollectionCard';
 
-export const collectionCardColors = ['#393EBA', '#333333', '#F99E16', '#3477DE', '#E85757', '#20B28F'];
+export const collectionCardColors = [{ backgroundColor: '#393EBA', iconColor: '' }, { backgroundColor: '#333333', iconColor: '' }, { backgroundColor: '#F99E16', iconColor: '' }, { backgroundColor: '#3477DE', iconColor: '' }, { backgroundColor: '#E85757', iconColor: '' }, { backgroundColor: '#20B28F', iconColor: '' }];
 
 const defaultOnSlideChange = () => { };
 // Authored and illustrated work components
@@ -108,34 +108,19 @@ function CollectionsCarousel({
         {elementArray.map((element) => {
           activeSlideIndex += 1;
           return (
-            element.id === activeSlideId
-              ? (
-                <SwiperSlide key={uuidv4()}>
-                  <CollectionCard
-                    Collid={element.id}
-                    image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
-                    name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
-                    imageHeightPercent={cardImageHeightPercent}
-                    imageWidthPercent={cardImageWidthPercent}
-                    isCollectionPageHeader={isCollectionPageHeader}
-                    isSlideActive
-                    color={collectionCardColors[activeSlideIndex % collectionCardColors.length]}
-                  />
-                </SwiperSlide>
-              )
-              : (
-                <SwiperSlide key={uuidv4()}>
-                  <CollectionCard
-                    Collid={element.id}
-                    image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
-                    name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
-                    imageHeightPercent={cardImageHeightPercent}
-                    imageWidthPercent={cardImageWidthPercent}
-                    isCollectionPageHeader={isCollectionPageHeader}
-                    color={collectionCardColors[activeSlideIndex % collectionCardColors.length]}
-                  />
-                </SwiperSlide>
-              )
+            <SwiperSlide key={uuidv4()}>
+              <CollectionCard
+                collectionId={element.id}
+                image={element.fields.image !== undefined ? element.fields.image[0].url : 'MISSING IMAGE'}
+                name={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
+                imageHeightPercent={cardImageHeightPercent}
+                imageWidthPercent={cardImageWidthPercent}
+                isCollectionPageHeader={isCollectionPageHeader}
+                isSlideActive={element.id === activeSlideId}
+                color={collectionCardColors[activeSlideIndex
+                      % collectionCardColors.length].backgroundColor}
+              />
+            </SwiperSlide>
           );
         })}
       </Swiper>

@@ -5,6 +5,7 @@ import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/electric-boogaloo-previous-arrow.svg';
 import NextArrow from '../Assets/Images/electric-boogaloo-next-arrow.svg';
+import '../Components/CollectionPage/CollectionPage.css';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -27,7 +28,7 @@ function CollectionPage() {
         setCollections(records);
       });
   };
-  const getPosts = () => {
+  const getCollectionUsingID = () => {
     base('Collection').find(
       collecID,
       (err, record) => {
@@ -38,10 +39,10 @@ function CollectionPage() {
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
-  useEffect(getPosts, [collecID]);
+  useEffect(getCollectionUsingID, [collecID]);
   useEffect(getCollections, []);
   return (
-    <div style={{ margin: '4rem 7rem 0rem 7rem' }}>
+    <div className="collection-page-wrapper">
       <CollectionsCarousel
         elementArray={collections}
         slidesAtATime={1.98}

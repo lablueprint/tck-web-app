@@ -1,16 +1,20 @@
 .collection-heading {
     text-align: left;
     color:#333333;
-    font-size: 2.6rem;
+    font-size: 2.6em;
     font-weight: 750;
-    margin: 2rem 0rem 1rem 4rem;
+    margin: 2em 0em 1em 1.6em;
+    font-family: 'Work Sans';
+    font-weight: 'bold'
   }
   
   .collection-paragraph {
     text-align: left;
     color: #333333;
     font-size: 1.2rem;
-    margin: 0rem 0rem 1rem 4rem;
+    margin: 0em 0em 1em 4em;
+    font-family: 'DM Sans';
+    font-weight: 'normal'
   }
 
   
@@ -25,5 +29,9 @@
     width:10%;
     height:10%;
     align:center;
+  }
+
+  .collection-page-wrapper{
+    margin: 4em 3em 0em 3em;
   }
   
