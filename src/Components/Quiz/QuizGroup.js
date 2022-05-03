@@ -6,7 +6,7 @@ import {
 import { styled } from '@mui/material/styles';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
-import QuizButton from './QuizButton';
+// import QuizButton from './QuizButton';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -61,7 +61,6 @@ export default function QuizGroup() {
       borderRadius: 5, boxShadow: 5, margin: 10,
     }}
     >
-      <QuizButton />
       <div>
         <h2>
           Are you a parent, educator, or kid?

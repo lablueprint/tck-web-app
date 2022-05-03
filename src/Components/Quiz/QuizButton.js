@@ -3,9 +3,9 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
 
-export default function QuizButton({ imageSource, buttonCaption }) {
+export default function QuizButton({ /* imageSource, */ buttonCaption }) {
   return (
-    <Button sx={{ m: 7 }} size="large" variant="outlined" src={imageSource}>
+    <Button sx={{ m: 7 }} size="large" variant="outlined">
       <Checkbox />
       {buttonCaption}
     </Button>
@@ -13,5 +13,5 @@ export default function QuizButton({ imageSource, buttonCaption }) {
 }
 QuizButton.propTypes = {
   buttonCaption: PropTypes.string.isRequired,
-  imageSource: PropTypes.string.isRequired,
+  // imageSource: PropTypes.string.isRequired,
 };
