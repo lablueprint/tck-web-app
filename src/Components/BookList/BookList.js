@@ -8,6 +8,8 @@ import {
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
 
+import './BookList.css';
+
 // Sort functions for each sorting mode
 const sortAlpha = (a, b) => { // alphabetical
   if (a.fields.title === undefined) return 1;
@@ -132,8 +134,8 @@ function BookList({ books }) {
   };
 
   return (books.length) ? (
-    <div style={{ alignItems: 'center', width: '82vw', margin: 'auto' }}>
-      <div style={{ display: 'flex', flexDirection: 'row', fontFamily: 'Work Sans' }}>
+    <div className="book-list">
+      <div className="book-list-menus">
         <ListMenu
           menuText="Sort"
           menuIcon={<Sort />}
@@ -161,7 +163,7 @@ function BookList({ books }) {
           />
         ))}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Work Sans' }}>
+      <div className="book-list-pagination">
         <Pagination
           variant="outlined"
           count={count}
