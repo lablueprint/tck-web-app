@@ -10,11 +10,12 @@ import Typography from '@mui/material/Typography';
 import '../../styles/fonts.css';
 
 const styles = {
+  root: {
+    width: '40%',
+  },
   card: {
-    width: '35%',
     backgroundColor: '#FAFAFA',
-    padding: 3,
-    margin: 3,
+    padding: 4,
     boxShadow: 'none',
   },
   centeredContainer: {
@@ -94,55 +95,57 @@ export default function AuthorInfoCard({
     window.location.href = authorWebsite;
   };
   return (
-    <Card sx={styles.card}>
-      <Box sx={styles.centeredContainer}>
-        <CardMedia
-          component="img"
-          image={authorImage}
-          alt="Author Picture"
-          sx={styles.cardImage}
-        />
-      </Box>
-      <CardContent>
-        <Box sx={styles.leftBox}>
-          <Typography variant="h5" sx={styles.bigText}>
-            {authorName}
-          </Typography>
-          <Typography sx={styles.mediumText}> &nbsp;|&nbsp; </Typography>
-          <Typography sx={styles.mediumText}> Author </Typography>
+    <Box sx={styles.root}>
+      <Card sx={styles.card}>
+        <Box sx={styles.centeredContainer}>
+          <CardMedia
+            component="img"
+            image={authorImage}
+            alt="Author Picture"
+            sx={styles.cardImage}
+          />
         </Box>
-        <Box sx={styles.leftBox}>
-          {authorBio < 250
-            ? (
-              <Typography sx={styles.leftText}>
-                {authorBio}
-              </Typography>
-            )
-            : (
-              <Box sx={styles.bioContainer}>
+        <CardContent>
+          <Box sx={styles.leftBox}>
+            <Typography variant="h5" sx={styles.bigText}>
+              {authorName}
+            </Typography>
+            <Typography sx={styles.mediumText}> &nbsp;|&nbsp; </Typography>
+            <Typography sx={styles.mediumText}> Author </Typography>
+          </Box>
+          <Box sx={styles.leftBox}>
+            {authorBio < 250
+              ? (
                 <Typography sx={styles.leftText}>
-                  {seeMore ? `${authorBio.substring(0, 250)}` : authorBio}
+                  {authorBio}
                 </Typography>
-                <Typography
-                  sx={styles.seeMoreText}
-                  onClick={toggleSeeSetMore}
-                >
-                  {seeMore ? 'See More' : 'See Less'}
-                </Typography>
-              </Box>
-            )}
-        </Box>
-      </CardContent>
-      <CardActions>
-        <Button
-          sx={styles.websiteButton}
-          onClick={redirectToWebsite}
-        >
-          Website
+              )
+              : (
+                <Box sx={styles.bioContainer}>
+                  <Typography sx={styles.leftText}>
+                    {seeMore ? `${authorBio.substring(0, 250)}` : authorBio}
+                  </Typography>
+                  <Typography
+                    sx={styles.seeMoreText}
+                    onClick={toggleSeeSetMore}
+                  >
+                    {seeMore ? 'See More' : 'See Less'}
+                  </Typography>
+                </Box>
+              )}
+          </Box>
+        </CardContent>
+        <CardActions>
+          <Button
+            sx={styles.websiteButton}
+            onClick={redirectToWebsite}
+          >
+            Website
 
-        </Button>
-      </CardActions>
-    </Card>
+          </Button>
+        </CardActions>
+      </Card>
+    </Box>
 
   );
 }

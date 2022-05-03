@@ -4,6 +4,14 @@ import AuthorInfoCard from '../Components/creatorPage/AuthorInfoCard';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
 import '../styles/fonts.css';
 
+const styles = {
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 20,
+  },
+};
+
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -32,7 +40,7 @@ function CreatorPage() {
   useEffect(getPosts, []);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={styles.root}>
       {AuthorDetails !== undefined ? (
         <AuthorInfoCard
           authorName={AuthorDetails.fields.name}
