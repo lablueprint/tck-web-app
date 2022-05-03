@@ -6,10 +6,10 @@ import './CollectionPage.css';
 export default function CollectionInfo({ name, description }) {
   return (
     <div>
-      <div className="collection-heading" style={{ fontFamily: 'Work Sans', fontWeight: 'bold' }}>
+      <div className="collection-heading">
         {name}
       </div>
-      <div className="collection-paragraph" style={{ fontFamily: 'DM Sans', fontWeight: 'normal' }}>
+      <div className="collection-paragraph">
         {description}
       </div>
     </div>
