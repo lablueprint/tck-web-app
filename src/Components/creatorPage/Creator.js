@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './Author.css';
+import './Creator.css';
 
 // Author name/bio/picture/link components
 export default function AuthorInfo({
@@ -8,15 +8,15 @@ export default function AuthorInfo({
 }) {
   return (
     <>
-      <div className="Header">
+      <div className="header">
         {author}
         <img width="10%" height="10%" align="center" src={authorPic} alt="author" />
       </div>
-      <div className="Paragraph">
+      <div className="paragraph">
         {bio}
       </div>
       <br />
-      <div className="Extra">
+      <div className="extra">
         Check out
         {' '}
         {author}
@@ -30,8 +30,14 @@ export default function AuthorInfo({
 }
 
 AuthorInfo.propTypes = {
-  author: PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  links: PropTypes.string.isRequired,
-  authorPic: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  author: PropTypes.string,
+  bio: PropTypes.string,
+  links: PropTypes.string,
+  authorPic: PropTypes.string.isRequired,
+};
+
+AuthorInfo.defaultProps = {
+  author: '',
+  bio: '',
+  links: '',
 };

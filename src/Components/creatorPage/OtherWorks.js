@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
-import AuthoredWorkCard from './AuthoredWorkCard';
-import IllustratedWorkCard from './IllustratedWorkCard';
+import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
+import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
+import RightArrow from '../../Assets/Images/right-arrow.svg';
+import LeftArrow from '../../Assets/Images/left-arrow.svg';
+import Carousel from './BookCarousel';
 
 const Airtable = require('airtable');
 
@@ -13,7 +16,6 @@ const airtableConfig = {
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
-// Authored and illustrated work components
 function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
@@ -30,12 +32,13 @@ function CreatedWorksCard({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
-              console.error(err);
+              console.error(error);
             }
             setAuthoredWorks((prevValue) => prevValue.concat(
               {
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
+                author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
             ));
@@ -50,8 +53,9 @@ function CreatedWorksCard({ authorId }) {
             }
             setillustratedWorks((prevValue) => prevValue.concat(
               {
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
+                author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
             ));
@@ -61,34 +65,32 @@ function CreatedWorksCard({ authorId }) {
     });
   }
 
-  useEffect(() => {
-    FindPosts();
-  }, []);
+  useEffect(FindPosts, []);
 
   return (
-    <div>
+    <div style={{
+      display: 'flex', flexDirection: 'column', rowGap: '3rem',
+    }}
+    >
       {authoredWorks.length && <div> Authored Works: </div>}
-      <div>
-        {authoredWorks.map((element) => (
-          <AuthoredWorkCard
-            key={element.id}
-            id={element.id}
-            image={element.image}
-            title={element.title}
-          />
-        ))}
-      </div>
+      <Carousel
+        elementArray={authoredWorks}
+        slidesAtATime={3}
+        prevArrow={LeftArrowAuthorPage}
+        nextArrow={RightArrowAuthorPage}
+        widthPercent={50}
+        spaceBetweenEntries={16}
+      />
       {illustratedWorks.length && <div> Illustrated Works: </div>}
-      <div>
-        {illustratedWorks.map((element) => (
-          <IllustratedWorkCard
-            key={element.id}
-            id={element.id}
-            image={element.image}
-            title={element.title}
-          />
-        ))}
-      </div>
+      <Carousel
+        elementArray={illustratedWorks}
+        slidesAtATime={7}
+        prevArrow={LeftArrow}
+        nextArrow={RightArrow}
+        widthPercent={100}
+        spaceBetweenEntries={16}
+      />
+
     </div>
   );
 }
