@@ -13,7 +13,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 // const [recList, setRecList] = useState([]);
 
-export default function recFilter(
+export default function RecFilter(
   bookId,
   minAge,
   maxAge,
