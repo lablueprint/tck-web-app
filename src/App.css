@@ -1,3 +1,65 @@
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./Assets/Fonts/WorkSans-Bold.eot'); /* IE9 Compat Modes */
+  src: url('./Assets/Fonts/WorkSans-Bold.woff') format('woff'), /* Modern Browsers */
+       url('./Assets/Fonts/WorkSans-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Assets/Fonts/WorkSans-Bold.woff2') format('woff2'),
+       url('./Assets/Fonts/WorkSans-Bold.svg#WorkSans-Bold') format('svg');
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./Assets/Fonts/WorkSans-SemiBold.eot'); /* IE9 Compat Modes */
+  src: url('./Assets/Fonts/WorkSans-SemiBold.woff') format('woff'), /* Modern Browsers */
+       url('./Assets/Fonts/WorkSans-SemiBold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Assets/Fonts/WorkSans-SemiBold.woff2') format('woff2'),
+       url('./Assets/Fonts/WorkSans-SemiBold.svg#WorkSans-SemiBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./Assets/Fonts/WorkSans-Medium.eot'); /* IE9 Compat Modes */
+  src: url('./Assets/Fonts/WorkSans-Medium.woff') format('woff'), /* Modern Browsers */
+       url('./Assets/Fonts/WorkSans-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Assets/Fonts/WorkSans-Medium.woff2') format('woff2'),
+       url('./Assets/Fonts/WorkSans-Medium.svg#WorkSans-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('./Assets/Fonts/DMSans-Regular.eot'); /* IE9 Compat Modes */
+  src: url('./Assets/Fonts/DMSans-Regular.woff') format('woff'), /* Modern Browsers */
+       url('./Assets/Fonts/DMSans-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Assets/Fonts/DMSans-Regular.woff2') format('woff2'),
+       url('./Assets/Fonts/DMSans-Regular.svg#DMSans-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:'DM Sans';
+  src: url('./Assets/Fonts/DMSans-Bold.eot'); /* IE9 Compat Modes */
+  src: url('./Assets/Fonts/DMSans-Bold.woff') format('woff'), /* Modern Browsers */
+       url('./Assets/Fonts/DMSans-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Assets/Fonts/DMSans-Bold.woff2') format('woff2'),
+       url('./Assets/Fonts/DMSans-Bold.svg#DMSans-Bold') format('svg'); /* Legacy IOS */
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 .App {
   text-align: center;
 }

@@ -20,13 +20,13 @@ function BookSynopsis({
             {title}
           </Typography>
           <Typography variant="h5">
-            <Link class="link" to={`/creator/${authorID}`}>
+            <Link className="link" to={`/creator/${authorID}`}>
               {authorName}
             </Link>
             {' '}
             |
             {' '}
-            <Link class="link" to={`/creator/${illustratorID}`}>
+            <Link className="link" to={`/creator/${illustratorID}`}>
               {illustratorName}
             </Link>
             {' '}
