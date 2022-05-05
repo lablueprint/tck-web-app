@@ -1,3 +1,4 @@
 import Header from './Navigation/Header';
+import BookBrowser from '../Pages/BookBrowser/BookBrowser';
 
-export default Header;
+export { Header, BookBrowser };

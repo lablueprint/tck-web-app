@@ -5,7 +5,7 @@ import {
   Sort, SortByAlpha, DateRange, StarBorder,
 } from '@mui/icons-material';
 
-import BookCard from '../bookHub/BookCard';
+import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
 
 import './BookList.css';

@@ -1,7 +1,7 @@
 .library-display {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
 }
 

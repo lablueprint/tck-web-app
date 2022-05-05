@@ -3,9 +3,9 @@ import {
   Route, Routes,
 } from 'react-router-dom';
 import {
-  Dictionary, Home, CreatorPage, BookPage, CollectionPage,
+  Dictionary, Home, CreatorPage, BookPage, CollectionPage, BrowserPage,
 } from './Pages';
-import Header from './Components';
+import { Header } from './Components';
 import './App.css';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/browser" element={<BrowserPage />} />
         <Route exact path="/book/:bookId" element={<BookPage />} />
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
