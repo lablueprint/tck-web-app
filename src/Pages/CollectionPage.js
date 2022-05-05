@@ -24,11 +24,12 @@ function CollectionPage() {
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
+        // if (err) { console.error(err); }
         setCollections(records);
         setCollecID((params.id === 'init' ? records[0].id : params.id));
       });
   };
-  const getPosts = () => {
+  const getCollectionFromID = () => {
     if (collecID !== null && collecID !== 'init') {
       base('Collection').find(
         collecID,
@@ -42,7 +43,7 @@ function CollectionPage() {
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
-  useEffect(getPosts, [collecID]);
+  useEffect(getCollectionFromID, [collecID]);
   useEffect(() => {
     getCollections();
   }, []);
@@ -69,7 +70,7 @@ function CollectionPage() {
       )
         : <p>An error might have occurred or the content requested is too big in size</p>}
 
-      { CollectionDetails !== null
+      { CollectionDetails !== null && CollectionDetails !== undefined
         ? (
           <CollectionInfo
             name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}

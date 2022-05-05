@@ -5,7 +5,7 @@ import {
 import {
   Dictionary, Home, CreatorPage, BookPage, CollectionPage,
 } from './Pages';
-import { Header, Footer } from './Components';
+import { Header, Footer } from './Components/index';
 import './App.css';
 
 function App() {
