@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CardsDisplay from '../Components/bookHub/BookHub';
+import CardsDisplay from '../Components/BookBrowser/BookHub';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
