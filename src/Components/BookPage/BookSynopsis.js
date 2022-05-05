@@ -1,14 +1,29 @@
+/* eslint-disable */ 
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardContent, Typography,
+  Card, CardContent, Typography, Link as LinkUI,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
 import './BookSynopsis.css';
 
+const styles = {
+  description: {
+    maxWidth: '30vw', textAlign: 'left', display: 'flex', marginRight: '6vw', boxShadow: 'none',
+  },
+  sideCard: {
+    borderRadius: '1.31em',
+    marginBottom: '4vh',
+    backgroundColor: '#FDFDFD',
+    boxShadow: 'none',
+    border: '0.5px solid #D0D0D0',
+  },
+};
+
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
+  bookshopURL, readAloudURL,
 }) {
   return (
     <div className="synopsis">
@@ -18,31 +33,12 @@ function BookSynopsis({
         className="book-cover"
       />
 
-      <Card sx={{
-        minWidth: '50vw', textAlign: 'left', display: 'flex', marginRight: '6vw',
-      }}
-      >
-        <CardContent sx={{ margin: '0 90px 0 90px' }}>
-          <p className="title">{title}</p>
-          <Typography variant="h5">
-            <div className="creators">
-              <Link className="link" to={`/creator/${authorID}`}>
-                <p className="creators">
-                  {authorName}
-                </p>
-              </Link>
-              {' '}
-              |
-              {' '}
-              <Link className="link" to={`/creator/${illustratorID}`}>
-                <p className="creators">
-                  {illustratorName}
-                </p>
-              </Link>
-              {' '}
-              (illustrator)
-            </div>
+      <Card sx={styles.description}>
+        <CardContent>
+          <Typography>
+            <p className="book-title">{title}</p>
           </Typography>
+
           <Typography variant="body2">
             <p className="text">
               {desc}
@@ -50,6 +46,57 @@ function BookSynopsis({
           </Typography>
         </CardContent>
       </Card>
+      <div className="side-cards">
+        <Card sx={styles.sideCard}>
+          <CardContent>
+            <Typography>
+              <div className="side-card-container">
+                <p className="side-card-title">About this book</p>
+                <div className="side-card-links">
+                  <p className="creator"> Written by: </p>
+                  {' '}
+                  <Link className="link" style={{ color: 'royalblue' }} to={`/creator/${authorID}`}>
+                    {authorName}
+                  </Link>
+                  <br />
+                  <p className="creator"> Illustrated by: </p>
+                  {' '}
+                  <Link className="link" style={{ color: 'royalblue' }} to={`/creator/${illustratorID}`}>
+                    {illustratorName}
+                  </Link>
+                </div>
+              </div>
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={styles.sideCard}>
+          <CardContent>
+            <Typography>
+              <div className="side-card-container">
+                <p className="side-card-title">Additional resources</p>
+                <div className="side-card-links">
+                  { (bookshopURL)
+                    ? (
+                      <div>
+                        <LinkUI sx={{ textDecoration: 'none', color: '#3477DE' }} href={bookshopURL} rel="noreferrer" target="_blank">
+                          Bookshop Link
+                        </LinkUI>
+                      </div>
+                    ) : <div />}
+                  { (readAloudURL) ? (
+                    <div>
+                      <LinkUI sx={{ textDecoration: 'none', color: '#3477DE' }} href={readAloudURL} rel="noreferrer" target="_blank">
+                        Story Read Aloud
+                      </LinkUI>
+                    </div>
+                    ) :<div/>
+                  }
+                </div>
+              </div>
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
 
     </div>
   );
@@ -95,4 +142,29 @@ BookSynopsis.defaultProps = {
    <Typography gutterBottom className="title" sx={{ fontSize: '3em', fontWeight: '700' }}>
             {title}
           </Typography>
+
+    ------------------------------
+    <Typography variant="h5">
+            <div className="creators">
+              <Link className="link" to={`/creator/${authorID}`}>
+                <p className="creators">
+                  {authorName}
+                </p>
+              </Link>
+              {' '}
+              |
+              {' '}
+              <Link className="link" to={`/creator/${illustratorID}`}>
+                <p className="creators">
+                  {illustratorName}
+                </p>
+              </Link>
+              {' '}
+              (illustrator)
+            </div>
+          </Typography>
+      ----------------- FINAL SPRINT --------------------
+  1. standardize width of book image
+  2. remove the video, put as link on side
+  3. add tags
  */

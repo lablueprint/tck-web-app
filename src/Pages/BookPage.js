@@ -79,7 +79,15 @@ function BookPage() {
   const imageURL = image[0].url;
 
   const synopsisProps = {
-    title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
+    title,
+    authorName,
+    authorID,
+    illustratorName,
+    illustratorID,
+    desc,
+    imageURL,
+    bookshopURL,
+    readAloudURL,
   };
 
   const isValidUrl = (string) => {
@@ -110,7 +118,7 @@ function BookPage() {
     <Paper variant="outlined">
       <BookSynopsis {...synopsisProps} />
       {(readAloudURL) ? (
-        <div className="video-responsive">
+        <div>
           <iframe
             width="853"
             height="480"
@@ -150,4 +158,7 @@ export default BookPage;
         - What is the necessary condition when we should *not* display available info
           and just say that we couldn't pull the correct info?
             - Currently when there is no book title
+
+  OLD CODE:
+
 */
