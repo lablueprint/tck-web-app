@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import BookCard from '../bookHub/BookCard';
-import '../bookHub/BookCard.css';
+import BookCard from '../BookBrowser/BookCard';
+import '../BookBrowser/BookCard.css';
 
 const Airtable = require('airtable');
 

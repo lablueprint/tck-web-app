@@ -1,4 +1,4 @@
 import Header from './Navigation/Header';
-import BookBrowser from './BookBrowser/BookBrowser';
+import BookBrowser from '../Pages/BookBrowser/BookBrowser';
 
 export { Header, BookBrowser };
