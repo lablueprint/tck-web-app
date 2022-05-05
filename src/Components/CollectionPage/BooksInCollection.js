@@ -50,9 +50,6 @@ function BooksInCollection({ authorId }) {
 
   return (
     <div>
-      <div>
-        Books in this collection:
-      </div>
       <div className="library-display">
         {books.map((element) => (
           <BookCard

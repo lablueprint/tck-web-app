@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import logo from '../../Assets/Images/TCK SVG Logo.svg';
+import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
 const options = [
   { name: 'Home', nav: '/' },
@@ -104,7 +104,7 @@ function Header() {
           to="/"
           className={({ isActive }) => (isActive ? 'nav-link-active logo-img-container' : 'nav-link logo-img-container')}
         >
-          <img src={logo} className="logo" alt="The Conscious Kid logo" />
+          <img src={Logo} className="logo" alt="The Conscious Kid logo" />
         </NavLink>
         {
           size.width > 910 ? (

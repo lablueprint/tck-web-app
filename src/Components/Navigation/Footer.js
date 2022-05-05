@@ -2,9 +2,9 @@ import React from 'react';
 import './Footer.css';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
-import facebookLogo from '../../Assets/Images/facebook-footer-logo.svg';
-import instagramLogo from '../../Assets/Images/instagram-footer-logo.svg';
-import twitterLogo from '../../Assets/Images/twitter-footer-logo.svg';
+import FacebookLogo from '../../Assets/Images/facebook-footer-logo.svg';
+import InstagramLogo from '../../Assets/Images/instagram-footer-logo.svg';
+import TwitterLogo from '../../Assets/Images/twitter-footer-logo.svg';
 
 function Footer() {
   return (
@@ -21,49 +21,58 @@ function Footer() {
         </p>
         <NavLink
           to="/"
-          className="menu-options"
+          className="menu-options follow-us-text-size"
         >
           Home
         </NavLink>
         <NavLink
+          to="/browse"
+          className="menu-options follow-us-text-size"
+        >
+          Book Browser
+        </NavLink>
+        <NavLink
           to="/collection/init"
-          className="menu-options"
+          className="menu-options follow-us-text-size"
         >
           Collections
         </NavLink>
         <NavLink
           to="/quiz"
-          className="menu-options"
+          className="menu-options follow-us-text-size"
         >
           Book Recommendation Quiz
         </NavLink>
         <NavLink
           to="/dictionary"
-          className="menu-options"
+          className="menu-options follow-us-text-size"
         >
           Racial Literacy Dictionary
         </NavLink>
       </div>
       <div className="resources-wrapper">
-        <p className="resources-title">
+        <p className="resources-title follow-us-text-size">
           More from The Conscious Kid
         </p>
-        <p className="resources-text">Resources</p>
-        <button
-          type="button"
-          className="donate-button"
-        >
-          Donate
-        </button>
+        <a href="https://www.theconsciouskid.org" className="resources-text"><p>Resources</p></a>
+        <a href="https://www.theconsciouskid.org/donate">
+          <button
+            type="button"
+            className="donate-button"
+          >
+            Donate
+          </button>
+
+        </a>
       </div>
       <div className="follow-us-wrapper">
-        <p className="follow-us-text">
+        <p className="follow-us-text follow-us-text-size">
           Follow Us
         </p>
         <div className="social-icons-box">
-          <img src={facebookLogo} alt="facebook icon linking to the TCK facebook page" />
-          <img src={instagramLogo} alt="instagram icon linking to the TCK instagram page" />
-          <img src={twitterLogo} alt="twitter icon linking to the TCK twitter page" />
+          <a href="https://www.facebook.com/theconsciouskid"><img src={FacebookLogo} alt="facebook icon linking to the TCK facebook page" /></a>
+          <a href="https://www.instagram.com/theconsciouskid/"><img src={InstagramLogo} alt="instagram icon linking to the TCK instagram page" /></a>
+          <a href="https://twitter.com/consciouskidlib"><img src={TwitterLogo} alt="twitter icon linking to the TCK twitter page" /></a>
         </div>
       </div>
 
