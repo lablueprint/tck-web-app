@@ -5,7 +5,6 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import BookRec from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
 
@@ -167,15 +166,6 @@ function BookPage() {
             {educatorLinks}
           </List>
         ) : <div />}
-
-      <BookRec
-        minAge={book.fields.age_min}
-        maxAge={book.fields.age_max}
-        minGrade={book.fields.grade_min}
-        maxGrade={book.fields.grade_max}
-        raceEthnicity={book.fields['race/ethnicity']}
-        genre={book.fields.genre}
-      />
     </Paper>
   );
 }
