@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-
-import BookCard from './BookCard';
+import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/RangeFilter';
 
 // airtable configuration
@@ -194,21 +193,7 @@ function CardsDisplay({
   }, [rangeInput, multiSelectInput, alignment]);
   return (
     <div>
-      <div className="library-display">
-        {filteredBooks.map((card) => (
-          (card)
-            ? (
-              <BookCard
-                key={card.id}
-                id={card.id}
-                title={card.fields.title !== undefined ? card.fields.title : 'MISSING TITLE'}
-                author={card.fields.author !== undefined ? card.fields.author : ['MISSING CREATOR']}
-                image={card.fields.image !== undefined ? card.fields.image[0].url : 'MISSING IMAGE'}
-              />
-            ) : null
-        ))}
-      </div>
-
+      <BookList books={filteredBooks} />
     </div>
   );
 }
