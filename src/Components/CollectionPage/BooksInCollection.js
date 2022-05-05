@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
-import BookCard from '../BookBrowser/BookCard';
+import BookList from '../BookList/BookList';
 import '../BookBrowser/BookCard.css';
 
 const Airtable = require('airtable');
@@ -29,14 +28,7 @@ function BooksInCollection({ authorId }) {
             if (error) {
               console.error(err);
             }
-            setBooks((prevValue) => prevValue.concat(
-              {
-                image: record.fields.image[0].thumbnails.large.url,
-                title: record.fields.title,
-                author: record.fields.author,
-                id: element,
-              },
-            ));
+            setBooks((prevBooks) => [...prevBooks, record]);
           });
         });
       }
@@ -53,18 +45,7 @@ function BooksInCollection({ authorId }) {
       <div>
         Books in this collection:
       </div>
-      <div className="library-display">
-        {books.map((element) => (
-          <BookCard
-            image={element.image}
-            title={element.title}
-            author={element.author}
-            key={uuidv4()}
-            id={element.id}
-          />
-        ))}
-      </div>
-      <div />
+      <BookList books={books} />
     </div>
   );
 }
