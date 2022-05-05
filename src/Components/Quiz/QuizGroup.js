@@ -8,15 +8,15 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import { Link } from 'react-router-dom';
 // import QuizButton from './QuizButton';
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor: '#F7992740',
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+    backgroundColor: '#F79927',
   },
 }));
 
@@ -84,7 +84,7 @@ export default function QuizGroup() {
       </div>
       <div>
         <Box sx={{ flexGrow: 1 }}>
-          <BorderLinearProgress variant="determinate" value={50} />
+          <BorderLinearProgress variant="determinate" value={0} />
         </Box>
       </div>
     </Card>
