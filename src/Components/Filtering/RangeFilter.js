@@ -45,4 +45,3 @@ RangeFilter.propTypes = {
     },
   ).isRequired,
 };
-// export RangeFilter;
