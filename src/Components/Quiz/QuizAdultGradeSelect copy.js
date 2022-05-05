@@ -1,23 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Card, Grid, Box,
+  Card, Grid,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import GradeSlider from './GradeSlider';
-
-const BorderLinearProgress = styled(LinearProgress)(() => ({
-  height: 10,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: '#F7992740',
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: '#F79927',
-  },
-}));
+import ProgressAndArrows from './ProgressAndArrows';
 
 export default function QuizAdultGradeSelect() {
   return (
@@ -33,11 +20,7 @@ export default function QuizAdultGradeSelect() {
           <GradeSlider />
         </Grid>
       </div>
-      <div>
-        <Box sx={{ flexGrow: 1, paddingTop: 25 }}>
-          <BorderLinearProgress variant="determinate" value={17} />
-        </Box>
-      </div>
+      <ProgressAndArrows />
     </Card>
   );
 }
