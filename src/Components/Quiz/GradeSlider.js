@@ -66,6 +66,8 @@ export default function GradeSlider() {
   const [value1, setValue1] = React.useState([4, 7]);
 
   const handleChange1 = (event, newValue, activeThumb) => {
+    console.log(newValue);
+
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -78,20 +80,22 @@ export default function GradeSlider() {
   };
 
   return (
-    <Box sx={{ width: 550 }}>
-      <CustomQuizSlider
-        getAriaLabel={() => 'Minimum distance'}
-        aria-label="Custom marks"
-        marks={marks}
-        value={value1}
-        onChange={handleChange1}
-        valueLabelDisplay="auto"
-        getAriaValueText={valueLabelFormat}
-        valueLabelFormat={valueLabelFormat}
-        disableSwap
-        min={-1}
-        max={12}
-      />
-    </Box>
+    <div>
+      <Box sx={{ width: 550 }}>
+        <CustomQuizSlider
+          Label={() => 'Minimum distance'}
+          aria-label="Custom marks"
+          marks={marks}
+          value={value1}
+          onChange={handleChange1}
+          valueLabelDisplay="auto"
+          getAriaValueText={valueLabelFormat}
+          valueLabelFormat={valueLabelFormat}
+          disableSwap
+          min={-1}
+          max={12}
+        />
+      </Box>
+    </div>
   );
 }
