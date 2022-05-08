@@ -9,7 +9,7 @@ import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
 import QuizGroup from './Components/Quiz/QuizGroup';
-
+import QuizResultsPage from './Components/Quiz/QuizResultsPage';
 import BookPage from './Pages/BookPage';
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
         <Route exact path="/collection/:id" element={<CollectionPage />} />
         <Route exact path="/quiz" element={<StartPage />} />
         <Route exact path="/quiz/questions" element={<QuizGroup />} />
+        <Route exact path="/quiz/results" element={<QuizResultsPage />} />
       </Routes>
     </div>
   );
