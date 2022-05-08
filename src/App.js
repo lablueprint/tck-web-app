@@ -2,15 +2,14 @@ import React from 'react';
 import {
   Route, Routes,
 } from 'react-router-dom';
-import { Dictionary, Home } from './Pages';
+import {
+  Dictionary, Home, CreatorPage, BookPage, CollectionPage,
+} from './Pages';
 import Header from './Components';
 import './App.css';
-import CreatorPage from './Pages/CreatorPage';
-import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
 import QuizGroup from './Components/Quiz/QuizGroup';
 import QuizResultsPage from './Components/Quiz/QuizResultsPage';
-import BookPage from './Pages/BookPage';
 
 function App() {
   return (
