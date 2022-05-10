@@ -29,7 +29,7 @@ function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
 
-  function FindPosts() {
+  function FindWorks() {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
@@ -74,7 +74,7 @@ function CreatedWorksCard({ authorId }) {
     });
   }
 
-  useEffect(FindPosts, []);
+  useEffect(FindWorks, []);
 
   return (
     <div style={styles.root}>
