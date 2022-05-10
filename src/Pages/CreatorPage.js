@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AuthorInfoCard from '../Components/creatorPage/AuthorInfoCard';
+import { Box, CircularProgress } from '@mui/material';
+import CreatorInfoCard from '../Components/creatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
-import '../styles/fonts.css';
 
 const styles = {
   root: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: 20,
+  },
+  loadingBox: {
+    width: '40%',
   },
 };
 
@@ -24,31 +26,41 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CreatorPage() {
-  const [AuthorDetails, setAuthorDetails] = useState();
+  const [creatorDetails, setCreatorDetails] = useState();
+  const [loading, setLoading] = useState(true);
   const params = useParams();
   const authId = params.id;
 
-  const getPosts = () => {
+  const getCreatorDetails = () => {
     base('Creator').find(
       authId,
       (err, record) => {
-        setAuthorDetails(record);
+        setCreatorDetails(record);
+        setLoading(false);
       },
     );
   };
 
-  useEffect(getPosts, []);
+  useEffect(() => {
+    getCreatorDetails();
+  }, []);
 
   return (
     <div style={styles.root}>
-      {AuthorDetails !== undefined ? (
-        <AuthorInfoCard
-          authorName={AuthorDetails.fields.name}
-          authorBio={AuthorDetails.fields.bio}
-          authorWebsite={AuthorDetails.fields.personal_site}
-          authorImage={AuthorDetails.fields.image[0].thumbnails.large.url}
+      {loading && (
+        <Box sx={styles.loadingBox}>
+          <CircularProgress />
+        </Box>
+      )}
+      {creatorDetails !== undefined && !loading && (
+        <CreatorInfoCard
+          creatorName={creatorDetails.fields.name ? creatorDetails.fields.name : 'Anonymous'}
+          creatorBio={creatorDetails.fields.bio ? creatorDetails.fields.bio : ''}
+          creatorWebsite={creatorDetails.fields.personal_site ? creatorDetails.fields.personal_site : ''}
+          creatorImage={creatorDetails.fields.image ? creatorDetails.fields.image[0].thumbnails.large.url : ''}
         />
-      ) : (
+      )}
+      {creatorDetails === undefined && !loading && (
         <p>No such author found!</p>
       )}
       <CreatedWorksCard authorId={authId} />

@@ -1,21 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import '../../styles/fonts.css';
+import {
+  Card, CardActions, Box, CardContent, CardMedia, Button, Typography,
+} from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const styles = {
   root: {
     width: '40%',
+    padding: 10,
   },
   card: {
     backgroundColor: '#FAFAFA',
-    padding: 4,
+    padding: 6,
     boxShadow: 'none',
   },
   centeredContainer: {
@@ -28,10 +26,20 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'start',
   },
+  seeMoreContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   leftBox: {
     display: 'flex',
     justifyContent: 'left',
     paddingBottom: 1,
+  },
+  topTextBox: {
+    display: 'flex',
+    justifyContent: 'left',
+    paddingBottom: 1,
+    paddingTop: 1.5,
   },
   cardImage: {
     width: 'auto',
@@ -53,6 +61,8 @@ const styles = {
     color: '#333333',
   },
   leftText: {
+    paddingTop: 0.5,
+    paddingBottom: 0.5,
     textAlign: 'left',
     fontFamily: 'DM Sans',
     fontStyle: 'normal',
@@ -65,6 +75,16 @@ const styles = {
     fontSize: '14px',
     color: '#0068C9',
     paddingTop: 1,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+  seeMoreIcon: {
+    fontSize: '16px',
+    color: '#0068C9',
+    paddingTop: 1,
+    paddingLeft: 0.25,
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
@@ -85,57 +105,63 @@ const styles = {
   },
 };
 
-export default function AuthorInfoCard({
-  authorName, authorBio, authorWebsite, authorImage,
+export default function CreatorInfoCard({
+  creatorName, creatorBio, creatorWebsite, creatorImage,
 }) {
   const [seeMore, setSeeMore] = useState(true);
   const toggleSeeSetMore = () => setSeeMore(!seeMore);
   const redirectToWebsite = (e) => {
     e.preventDefault();
-    window.location.href = authorWebsite;
+    window.location.href = creatorWebsite;
   };
   return (
     <Box sx={styles.root}>
       <Card sx={styles.card}>
         <Box sx={styles.centeredContainer}>
+          {creatorImage !== '' && (
           <CardMedia
             component="img"
-            image={authorImage}
-            alt="Author Picture"
+            image={creatorImage}
+            alt="Creator Picture"
             sx={styles.cardImage}
           />
+          )}
         </Box>
         <CardContent>
-          <Box sx={styles.leftBox}>
+          <Box sx={styles.topTextBox}>
             <Typography variant="h5" sx={styles.bigText}>
-              {authorName}
+              {creatorName}
             </Typography>
             <Typography sx={styles.mediumText}> &nbsp;|&nbsp; </Typography>
             <Typography sx={styles.mediumText}> Author </Typography>
           </Box>
           <Box sx={styles.leftBox}>
-            {authorBio < 250
+            {creatorBio.length < 250
               ? (
                 <Typography sx={styles.leftText}>
-                  {authorBio}
+                  {creatorBio}
                 </Typography>
               )
               : (
                 <Box sx={styles.bioContainer}>
                   <Typography sx={styles.leftText}>
-                    {seeMore ? `${authorBio.substring(0, 250)}` : authorBio}
+                    {seeMore ? `${creatorBio.substring(0, 250)}...` : creatorBio}
                   </Typography>
-                  <Typography
-                    sx={styles.seeMoreText}
-                    onClick={toggleSeeSetMore}
-                  >
-                    {seeMore ? 'See More' : 'See Less'}
-                  </Typography>
+                  <Box sx={styles.seeMoreContainer} onClick={toggleSeeSetMore}>
+                    <Typography
+                      sx={styles.seeMoreText}
+                    >
+                      {seeMore ? 'See More' : 'See Less'}
+                    </Typography>
+                    {seeMore ? <KeyboardArrowDownIcon sx={styles.seeMoreIcon} />
+                      : <KeyboardArrowUpIcon sx={styles.seeMoreIcon} />}
+                  </Box>
                 </Box>
               )}
           </Box>
         </CardContent>
         <CardActions>
+          {creatorWebsite && (
           <Button
             sx={styles.websiteButton}
             onClick={redirectToWebsite}
@@ -143,6 +169,7 @@ export default function AuthorInfoCard({
             Website
 
           </Button>
+          )}
         </CardActions>
       </Card>
     </Box>
@@ -150,9 +177,9 @@ export default function AuthorInfoCard({
   );
 }
 
-AuthorInfoCard.propTypes = {
-  authorName: PropTypes.string.isRequired,
-  authorBio: PropTypes.string.isRequired,
-  authorWebsite: PropTypes.string.isRequired,
-  authorImage: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+CreatorInfoCard.propTypes = {
+  creatorName: PropTypes.string.isRequired,
+  creatorBio: PropTypes.string.isRequired,
+  creatorWebsite: PropTypes.string.isRequired,
+  creatorImage: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
