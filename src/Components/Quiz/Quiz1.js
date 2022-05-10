@@ -29,6 +29,18 @@ function reducer(state, action) {
         isChild: true,
         count: state.count + 1,
       };
+    case 'child back':
+      return {
+        ...state,
+        isChild: true,
+        count: state.count - 1,
+      };
+    case 'parent back':
+      return {
+        ...state,
+        isChild: true,
+        count: state.count - 1,
+      };
     default:
       throw new Error();
   }
@@ -40,28 +52,27 @@ export default function Quiz1() {
     isChild: false,
     count: 1,
   };
-  // eslint-disable-next-line
   const [state, dispatch] = useReducer(reducer, initialState);
-  // eslint-disable-next-line no-unused-vars
   const {
-    // eslint-disable-next-line no-unused-vars
     isParent, isChild, count,
   } = state;
-
-  // const action = {
-  //   type: 'ActionType',
-  // };
 
   if (isParent && count === 2) {
     return (
       <div>
+        <Button class="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src="https://s3-alpha-sig.figma.com/img/d9f4/7470/d691947a53a8eddaa6a09fd66be195b8?Expires=1651449600&Signature=SM1G1Hy2cLBBvVyP9wGtsJZB4oQeHAmUbP9XKSZtbepagoz7W1sPE6v~JTFqm2t4SI34zbxc~gQSFl3-RasyO9qeAvkj6FvDp9kc5s3LkOakQCxnCtRxSKOnX6Ty1TlKWInmQ7gLju7BbcsM-ckNnz5wchlWoNe0DgtZinmec1s8ZHDYsObZtYf2PItzd3XTxFItpxwrTeAm1pWMdckjgD4EH-NN19JC-rGUSFojQVbISYEKetnBr5xPAHFPM21MtQgx8tj-AXHpWSnKyag8rkVNAX-0fD-QvZREsIOi3Xe7gvND-FC8ELeAVzLovxrx7Mz8TX4m2P62SpOztA3DaA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style={{ borderRadius: 0 }} />}>
+          <p>Parent</p>
+        </Button>
         <Quiz2Adult />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent back' })}
+        />
+        <Button
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -70,44 +81,37 @@ export default function Quiz1() {
   if (isParent && count === 3) {
     return (
       <div>
-        <Quiz3 />
+        <Quiz3 slideCaption="Which races/ethnicities do you want to see represented?" />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
     );
   }
   if (isParent && count === 4) {
+    const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
     return (
       <div>
-        <Quiz5 />
+        <Quiz6Kid title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -120,17 +124,13 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -143,16 +143,12 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -161,21 +157,17 @@ export default function Quiz1() {
   if (isChild && count === 3) {
     return (
       <div>
-        <Quiz3 />
+        <Quiz3 slideCaption="Which of these races are you interested in reading about?" />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
     );
@@ -187,17 +179,13 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -210,40 +198,37 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
     );
   }
   if (isChild && count === 6) {
+    const childButtonCaptions = ['The lives of interesting and influential people',
+      'Fascinating facts about different topics such as nature, animals, or space',
+      'Important events of the past that shaped the world we live in today',
+      'A detailed retelling of a crucial period of time in an individual’s life',
+      'The case of a mysterious, unnatural phenomenon'];
     return (
       <div>
-        <Quiz6Kid />
+        <Quiz6Kid title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
-          startIcon={<ArrowBackIcon />}
+          startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -256,17 +241,13 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
-          startIcon={<ArrowBackIcon />}
+          startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => {
-            console.log('clicked');
-          }}
+          onClick={() => dispatch({ type: 'parent' })}
         />
       </div>
 
@@ -314,7 +295,6 @@ export default function Quiz1() {
           </Box>
         </div>
       </Card>
-      )
     </div>
   );
 }

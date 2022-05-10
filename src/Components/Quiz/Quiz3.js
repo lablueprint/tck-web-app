@@ -13,19 +13,22 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 export default function Quiz3({ slideCaption }) {
   const [filters, setFilters] = useState([]);
+  // const [options]
+
   const getFilters = () => {
     base('Book Tag Metadata').select({
       filterByFormula: `IF(FIND("${'race/ethnicity'}", name) !=0, options, '')`,
       view: 'Grid view',
     }).all()
       .then((records) => {
-        setFilters(records);
+        console.log(records);
+        setFilters(records[0].fields.options.split(','));
       });
   };
   useEffect(getFilters, []);
-  const results = filters[0].fields.options;
+  // const results = filters[0].fields.options;
   // console.log(results);
-  const options = results ? results.split(',') : null;
+  // const options = filters[0] ? filters[0].fields.options.split(',') : null;
   // console.log(options);
   return (
     <div>
@@ -33,7 +36,7 @@ export default function Quiz3({ slideCaption }) {
         {slideCaption}
         Which races/ethnicities do you want to see represented?
       </h1>
-      {options.map((option) => (
+      {filters.map((option) => (
         <QuizButton buttonCaption={option} />
       ))}
     </div>
