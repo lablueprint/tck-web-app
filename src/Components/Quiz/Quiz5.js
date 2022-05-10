@@ -7,7 +7,7 @@ import illusion from '../../Assets/Images/illusion.png';
 import QuizButton from './QuizButton';
 // import { Link } from 'react-router-dom';
 
-export default function Illusion() {
+export default function Quiz5() {
   return (
     <div>
       <Box sx={{ padding: 15 }}>

@@ -1,44 +1,40 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Box, Button, Checkbox, Avatar,
+  Box, Button, Avatar, Checkbox,
 } from '@mui/material';
-import Sample from '../../Assets/Images/DemoImgGenre.png';
-// import illusion from '../../Assets/Images/illusion.png';
+// import propTypes from 'prop-types';
 // import QuizButton from './QuizButton';
+import Sample from '../../Assets/Images/DemoImgGenre.png';
 // import { Link } from 'react-router-dom';
 
-export default function Activity() {
+export default function Quiz4Kid(/* {  title, buttonCaptions } */) {
   return (
     <div>
       <Box sx={{ padding: 15 }}>
         <h1>
-          Which of the following seem fun to you?
+          {/* title */}
+          Which of the following best describes you?
         </h1>
-        <h3>You can choose more than one.</h3>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
-          <p>Going on a journey to a new place with your friends</p>
+          <p>I am almost always silly</p>
         </Button>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
-          <p>Exploring an abandoned building said to be haunted</p>
+          <p>I am usually silly, but I can be serious if I need to be</p>
         </Button>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
-          <p>Going to outer space and exploring different planets</p>
+          <p>Depending on the situation, I can be either silly or serious</p>
         </Button>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
-          <p>Living in a magical world where you have powers</p>
+          <p>I am usually serious, but I can be silly sometimes</p>
         </Button>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
-          <p>Having a picnic with someone you really like</p>
-        </Button>
-        <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Visiting an African realm with magic and advanced technology</p>
+          <p>I am almost always serious</p>
         </Button>
       </Box>
     </div>

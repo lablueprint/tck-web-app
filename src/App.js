@@ -8,9 +8,9 @@ import './App.css';
 import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
-import QuizGroup from './Components/Quiz/QuizGroup';
-import QuizKidGradeSelect from './Components/Quiz/QuizKidGradeSelect';
-import QuizAdultGradeSelect from './Components/Quiz/QuizAdultGradeSelect copy';
+import QuizGroup from './Components/Quiz/Quiz1';
+import QuizKidGradeSelect from './Components/Quiz/Quiz2Kid';
+import QuizAdultGradeSelect from './Components/Quiz/Quiz2Adult';
 import BookPage from './Pages/BookPage';
 
 function App() {

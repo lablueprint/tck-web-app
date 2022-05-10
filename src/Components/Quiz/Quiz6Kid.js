@@ -14,7 +14,7 @@ const buttonCaptions = ['The lives of interesting and influential people',
   'A detailed retelling of a crucial period of time in an individual’s life',
   'The case of a mysterious, unnatural phenomenon'];
 
-export default function StoryQuestions(/* {  title, buttonCaptions } */) {
+export default function Quiz6Kid(/* {  title, buttonCaptions } */) {
   return (
     <div>
       <Box sx={{ padding: 15 }}>
@@ -47,7 +47,7 @@ export default function StoryQuestions(/* {  title, buttonCaptions } */) {
     </div>
   );
 }
-StoryQuestions.propTypes = {
+Quiz6Kid.propTypes = {
   // title: propTypes.string.isRequired,
   // buttonCaptions: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
 };

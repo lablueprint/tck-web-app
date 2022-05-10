@@ -11,7 +11,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function AdultRaceQuiz({ slideCaption }) {
+export default function Quiz3({ slideCaption }) {
   const [filters, setFilters] = useState([]);
   const getFilters = () => {
     base('Book Tag Metadata').select({
@@ -39,6 +39,6 @@ export default function AdultRaceQuiz({ slideCaption }) {
     </div>
   );
 }
-AdultRaceQuiz.propTypes = {
+Quiz3.propTypes = {
   slideCaption: propTypes.string.isRequired,
 };

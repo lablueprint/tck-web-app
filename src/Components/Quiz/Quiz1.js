@@ -42,7 +42,7 @@ function reducer(state, action) {
   }
 }
 
-export default function QuizGroup() {
+export default function Quiz1() {
   const initialState = {
     isParent: false,
     isEducator: false,

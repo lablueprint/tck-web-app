@@ -7,7 +7,7 @@ import {
 import QuizButton from './QuizButton';
 // import { Link } from 'react-router-dom';
 
-export default function QuizFormat() {
+export default function Quiz8Adult() {
   return (
     <div>
       <Box sx={{ padding: 15 }}>

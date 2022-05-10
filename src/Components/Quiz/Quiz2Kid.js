@@ -6,7 +6,7 @@ import {
 import ProgressAndArrows from './ProgressAndArrows';
 import GradeSlider from './GradeSlider';
 
-export default function QuizKidGradeSelect() {
+export default function Quiz2Kid() {
   return (
     <Card sx={{
       borderRadius: 5, margin: 4, boxShadow: 5, marginRight: 15, marginLeft: 15, marginBottom: 5, marginTop: 15,
