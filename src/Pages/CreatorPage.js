@@ -57,7 +57,7 @@ function CreatorPage() {
           creatorName={creatorDetails.fields.name ? creatorDetails.fields.name : 'Anonymous'}
           creatorBio={creatorDetails.fields.bio ? creatorDetails.fields.bio : ''}
           creatorWebsite={creatorDetails.fields.personal_site ? creatorDetails.fields.personal_site : ''}
-          creatorImage={creatorDetails.fields.image ? creatorDetails.fields.image[0].thumbnails.large.url : ''}
+          creatorImage={creatorDetails.fields.image ? creatorDetails.fields.image[0].url : ''}
         />
       )}
       {creatorDetails === undefined && !loading && (
