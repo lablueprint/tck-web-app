@@ -3,22 +3,8 @@ import './QuizGroup.css';
 import {
   Button, Avatar, Box, Card,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { Link } from 'react-router-dom';
-// import QuizButton from './QuizButton';
-
-const BorderLinearProgress = styled(LinearProgress)(() => ({
-  height: 10,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: '#F7992740',
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: '#F79927',
-  },
-}));
+import ProgressAndArrows from './ProgressAndArrows';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -82,11 +68,9 @@ export default function Quiz1() {
         <Button variant="text">Back</Button>
         <Button variant="text">Next</Button>
       </div>
-      <div>
-        <Box sx={{ flexGrow: 1 }}>
-          <BorderLinearProgress variant="determinate" value={0} />
-        </Box>
-      </div>
+      <ProgressAndArrows
+        progress={0}
+      />
     </Card>
   );
 }
