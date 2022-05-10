@@ -35,7 +35,7 @@ function ResultsPage() {
         setRecommendedBooks(records.filter((element) => sampleBookIDs.indexOf(element.id) > -1));
       });
   }
-
+  setTimeout(HandleClickToBottom, 2000);
   useEffect(getRecommendedBooks, []);
   return (
     <div>
@@ -53,7 +53,7 @@ function ResultsPage() {
             {' '}
             level!
           </p>
-          <p className="results-text">
+          <p className="results-text fade-in-animation-delay-4s">
             You are
             {' '}
             <span style={{ color: '#20B28F', fontWeight: 'bold' }}>curious</span>
@@ -62,7 +62,7 @@ function ResultsPage() {
             {' '}
             <span style={{ color: '#F99E16', fontWeight: 'bold' }}>African, Latino/Latinx, and South Asian culture.</span>
           </p>
-          <p className="results-text">
+          <p className="results-text fade-in-animation-delay-6s">
             We think you would enjoy the
             {' '}
             <span style={{ color: '#393EBA', fontWeight: 'bold' }}>Non-fiction, Adventure, Scary/Horror, and Fantasy</span>

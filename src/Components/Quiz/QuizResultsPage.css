@@ -8,6 +8,11 @@
       animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
   }
+
+@keyframes fadeIn{
+  100% {opacity:1;}
+}
+
 .results-wrapper{
   height:80vh;
 }
@@ -35,8 +40,21 @@
     font-display: swap;
     text-align:left;
     color:#444444;
+    opacity:0;
+    animation: fadeIn 200ms forwards;
 }
 
+.fade-in-animation-delay-4s{
+  animation-delay: 900ms;
+}
+
+.fade-in-animation-delay-6s{
+  animation-delay: 1600ms;
+}
+
+.fade-in-animation-delay-8s{
+  animation-delay: 2300ms;
+}
 .down-arrow-image{
     margin-top:3em;
     animation: bounce 0.75s infinite;
