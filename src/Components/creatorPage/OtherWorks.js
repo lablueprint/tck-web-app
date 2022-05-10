@@ -68,10 +68,7 @@ function CreatedWorksCard({ authorId }) {
   useEffect(FindPosts, []);
 
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', rowGap: '3rem',
-    }}
-    >
+    <div className="other-works-wrapper">
       {authoredWorks.length && <div> Authored Works: </div>}
       <Carousel
         elementArray={authoredWorks}
