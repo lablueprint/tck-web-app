@@ -205,7 +205,7 @@ CardsDisplay.propTypes = {
   searchCategory: PropTypes.string.isRequired,
   alignment: PropTypes.string.isRequired,
   rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
-  multiSelectInput: PropTypes.objectOf(PropTypes.object).isRequired,
+  multiSelectInput: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
 
 /*

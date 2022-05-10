@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import MultiselectComponent from './MultiselectFilterOptions';
-
+import './Filtering.css';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -24,14 +24,10 @@ export default function MultSelectElem({ setTempMultiSelect, tempMultiSelect }) 
 
   useEffect(getFilters, []);
   return (
-    <div style={{
-      width: '90%', display: 'flex', flexWrap: 'wrap', alignItems: 'center', margin: '1vh auto 1vh auto',
-    }}
-    >
+    <div className="multi-select-wrapper">
       {filters && filters.map((option) => (
-        <div style={{ width: '45%', margin: '1vh 1vw 1vh 1vw' }}>
+        <div className="multi-select-component" key={option.fields.id}>
           <MultiselectComponent
-            key={option.fields.id}
             filterOptions={(option.fields.options)}
             input={tempMultiSelect}
             setInput={setTempMultiSelect}

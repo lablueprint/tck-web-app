@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 import { Search } from '@mui/icons-material';
 import { RangeFilter, gradeRangeMetadata, ageRangeMetadata } from './RangeFilter';
 import MultSelectElem from './MultiselectFilters';
+import './Filtering.css';
 
 export default function Filter({ setRangeState, setMultiSelectInput }) {
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
@@ -57,7 +58,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', rowGap: 10 }}>
+    <div className="filter-wrapper">
 
       <RangeFilter
         rangeFilterData={tempRangeFilterData}
