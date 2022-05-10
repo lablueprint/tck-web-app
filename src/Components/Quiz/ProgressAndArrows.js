@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
 } from '@mui/material';
@@ -21,7 +22,7 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
   },
 }));
 
-export default function ProgressAndArrows() {
+export default function ProgressAndArrows({ progress, disabledStat }) {
   return (
     <div
       style={{
@@ -35,14 +36,20 @@ export default function ProgressAndArrows() {
           console.log('clicked');
         }}
       />
-      <BorderLinearProgress sx={{ marginRight: 4, marginLeft: 4 }} variant="determinate" value={17} />
+      <BorderLinearProgress sx={{ marginRight: 4, marginLeft: 4 }} variant="determinate" value={progress} />
       <Button
         startIcon={<ArrowForwardIcon />}
         variant="contained"
         onClick={() => {
           console.log('clicked');
         }}
+        disabled={disabledStat}
       />
     </div>
   );
 }
+
+ProgressAndArrows.propTypes = {
+  progress: PropTypes.number.isRequired,
+  disabledStat: PropTypes.isRequired,
+};

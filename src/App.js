@@ -9,8 +9,8 @@ import CreatorPage from './Pages/CreatorPage';
 import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
 import QuizGroup from './Components/Quiz/Quiz1';
-import QuizKidGradeSelect from './Components/Quiz/Quiz2Kid';
-import QuizAdultGradeSelect from './Components/Quiz/Quiz2Adult';
+import Quiz2Kid from './Components/Quiz/Quiz2Kid';
+import Quiz2Adult from './Components/Quiz/Quiz2Adult';
 import BookPage from './Pages/BookPage';
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
         <Route exact path="/collection/:id" element={<CollectionPage />} />
         <Route exact path="/quiz" element={<StartPage />} />
         <Route exact path="/quiz/questions" element={<QuizGroup />} />
-        <Route exact path="/quiz/questions/adult" element={<QuizAdultGradeSelect />} />
-        <Route exact path="/quiz/questions/kid" element={<QuizKidGradeSelect />} />
+        <Route exact path="/quiz/questions/adult" element={<Quiz2Adult />} />
+        <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
       </Routes>
     </div>
   );

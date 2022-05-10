@@ -12,7 +12,7 @@ export default function Quiz2Adult() {
       borderRadius: 5, margin: 4, boxShadow: 5, marginRight: 15, marginLeft: 15, paddingBottom: 5, paddingTop: 15,
     }}
     >
-      <div>
+      <div style={{ paddingBottom: 200 }}>
         <h1>
           What grade levels are you looking for?
         </h1>
@@ -20,7 +20,9 @@ export default function Quiz2Adult() {
           <GradeSlider />
         </Grid>
       </div>
-      <ProgressAndArrows />
+      <ProgressAndArrows
+        progress={17}
+      />
     </Card>
   );
 }
