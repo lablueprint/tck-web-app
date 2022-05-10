@@ -71,10 +71,10 @@ function BookPage() {
     getEntry('Creator', illustratorId, setIllustrator);
   };
 
-  const getBooksLikeThis = () => {
+  const getBooksLikeThis = async () => {
     if (book) {
-      const recList = RecFilter(
-        book.fields.id,
+      const recList = await RecFilter(
+        book.id,
         book.fields.age_min,
         book.fields.age_max,
         book.fields.grade_min,
@@ -82,6 +82,9 @@ function BookPage() {
         book.fields['race/ethnicity'],
         book.fields.genre,
       );
+      setBooksLikeThis(recList);
+      console.log('recList: ', recList);
+      console.log('booksLikeThis: ', booksLikeThis);
       /*
         iterate through list
           -> fetch name of author from table
@@ -93,12 +96,13 @@ function BookPage() {
   useEffect(() => {
     pushToStorage();
     getEntries();
+    getBooksLikeThis();
   }, [bookId]); // Runs on mount and on change of bookId
 
   useEffect(() => {
     getBooksLikeThis();
-    console.log(booksLikeThis);
-  }, [book]);
+    // console.log('booksLikeThis: ', booksLikeThis);
+  }, [book, booksLikeThis]);
 
   if (!book) {
     return <div>Scouring our library...</div>;

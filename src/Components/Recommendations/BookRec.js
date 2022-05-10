@@ -103,7 +103,8 @@ export default function RecFilter(
         counter += 1;
       }
     }
-    return (finalArr);
+    console.log('finalArr', finalArr);
+    return finalArr;
   }, (err) => {
     if (err) { console.error(err); }
   });
