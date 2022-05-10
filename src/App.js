@@ -5,7 +5,7 @@ import {
 import {
   Dictionary, Home, CreatorPage, BookPage, CollectionPage, BrowserPage,
 } from './Pages';
-import { Header } from './Components';
+import { Header, Footer } from './Components/index';
 import './App.css';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
