@@ -75,7 +75,7 @@ function CollectionPage() {
           <CollectionInfo
             name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
             description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
-            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].thumbnails.large.url : ''}
+            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
           />
         ) : <p>No such collection found!</p> }
       { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
