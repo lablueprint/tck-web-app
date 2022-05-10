@@ -50,7 +50,7 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
               background: '#EEEEEE', textAlign: 'left', borderRadius: '12px 0px 0px 12px', ...MENU_STYLE,
             }}
           >
-            <MenuItem value="keyword" sx={MENU_STYLE}>All</MenuItem>
+            <MenuItem value="keyword" sx={MENU_STYLE}>Keyword</MenuItem>
             <MenuItem value="title" sx={MENU_STYLE}>Title</MenuItem>
             <MenuItem value="description" sx={MENU_STYLE}>Description</MenuItem>
             <MenuItem value="identity" sx={MENU_STYLE}>Identity</MenuItem>

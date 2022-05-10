@@ -6,7 +6,8 @@
     width: 55vw;
     margin: 70px auto;
     padding-top: 1vh;
-    
+    font-family: "Work Sans";
+    font-weight: 600;
 }
 
 .browser-quote {
