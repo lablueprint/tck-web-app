@@ -56,7 +56,7 @@ function CardsDisplay({
     if (searchCategory === 'description') match = desc.includes(lowercaseTerms);
     if (searchCategory === 'identity') match = identity.includes(lowercaseTerms);
 
-    if (searchCategory === 'keywords') {
+    if (searchCategory === 'keyword') {
       match = title.includes(lowercaseTerms)
               || desc.includes(lowercaseTerms)
               || identity.includes(lowercaseTerms);
