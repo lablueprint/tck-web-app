@@ -56,6 +56,7 @@ function BookPage() {
   let readAloudURL;
   let bookshopURL;
   let educatorURLs;
+  let identityTags;
 
   if (book) {
     title = (book.get('title')) ? book.get('title') : title;
@@ -64,6 +65,7 @@ function BookPage() {
     readAloudURL = (book.get('read_aloud_link')) ? book.get('read_aloud_link') : null;
     bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
     educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links').split('\n') : [];
+    identityTags = (book.get('identity_tags')) ? book.get('identity_tags') : [];
   }
 
   if (author) {
@@ -88,6 +90,7 @@ function BookPage() {
     imageURL,
     bookshopURL,
     readAloudURL,
+    identityTags,
   };
 
   const isValidUrl = (string) => {

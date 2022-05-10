@@ -2,7 +2,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardContent, Typography, Link as LinkUI,
+  Card, CardContent, Typography, Link as LinkUI, Chip
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
@@ -19,19 +19,48 @@ const styles = {
     boxShadow: 'none',
     border: '0.5px solid #D0D0D0',
   },
+  chip: {
+    margin: "0.2vw",
+    fontSize: "1em",
+  },
+  bolded: {
+    textAlign: "left",
+    fontFamily: "Work Sans",
+    fontSize: "1.12em",
+    fontWeight: "600",
+    lineHeight: "0",
+  }
+
 };
 
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL,
+  bookshopURL, readAloudURL, identityTags
 }) {
+  console.log(identityTags)
+  
+  const identityTag = ['disability', 'lesbian', 'african', 'american', 'asian', 'heritage month']
+  const identityChips = identityTag.map((tag) => (
+    <Chip
+      label={tag}
+      sx={styles.chip}
+      color="primary"
+      key={tag.id}
+      id={tag.id}
+    />
+  ));
   return (
     <div className="synopsis">
-      <img
-        src={imageURL}
-        alt={`Book cover for ${title}`}
-        className="book-cover"
-      />
+      <div className="top-down-container">
+        <img
+          src={imageURL}
+          alt={`Book cover for ${title}`}
+          className="book-cover"
+          />
+          <div className="tag-container">
+            {identityChips}
+          </div>
+      </div>
 
       <Card sx={styles.description}>
         <CardContent>
@@ -64,6 +93,12 @@ function BookSynopsis({
                   <Link className="link" style={{ color: 'royalblue' }} to={`/creator/${illustratorID}`}>
                     {illustratorName}
                   </Link>
+                </div>
+                <div className="synopsis" style={{margin: "1vh auto",  border: "1vh 1vw 1vh 1vh"}}>
+                  <Typography variant="h6">
+                    Age range
+                  </Typography>
+                    <p className="side-card-title">Reading level</p>
                 </div>
               </div>
             </Typography>
