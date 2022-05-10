@@ -2,7 +2,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardContent, Typography, Link as LinkUI, Chip
+  Card, CardContent, Typography, Link as LinkUI, Chip, Button
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
@@ -16,7 +16,7 @@ const styles = {
     borderRadius: '1.31em',
     marginBottom: '4vh',
     backgroundColor: '#FDFDFD',
-    boxShadow: 'none',
+    boxShadow: "0px 4px 30px rgba(0, 0, 0, 0.05)",
     border: '0.5px solid #D0D0D0',
   },
   chip: {
@@ -29,13 +29,40 @@ const styles = {
     fontSize: "1.12em",
     fontWeight: "600",
     lineHeight: "0",
+  },
+  blockContainer: {
+    margin: "1vh auto",
+    border: "1vh 1vw 1vh 1vh",
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "4vh",
+  },
+  block: {
+    fontFamily: "DM Sans",
+    width: "45%",
+    textAlign: "left",
+    flex: "none",
+    order: "1",
+    flexGrow: "0",
+
+  },
+  sub: {
+    lineHeight: "1.5em",
+    color: "#656565"
+  },
+  bookshop: {
+    width: "95%",
+    fontFamily: "Work Sans",
+    fontWeight: "600",
+    color: "#3477DE",
+
   }
 
 };
 
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL, identityTags
+  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin
 }) {
   console.log(identityTags)
   
@@ -94,12 +121,25 @@ function BookSynopsis({
                     {illustratorName}
                   </Link>
                 </div>
-                <div className="synopsis" style={{margin: "1vh auto",  border: "1vh 1vw 1vh 1vh"}}>
-                  <Typography variant="h6">
-                    Age range
-                  </Typography>
-                    <p className="side-card-title">Reading level</p>
+                <div style={styles.blockContainer}>
+                  {
+                    (ageMin !== -1 && ageMax !== -1) ? (
+                      <div style={styles.block}>
+                        <Typography sx={styles.bolded}>{ageMin}-{ageMax}</Typography>
+                        <p style={styles.sub}>Age Range</p>
+                      </div>
+                    ) : <div/>
+                  }
+                  {
+                    (gradeMin !== -1) ? (
+                      <div style={styles.block}>
+                        <Typography sx={styles.bolded}>{gradeMin} Grade</Typography>
+                        <p style={styles.sub}>Reading level</p>
+                      </div>
+                    ) : <div/>
+                  }
                 </div>
+                <Button sx={styles.bookshop}>Buy from Bookshop.org</Button>
               </div>
             </Typography>
           </CardContent>
