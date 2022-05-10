@@ -1,0 +1,22 @@
+.related-works-card{
+    display: flex;
+    flex-direction: column;
+    border:solid #c2c2c2;
+    flex-shrink:1;
+    margin-right:0px;
+    width: 106.77px;
+    height:146.14px
+  }
+
+
+.rec-book-img{
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.other-works-wrapper{
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
