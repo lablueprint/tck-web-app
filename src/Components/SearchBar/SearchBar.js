@@ -31,8 +31,8 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
 
   return (
     <div>
-      <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
       <div className="SearchBar">
+        <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
         <FormControl
           variant="outlined"
           margin="none"
