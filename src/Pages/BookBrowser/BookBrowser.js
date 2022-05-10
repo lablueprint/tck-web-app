@@ -15,7 +15,7 @@ function BookBrowser() {
 
   // Searching
   const [searchTerms, setSearchTerms] = useState('');
-  const [searchCategory, setSearchCategory] = useState('all');
+  const [searchCategory, setSearchCategory] = useState('keyword');
 
   // Filtering
   const [rangeInput, setRangeInput] = useState({
