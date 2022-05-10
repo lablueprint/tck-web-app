@@ -10,13 +10,15 @@
     line-height: 28px;
     color: #5F5F5F;
     margin: 3vh auto 1vh auto;
+    text-align: left;
+    margin: 3vh 1vw 2vh 1vw;
+    width: 90%;
 }
 
 .SearchBar {
     font-family: 'Work Sans', sans-serif;
     display: inline-block;
     width: 90%;
-    /*outline: 2px dotted green;*/
     padding: 1vh 1vw 1vh 1vw;
-    margin: 1vh 1vw 4vh 1vw;
+    margin: 1vh 1vw 6vh 1vw;
 }
