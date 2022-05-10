@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import './Collection.css';
 
 export default function Collection({
-  Collid, image, name, description, imageHeightPercent,
-  imageWidthPercent, isCollectionPageHeader,
+  collectionId, image, name, imageHeightPercent,
+  imageWidthPercent, isCollectionPageHeader, isSlideActive, color,
 }) {
   return (
 
@@ -14,8 +14,9 @@ export default function Collection({
   // ID FROM HERE AFTER IT HAS BEEN RESTRUCTURED
     <Link
       className="link"
-      to={`/collection/${Collid}`}
+      to={`/collection/${collectionId}`}
       id="collection-card"
+      style={{ background: color }}
     >
       <div className="collection-image-container">
         <img className="collection-image" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
@@ -27,17 +28,20 @@ export default function Collection({
             <p
               className="card-title"
               style={{
-                fontSize: '3rem',
-                alignItems: 'end',
+                fontSize: '1.75rem',
+                alignItems: isSlideActive ? 'end' : 'center',
               }}
             >
               {name}
             </p>
+            {isSlideActive
+            && (
             <div className="card-description-wrapper">
               <p className="card-description">
-                {description}
+                Currently Viewing
               </p>
             </div>
+            )}
           </div>
         )
         : (
@@ -45,7 +49,6 @@ export default function Collection({
             className="card-title"
             style={{
               fontSize: '1.05rem',
-              alignItems: 'center',
             }}
           >
             {name}
@@ -57,18 +60,20 @@ export default function Collection({
 }
 
 Collection.propTypes = {
-  Collid: PropTypes.string.isRequired,
+  collectionId: PropTypes.string.isRequired,
   image: PropTypes.string,
   name: PropTypes.string,
-  description: PropTypes.string,
   imageHeightPercent: PropTypes.number.isRequired,
   imageWidthPercent: PropTypes.number.isRequired,
   isCollectionPageHeader: PropTypes.bool,
+  isSlideActive: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 Collection.defaultProps = {
   image: 'MISSING IMAGE',
   name: 'MISSING NAME',
-  description: 'MISSING DESCRIPTION',
   isCollectionPageHeader: false,
+  isSlideActive: false,
+  color: '#2E3E64',
 };
