@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { v4 as uuidv4 } from 'uuid';
 import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
 const options = [
@@ -84,6 +85,7 @@ function LongMenu() {
                 setActive(true);
               }
             }}
+            key={uuidv4()}
           >
             <MenuItem key={option.name} selected={active} onClick={handleClose}>
               {option.name}
