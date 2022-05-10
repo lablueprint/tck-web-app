@@ -56,7 +56,7 @@ function CardsDisplay({
     if (searchCategory === 'description') match = desc.includes(lowercaseTerms);
     if (searchCategory === 'identity') match = identity.includes(lowercaseTerms);
 
-    if (searchCategory === 'all') {
+    if (searchCategory === 'keywords') {
       match = title.includes(lowercaseTerms)
               || desc.includes(lowercaseTerms)
               || identity.includes(lowercaseTerms);
@@ -90,12 +90,12 @@ function CardsDisplay({
 
   const searchByTerm = async () => {
     let matched = [];
-    const isTitleDescIdentity = searchCategory === 'all'
+    const isTitleDescIdentity = searchCategory === 'keyword'
                               || searchCategory === 'title'
                               || searchCategory === 'description'
                               || searchCategory === 'identity';
 
-    const isAuthorIllustrator = searchCategory === 'all'
+    const isAuthorIllustrator = searchCategory === 'keyword'
                               || searchCategory === 'author'
                               || searchCategory === 'illustrator';
 
@@ -104,11 +104,11 @@ function CardsDisplay({
     }
     if (isAuthorIllustrator) {
       let res;
-      if (searchCategory === 'author' || searchCategory === 'all') {
+      if (searchCategory === 'author' || searchCategory === 'keyword') {
         res = await SearchFilter('Creator', 'authored');
         matched.push(...res);
       }
-      if (searchCategory === 'illustrator' || searchCategory === 'all') {
+      if (searchCategory === 'illustrator' || searchCategory === 'keyword') {
         res = await SearchFilter('Creator', 'illustrated');
         matched.push(...res);
       }
