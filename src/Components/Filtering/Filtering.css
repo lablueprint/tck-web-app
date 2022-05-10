@@ -1,0 +1,19 @@
+.filter-wrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10; 
+}
+
+.multi-select-wrapper{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1vh auto 1vh auto;
+}
+
+.multi-select-component{
+    width: 45%;
+    margin: 1vh 1vw 1vh 1vw; 
+}
+
