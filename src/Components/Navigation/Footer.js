@@ -21,31 +21,31 @@ function Footer() {
         </p>
         <NavLink
           to="/"
-          className="menu-options follow-us-text-size"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Home
         </NavLink>
         <NavLink
           to="/browse"
-          className="menu-options follow-us-text-size"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Book Browser
         </NavLink>
         <NavLink
           to="/collection/init"
-          className="menu-options follow-us-text-size"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Collections
         </NavLink>
         <NavLink
           to="/quiz"
-          className="menu-options follow-us-text-size"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Book Recommendation Quiz
         </NavLink>
         <NavLink
           to="/dictionary"
-          className="menu-options follow-us-text-size"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Racial Literacy Dictionary
         </NavLink>
