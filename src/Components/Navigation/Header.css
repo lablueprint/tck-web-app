@@ -24,6 +24,7 @@
     flex-direction: row;
     align-content: center;
     justify-content: end;
+    column-gap:0.75em;
     margin: 0;
 }
 
@@ -34,17 +35,29 @@
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
     font-size:1rem;
+    font-family:'Work Sans';
+    display:flex;
+    place-items:center;
 }
 
 .nav-link-active {
-    font-weight: bold;
+    font-weight: bolder;
     text-decoration: none;
     color: #000000;
     padding: 0rem 1rem 0rem 0rem;
     height: 100%;
     font-size:1rem;
+    font-family:'Work Sans';
+    display:flex;
+    place-items:center;
 }
 
 .logo {
-    width: 55px;
+    width: 100%;
+}
+
+.logo-img-container{
+    flex-shrink:0;
+    margin:0;
+    width:260px;
 }
