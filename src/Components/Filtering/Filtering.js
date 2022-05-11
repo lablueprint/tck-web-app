@@ -4,15 +4,17 @@ import Button from '@mui/material/Button';
 // import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
 import { Search } from '@mui/icons-material';
-import { RangeFilter, gradeRangeMetadata, ageRangeMetadata } from './RangeFilter';
 import MultSelectElem from './MultiselectFilters';
 import './Filtering.css';
+import RangeFilterCard from './RangeFilterCard';
+
+export const gradeRangeMetadata = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+export const ageRangeMetadata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 export default function Filter({ setRangeState, setMultiSelectInput }) {
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
-    age:
-    { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-    grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
+    age: [0, 18],
+    grade: [0, 13],
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
     'race/ethnicity': [],
@@ -30,9 +32,8 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
 
   const handleCancel = () => {
     setTempRangeFilterData({
-      age:
-      { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
+      age: [0, 18],
+      grade: [0, 13],
     });
     setTempMultiSelect({
       'race/ethnicity': [],
@@ -43,9 +44,8 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       book_type: [],
     });
     setRangeState({
-      age:
-      { min: ageRangeMetadata[0], max: ageRangeMetadata[18] },
-      grade: { min: gradeRangeMetadata[0], max: gradeRangeMetadata[13] },
+      age: [0, 18],
+      grade: [0, 13],
     });
     setMultiSelectInput({
       'race/ethnicity': [],
@@ -59,12 +59,15 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
 
   return (
     <div className="filter-wrapper">
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', alignItems: 'center', width: '100%', margin: '0vh auto',
+      }}
+      >
 
-      <RangeFilter
-        rangeFilterData={tempRangeFilterData}
-        setRangeFilterData={setTempRangeFilterData}
-      />
+        <RangeFilterCard filterTitle="Grade" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={gradeRangeMetadata} />
 
+        <RangeFilterCard filterTitle="Age" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={ageRangeMetadata} />
+      </div>
       <MultSelectElem
         setTempMultiSelect={setTempMultiSelect}
         tempMultiSelect={tempMultiSelect}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
-import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/RangeFilter';
+import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/Filtering';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -19,8 +19,8 @@ function CardsDisplay({
 }) {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
-  const incomingGradeIndices = [0, 0];
-  const incomingAgeIndices = [0, 0];
+  let incomingGradeIndices = [0, 0];
+  let incomingAgeIndices = [0, 0];
   const recordAgeIndices = [0, 0];
   const recordGradeIndices = [0, 0];
 
@@ -138,10 +138,8 @@ function CardsDisplay({
   // Filter function
   useEffect(() => {
     if (alignment === 'Filter') {
-      incomingGradeIndices[0] = gradeRangeMetadata.indexOf(rangeInput.grade.min);
-      incomingGradeIndices[1] = gradeRangeMetadata.indexOf(rangeInput.grade.max);
-      incomingAgeIndices[0] = ageRangeMetadata.indexOf(rangeInput.age.min);
-      incomingAgeIndices[1] = ageRangeMetadata.indexOf(rangeInput.age.max);
+      incomingGradeIndices = rangeInput.grade;
+      incomingAgeIndices = rangeInput.age;
 
       setFilteredBooks(allBooks.filter(
         (record) => {
