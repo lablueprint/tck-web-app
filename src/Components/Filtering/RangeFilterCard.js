@@ -1,39 +1,71 @@
-import React, { useRef } from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import React/* , { useRef } */ from 'react';
 import propTypes from 'prop-types';
+import Slider from '@mui/material/Slider';
 
+const minDistance = 0;
 function RangeFilterCard({
-  filterTitle, optionsArray, handleChange, data,
+  filterTitle, optionsArray, setData, data,
 }) {
-  const minref = useRef();
-  const maxref = useRef();
+  const marks = optionsArray.map((element, index) => {
+    if (index === 0 || index === optionsArray.length - 1) {
+      return { value: index, label: optionsArray[index] };
+    }
+
+    return { value: index };
+  });
+
+  const handleChange1 = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+    if (filterTitle === 'Age') {
+      if (activeThumb === 0) {
+        setData((prevValue) => (
+          { ...prevValue, age: [Math.min(newValue[0], data.age[1] - minDistance), data.age[1]] }));
+      } else {
+        setData((prevValue) => (
+          { ...prevValue, age: [data.age[0], Math.max(newValue[1], data.age[0] + minDistance)] }));
+      }
+    } else if (filterTitle === 'Grade') {
+      if (activeThumb === 0) {
+        setData((prevValue) => (
+          {
+            ...prevValue,
+            grade: [Math.min(newValue[0], data.grade[1] - minDistance), data.grade[1]],
+          }));
+      } else {
+        setData((prevValue) => (
+          {
+            ...prevValue,
+            grade: [data.grade[0], Math.max(newValue[1], data.grade[0] + minDistance)],
+          }));
+      }
+    }
+  };
   return (
-    <div style={{ padding: '1vh 1vw 1vh 1vw' }}>
+    <div style={{ flex: '0 0 35%', margin: '1vh auto 1vh auto' }}>
       <p style={{ textAlign: 'left' }}>{filterTitle}</p>
-      <div style={{ display: 'flex', flexDirection: 'row', columnGap: 50 }}>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          ref={minref}
-          options={optionsArray}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Min" />}
-          onChange={(event, newValue) => { handleChange(minref.current.getAttribute('name'), newValue, event); }}
-          defaultValue={filterTitle === 'Age' ? data.age.min : data.grade.min}
-          name={filterTitle === 'Age' ? 'Age-min' : 'Grade-min'}
-        />
-        <p>to</p>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          ref={maxref}
-          options={optionsArray}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Max" />}
-          onChange={(event, newValue) => { handleChange(maxref.current.getAttribute('name'), newValue, event); }}
-          defaultValue={filterTitle === 'Age' ? data.age.max : data.grade.max}
-          name={filterTitle === 'Age' ? 'Age-max' : 'Grade-max'}
+      <div>
+        <Slider
+          sx={{
+            '& .MuiSlider-rail': {
+              height: '2.5px',
+            },
+            '& .MuiSlider-track': {
+              height: '3px',
+            },
+          }}
+          name={filterTitle}
+          Label={() => 'Minimum distance'}
+          marks={marks}
+          value={filterTitle === 'Age' ? data.age : data.grade}
+          onChange={handleChange1}
+          valueLabelDisplay="auto"
+          getAriaValueText={(value) => optionsArray[value + 1]}
+          valueLabelFormat={(value) => optionsArray[value + 1]}
+          disableSwap
+          min={0}
+          max={optionsArray.length - 1}
         />
       </div>
     </div>
@@ -42,13 +74,13 @@ function RangeFilterCard({
 
 RangeFilterCard.propTypes = {
   filterTitle: propTypes.string,
-  handleChange: propTypes.func.isRequired,
   data: propTypes.shape(
     {
-      age: propTypes.shape({ min: propTypes.string.isRequired, max: propTypes.string.isRequired }),
-      grade: propTypes.shape({ min: propTypes.string.isRequired, max: propTypes.string }),
+      age: propTypes.arrayOf(propTypes.number),
+      grade: propTypes.arrayOf(propTypes.number),
     },
   ).isRequired,
+  setData: propTypes.func.isRequired,
   optionsArray: propTypes.arrayOf(propTypes.string),
 };
 
