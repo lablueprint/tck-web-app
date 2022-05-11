@@ -14,3 +14,9 @@
   max-width: 100%;
   display: block;
 }
+
+.other-works-wrapper{
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}

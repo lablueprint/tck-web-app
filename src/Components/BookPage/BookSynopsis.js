@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import {
   Card, CardContent, Typography, Link as LinkUI, Chip, Button
 } from '@mui/material';
+import { CallMade as Away } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
 import './BookSynopsis.css';
@@ -51,10 +52,10 @@ const styles = {
     color: "#656565"
   },
   bookshop: {
-    width: "95%",
     fontFamily: "Work Sans",
     fontWeight: "600",
     color: "#3477DE",
+    background: "rgba(52, 119, 222, 0.06)"
 
   }
 
@@ -62,9 +63,8 @@ const styles = {
 
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin
+  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin, gradeMax
 }) {
-  console.log(identityTags)
   
   const identityTag = ['disability', 'lesbian', 'african', 'american', 'asian', 'heritage month']
   const identityChips = identityTag.map((tag) => (
@@ -76,6 +76,43 @@ function BookSynopsis({
       id={tag.id}
     />
   ));
+
+  // Determine which 
+  /*
+    Airtable data for grade range is not dev-friendly.
+    if gradeMin and gradeMax are undefined, we don't render at all.
+    This does not handle Airtable user errors such as 
+      gradeMin: 9th, gradeMax: Kindergarten
+    where the order of grades are incorrect
+  */
+  let gradeRange;
+  if (!gradeMin) {
+    // gradeMin not given
+    gradeRange = gradeMax;
+  } 
+  else if (!gradeMax) {
+    // gradeMax not given
+    gradeRange = gradeMin;
+  }
+  else if (gradeMin === "0 to Pre-K" && gradeMax.length < 5 ) {
+    // 0 to Pre-K to short grade
+    gradeRange = `0 to ${gradeMax}`;
+  } else if (gradeMin === "0 to Pre-K" && gradeMax === "Kindergarten") {
+    // 0 to Pre-K to Kindergarten
+    gradeRange = "0 to K"
+  } 
+  else if (gradeMin === gradeMax) {
+    // gradeMin same as gradeMax
+    gradeRange = gradeMin;
+  }
+  else {
+    // Short grade range e.g. 3rd to 6th
+    gradeRange = `${gradeMin} to ${gradeMax}`;
+    console.log("fuck")
+  }
+
+
+
   return (
     <div className="synopsis">
       <div className="top-down-container">
@@ -131,15 +168,19 @@ function BookSynopsis({
                     ) : <div/>
                   }
                   {
-                    (gradeMin !== -1) ? (
+                    (gradeMin || gradeMax) ? (
                       <div style={styles.block}>
-                        <Typography sx={styles.bolded}>{gradeMin} Grade</Typography>
-                        <p style={styles.sub}>Reading level</p>
+                        <Typography sx={styles.bolded}>{gradeRange} </Typography>
+                        <p style={styles.sub}>Grade level</p>
                       </div>
                     ) : <div/>
                   }
                 </div>
-                <Button sx={styles.bookshop}>Buy from Bookshop.org</Button>
+                <Button 
+                  sx={styles.bookshop}
+                  endIcon={<Away/>}
+                  size="large"
+                >Buy from Bookshop.org</Button>
               </div>
             </Typography>
           </CardContent>
@@ -150,14 +191,6 @@ function BookSynopsis({
               <div className="side-card-container">
                 <p className="side-card-title">Additional resources</p>
                 <div className="side-card-links">
-                  { (bookshopURL)
-                    ? (
-                      <div>
-                        <LinkUI sx={{ textDecoration: 'none', color: '#3477DE' }} href={bookshopURL} rel="noreferrer" target="_blank">
-                          Bookshop Link
-                        </LinkUI>
-                      </div>
-                    ) : <div />}
                   { (readAloudURL) ? (
                     <div>
                       <LinkUI sx={{ textDecoration: 'none', color: '#3477DE' }} href={readAloudURL} rel="noreferrer" target="_blank">
@@ -166,6 +199,14 @@ function BookSynopsis({
                     </div>
                     ) :<div/>
                   }
+                  { (bookshopURL)
+                    ? (
+                      <div>
+                        <LinkUI sx={{ textDecoration: 'none', color: '#3477DE' }} href={bookshopURL} rel="noreferrer" target="_blank">
+                          Bookshop Link
+                        </LinkUI>
+                      </div>
+                    ) : <div />}
                 </div>
               </div>
             </Typography>
@@ -199,47 +240,10 @@ BookSynopsis.defaultProps = {
   imageURL: Logo,
 };
 
-/** SANDBOX
-
- <Paper
-        variant="outlined"
-        sx={{ marginLeft: '10vw', width: '510px' }}
-      >
-        <img
-          src={imageURL}
-          alt=""
-          style={{
-            height: '100%', width: '100%',
-          }}
-        />
-      </Paper>
-
-   <Typography gutterBottom className="title" sx={{ fontSize: '3em', fontWeight: '700' }}>
-            {title}
-          </Typography>
-
-    ------------------------------
-    <Typography variant="h5">
-            <div className="creators">
-              <Link className="link" to={`/creator/${authorID}`}>
-                <p className="creators">
-                  {authorName}
-                </p>
-              </Link>
-              {' '}
-              |
-              {' '}
-              <Link className="link" to={`/creator/${illustratorID}`}>
-                <p className="creators">
-                  {illustratorName}
-                </p>
-              </Link>
-              {' '}
-              (illustrator)
-            </div>
-          </Typography>
-      ----------------- FINAL SPRINT --------------------
-  1. standardize width of book image
-  2. remove the video, put as link on side
-  3. add tags
+/** TO-DO:
+ *  1. Make rainbow chips 
+ *  2. Educator URL
+ *  3. Video
+ *  4. Add collections and Books Like This
+ *  5. STRETCH: see more
  */

@@ -60,6 +60,7 @@ function BookPage() {
   let ageMin;
   let ageMax;
   let gradeMin;
+  let gradeMax;
 
   if (book) {
     title = (book.get('title')) ? book.get('title') : title;
@@ -72,6 +73,7 @@ function BookPage() {
     ageMin = (book.get('age_min')) ? book.get('age_min') : -1;
     ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
     gradeMin = (book.get('grade_min')) ? book.get('grade_min') : -1;
+    gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
   }
 
   if (author) {
@@ -100,6 +102,7 @@ function BookPage() {
     ageMin,
     ageMax,
     gradeMin,
+    gradeMax,
   };
 
   const isValidUrl = (string) => {
