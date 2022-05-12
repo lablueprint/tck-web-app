@@ -34,7 +34,6 @@ export default function Quiz3({ slideCaption }) {
     <div>
       <h1>
         {slideCaption}
-        Which races/ethnicities do you want to see represented?
       </h1>
       {filters.map((option) => (
         <QuizButton buttonCaption={option} />

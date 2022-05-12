@@ -11,7 +11,7 @@ import Quiz4Kid from './Quiz4Kid';
 import Quiz5 from './Quiz5Kid';
 import Quiz8Adult from './Quiz8Adult';
 import Quiz2Kid from './Quiz2Kid';
-import Quiz6Kid from './Quiz6Kid';
+import Quiz6Kid from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
 import ProgressAndArrows from './ProgressAndArrows';
 
@@ -56,13 +56,10 @@ export default function Quiz1() {
   const {
     isParent, isChild, count,
   } = state;
-
+  console.log(count);
   if (isParent && count === 2) {
     return (
       <div>
-        <Button class="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src="https://s3-alpha-sig.figma.com/img/d9f4/7470/d691947a53a8eddaa6a09fd66be195b8?Expires=1651449600&Signature=SM1G1Hy2cLBBvVyP9wGtsJZB4oQeHAmUbP9XKSZtbepagoz7W1sPE6v~JTFqm2t4SI34zbxc~gQSFl3-RasyO9qeAvkj6FvDp9kc5s3LkOakQCxnCtRxSKOnX6Ty1TlKWInmQ7gLju7BbcsM-ckNnz5wchlWoNe0DgtZinmec1s8ZHDYsObZtYf2PItzd3XTxFItpxwrTeAm1pWMdckjgD4EH-NN19JC-rGUSFojQVbISYEKetnBr5xPAHFPM21MtQgx8tj-AXHpWSnKyag8rkVNAX-0fD-QvZREsIOi3Xe7gvND-FC8ELeAVzLovxrx7Mz8TX4m2P62SpOztA3DaA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style={{ borderRadius: 0 }} />}>
-          <p>Parent</p>
-        </Button>
         <Quiz2Adult />
         <Button
           startIcon={<ArrowBackIcon />}
@@ -118,6 +115,26 @@ export default function Quiz1() {
     );
   }
   if (isParent && count === 5) {
+    const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
+    return (
+      <div>
+        <Quiz6Kid title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={0} />
+        <Button
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent' })}
+        />
+      </div>
+
+    );
+  }
+  if (isParent && count === 6) {
     return (
       <div>
         <Quiz8Adult />
@@ -148,7 +165,7 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
+          onClick={() => dispatch({ type: 'child' })}
         />
       </div>
 
@@ -167,7 +184,7 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
+          onClick={() => dispatch({ type: 'child' })}
         />
       </div>
     );
@@ -185,7 +202,7 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
+          onClick={() => dispatch({ type: 'child' })}
         />
       </div>
 
@@ -204,7 +221,7 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
+          onClick={() => dispatch({ type: 'child' })}
         />
       </div>
 
@@ -228,7 +245,7 @@ export default function Quiz1() {
         <Button
           startIcon={<ArrowForwardIcon />}
           variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
+          onClick={() => dispatch({ type: 'child' })}
         />
       </div>
 

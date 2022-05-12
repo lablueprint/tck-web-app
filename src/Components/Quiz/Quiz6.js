@@ -20,7 +20,6 @@ export default function Quiz6Kid({ title, buttonCaptions }) {
       <Box sx={{ padding: 15 }}>
         <h1>
           {title}
-          Which of the following would you be interested in reading about?
         </h1>
         <h3>You can choose more than one.</h3>
         <Button class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
