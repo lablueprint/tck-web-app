@@ -9,6 +9,11 @@ import Filter from '../../Components/Filtering/Filtering';
 
 import './BookBrowser.css';
 
+const styles = {
+  toggleGroup: {
+    margin: '6vh auto 6vh 4vw',
+  },
+};
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Search');
 
@@ -46,7 +51,7 @@ function BookBrowser() {
             value={alignment}
             exclusive
             onChange={handleChange}
-            sx={{ margin: '6vh auto 6vh 4vw' }}
+            sx={styles.toggleGroup}
           >
             <ToggleButton value="Filter">
               <Tune />

@@ -2,6 +2,35 @@ import React/* , { useRef } */ from 'react';
 import propTypes from 'prop-types';
 import Slider from '@mui/material/Slider';
 import './Filtering.css';
+import { styled } from '@mui/material/styles';
+
+const CustomRangeSlider = styled(Slider)({
+  '& .MuiSlider-rail': {
+    height: '2.5px',
+  },
+  '& .MuiSlider-track': {
+    height: '3px',
+  },
+  '& .MuiSlider-markLabel': {
+    fontSize: 12,
+    color: 'rgba(0, 0, 0, 0.5)',
+  },
+  '& .MuiSlider-valueLabel': {
+    fontSize: 12,
+    fontWeight: 'normal',
+    fontFamily: 'DM Sans',
+    top: 46,
+    backgroundColor: 'unset',
+    color: '#000',
+    '&:before': {
+      display: 'none',
+    },
+    '& *': {
+      background: 'transparent',
+      color: '#000',
+    },
+  },
+});
 
 const minDistance = 0;
 function RangeFilterCard({
@@ -58,35 +87,7 @@ function RangeFilterCard({
         {filterTitle === 'Grade' ? 'Reading Grade Level' : filterTitle}
       </p>
       <div>
-        <Slider
-          sx={{
-            '& .MuiSlider-rail': {
-              height: '2.5px',
-            },
-            '& .MuiSlider-track': {
-              height: '3px',
-            },
-            '& .MuiSlider-markLabel': {
-              // top: -10,
-              fontSize: 12,
-              color: 'rgba(0, 0, 0, 0.5)',
-            },
-            '& .MuiSlider-valueLabel': {
-              fontSize: 12,
-              fontWeight: 'normal',
-              fontFamily: 'DM Sans',
-              top: 46,
-              backgroundColor: 'unset',
-              color: '#000',
-              '&:before': {
-                display: 'none',
-              },
-              '& *': {
-                background: 'transparent',
-                color: '#000',
-              },
-            },
-          }}
+        <CustomRangeSlider
           name={filterTitle}
           Label={() => 'Minimum distance'}
           marks={marks}
@@ -117,7 +118,9 @@ RangeFilterCard.propTypes = {
     },
   ).isRequired,
   setData: propTypes.func.isRequired,
-  optionsArray: propTypes.arrayOf(propTypes.string || propTypes.number),
+  optionsArray: propTypes.arrayOf(propTypes.oneOfType([
+    propTypes.string,
+    propTypes.number])),
 };
 
 RangeFilterCard.defaultProps = {

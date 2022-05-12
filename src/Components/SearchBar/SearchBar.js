@@ -10,6 +10,31 @@ import './SearchBar.css';
 
 const MENU_STYLE = { fontFamily: "'DM Sans', sans-serif" };
 
+const styles = {
+  formControl: {
+    width: '20%',
+  },
+  selectMenu: {
+    background: '#EEEEEE',
+    textAlign: 'left',
+    borderRadius: '12px 0px 0px 12px',
+    ...MENU_STYLE,
+  },
+  searchField: {
+    width: '70%',
+    position: 'relative',
+    zIndex: '2',
+    background: '#F9F9F9',
+  },
+  submitButton: {
+    width: '5%',
+    borderRadius: '0 12px 12px 0',
+    marginLeft: '-1vw',
+    position: 'relative',
+    zIndex: '1',
+  },
+};
+
 function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
   const [value, setValue] = useState('');
 
@@ -36,7 +61,7 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
         <FormControl
           variant="outlined"
           margin="none"
-          sx={{ width: '20%' }}
+          sx={styles.formControl}
           size="small"
         >
           <InputLabel id="search-by-label">search by</InputLabel>
@@ -46,9 +71,7 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
             value={searchCategory}
             label="search by"
             onChange={handleSelect}
-            sx={{
-              background: '#EEEEEE', textAlign: 'left', borderRadius: '12px 0px 0px 12px', ...MENU_STYLE,
-            }}
+            sx={styles.selectMenu}
           >
             <MenuItem value="keyword" sx={MENU_STYLE}>Keyword</MenuItem>
             <MenuItem value="title" sx={MENU_STYLE}>Title</MenuItem>
@@ -60,9 +83,7 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
         </FormControl>
 
         <TextField
-          sx={{
-            width: '70%', position: 'relative', zIndex: '2', background: '#F9F9F9',
-          }}
+          sx={styles.searchField}
           size="small"
           id="outlined-basic"
           hiddenLabel
@@ -74,9 +95,7 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
           type="submit"
           variant="contained"
           onClick={handleGo}
-          sx={{
-            width: '5%', borderRadius: '0 12px 12px 0', marginLeft: '-1vw', position: 'relative', zIndex: '1',
-          }}
+          sx={styles.submitButton}
           size="large"
           endIcon={<Search />}
         />

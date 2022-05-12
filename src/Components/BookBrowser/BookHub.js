@@ -202,7 +202,12 @@ CardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
   searchCategory: PropTypes.string.isRequired,
   alignment: PropTypes.string.isRequired,
-  rangeInput: PropTypes.objectOf(PropTypes.object).isRequired,
+  rangeInput: PropTypes.shape(
+    {
+      age: PropTypes.arrayOf(PropTypes.number),
+      grade: PropTypes.arrayOf(PropTypes.number),
+    },
+  ).isRequired,
   multiSelectInput: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
 

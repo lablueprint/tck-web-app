@@ -3,7 +3,23 @@ import PropTypes from 'prop-types';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import './Filtering.css';
+import { styled } from '@mui/material/styles';
 
+const CustomAutocomplete = styled(Autocomplete)({
+  background: '#FFFFFF',
+  border: '0.5px solid rgba(0, 0, 0, 0.3)',
+  height: '50px',
+  borderRadius: '5px',
+  '& .MuiAutocomplete-inputRoot': {
+    height: '100%',
+  },
+});
+
+const styles = {
+  textField: {
+    height: '50px',
+  },
+};
 export default function MultiselectComponent({
   filterOptions, input, setInput, filterLabel, filterName,
 }) {
@@ -17,17 +33,8 @@ export default function MultiselectComponent({
         <p className="filterlabel-text">
           {filterLabel}
         </p>
-        <Autocomplete
+        <CustomAutocomplete
           multiple
-          sx={{
-            background: '#FFFFFF',
-            border: '0.5px solid rgba(0, 0, 0, 0.3)',
-            height: '50px',
-            borderRadius: '5px',
-            '& .MuiAutocomplete-inputRoot': {
-              height: '100%',
-            },
-          }}
           options={result}
           filterSelectedOptions
           onChange={(event, value) => handleToggle(
@@ -40,7 +47,7 @@ export default function MultiselectComponent({
               {...params}
               // placeholder={filterOptions ? `'${result[0]}...'` : null}
               size="small"
-              sx={{ height: '50px' }}
+              sx={styles.textField}
             />
           )}
         />
