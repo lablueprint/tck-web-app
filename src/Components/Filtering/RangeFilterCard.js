@@ -7,10 +7,17 @@ function RangeFilterCard({
   filterTitle, optionsArray, setData, data,
 }) {
   const marks = optionsArray.map((element, index) => {
-    if (index === 0 || index === optionsArray.length - 1) {
-      return { value: index, label: optionsArray[index] };
+    if (filterTitle === 'Grade' && (index === 0 || index === optionsArray.length - 1)) {
+      return { value: index, label: `${optionsArray[index]}` };
     }
-
+    if (filterTitle === 'Age') {
+      if (index === 0) {
+        return { value: index, label: `${optionsArray[index]}` };
+      }
+      if (index === optionsArray.length - 1) {
+        return { value: index, label: '18+' };
+      }
+    }
     return { value: index };
   });
 
@@ -44,7 +51,12 @@ function RangeFilterCard({
   };
   return (
     <div style={{ flex: '0 0 35%', margin: '1vh auto 1vh auto' }}>
-      <p style={{ textAlign: 'left' }}>{filterTitle}</p>
+      <p style={{
+        textAlign: 'left', fontFamily: 'DM Sans', fontWeight: 'normal', fontSize: '16px', color: 'rgba(0, 0, 0, 0.5)',
+      }}
+      >
+        {filterTitle === 'Grade' ? 'Reading Grade Level' : filterTitle}
+      </p>
       <div>
         <Slider
           sx={{

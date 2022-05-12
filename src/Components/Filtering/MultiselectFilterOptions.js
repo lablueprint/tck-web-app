@@ -12,24 +12,41 @@ export default function MultiselectComponent({
   };
   return (
     filterOptions ? (
-      <Autocomplete
-        multiple
-        options={result}
-        filterSelectedOptions
-        onChange={(event, value) => handleToggle(
-          value,
-          filterName,
-          event,
-        )}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label={filterLabel}
-            placeholder={filterOptions ? `'${result[0]}...'` : null}
-            size="small"
-          />
-        )}
-      />
+      <div>
+        <p style={{
+          color: 'rgba(0, 0, 0, 0.5)', fontFamily: 'DM Sans', fontWeight: 'normal', textAlign: 'left', marginBottom: '0.2em',
+        }}
+        >
+          {filterLabel}
+        </p>
+        <Autocomplete
+          multiple
+          sx={{
+            background: '#FFFFFF',
+            border: '0.5px solid rgba(0, 0, 0, 0.3)',
+            height: '50px',
+            borderRadius: '5px',
+            '& .MuiAutocomplete-inputRoot': {
+              height: '100%',
+            },
+          }}
+          options={result}
+          filterSelectedOptions
+          onChange={(event, value) => handleToggle(
+            value,
+            filterName,
+            event,
+          )}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              // placeholder={filterOptions ? `'${result[0]}...'` : null}
+              size="small"
+              sx={{ height: '50px' }}
+            />
+          )}
+        />
+      </div>
     ) : null
   );
 }
