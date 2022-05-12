@@ -5,9 +5,6 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-// import RightArrow from '../Assets/Images/right-arrow.svg';
-// import LeftArrow from '../Assets/Images/left-arrow.svg';
-// import Carousel from '../Components/CreatorPage/BookCarousel';
 import RecFilter from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
@@ -19,7 +16,6 @@ function BookPage() {
   const [book, setBook] = useState();
   const [author, setAuthor] = useState();
   const [illustrator, setIllustrator] = useState();
-  const [booksLikeThis, setBooksLikeThis] = useState([]);
 
   // Instead of using props, we pull bookId from URL
   const params = useParams();
@@ -71,6 +67,7 @@ function BookPage() {
     getEntry('Creator', illustratorId, setIllustrator);
   };
 
+  // Gets list of recommended books
   const getBooksLikeThis = async () => {
     if (book) {
       const recList = await RecFilter(
@@ -82,27 +79,18 @@ function BookPage() {
         book.fields['race/ethnicity'],
         book.fields.genre,
       );
-      setBooksLikeThis(recList);
       console.log('recList: ', recList);
-      console.log('booksLikeThis: ', booksLikeThis);
-      /*
-        iterate through list
-          -> fetch name of author from table
-          -> append object of book carousel format to (state: booksLikeThis)
-      */
     }
   };
 
   useEffect(() => {
     pushToStorage();
     getEntries();
-    getBooksLikeThis();
   }, [bookId]); // Runs on mount and on change of bookId
 
   useEffect(() => {
     getBooksLikeThis();
-    // console.log('booksLikeThis: ', booksLikeThis);
-  }, [book, booksLikeThis]);
+  }, [book]);
 
   if (!book) {
     return <div>Scouring our library...</div>;
