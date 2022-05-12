@@ -12,6 +12,25 @@ import RangeFilterCard from './RangeFilterCard';
 export const gradeRangeMetadata = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
 export const ageRangeMetadata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
+const styles = {
+  homepageButton: {
+    textTransform: 'none',
+    marginLeft: '2.25em',
+    fontFamily: 'DM Sans',
+  },
+  resetButton: {
+    textTransform: 'none',
+    marginRight: '2.5em',
+    fontFamily: 'Arimo',
+  },
+  searchButton: {
+    borderRadius: '12px',
+    padding: '0.7em 1.25em',
+    textTransform: 'none',
+    fontFamily: 'Arimo',
+  },
+};
+
 export default function Filter({ setRangeState, setMultiSelectInput }) {
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age: [-1, 17],
@@ -76,12 +95,12 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
           to="/"
           className="homepage-button"
         >
-          <Button sx={{ textTransform: 'none', marginLeft: '2.25em', fontFamily: 'DM Sans' }} startIcon={<ChevronLeft />}>
+          <Button sx={styles.homepageButton} startIcon={<ChevronLeft />}>
             Return to Homepage
           </Button>
         </NavLink>
         <div className="cancel-and-go-button-wrapper">
-          <Button onClick={handleCancel} sx={{ textTransform: 'none', marginRight: '2.5em', fontFamily: 'Arimo' }}>
+          <Button onClick={handleCancel} sx={styles.resetButton}>
             Reset
           </Button>
           <Button
@@ -89,9 +108,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
             variant="contained"
             startIcon={<Search />}
             onClick={handleSave}
-            sx={{
-              borderRadius: '12px', padding: '0.7em 1.25em', textTransform: 'none', fontFamily: 'Arimo',
-            }}
+            sx={styles.searchButton}
           >
             Go!
           </Button>
