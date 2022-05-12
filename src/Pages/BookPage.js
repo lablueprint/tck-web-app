@@ -4,7 +4,10 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
+import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
+import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
+import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
 
 const Airtable = require('airtable');
 
@@ -15,6 +18,16 @@ function BookPage() {
   const [book, setBook] = useState();
   const [author, setAuthor] = useState();
   const [illustrator, setIllustrator] = useState();
+  const [collections, setCollections] = useState([]);
+
+  //  Grab collections
+  const getCollections = () => {
+    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
+      .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
+        setCollections(records);
+      });
+  };
+  useEffect(getCollections, []);
 
   // Instead of using props, we pull bookId from URL
   const params = useParams();
@@ -131,6 +144,17 @@ function BookPage() {
 
   return (
     <Paper variant="outlined">
+      <CollectionsCarousel
+        elementArray={collections}
+        slidesAtATime={6}
+        prevArrow={LeftArrow}
+        nextArrow={RightArrow}
+        widthPercent={100}
+        spaceBetweenEntries={16}
+        swiperHeight={120}
+        cardImageHeightPercent={80}
+        cardImageWidthPercent={80}
+      />
       <BookSynopsis {...synopsisProps} />
       {(readAloudURL) ? (
         <div>
