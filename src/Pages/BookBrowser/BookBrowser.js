@@ -18,8 +18,8 @@ function BookBrowser() {
 
   // Filtering
   const [rangeInput, setRangeInput] = useState({
-    age: [0, 18],
-    grade: [0, 13],
+    age: [-1, 17],
+    grade: [-1, 12],
   });
   const [multiSelectInput, setMultiSelectInput] = useState({
     'race/ethnicity': [],
@@ -40,7 +40,7 @@ function BookBrowser() {
     <div id="background">
       <div className="browser">
         <div className="browser-head">
-          <div className="browser-quote" style={{ color: '#4A5766', fontSize: '40px', letterSpacing: '-0.02em' }}>Book Browser</div>
+          <div className="browser-quote">Book Browser</div>
           <ToggleButtonGroup
             color="primary"
             value={alignment}

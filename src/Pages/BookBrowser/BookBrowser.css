@@ -13,8 +13,10 @@
 .browser-quote {
     margin: 10vh 4vw auto;
     font-size: 1.625em;
-    font-family: 'DM Sans', sans-serif;
-    
+    font-family: DM Sans, sans-serif;
+    color: #4A5766;
+    font-size: 40px;
+    letter-spacing: -0.02em;
 }
 .browser-head {
     background: #FFFFFF;

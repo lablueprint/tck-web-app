@@ -14,8 +14,8 @@ export const ageRangeMetadata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
 
 export default function Filter({ setRangeState, setMultiSelectInput }) {
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
-    age: [0, 18],
-    grade: [0, 13],
+    age: [-1, 17],
+    grade: [-1, 12],
   });
   const [tempMultiSelect, setTempMultiSelect] = useState({
     'race/ethnicity': [],
@@ -33,8 +33,8 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
 
   const handleCancel = () => {
     setTempRangeFilterData({
-      age: [0, 18],
-      grade: [0, 13],
+      age: [-1, 17],
+      grade: [-1, 12],
     });
     setTempMultiSelect({
       'race/ethnicity': [],
@@ -45,8 +45,8 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       book_type: [],
     });
     setRangeState({
-      age: [0, 18],
-      grade: [0, 13],
+      age: [-1, 17],
+      grade: [-1, 12],
     });
     setMultiSelectInput({
       'race/ethnicity': [],
@@ -60,10 +60,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
 
   return (
     <div className="filter-wrapper">
-      <div style={{
-        display: 'flex', flexWrap: 'wrap', alignItems: 'center', width: '100%', margin: '0vh auto',
-      }}
-      >
+      <div className="range-filter-wrapper">
 
         <RangeFilterCard filterTitle="Age" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={ageRangeMetadata} />
 
@@ -74,19 +71,16 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
         tempMultiSelect={tempMultiSelect}
       />
 
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+      <div className="filter-button-wrapper">
         <NavLink
           to="/"
-          style={{ textDecoration: 'none', alignItems: 'center', display: 'flex' }}
+          className="homepage-button"
         >
           <Button sx={{ textTransform: 'none', marginLeft: '2.25em', fontFamily: 'DM Sans' }} startIcon={<ChevronLeft />}>
             Return to Homepage
           </Button>
         </NavLink>
-        <div style={{
-          textAlign: 'right', textTransform: 'none', margin: '1vh 2vw 1vh 2vw', padding: '5vh 1vw 5vh 5vw',
-        }}
-        >
+        <div className="cancel-and-go-button-wrapper">
           <Button onClick={handleCancel} sx={{ textTransform: 'none', marginRight: '2.5em', fontFamily: 'Arimo' }}>
             Reset
           </Button>
