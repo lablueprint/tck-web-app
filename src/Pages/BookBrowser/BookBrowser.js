@@ -40,21 +40,22 @@ function BookBrowser() {
     <div id="background">
       <div className="browser">
         <div className="browser-head">
-          <div className="browser-quote">Browse For Books</div>
+          <div className="browser-quote" style={{ color: '#4A5766', fontSize: '40px', letterSpacing: '-0.02em' }}>Book Browser</div>
           <ToggleButtonGroup
             color="primary"
             value={alignment}
             exclusive
             onChange={handleChange}
-            sx={{ margin: '3vh 3vw auto' }}
+            sx={{ margin: '6vh auto 6vh 4vw' }}
           >
-            <ToggleButton value="Search">
-              <Search />
-              Search
-            </ToggleButton>
             <ToggleButton value="Filter">
               <Tune />
               Filter
+            </ToggleButton>
+            <ToggleButton value="Search">
+
+              <Search />
+              Search
             </ToggleButton>
           </ToggleButtonGroup>
         </div>

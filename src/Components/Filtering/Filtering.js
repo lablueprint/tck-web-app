@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
-import { Search } from '@mui/icons-material';
+import { Search, ChevronLeft } from '@mui/icons-material';
 import MultSelectElem from './MultiselectFilters';
 import './Filtering.css';
 import RangeFilterCard from './RangeFilterCard';
@@ -64,28 +65,43 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
       }}
       >
 
-        <RangeFilterCard filterTitle="Grade" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={gradeRangeMetadata} />
-
         <RangeFilterCard filterTitle="Age" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={ageRangeMetadata} />
+
+        <RangeFilterCard filterTitle="Grade" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={gradeRangeMetadata} />
       </div>
       <MultSelectElem
         setTempMultiSelect={setTempMultiSelect}
         tempMultiSelect={tempMultiSelect}
       />
 
-      <div style={{ textAlign: 'right', textTransform: 'none', margin: '1vh 2vw 1vh 2vw' }}>
-        <Button onClick={handleCancel}>
-          Cancel
-        </Button>
-        <Button
-          type="button"
-          variant="contained"
-          startIcon={<Search />}
-          onClick={handleSave}
-          sx={{ borderRadius: '12px' }}
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <NavLink
+          to="/"
+          style={{ textDecoration: 'none', alignItems: 'center', display: 'flex' }}
         >
-          Go!
-        </Button>
+          <Button sx={{ textTransform: 'none', marginLeft: '2.25em', fontFamily: 'DM Sans' }} startIcon={<ChevronLeft />}>
+            Return to Homepage
+          </Button>
+        </NavLink>
+        <div style={{
+          textAlign: 'right', textTransform: 'none', margin: '1vh 2vw 1vh 2vw', padding: '5vh 1vw 5vh 5vw',
+        }}
+        >
+          <Button onClick={handleCancel} sx={{ textTransform: 'none', marginRight: '2.5em', fontFamily: 'Arimo' }}>
+            Reset
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            startIcon={<Search />}
+            onClick={handleSave}
+            sx={{
+              borderRadius: '12px', padding: '0.7em 1.25em', textTransform: 'none', fontFamily: 'Arimo',
+            }}
+          >
+            Go!
+          </Button>
+        </div>
       </div>
 
     </div>
