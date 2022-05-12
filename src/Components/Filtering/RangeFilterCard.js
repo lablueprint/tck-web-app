@@ -1,6 +1,7 @@
 import React/* , { useRef } */ from 'react';
 import propTypes from 'prop-types';
 import Slider from '@mui/material/Slider';
+import './Filtering.css';
 
 const minDistance = 0;
 function RangeFilterCard({
@@ -52,11 +53,8 @@ function RangeFilterCard({
     }
   };
   return (
-    <div style={{ flex: '0 0 35%', margin: '1vh auto 1vh auto' }}>
-      <p style={{
-        textAlign: 'left', fontFamily: 'DM Sans', fontWeight: 'normal', fontSize: '16px', color: 'rgba(0, 0, 0, 0.5)', marginLeft: '-1em',
-      }}
-      >
+    <div className="range-slider-wrapper">
+      <p className="range-slider-title">
         {filterTitle === 'Grade' ? 'Reading Grade Level' : filterTitle}
       </p>
       <div>

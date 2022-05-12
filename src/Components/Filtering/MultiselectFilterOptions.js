@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import './Filtering.css';
 
 export default function MultiselectComponent({
   filterOptions, input, setInput, filterLabel, filterName,
@@ -13,10 +14,7 @@ export default function MultiselectComponent({
   return (
     filterOptions ? (
       <div>
-        <p style={{
-          color: 'rgba(0, 0, 0, 0.5)', fontFamily: 'DM Sans', fontWeight: 'normal', textAlign: 'left', marginBottom: '0.2em',
-        }}
-        >
+        <p className="filterlabel-text">
           {filterLabel}
         </p>
         <Autocomplete

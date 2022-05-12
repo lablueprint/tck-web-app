@@ -18,4 +18,49 @@
     width: 40%;
     margin: 0.1vh auto 0.1vh auto; 
 }
+.range-filter-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    margin: 0vh auto;
+}
 
+.filter-button-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.homepage-button{
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+}
+
+.cancel-and-go-button-wrapper{
+    text-align: right;
+    text-transform: none;
+    margin: 1vh 2vw 1vh 2vw;
+    padding: 5vh 1vw 5vh 5vw;
+}
+
+.filterlabel-text{
+    color: rgba(0, 0, 0, 0.5);
+    font-family: DM Sans;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 0.2em;
+}
+.range-slider-wrapper{
+    flex: 0 0 35%;
+    margin: 1vh auto 1vh auto;
+}
+.range-slider-title{
+    text-align: left;
+    font-family: DM Sans;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: -1em;
+}

@@ -148,8 +148,8 @@ function CardsDisplay({
           recordAgeIndices[0] = ageRangeMetadata.indexOf(record.fields.age_min);
           recordAgeIndices[1] = ageRangeMetadata.indexOf(record.fields.age_max);
           return (
-            (incomingGradeIndices[0] <= recordGradeIndices[1])
-            && (incomingGradeIndices[1] >= recordGradeIndices[0])
+            ((incomingGradeIndices[0] + 1) <= recordGradeIndices[1])
+            && ((incomingGradeIndices[1] + 1) >= recordGradeIndices[0])
         && (incomingAgeIndices[0] <= recordAgeIndices[1])
         && (incomingAgeIndices[1] >= recordAgeIndices[0])
       && (multiSelectInput['race/ethnicity'].length === 0
