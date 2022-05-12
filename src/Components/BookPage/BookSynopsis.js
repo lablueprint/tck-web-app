@@ -87,6 +87,10 @@ const styles = {
     backgroundColor: '#FCFCFC',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
+    '@media (max-width: 960px)': {
+      width: '85%',
+      margin: 'auto',
+    },
   },
   sideCardTitle: {
     textAlign: 'left',
@@ -188,8 +192,8 @@ function BookSynopsis({
         label={tag}
         sx={chipStyle}
         color="primary"
-        key={tag.id}
-        id={tag.id}
+        key={tag}
+        id={tag}
       />
     );
   });
@@ -312,7 +316,7 @@ function BookSynopsis({
           <CardContent>
             <Box sx={styles.sideCardContainer}>
               <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
-              <Typography sx={styles.sideCardLinkContainer}>
+              <Box sx={styles.sideCardLinkContainer}>
                 { (readAloudURL) ? (
                   <div>
                     <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
@@ -328,7 +332,7 @@ function BookSynopsis({
                       </LinkUI>
                     </div>
                   ) : <div />}
-              </Typography>
+              </Box>
             </Box>
           </CardContent>
         </Card>
@@ -380,8 +384,7 @@ BookSynopsis.defaultProps = {
  *      ??? newline separated strings
  *          how to display??
  *          where da design?!?!?!?!111
- *  3. Video
- *  4. Add collections and Books Like This
+ *  4. Add Books Like This
  *  5. STRETCH: see more
  *
  * <img

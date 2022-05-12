@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Paper, Link as LinkUI, List, ListItem, ListItemText,
+  Paper, ListItem, ListItemText, Box,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
@@ -13,6 +13,26 @@ const Airtable = require('airtable');
 
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
   .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
+
+const styles = {
+  iframeContainer: {
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+    paddingTop: '56.25%',
+    margin: '0 auto 0 auto',
+  },
+  iframe: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    bottom: '0',
+    right: '0',
+    width: '75%',
+    height: '75%',
+    margin: '0 auto 0 auto',
+  },
+};
 
 function BookPage() {
   const [book, setBook] = useState();
@@ -157,33 +177,17 @@ function BookPage() {
       />
       <BookSynopsis {...synopsisProps} />
       {(readAloudURL) ? (
-        <div>
+        <Box sx={styles.iframeContainer}>
           <iframe
-            width="853"
-            height="480"
+            style={styles.iframe}
             src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title="Embedded youtube"
           />
-        </div>
+        </Box>
       ) : <div />}
-      {(bookshopURL) ? (
-        <LinkUI href={bookshopURL} rel="noreferrer" target="_blank">
-          Buy
-          {' '}
-          {title}
-          !
-        </LinkUI>
-      ) : <div />}
-      <h4>Educator Guides</h4>
-      {(educatorURLs)
-        ? (
-          <List>
-            {educatorLinks}
-          </List>
-        ) : <div />}
     </Paper>
   );
 }
@@ -199,5 +203,15 @@ export default BookPage;
             - Currently when there is no book title
 
   OLD CODE:
-
+  <div>
+          <iframe
+            width="853"
+            height="480"
+            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
+            frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
+        </div>
 */
