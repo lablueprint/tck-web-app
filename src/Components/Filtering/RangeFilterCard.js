@@ -7,18 +7,20 @@ function RangeFilterCard({
   filterTitle, optionsArray, setData, data,
 }) {
   const marks = optionsArray.map((element, index) => {
-    if (filterTitle === 'Grade' && (index === 0 || index === optionsArray.length - 1)) {
-      return { value: index, label: `${optionsArray[index]}` };
+    if (filterTitle === 'Grade') {
+      if (index === 0) { return { value: index - 1, label: 'Pre-K' }; }
+      if (index === optionsArray.length - 1) { return { value: index - 1, label: `${optionsArray[index]}` }; }
+      return { value: index - 1 };
     }
     if (filterTitle === 'Age') {
       if (index === 0) {
-        return { value: index, label: `${optionsArray[index]}` };
+        return { value: index - 1, label: `${optionsArray[index]}` };
       }
       if (index === optionsArray.length - 1) {
-        return { value: index, label: '18+' };
+        return { value: index - 1, label: '18+' };
       }
     }
-    return { value: index };
+    return { value: index - 1 };
   });
 
   const handleChange1 = (event, newValue, activeThumb) => {
@@ -52,7 +54,7 @@ function RangeFilterCard({
   return (
     <div style={{ flex: '0 0 35%', margin: '1vh auto 1vh auto' }}>
       <p style={{
-        textAlign: 'left', fontFamily: 'DM Sans', fontWeight: 'normal', fontSize: '16px', color: 'rgba(0, 0, 0, 0.5)',
+        textAlign: 'left', fontFamily: 'DM Sans', fontWeight: 'normal', fontSize: '16px', color: 'rgba(0, 0, 0, 0.5)', marginLeft: '-1em',
       }}
       >
         {filterTitle === 'Grade' ? 'Reading Grade Level' : filterTitle}
@@ -66,18 +68,42 @@ function RangeFilterCard({
             '& .MuiSlider-track': {
               height: '3px',
             },
+            '& .MuiSlider-markLabel': {
+              // top: -10,
+              fontSize: 12,
+              color: 'rgba(0, 0, 0, 0.5)',
+            },
+            '& .MuiSlider-valueLabel': {
+              fontSize: 12,
+              fontWeight: 'normal',
+              fontFamily: 'DM Sans',
+              top: 46,
+              backgroundColor: 'unset',
+              color: '#000',
+              '&:before': {
+                display: 'none',
+              },
+              '& *': {
+                background: 'transparent',
+                color: '#000',
+              },
+            },
           }}
           name={filterTitle}
           Label={() => 'Minimum distance'}
           marks={marks}
           value={filterTitle === 'Age' ? data.age : data.grade}
           onChange={handleChange1}
-          valueLabelDisplay="auto"
-          getAriaValueText={(value) => optionsArray[value + 1]}
-          valueLabelFormat={(value) => optionsArray[value + 1]}
+          valueLabelDisplay="on"
+          getAriaValueText={(value) => `${optionsArray[value + 1]}`}
+          valueLabelFormat={(value) => {
+            if (value === -1 || value === optionsArray.length - 2) { return ''; }
+            if (filterTitle === 'Grade' && value === 0) { return 'K'; }
+            return `${optionsArray[value + 1]}`;
+          }}
           disableSwap
-          min={0}
-          max={optionsArray.length - 1}
+          min={-1}
+          max={optionsArray.length - 2}
         />
       </div>
     </div>
@@ -93,7 +119,7 @@ RangeFilterCard.propTypes = {
     },
   ).isRequired,
   setData: propTypes.func.isRequired,
-  optionsArray: propTypes.arrayOf(propTypes.string),
+  optionsArray: propTypes.arrayOf(propTypes.string || propTypes.number),
 };
 
 RangeFilterCard.defaultProps = {
