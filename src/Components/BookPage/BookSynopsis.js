@@ -59,7 +59,7 @@ const styles = {
     boxShadow: 'none',
     width: '100%',
     '@media (max-width: 960px)': {
-      maxWidth: '100vw',
+      maxWidth: '95vw',
       margin: 'auto',
     },
   },
@@ -84,7 +84,7 @@ const styles = {
   sideCard: {
     borderRadius: '1.31em',
     marginBottom: '4vh',
-    backgroundColor: '#FCFCFC',
+    background: '#FDFDFD',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
     '@media (max-width: 960px)': {
@@ -198,7 +198,7 @@ function BookSynopsis({
     );
   });
 
-  /*
+  /* Grade Range
     Airtable data for grade range is not dev-friendly. 😔
     if gradeMin and gradeMax are undefined, we don't render at all.
     This does not handle Airtable user errors such as
@@ -215,6 +215,9 @@ function BookSynopsis({
   } else if (gradeMin === '0 to Pre-K' && gradeMax.length < 5) {
     // 0 to Pre-K to short grade
     gradeRange = `0 to ${gradeMax}`;
+  } else if (gradeMin === 'Kindergarten' && gradeMax.length < 5) {
+    // Kindergarten to short grade
+    gradeRange = `K - ${gradeMax}`;
   } else if (gradeMin === '0 to Pre-K' && gradeMax === 'Kindergarten') {
     // 0 to Pre-K to Kindergarten
     gradeRange = '0 to K';
@@ -224,6 +227,27 @@ function BookSynopsis({
   } else {
     // Short grade range e.g. 3rd to 6th
     gradeRange = `${gradeMin} to ${gradeMax}`;
+  }
+
+  /* Age Range
+    Do we trust TCK humans to put things in properly? 🤔 naur
+    1. age range is good
+    2. age range reversed
+    3. ages are the same
+  */
+  let ageRange;
+  if (ageMin === -1 && ageMax === -1) {
+    ageRange = 'All';
+  } else if (ageMin === ageMax) {
+    ageRange = `Age ${ageMin}`;
+  } else if (ageMin === -1) {
+    ageRange = `0 - ${ageMax}`;
+  } else if (ageMax === -1) {
+    ageRange = `${ageMin} - 18`;
+  } else if (ageMax < ageMin) {
+    ageRange = `${ageMax} - ${ageMin}`;
+  } else {
+    ageRange = `${ageMin} - ${ageMax}`;
   }
 
   return (
@@ -273,18 +297,12 @@ function BookSynopsis({
                 </Link>
               </Box>
               <div style={styles.blockContainer}>
-                {
-                    (ageMin !== -1 && ageMax !== -1) ? (
-                      <div style={styles.block}>
-                        <Typography sx={styles.bolded}>
-                          {ageMin}
-                          -
-                          {ageMax}
-                        </Typography>
-                        <p style={styles.sub}>Age Range</p>
-                      </div>
-                    ) : <div />
-                  }
+                <div style={styles.block}>
+                  <Typography sx={styles.bolded}>
+                    {ageRange}
+                  </Typography>
+                  <p style={styles.sub}>Age Range</p>
+                </div>
                 {
                     (gradeMin || gradeMax) ? (
                       <div style={styles.block}>
@@ -304,6 +322,7 @@ function BookSynopsis({
                       endIcon={<Away />}
                       size="large"
                       href={bookshopURL}
+                      target="_blank"
                     >
                       Buy from Bookshop.org
                     </Button>
