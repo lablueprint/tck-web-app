@@ -170,7 +170,7 @@ const styles = {
   seeMoreText: {
     fontFamily: 'DM Sans',
     fontWeight: 700,
-    fontSize: '14px',
+    fontSize: '0.875em',
     color: '#0068C9',
     paddingTop: 1,
     '&:hover': {
@@ -179,7 +179,7 @@ const styles = {
     },
   },
   seeMoreIcon: {
-    fontSize: '16px',
+    fontSize: '1em',
     color: '#0068C9',
     paddingTop: 1,
     paddingLeft: 0.25,
@@ -293,7 +293,6 @@ function BookSynopsis({
 
   const gradeRange = createGradeRange(gradeMin, gradeMax);
   const ageRange = createAgeRange(ageMin, ageMax);
-
   return (
     <Box sx={styles.synopsis}>
       <Box sx={styles.topDownContainer}>
@@ -447,7 +446,7 @@ BookSynopsis.defaultProps = {
   authorID: '',
   illustratorName: 'Unknown Illustrator',
   illustratorID: '',
-  desc: 'It\'s a book. with words. **gasp**',
+  desc: 'It\'s a good book. A great book, even. 📖',
   imageURL: Logo,
   bookshopURL: '',
   readAloudURL: '',

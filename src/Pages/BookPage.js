@@ -84,7 +84,7 @@ function BookPage() {
   let authorID = '';
   let illustratorName = 'Unknown Illustrator';
   let illustratorID = '';
-  let desc = 'It\'s a book. with words. **gasp**';
+  let desc = 'It\'s a good book. A great book, even. 📖';
   let image;
   let readAloudURL;
   let bookshopURL;
