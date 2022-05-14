@@ -55,52 +55,49 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
   };
 
   return (
-    <div>
-      <div className="SearchBar">
-        <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
-        <FormControl
-          variant="outlined"
-          margin="none"
-          sx={styles.formControl}
-          size="small"
+    <div className="SearchBar">
+      <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
+      <FormControl
+        variant="outlined"
+        margin="none"
+        sx={styles.formControl}
+        size="small"
+      >
+        <InputLabel id="search-by-label">search by</InputLabel>
+        <Select
+          labelId="search-by-label"
+          id="search-by"
+          value={searchCategory}
+          label="search by"
+          onChange={handleSelect}
+          sx={styles.selectMenu}
         >
-          <InputLabel id="search-by-label">search by</InputLabel>
-          <Select
-            labelId="search-by-label"
-            id="search-by"
-            value={searchCategory}
-            label="search by"
-            onChange={handleSelect}
-            sx={styles.selectMenu}
-          >
-            <MenuItem value="keyword" sx={MENU_STYLE}>Keyword</MenuItem>
-            <MenuItem value="title" sx={MENU_STYLE}>Title</MenuItem>
-            <MenuItem value="description" sx={MENU_STYLE}>Description</MenuItem>
-            <MenuItem value="identity" sx={MENU_STYLE}>Identity</MenuItem>
-            <MenuItem value="author" sx={MENU_STYLE}>Author</MenuItem>
-            <MenuItem value="illustrator" sx={MENU_STYLE}>Illustrator</MenuItem>
-          </Select>
-        </FormControl>
+          <MenuItem value="keyword" sx={MENU_STYLE}>Keyword</MenuItem>
+          <MenuItem value="title" sx={MENU_STYLE}>Title</MenuItem>
+          <MenuItem value="description" sx={MENU_STYLE}>Description</MenuItem>
+          <MenuItem value="identity" sx={MENU_STYLE}>Identity</MenuItem>
+          <MenuItem value="author" sx={MENU_STYLE}>Author</MenuItem>
+          <MenuItem value="illustrator" sx={MENU_STYLE}>Illustrator</MenuItem>
+        </Select>
+      </FormControl>
 
-        <TextField
-          sx={styles.searchField}
-          size="small"
-          id="outlined-basic"
-          hiddenLabel
-          variant="outlined"
-          margin="none"
-          onKeyUp={handleChange}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          onClick={handleGo}
-          sx={styles.submitButton}
-          size="large"
-          endIcon={<Search />}
-        />
-
-      </div>
+      <TextField
+        sx={styles.searchField}
+        size="small"
+        id="outlined-basic"
+        hiddenLabel
+        variant="outlined"
+        margin="none"
+        onKeyUp={handleChange}
+      />
+      <Button
+        type="submit"
+        variant="contained"
+        onClick={handleGo}
+        sx={styles.submitButton}
+        size="large"
+        endIcon={<Search />}
+      />
     </div>
   );
 }
