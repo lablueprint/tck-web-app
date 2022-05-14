@@ -1,9 +1,10 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Card, CardContent, Typography, Link as LinkUI, Chip, Button, Box,
 } from '@mui/material';
-import { CallMade as Away } from '@mui/icons-material';
+import { CallMade as Away, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
 
@@ -162,6 +163,31 @@ const styles = {
     color: 'royalblue',
     fontSize: '1.15em',
   },
+  seeMoreContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  seeMoreText: {
+    fontFamily: 'DM Sans',
+    fontWeight: 700,
+    fontSize: '14px',
+    color: '#0068C9',
+    paddingTop: 1,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+  seeMoreIcon: {
+    fontSize: '16px',
+    color: '#0068C9',
+    paddingTop: 1,
+    paddingLeft: 0.25,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
 
 };
 
@@ -180,31 +206,14 @@ const chipColors = [
   },
 ];
 
-function BookSynopsis({
-  title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin, gradeMax,
-}) {
-  const identityChips = identityTags.map((tag) => {
-    const rand = Math.floor(Math.random() * 3);
-    const chipStyle = { ...chipColors[rand], ...styles.chip };
-    return (
-      <Chip
-        label={tag}
-        sx={chipStyle}
-        color="primary"
-        key={tag}
-        id={tag}
-      />
-    );
-  });
-
-  /* Grade Range
+/* Grade Range
     Airtable data for grade range is not dev-friendly. 😔
-    if gradeMin and gradeMax are undefined, we don't render at all.
+    if either one of gradeMin and gradeMax are undefined, we don't render at all.
     This does not handle Airtable user errors such as
       gradeMin: 9th, gradeMax: Kindergarten
     where the order of grades are incorrect
   */
+const createGradeRange = (gradeMin, gradeMax) => {
   let gradeRange;
   if (!gradeMin) {
     // gradeMin not given
@@ -228,27 +237,62 @@ function BookSynopsis({
     // Short grade range e.g. 3rd to 6th
     gradeRange = `${gradeMin} to ${gradeMax}`;
   }
+  return gradeRange;
+};
 
-  /* Age Range
-    Do we trust TCK humans to put things in properly? 🤔 naur
-    1. age range is good
-    2. age range reversed
-    3. ages are the same
+/* Age Range
+    An ageRange will render regardless of whether or not data is good
   */
+const createAgeRange = (ageMin, ageMax) => {
   let ageRange;
   if (ageMin === -1 && ageMax === -1) {
+    // Bofa
     ageRange = 'All';
   } else if (ageMin === ageMax) {
+    // Valid but equal ages
     ageRange = `Age ${ageMin}`;
   } else if (ageMin === -1) {
+    // Bad ageMin
     ageRange = `0 - ${ageMax}`;
   } else if (ageMax === -1) {
+    // Bad ageMax
     ageRange = `${ageMin} - 18`;
   } else if (ageMax < ageMin) {
+    // Bad ordering
     ageRange = `${ageMax} - ${ageMin}`;
   } else {
+    // Happy trail
     ageRange = `${ageMin} - ${ageMax}`;
   }
+  return ageRange;
+};
+
+function BookSynopsis({
+  title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
+  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin, gradeMax,
+}) {
+  const [seeMore, setSeeMore] = useState(true);
+  const toggleSeeMore = () => setSeeMore(!seeMore);
+
+  const identityChips = identityTags.map((tag) => {
+    /* Randomly select colors for identity tag
+       This does not guarantee a variety of colors.
+    */
+    const rand = Math.floor(Math.random() * 3);
+    const chipStyle = { ...chipColors[rand], ...styles.chip };
+    return (
+      <Chip
+        label={tag}
+        sx={chipStyle}
+        color="primary"
+        key={tag}
+        id={tag}
+      />
+    );
+  });
+
+  const gradeRange = createGradeRange(gradeMin, gradeMax);
+  const ageRange = createAgeRange(ageMin, ageMax);
 
   return (
     <Box sx={styles.synopsis}>
@@ -272,9 +316,25 @@ function BookSynopsis({
           </Box>
 
           <Box variant="body2">
-            <Typography sx={styles.text}>
-              {desc}
-            </Typography>
+            {
+              (desc.length > 525) ? (
+                <Box>
+                  <Typography sx={styles.text}>
+                    {
+                      (seeMore) ? `${desc.substring(0, 525)}...` : desc
+                    }
+                  </Typography>
+                  <Box sx={styles.seeMoreContainer} onClick={toggleSeeMore}>
+                    <Typography sx={styles.seeMoreText}>
+                      { (seeMore) ? 'See More' : 'See Less'}
+                    </Typography>
+                    { (seeMore) ? <KeyboardArrowDown sx={styles.seeMoreIcon} />
+                      : <KeyboardArrowUp sx={styles.seeMoreIcon}/>
+                    }
+                  </Box>
+                </Box>
+              ) : <Typography sx={styles.text}>{desc}</Typography>
+            }
           </Box>
         </CardContent>
       </Card>
@@ -404,11 +464,5 @@ BookSynopsis.defaultProps = {
  *          how to display??
  *          where da design?!?!?!?!111
  *  4. Add Books Like This
- *  5. STRETCH: see more
  *
- * <img
-          src={imageURL}
-          alt={`Book cover for ${title}`}
-          className="book-cover"
-          />
  */

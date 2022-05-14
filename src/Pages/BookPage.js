@@ -195,23 +195,16 @@ function BookPage() {
 export default BookPage;
 
 /* Notes for future development
-  1. For tags, use MaterialUI chips
-  2. Q: For when Book or Creator is missing, do we want to display defaults or raise error
-      saying that we couldn't pull the correct information for this entry?
-        - What is the necessary condition when we should *not* display available info
-          and just say that we couldn't pull the correct info?
-            - Currently when there is no book title
+  Educator Guide:
+    What to do when there is more than one?
+    Currently only supports one educator guide
 
-  OLD CODE:
-  <div>
-          <iframe
-            width="853"
-            height="480"
-            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
-            frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
-        </div>
+  Books Like This:
+    Need to add once it is completed
+
+  See More:
+    Need to implement
+
+  Default value for description:
+    current is "It's a book. with words. **gasp**"
 */
