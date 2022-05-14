@@ -9,9 +9,8 @@
     font-size: large;
     line-height: 28px;
     color: #5F5F5F;
-    margin: 3vh auto 1vh auto;
     text-align: left;
-    margin: 3vh 1vw 2vh 1vw;
+    margin: 3vh 1vw 2vh 0;
     width: 90%;
 }
 
@@ -20,5 +19,6 @@
     display: inline-block;
     width: 90%;
     padding: 1vh 1vw 1vh 1vw;
-    margin: 1vh 1vw 6vh 1vw;
+    margin: 1vh auto 6vh auto;
+    text-align: left;
 }
