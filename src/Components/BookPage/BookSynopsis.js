@@ -223,7 +223,7 @@ const createGradeRange = (gradeMin, gradeMax) => {
     gradeRange = gradeMin;
   } else if (gradeMin === '0 to Pre-K' && gradeMax.length < 5) {
     // 0 to Pre-K to short grade
-    gradeRange = `0 to ${gradeMax}`;
+    gradeRange = `Up to ${gradeMax}`;
   } else if (gradeMin === 'Kindergarten' && gradeMax.length < 5) {
     // Kindergarten to short grade
     gradeRange = `K - ${gradeMax}`;
