@@ -157,6 +157,7 @@ const styles = {
     fontWeight: '700',
     lineHeight: '1.8em',
     fontSize: '1.05em',
+    display: 'block'
   },
   link: {
     textDecoration: 'none',
@@ -295,13 +296,14 @@ function BookSynopsis({
     For now, name educator links with arbitrary number, ask designers how to proceed
   */
   const educatorLinks = educatorURLs.map((url, index) => (
-    <LinkUI sx={styles.linkUI} 
-            href={url} 
-            rel="noreferrer" 
-            target="_blank"
-    >
-      {`Educator Guide #${index}`}
-    </LinkUI>
+      <LinkUI sx={styles.linkUI} 
+              href={url}
+              key={url}
+              rel="noreferrer" 
+              target="_blank"
+      >
+        {`Educator Guide #${index}`}
+      </LinkUI>
   ));
   return (
     <Box sx={styles.synopsis}>
@@ -405,11 +407,9 @@ function BookSynopsis({
               <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
               <Box sx={styles.sideCardLinkContainer}>
                 { (readAloudURL) && (
-                  <div>
                     <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
                       Story Read Aloud
                     </LinkUI>
-                  </div>
                 ) }
                 {educatorLinks}
               </Box>

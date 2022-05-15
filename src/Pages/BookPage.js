@@ -101,7 +101,7 @@ function BookPage() {
     image = (book.get('image')) ? book.get('image') : [{ url: Logo }];
     readAloudURL = (book.get('read_aloud_link')) ? book.get('read_aloud_link') : null;
     bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
-    educatorURLs = (book.get('educator_guide_links')) ? book.get('educator_guide_links').split('\n') : [];
+    educatorURLs = (book.get('educator_guide_link')) ? book.get('educator_guide_link').split('\n') : [];
     identityTags = (book.get('identity_tags')) ? book.get('identity_tags') : [];
     ageMin = (book.get('age_min')) ? book.get('age_min') : -1;
     ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
@@ -131,9 +131,9 @@ function BookPage() {
     }
     return url.protocol === 'http:' || url.protocol === 'https:';
   };
-
+  console.log(educatorURLs);
   educatorURLs = educatorURLs.filter((string) => isValidUrl(string));
-
+  console.log(educatorURLs);
   const synopsisProps = {
     title,
     authorName,
@@ -170,7 +170,7 @@ function BookPage() {
         cardImageWidthPercent={80}
       />
       <BookSynopsis {...synopsisProps} />
-      {(readAloudURL) ? (
+      {(readAloudURL) && (
         <Box sx={styles.iframeContainer}>
           <iframe
             style={styles.iframe}
@@ -181,7 +181,7 @@ function BookPage() {
             title="Embedded youtube"
           />
         </Box>
-      ) : <div />}
+      ) }
     </Paper>
   );
 }
@@ -204,5 +204,6 @@ export default BookPage;
       - identity tag colors
         - will there be a set number of tags so we can hard code?
           -if no then what
+      - default values for all these?
 
 */
