@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
@@ -217,21 +218,18 @@ const createGradeRange = (gradeMin, gradeMax) => {
   if (!gradeMin) {
     // gradeMin not given
     gradeRange = gradeMax;
-  } else if (!gradeMax) {
-    // gradeMax not given
+  } else if (!gradeMax || gradeMin === gradeMax) {
+    // gradeMax not given or gradeMin same as gradeMax
     gradeRange = gradeMin;
   } else if (gradeMin === '0 to Pre-K' && gradeMax.length < 5) {
     // 0 to Pre-K to short grade
-    gradeRange = `0 to ${gradeMax}`;
+    gradeRange = `Up to ${gradeMax}`;
   } else if (gradeMin === 'Kindergarten' && gradeMax.length < 5) {
     // Kindergarten to short grade
     gradeRange = `K - ${gradeMax}`;
   } else if (gradeMin === '0 to Pre-K' && gradeMax === 'Kindergarten') {
     // 0 to Pre-K to Kindergarten
-    gradeRange = '0 to K';
-  } else if (gradeMin === gradeMax) {
-    // gradeMin same as gradeMax
-    gradeRange = gradeMin;
+    gradeRange = 'Up to K';
   } else {
     // Short grade range e.g. 3rd to 6th
     gradeRange = `${gradeMin} to ${gradeMax}`;
@@ -252,7 +250,7 @@ const createAgeRange = (ageMin, ageMax) => {
     ageRange = `Age ${ageMin}`;
   } else if (ageMin === -1) {
     // Bad ageMin
-    ageRange = `0 - ${ageMax}`;
+    ageRange = `Up to ${ageMax}`;
   } else if (ageMax === -1) {
     // Bad ageMax
     ageRange = `${ageMin} - 18`;
@@ -268,7 +266,7 @@ const createAgeRange = (ageMin, ageMax) => {
 
 function BookSynopsis({
   title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL, identityTags, ageMin, ageMax, gradeMin, gradeMax,
+  bookshopURL, readAloudURL, educatorURLs, identityTags, ageMin, ageMax, gradeMin, gradeMax,
 }) {
   const [seeMore, setSeeMore] = useState(true);
   const toggleSeeMore = () => setSeeMore(!seeMore);
@@ -292,6 +290,19 @@ function BookSynopsis({
 
   const gradeRange = createGradeRange(gradeMin, gradeMax);
   const ageRange = createAgeRange(ageMin, ageMax);
+
+  /* 
+    For now, name educator links with arbitrary number, ask designers how to proceed
+  */
+  const educatorLinks = educatorURLs.map((url, index) => (
+    <LinkUI sx={styles.linkUI} 
+            href={url} 
+            rel="noreferrer" 
+            target="_blank"
+    >
+      {`Educator Guide #${index}`}
+    </LinkUI>
+  ));
   return (
     <Box sx={styles.synopsis}>
       <Box sx={styles.topDownContainer}>
@@ -361,7 +372,7 @@ function BookSynopsis({
                   <p style={styles.sub}>Age Range</p>
                 </div>
                 {
-                    (gradeMin || gradeMax) ? (
+                    (gradeMin || gradeMax) && (
                       <div style={styles.block}>
                         <Box sx={styles.bolded}>
                           {gradeRange}
@@ -369,22 +380,22 @@ function BookSynopsis({
                         </Box>
                         <p style={styles.sub}>Grade level</p>
                       </div>
-                    ) : <div />
+                    )
                   }
               </div>
               {
-                  (bookshopURL) ? (
-                    <Button
-                      sx={styles.bookshop}
-                      endIcon={<Away />}
-                      size="large"
-                      href={bookshopURL}
-                      target="_blank"
-                    >
-                      Buy from Bookshop.org
-                    </Button>
-                  ) : <div />
-                }
+                (bookshopURL) && (
+                  <Button
+                    sx={styles.bookshop}
+                    endIcon={<Away />}
+                    size="large"
+                    href={bookshopURL}
+                    target="_blank"
+                  >
+                    Buy from Bookshop.org
+                  </Button>
+                )
+              }
             </Box>
           </CardContent>
         </Card>
@@ -393,21 +404,14 @@ function BookSynopsis({
             <Box sx={styles.sideCardContainer}>
               <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
               <Box sx={styles.sideCardLinkContainer}>
-                { (readAloudURL) ? (
+                { (readAloudURL) && (
                   <div>
                     <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
                       Story Read Aloud
                     </LinkUI>
                   </div>
-                ) : <div />}
-                { (bookshopURL)
-                  ? (
-                    <div>
-                      <LinkUI sx={styles.linkUI} href={bookshopURL} rel="noreferrer" target="_blank">
-                        Educator Guide
-                      </LinkUI>
-                    </div>
-                  ) : <div />}
+                ) }
+                {educatorLinks}
               </Box>
             </Box>
           </CardContent>
@@ -430,6 +434,7 @@ BookSynopsis.propTypes = {
   imageURL: PropTypes.string,
   bookshopURL: PropTypes.string,
   readAloudURL: PropTypes.string,
+  educatorURLs: PropTypes.arrayOf(PropTypes.string),
   identityTags: PropTypes.arrayOf(PropTypes.string),
   ageMin: PropTypes.number,
   ageMax: PropTypes.number,
@@ -448,6 +453,7 @@ BookSynopsis.defaultProps = {
   imageURL: Logo,
   bookshopURL: '',
   readAloudURL: '',
+  educatorURLs: [],
   identityTags: [],
   ageMin: -1,
   ageMax: -1,

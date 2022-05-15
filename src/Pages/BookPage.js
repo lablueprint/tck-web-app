@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Paper, ListItem, ListItemText, Box,
+  Paper, Box,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
@@ -120,24 +120,6 @@ function BookPage() {
   }
 
   const imageURL = image[0].url;
-
-  const synopsisProps = {
-    title,
-    authorName,
-    authorID,
-    illustratorName,
-    illustratorID,
-    desc,
-    imageURL,
-    bookshopURL,
-    readAloudURL,
-    identityTags,
-    ageMin,
-    ageMax,
-    gradeMin,
-    gradeMax,
-  };
-
   const isValidUrl = (string) => {
     /* Validate url given by TCK. URL must start with http or https protocol. */
     let url;
@@ -150,13 +132,25 @@ function BookPage() {
     return url.protocol === 'http:' || url.protocol === 'https:';
   };
 
-  const educatorLinks = educatorURLs.map((url) => (
-    <ListItem button component="a" href={url} key={url} alignItems="center">
-      <ListItemText sx={{ textAlign: 'center' }} primary={url} />
-    </ListItem>
-  ));
+  educatorURLs = educatorURLs.filter((string) => isValidUrl(string));
 
-  educatorLinks.filter((string) => isValidUrl(string));
+  const synopsisProps = {
+    title,
+    authorName,
+    authorID,
+    illustratorName,
+    illustratorID,
+    desc,
+    imageURL,
+    bookshopURL,
+    readAloudURL,
+    educatorURLs,
+    identityTags,
+    ageMin,
+    ageMax,
+    gradeMin,
+    gradeMax,
+  };
 
   if (title === 'Untitled Book') {
     return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
@@ -202,9 +196,13 @@ export default BookPage;
   Books Like This:
     Need to add once it is completed
 
-  See More:
-    Need to implement
+  QUESTIONS TO ASK:
+    how to deal with multiple educator links?
+    what to do when airtable data bad?
+      - age range
+      - grade range
+      - identity tag colors
+        - will there be a set number of tags so we can hard code?
+          -if no then what
 
-  Default value for description:
-    current is "It's a book. with words. **gasp**"
 */
