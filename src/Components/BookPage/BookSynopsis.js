@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
@@ -328,8 +327,7 @@ function BookSynopsis({
                       { (seeMore) ? 'See More' : 'See Less'}
                     </Typography>
                     { (seeMore) ? <KeyboardArrowDown sx={styles.seeMoreIcon} />
-                      : <KeyboardArrowUp sx={styles.seeMoreIcon}/>
-                    }
+                      : <KeyboardArrowUp sx={styles.seeMoreIcon} />}
                   </Box>
                 </Box>
               ) : <Typography sx={styles.text}>{desc}</Typography>
