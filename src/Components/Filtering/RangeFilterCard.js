@@ -89,7 +89,7 @@ function RangeFilterCard({
       <div>
         <CustomRangeSlider
           name={filterTitle}
-          Label={() => 'Minimum distance'}
+          getAriaLabel={() => (filterTitle === 'Grade' ? 'Reading Grade Level' : filterTitle)}
           marks={marks}
           value={filterTitle === 'Age' ? data.age : data.grade}
           onChange={handleChange1}
