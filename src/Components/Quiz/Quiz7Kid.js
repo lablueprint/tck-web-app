@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
+import propTypes from 'prop-types';
 import {
   Box, Button, Checkbox, Avatar,
 } from '@mui/material';
@@ -8,7 +9,8 @@ import Sample from '../../Assets/Images/DemoImgGenre.png';
 // import QuizButton from './QuizButton';
 // import { Link } from 'react-router-dom';
 
-export default function Quiz7Kid() {
+// eslint-disable-next-line no-unused-vars
+export default function Quiz7Kid({ bookFilters, setBookFilters }) {
   return (
     <div>
       <Box sx={{ padding: 15 }}>
@@ -44,3 +46,16 @@ export default function Quiz7Kid() {
     </div>
   );
 }
+Quiz7Kid.propTypes = {
+  setBookFilters: propTypes.func.isRequired,
+  bookFilters: propTypes.shape({
+    bookId: propTypes.string.isRequired,
+    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    minAge: propTypes.number.isRequired,
+    maxAge: propTypes.number.isRequired,
+    minGrade: propTypes.number.isRequired,
+    maxGrade: propTypes.number.isRequired,
+    genre: propTypes.arrayOf(propTypes.string).isRequired,
+    book_type: propTypes.arrayOf(propTypes.string).isRequired,
+  }).isRequired,
+};

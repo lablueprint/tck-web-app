@@ -1,4 +1,6 @@
+/* eslint-disable eqeqeq */
 import React, { useReducer } from 'react';
+import propTypes from 'prop-types';
 import './QuizGroup.css';
 import {
   Button, Avatar, Box, Card,
@@ -15,6 +17,8 @@ import Quiz6Kid from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
 import ProgressAndArrows from './ProgressAndArrows';
 
+const funGenres = ['Adventure', 'Fantasy', 'Scary/Horror', 'Romance', 'Sci-fi', 'Afro-futurism'];
+const seriousGenres = ['Biography', 'Non-fiction', 'Historical fiction', 'Poetry', 'Mystery', 'Memoir'];
 function reducer(state, action) {
   switch (action.type) {
     case 'parent':
@@ -46,21 +50,33 @@ function reducer(state, action) {
   }
 }
 
-export default function Quiz1() {
+export default function Quiz1({ bookFilters, setBookFilters }) {
   const initialState = {
     isParent: false,
     isChild: false,
     count: 1,
   };
+  // eslint-disable-next-line no-unused-vars
+  const sillyLevel = React.useState(0);
+  const increment = (value) => {
+    sillyLevel[0] = value;
+    sillyLevel[1](value);
+  };
+  // eslint-disable-next-line no-unused-vars
+  const illusion = React.useState(0);
+  const changeIllusion = (value) => {
+    illusion[0] = value;
+    illusion[1](value);
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     isParent, isChild, count,
   } = state;
-  console.log(count);
+  // console.log(count);
   if (isParent && count === 2) {
     return (
       <div>
-        <Quiz2Adult />
+        <Quiz2Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -78,7 +94,7 @@ export default function Quiz1() {
   if (isParent && count === 3) {
     return (
       <div>
-        <Quiz3 slideCaption="Which races/ethnicities do you want to see represented?" />
+        <Quiz3 bookFilters={bookFilters} slideCaption="Which races/ethnicities do you want to see represented?" setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -98,7 +114,7 @@ export default function Quiz1() {
     const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
     return (
       <div>
-        <Quiz6Kid title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -118,7 +134,7 @@ export default function Quiz1() {
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
     return (
       <div>
-        <Quiz6Kid title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -137,7 +153,7 @@ export default function Quiz1() {
   if (isParent && count === 6) {
     return (
       <div>
-        <Quiz8Adult />
+        <Quiz8Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -156,7 +172,7 @@ export default function Quiz1() {
   if (isChild && count === 2) {
     return (
       <div>
-        <Quiz2Kid />
+        <Quiz2Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -174,7 +190,7 @@ export default function Quiz1() {
   if (isChild && count === 3) {
     return (
       <div>
-        <Quiz3 slideCaption="Which of these races are you interested in reading about?" />
+        <Quiz3 bookFilters={bookFilters} setBookFilters={setBookFilters} slideCaption="Which of these races are you interested in reading about?" />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -192,7 +208,9 @@ export default function Quiz1() {
   if (isChild && count === 4) {
     return (
       <div>
-        <Quiz4Kid />
+        <Quiz4Kid
+          setSilly={increment}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -208,34 +226,92 @@ export default function Quiz1() {
 
     );
   }
-  if (isChild && count === 5) {
-    return (
-      <div>
-        <Quiz5 />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={0} />
-        <Button
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
-      </div>
-
-    );
-  }
-  if (isChild && count === 6) {
+  // eslint-disable-next-line eqeqeq
+  if ((isChild && count === 5 && sillyLevel[0] == 5)
+  || (isChild && count === 5 && sillyLevel[0] == 3)
+  || (isChild && count === 6 && illusion[0] == 2)) {
     const childButtonCaptions = ['The lives of interesting and influential people',
       'Fascinating facts about different topics such as nature, animals, or space',
       'Important events of the past that shaped the world we live in today',
       'A detailed retelling of a crucial period of time in an individual’s life',
       'The case of a mysterious, unnatural phenomenon'];
+    // we need to create new component because this doesnt work w genre
     return (
       <div>
-        <Quiz6Kid title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={0} />
+        <Button
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child' })}
+        />
+      </div>
+
+    );
+  }
+
+  // eslint-disable-next-line eqeqeq
+  if ((isChild && count === 5 && sillyLevel[0] == 1)
+    || (isChild && count === 6 && sillyLevel[0] == 3)
+    || (isChild && count === 6 && illusion[0] == 1)) {
+    setBookFilters({ ...bookFilters, genre: funGenres });
+    return (
+      <div>
+        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={0} />
+        <Button
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent' })}
+        />
+      </div>
+
+    );
+  }
+  // eslint-disable-next-line eqeqeq
+  if ((isChild && count === 5 && sillyLevel[0] == 2)
+  || (isChild && count === 5 && sillyLevel[0] == 4)) {
+    return (
+      <div>
+        <Quiz5 setIllusions={changeIllusion} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={0} />
+        <Button
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child' })}
+        />
+      </div>
+
+    );
+  }
+  // eslint-disable-next-line eqeqeq
+  if ((isChild && count === 6)
+    || (isChild && count === 6 && illusion[0] == 2)) {
+    setBookFilters({ ...bookFilters, genre: seriousGenres });
+    const childButtonCaptions = ['The lives of interesting and influential people',
+      'Fascinating facts about different topics such as nature, animals, or space',
+      'Important events of the past that shaped the world we live in today',
+      'A detailed retelling of a crucial period of time in an individual’s life',
+      'The case of a mysterious, unnatural phenomenon'];
+      // we need to create new component because this doesnt work w genre
+    return (
+      <div>
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -254,7 +330,7 @@ export default function Quiz1() {
   if (isChild && count === 7) {
     return (
       <div>
-        <Quiz7Kid />
+        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -315,3 +391,16 @@ export default function Quiz1() {
     </div>
   );
 }
+Quiz1.propTypes = {
+  setBookFilters: propTypes.func.isRequired,
+  bookFilters: propTypes.shape({
+    bookId: propTypes.string.isRequired,
+    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    minAge: propTypes.number.isRequired,
+    maxAge: propTypes.number.isRequired,
+    minGrade: propTypes.number.isRequired,
+    maxGrade: propTypes.number.isRequired,
+    genre: propTypes.arrayOf(propTypes.string).isRequired,
+    book_type: propTypes.arrayOf(propTypes.string).isRequired,
+  }).isRequired,
+};
