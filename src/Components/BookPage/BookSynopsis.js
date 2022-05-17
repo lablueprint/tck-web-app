@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
@@ -157,7 +156,7 @@ const styles = {
     fontWeight: '700',
     lineHeight: '1.8em',
     fontSize: '1.05em',
-    display: 'block'
+    display: 'block',
   },
   link: {
     textDecoration: 'none',
@@ -265,8 +264,8 @@ const createAgeRange = (ageMin, ageMax) => {
 };
 
 function BookSynopsis({
-  title, authorName, authorID, illustratorName, illustratorID, desc, imageURL,
-  bookshopURL, readAloudURL, educatorURLs, identityTags, ageMin, ageMax, gradeMin, gradeMax,
+  title, desc, imageURL, bookshopURL, readAloudURL, educatorURLs, identityTags,
+  ageMin, ageMax, gradeMin, gradeMax, authors, illustrators,
 }) {
   const [seeMore, setSeeMore] = useState(true);
   const toggleSeeMore = () => setSeeMore(!seeMore);
@@ -291,19 +290,43 @@ function BookSynopsis({
   const gradeRange = createGradeRange(gradeMin, gradeMax);
   const ageRange = createAgeRange(ageMin, ageMax);
 
-  /* 
+  /*
     For now, name educator links with arbitrary number, ask designers how to proceed
   */
   const educatorLinks = educatorURLs.map((url, index) => (
-      <LinkUI sx={styles.linkUI} 
-              href={url}
-              key={url}
-              rel="noreferrer" 
-              target="_blank"
-      >
-        {`Educator Guide #${index}`}
-      </LinkUI>
+    <LinkUI
+      sx={styles.linkUI}
+      href={url}
+      key={url}
+      rel="noreferrer"
+      target="_blank"
+    >
+      {`Educator Guide #${index}`}
+    </LinkUI>
   ));
+
+  const authorLinks = authors.map((author, i) => {
+    // Add comment to links unless it is the last
+    const link = (i !== authors.length - 1) ? `${author.name}, ` : author.name;
+    return (
+      <span key={author.id}>
+        <Link style={styles.link} to={`/creator/${author.id}`}>
+          {link}
+        </Link>
+      </span>
+    );
+  });
+
+  const illustratorLinks = illustrators.map((illustrator, i) => {
+    const link = (i !== illustrators.length - 1) ? `${illustrator.name}, ` : illustrator.name;
+    return (
+      <span key={illustrator.id}>
+        <Link style={styles.link} to={`/creator/${illustrator.id}`}>
+          {link}
+        </Link>
+      </span>
+    );
+  });
 
   return (
     <Box sx={styles.synopsis}>
@@ -356,15 +379,11 @@ function BookSynopsis({
               <Box sx={styles.sideCardLinkContainer}>
                 <Typography sx={styles.creator}> Written by: </Typography>
                 {' '}
-                <Link style={styles.link} to={`/creator/${authorID}`}>
-                  {authorName}
-                </Link>
+                {authorLinks}
                 <br />
                 <Typography sx={styles.creator}> Illustrated by: </Typography>
                 {' '}
-                <Link style={styles.link} to={`/creator/${illustratorID}`}>
-                  {illustratorName}
-                </Link>
+                {illustratorLinks}
               </Box>
               <div style={styles.blockContainer}>
                 <div style={styles.block}>
@@ -407,9 +426,9 @@ function BookSynopsis({
               <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
               <Box sx={styles.sideCardLinkContainer}>
                 { (readAloudURL) && (
-                    <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
-                      Story Read Aloud
-                    </LinkUI>
+                <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
+                  Story Read Aloud
+                </LinkUI>
                 ) }
                 {educatorLinks}
               </Box>
@@ -426,10 +445,6 @@ export default BookSynopsis;
 
 BookSynopsis.propTypes = {
   title: PropTypes.string,
-  authorName: PropTypes.string,
-  authorID: PropTypes.string,
-  illustratorName: PropTypes.string,
-  illustratorID: PropTypes.string,
   desc: PropTypes.string,
   imageURL: PropTypes.string,
   bookshopURL: PropTypes.string,
@@ -440,14 +455,18 @@ BookSynopsis.propTypes = {
   ageMax: PropTypes.number,
   gradeMin: PropTypes.string,
   gradeMax: PropTypes.string,
+  authors: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+  })),
+  illustrators: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+  })),
 };
 
 BookSynopsis.defaultProps = {
   title: 'Untitled Book',
-  authorName: 'Unknown Author',
-  authorID: '',
-  illustratorName: 'Unknown Illustrator',
-  illustratorID: '',
   desc: 'It\'s a book. with words. **gasp**',
   imageURL: Logo,
   bookshopURL: '',
@@ -458,4 +477,6 @@ BookSynopsis.defaultProps = {
   ageMax: -1,
   gradeMin: '',
   gradeMax: '',
+  authors: [],
+  illustrators: [],
 };

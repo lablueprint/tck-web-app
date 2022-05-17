@@ -37,8 +37,8 @@ const styles = {
 
 function BookPage() {
   const [book, setBook] = useState();
-  const [author, setAuthor] = useState();
-  const [illustrator, setIllustrator] = useState();
+  const [author, setAuthor] = useState([]);
+  const [illustrator, setIllustrator] = useState([]);
   const [collections, setCollections] = useState([]);
 
   //  Grab collections
@@ -68,11 +68,18 @@ function BookPage() {
   // but in a (hopefully) more succinct way
   const getEntries = async () => {
     const bookRecord = await getEntry('Book', bookId, setBook);
-    const authorId = bookRecord.get('author');
-    const illustratorId = bookRecord.get('illustrator');
-    getEntry('Creator', authorId, setAuthor);
+    const authorIDs = bookRecord.get('author');
+    const illustratorIDs = bookRecord.get('illustrator');
 
-    getEntry('Creator', illustratorId, setIllustrator);
+    const setNewCreator = (setter) =>  (newCreator) => {setter((prevState) => setter([...prevState, newCreator]))}; 
+    for (const id of authorIDs) {
+      await getEntry('Creator', id, setNewCreator(setAuthor));
+    }
+    
+    for (const id of illustratorIDs) {
+      await getEntry('Creator', id, setNewCreator(setIllustrator));
+    }
+    
   };
   useEffect(getEntries, [bookId]); // Runs on mount and on change of bookId
 
@@ -110,14 +117,24 @@ function BookPage() {
     gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
   }
 
+  let authors = [];
   if (author) {
-    authorName = (author.get('name')) ? author.get('name') : authorName;
-    authorID = (author.get('id')) ? author.get('id') : authorID;
+    authors = author.map((x) => {
+      return {
+        name: (x.get('name')) ? x.get('name') : authorName,
+        id: (x.get('id')) ? x.get('id') : authorID,
+      }
+    });
   }
 
+  let illustrators = [];
   if (illustrator) {
-    illustratorName = (illustrator.get('name')) ? illustrator.get('name') : illustratorName;
-    illustratorID = (illustrator.get('id')) ? illustrator.get('id') : illustratorID;
+   illustrators = illustrator.map((x) => {
+    return {
+      name: (x.get('name')) ? x.get('name') : illustratorName,
+      id: (x.get('id')) ? x.get('id') : illustratorID,
+    }
+   });
   }
 
   
@@ -126,7 +143,6 @@ function BookPage() {
   const isValidUrl = (string) => {
     /* Validate url given by TCK. URL must start with http or https protocol. */
     let url;
-    
     try {
       url = new URL(string);
     } catch (_) {
@@ -152,6 +168,9 @@ function BookPage() {
     ageMax,
     gradeMin,
     gradeMax,
+
+    authors,
+    illustrators
   };
   
   if (title === 'Untitled Book') {
