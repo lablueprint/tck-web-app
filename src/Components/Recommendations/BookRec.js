@@ -11,8 +11,6 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-// const [recList, setRecList] = useState([]);
-
 export default function RecFilter(
   bookId,
   minAge,
@@ -29,7 +27,7 @@ export default function RecFilter(
     }).all().then((records) => {
       const finalArr = [];
       records.forEach((record) => {
-      // do not check with the identical book
+        // do not check with the identical book
         if (bookId !== record.get('id')) {
           let priority = 0;
           const minGradeIndex = gradeList.indexOf(minGrade, 0);
@@ -103,7 +101,6 @@ export default function RecFilter(
           counter += 1;
         }
       }
-      console.log('finalArr', finalArr);
       resolve(finalArr);
     }, (err) => {
       if (err) { reject(err); }

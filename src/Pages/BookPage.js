@@ -67,7 +67,7 @@ function BookPage() {
     getEntry('Creator', illustratorId, setIllustrator);
   };
 
-  // Gets list of recommended books
+  // Gets list of recommended book
   const getBooksLikeThis = async () => {
     if (book) {
       const recList = await RecFilter(
@@ -79,7 +79,6 @@ function BookPage() {
         book.fields['race/ethnicity'],
         book.fields.genre,
       );
-      console.log('recList: ', recList);
     }
   };
 
