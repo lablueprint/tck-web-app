@@ -17,57 +17,68 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CollectionPage() {
-  const [CollectionDetails, setCollectionDetails] = useState();
+  const [CollectionDetails, setCollectionDetails] = useState(null);
   const params = useParams();
-  const [collecID, setCollecID] = useState(params.id);
-  const [collections, setCollections] = useState([]);
+  const [collecID, setCollecID] = useState(null);
+  const [collections, setCollections] = useState(null);
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
+        // if (err) { console.error(err); }
         setCollections(records);
+        setCollecID((params.id === 'init' ? records[0].id : params.id));
       });
   };
-  const getPosts = () => {
-    base('Collection').find(
-      collecID,
-      (err, record) => {
-        setCollectionDetails(record);
-      },
-    );
+  const getCollectionFromID = () => {
+    if (collecID !== null && collecID !== 'init') {
+      base('Collection').find(
+        collecID,
+        (err, record) => {
+          if (err) { console.error(err); }
+          setCollectionDetails(record);
+        },
+      );
+    }
   };
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
-  useEffect(getPosts, [collecID]);
-  useEffect(getCollections, []);
+  useEffect(getCollectionFromID, [collecID]);
+  useEffect(() => {
+    getCollections();
+  }, []);
   return (
     <div>
-      <CollectionsCarousel
-        elementArray={collections}
-        slidesAtATime={1.5}
-        prevArrow={PrevArrow}
-        nextArrow={NextArrow}
-        widthPercent={100}
-        spaceBetweenEntries={40}
-        swiperHeight={277}
-        cardImageHeightPercent={90}
-        cardImageWidthPercent={90}
-        cardFontSize={100}
-        centeredSlides
-        shouldLoop
-        isCollectionPageHeader
-        setCollecID={updateCollecID}
-        initialID={params.id}
-      />
-      { CollectionDetails !== undefined
+      {collecID !== null && collecID !== 'init' && collections !== null ? (
+        <CollectionsCarousel
+          elementArray={collections}
+          slidesAtATime={1.5}
+          prevArrow={PrevArrow}
+          nextArrow={NextArrow}
+          widthPercent={100}
+          spaceBetweenEntries={40}
+          swiperHeight={277}
+          cardImageHeightPercent={90}
+          cardImageWidthPercent={90}
+          cardFontSize={100}
+          centeredSlides
+          shouldLoop
+          isCollectionPageHeader
+          setCollecID={updateCollecID}
+          initialID={collecID}
+        />
+      )
+        : <p>An error might have occurred or the content requested is too big in size</p>}
+
+      { CollectionDetails !== null && CollectionDetails !== undefined
         ? (
           <CollectionInfo
             name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
             description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
-            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].thumbnails.large.url : ''}
+            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
           />
         ) : <p>No such collection found!</p> }
-      { BooksInCollection !== undefined
+      { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
         ? (
           <BooksInCollection authorId={collecID} />
         ) : <p>No such collection found!</p> }

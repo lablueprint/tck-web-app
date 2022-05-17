@@ -5,7 +5,7 @@ import {
 import {
   Dictionary, Home, CreatorPage, BookPage, CollectionPage,
 } from './Pages';
-import Header from './Components';
+import { Header, Footer } from './Components/index';
 import './App.css';
 import StartPage from './Components/Quiz/StartPage';
 import Quiz1 from './Components/Quiz/Quiz1';
@@ -39,6 +39,7 @@ function App() {
         <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
         <Route exact path="/results" element={<ResultsPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

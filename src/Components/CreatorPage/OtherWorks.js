@@ -7,6 +7,15 @@ import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from './BookCarousel';
 
+const styles = {
+  root: {
+    width: '55%',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: '3rem',
+  },
+};
+
 const Airtable = require('airtable');
 
 const airtableConfig = {
@@ -20,7 +29,7 @@ function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
 
-  function FindPosts() {
+  function FindWorks() {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
       if (err) {
@@ -37,7 +46,7 @@ function CreatedWorksCard({ authorId }) {
             setAuthoredWorks((prevValue) => prevValue.concat(
               {
                 author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
-                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
                 title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
@@ -54,7 +63,7 @@ function CreatedWorksCard({ authorId }) {
             setillustratedWorks((prevValue) => prevValue.concat(
               {
                 author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
-                image: (record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''),
+                image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
                 title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
                 id: element,
               },
@@ -65,13 +74,10 @@ function CreatedWorksCard({ authorId }) {
     });
   }
 
-  useEffect(FindPosts, []);
+  useEffect(FindWorks, []);
 
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', rowGap: '3rem',
-    }}
-    >
+    <div style={styles.root}>
       {authoredWorks.length && <div> Authored Works: </div>}
       <Carousel
         elementArray={authoredWorks}
