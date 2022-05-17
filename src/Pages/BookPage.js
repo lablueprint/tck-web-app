@@ -121,6 +121,21 @@ function BookPage() {
   }
 
   
+  
+  const imageURL = image[0].url;
+  const isValidUrl = (string) => {
+    /* Validate url given by TCK. URL must start with http or https protocol. */
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;
+    }
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  };
+  educatorURLs.filter((string) => isValidUrl(string));
+  
   const synopsisProps = {
     title,
     authorName,
@@ -138,22 +153,7 @@ function BookPage() {
     gradeMin,
     gradeMax,
   };
-
-  const imageURL = image[0].url;
-  const isValidUrl = (string) => {
-    /* Validate url given by TCK. URL must start with http or https protocol. */
-    let url;
-
-    try {
-      url = new URL(string);
-    } catch (_) {
-      return false;
-    }
-    return url.protocol === 'http:' || url.protocol === 'https:';
-  };
-  educatorURLs.filter((string) => isValidUrl(string));
-
-
+  
   if (title === 'Untitled Book') {
     return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
   }
