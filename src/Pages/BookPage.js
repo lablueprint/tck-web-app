@@ -78,6 +78,7 @@ function BookPage() {
         book.fields.grade_max,
         book.fields['race/ethnicity'],
         book.fields.genre,
+        book.fields.book_type,
       );
       console.log('recList: ', recList);
     }
