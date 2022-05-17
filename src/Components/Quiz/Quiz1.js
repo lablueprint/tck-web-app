@@ -170,6 +170,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isChild && count === 2) {
+    // console.log(bookFilters);
     return (
       <div>
         <Quiz2Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />

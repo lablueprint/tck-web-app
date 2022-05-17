@@ -7,8 +7,17 @@ import {
 import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
-// eslint-disable-next-line no-unused-vars
 export default function Quiz2Kid({ bookFilters, setBookFilters }) {
+  const [minData, setMinData] = useState(4);
+  const [maxData, setMaxData] = useState(7);
+
+  const callback = (min, max) => {
+    setMinData(min);
+    setMaxData(max);
+    setBookFilters({ ...bookFilters, minGrade: minData });
+    setBookFilters({ ...bookFilters, maxGrade: maxData });
+  };
+
   // eslint-disable-next-line no-unused-vars
   const [disabledStat, setDisabledStat] = useState(true);
 
@@ -22,7 +31,7 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
           What grade levels are you comfortable reading at?
         </h1>
         <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider />
+          <GradeSlider parentCallback={callback} />
         </Grid>
       </div>
       <ProgressAndArrows

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
   Card, Grid,
@@ -9,6 +9,16 @@ import ProgressAndArrows from './ProgressAndArrows';
 
 // eslint-disable-next-line no-unused-vars
 export default function Quiz2Adult({ bookFilters, setBookFilters }) {
+  const [minData, setMinData] = useState(4);
+  const [maxData, setMaxData] = useState(7);
+
+  const callback = (min, max) => {
+    setMinData(min);
+    setMaxData(max);
+    setBookFilters({ ...bookFilters, minGrade: minData });
+    setBookFilters({ ...bookFilters, maxGrade: maxData });
+  };
+
   return (
     <Card sx={{
       borderRadius: 5, margin: 4, boxShadow: 5, marginRight: 15, marginLeft: 15, paddingBottom: 5, paddingTop: 15,
@@ -19,7 +29,7 @@ export default function Quiz2Adult({ bookFilters, setBookFilters }) {
           What grade levels are you looking for?
         </h1>
         <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider />
+          <GradeSlider parentCallback={callback} />
         </Grid>
       </div>
       <ProgressAndArrows

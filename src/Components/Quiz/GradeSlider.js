@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import propTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
@@ -62,11 +63,17 @@ function valueLabelFormat(value) {
 
 const minDistance = 0;
 
-export default function GradeSlider() {
+export default function GradeSlider({ parentCallback }) {
   const [value1, setValue1] = React.useState([4, 7]);
+  const [min, setMin] = React.useState(4);
+  const [max, setMax] = React.useState(7);
 
   const handleChange1 = (event, newValue, activeThumb) => {
-    console.log(newValue);
+    setMin(newValue[0]);
+    setMax(newValue[1]);
+    parentCallback(min, max);
+    // console.log(newValue[0]);
+    // console.log(newValue[1]);
 
     if (!Array.isArray(newValue)) {
       return;
@@ -99,3 +106,7 @@ export default function GradeSlider() {
     </div>
   );
 }
+
+GradeSlider.propTypes = {
+  parentCallback: propTypes.isRequired,
+};
