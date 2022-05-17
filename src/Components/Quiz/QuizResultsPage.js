@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import './QuizResultsPage.css';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
 import shareIcon from '../../Assets/Images/upload-icon.svg';
 import BookCard from '../bookHub/BookCard';
+import RecFilter from '../Recommendations/BookRec';
 
 const sampleBookIDs = ['rectqkZI0hdvX5CMP', 'recbTpz98TrLIwEk0', 'recxhYkewzxt0Zu6k'];
 
@@ -26,7 +28,7 @@ function HandleClickToBottom() {
   anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function ResultsPage() {
+function ResultsPage({ bookFilters }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
 
   function getRecommendedBooks() {
@@ -36,6 +38,24 @@ function ResultsPage() {
       });
   }
   setTimeout(HandleClickToBottom, 2000);
+  useEffect(() => {
+    const getBooksLikeThis = async () => {
+      if (bookFilters) {
+        const recList = await RecFilter(
+          bookFilters.bookId,
+          bookFilters.minAge,
+          bookFilters.maxAge,
+          bookFilters.minGrade,
+          bookFilters.maxGrade,
+          bookFilters['race/ethnicity'],
+          bookFilters.genre,
+          bookFilters.book_type,
+        );
+        console.log('recList: ', recList);
+      }
+    };
+    getBooksLikeThis();
+  });
   useEffect(getRecommendedBooks, []);
   return (
     <div>
@@ -110,5 +130,16 @@ function ResultsPage() {
     </div>
   );
 }
-
+ResultsPage.propTypes = {
+  bookFilters: propTypes.shape({
+    bookId: propTypes.string.isRequired,
+    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    minAge: propTypes.number.isRequired,
+    maxAge: propTypes.number.isRequired,
+    minGrade: propTypes.number.isRequired,
+    maxGrade: propTypes.number.isRequired,
+    genre: propTypes.arrayOf(propTypes.string).isRequired,
+    book_type: propTypes.arrayOf(propTypes.string).isRequired,
+  }).isRequired,
+};
 export default ResultsPage;
