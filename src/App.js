@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import {
   Route, Routes,
 } from 'react-router-dom';
-import { Dictionary, Home } from './Pages';
+import {
+  Dictionary, Home, CreatorPage, BookPage, CollectionPage,
+} from './Pages';
 import Header from './Components';
 import './App.css';
-import CreatorPage from './Pages/CreatorPage';
-import CollectionPage from './Pages/CollectionPage';
 import StartPage from './Components/Quiz/StartPage';
 import Quiz1 from './Components/Quiz/Quiz1';
 import Quiz2Kid from './Components/Quiz/Quiz2Kid';
 import Quiz2Adult from './Components/Quiz/Quiz2Adult';
-import BookPage from './Pages/BookPage';
+import ResultsPage from './Components/Quiz/QuizResultsPage';
 
 function App() {
   const [bookFilters, setBookFilters] = useState({
@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/quiz/questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} />} />
         <Route exact path="/quiz/questions/adult" element={<Quiz2Adult />} />
         <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
+        <Route exact path="/results" element={<ResultsPage />} />
       </Routes>
     </div>
   );

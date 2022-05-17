@@ -10,7 +10,7 @@ export default function StartPage() {
     <div>
       <Box sx={{ padding: 15 }}>
         <h1>
-          The Conscious Kid Reccomendation Quiz
+          The Conscious Kid Recomendation Quiz
         </h1>
         <h4>
           Do not know what to search for? Try this short quiz to recieve personalized book reccomendations from The Conscious Kids collection! Take this is you are a kid, parent, or educator looking for a fun read!
