@@ -20,14 +20,14 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
           Please select your preferred book formats
         </h1>
         <h3>These will be used to rank your results but availability is not guaranteed!</h3>
-        <QuizButton value="Picture Book" buttonCaption="Picture Book" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Chapter Book" buttonCaption="Chapter Book" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Early Reader" buttonCaption="Early Reader" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Middle Grade" buttonCaption="Middle Grade" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Young Adult" buttonCaption="Young Adult" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Series" buttonCaption="Series" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Anthology" buttonCaption="Anthology" onClick={(value) => handleClick(value)} />
-        <QuizButton value="Board Book" buttonCaption="Board Book" onClick={(value) => handleClick(value)} />
+        <QuizButton value="Picture Book" buttonCaption="Picture Book" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Chapter Book" buttonCaption="Chapter Book" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Early Reader" buttonCaption="Early Reader" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Middle Grade" buttonCaption="Middle Grade" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Young Adult" buttonCaption="Young Adult" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Series" buttonCaption="Series" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Anthology" buttonCaption="Anthology" onChange={(e) => handleClick(e.target.value)} />
+        <QuizButton value="Board Book" buttonCaption="Board Book" onChange={(e) => handleClick(e.target.value)} />
       </Box>
     </div>
   );

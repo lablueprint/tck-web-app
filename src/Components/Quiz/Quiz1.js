@@ -13,12 +13,14 @@ import Quiz4Kid from './Quiz4Kid';
 import Quiz5 from './Quiz5Kid';
 import Quiz8Adult from './Quiz8Adult';
 import Quiz2Kid from './Quiz2Kid';
-import Quiz6Kid from './Quiz6';
+import Quiz6 from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
+import Quiz6Kid from './Quiz6Kid';
 import ProgressAndArrows from './ProgressAndArrows';
 
-const funGenres = ['Adventure', 'Fantasy', 'Scary/Horror', 'Romance', 'Sci-fi', 'Afro-futurism'];
-const seriousGenres = ['Biography', 'Non-fiction', 'Historical fiction', 'Poetry', 'Mystery', 'Memoir'];
+// const funGenres = ['Adventure', 'Fantasy', 'Scary/Horror', 'Romance', 'Sci-fi', 'Afro-futurism'];
+// eslint-disable-next-line max-len
+// const seriousGenres = ['Biography', 'Non-fiction', 'Historical fiction', 'Poetry', 'Mystery', 'Memoir'];
 function reducer(state, action) {
   switch (action.type) {
     case 'parent':
@@ -114,7 +116,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
     return (
       <div>
-        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -134,7 +136,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
     return (
       <div>
-        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -207,6 +209,12 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isChild && count === 4) {
+    console.log('ischild:');
+    console.log(isChild);
+    console.log('count:');
+    console.log(count);
+    console.log('sily level:');
+    console.log(sillyLevel[0]);
     return (
       <div>
         <Quiz4Kid
@@ -235,7 +243,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
       'Fascinating facts about different topics such as nature, animals, or space',
       'Important events of the past that shaped the world we live in today',
       'A detailed retelling of a crucial period of time in an individual’s life',
-      'The case of a mysterious, unnatural phenomenon'];
+      'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
     // we need to create new component because this doesnt work w genre
     return (
       <div>
@@ -255,12 +263,16 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
 
     );
   }
-
+  // if ((isChild && count === 5 && sillyLevel[0] == 1)
+  // || (isChild && count === 6 && sillyLevel[0] == 3)
+  // || (isChild && count === 6 && illusion[0] == 1)) {
+  //   setBookFilters({ ...bookFilters, genre: funGenres });
+  // }
   // eslint-disable-next-line eqeqeq
   if ((isChild && count === 5 && sillyLevel[0] == 1)
     || (isChild && count === 6 && sillyLevel[0] == 3)
     || (isChild && count === 6 && illusion[0] == 1)) {
-    setBookFilters({ ...bookFilters, genre: funGenres });
+    // setBookFilters({ ...bookFilters, genre: funGenres });
     return (
       <div>
         <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -300,34 +312,39 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
 
     );
   }
+  // if ((isChild && count === 6)
+  //   || (isChild && count === 6 && illusion[0] == 2)) {
+  //   setBookFilters({ ...bookFilters, genre: seriousGenres });
+  // }
   // eslint-disable-next-line eqeqeq
-  if ((isChild && count === 6)
-    || (isChild && count === 6 && illusion[0] == 2)) {
-    setBookFilters({ ...bookFilters, genre: seriousGenres });
-    const childButtonCaptions = ['The lives of interesting and influential people',
-      'Fascinating facts about different topics such as nature, animals, or space',
-      'Important events of the past that shaped the world we live in today',
-      'A detailed retelling of a crucial period of time in an individual’s life',
-      'The case of a mysterious, unnatural phenomenon'];
-      // we need to create new component because this doesnt work w genre
-    return (
-      <div>
-        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={0} />
-        <Button
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
-      </div>
+  // if ((isChild && count === 6)
+  //   || (isChild && count === 6 && illusion[0] == 2)) {
+  //   // setBookFilters({ ...bookFilters, genre: seriousGenres });
+  //   const childButtonCaptions = ['The lives of interesting and influential people',
+  //     'Fascinating facts about different topics such as nature, animals, or space',
+  //     'Important events of the past that shaped the world we live in today',
+  //     'A detailed retelling of a crucial period of time in an individual’s life',
+  //     'The case of a mysterious, unnatural phenomenon'];
+  //     // we need to create new component because this doesnt work w genre
+  //   return (
+  //     <div>
+  // eslint-disable-next-line max-len
+  //       <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+  //       <Button
+  //         startIcon={<ArrowBackIcon />}
+  //         variant="contained"
+  //         onClick={() => dispatch({ type: 'child back' })}
+  //       />
+  //       <ProgressAndArrows variant="determinate" value={0} />
+  //       <Button
+  //         startIcon={<ArrowForwardIcon />}
+  //         variant="contained"
+  //         onClick={() => dispatch({ type: 'child' })}
+  //       />
+  //     </div>
 
-    );
-  }
+  //   );
+  // }
   if (isChild && count === 7) {
     return (
       <div>
