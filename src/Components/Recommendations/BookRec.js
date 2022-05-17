@@ -19,6 +19,7 @@ export default function RecFilter(
   maxGrade,
   raceEthnicity,
   genre,
+  bookType,
 ) {
   const filter = () => new Promise((resolve, reject) => {
     const prioMap = new Map();
@@ -60,6 +61,13 @@ export default function RecFilter(
               if (record.fields.genre.includes(genre[i])) {
                 priority += 1;
               }
+            }
+          }
+
+          // Matching book_type gives 1 point each
+          if (bookType && record.fields.book_type) {
+            if (bookType === record.fields.book_type) {
+              priority += 1;
             }
           }
 
