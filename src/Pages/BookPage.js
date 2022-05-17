@@ -79,6 +79,7 @@ function BookPage() {
         book.fields['race/ethnicity'],
         book.fields.genre,
       );
+      console.log('recList: ', recList);
     }
   };
 
