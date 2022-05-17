@@ -5,6 +5,7 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
+import RecFilter from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
 
@@ -29,6 +30,31 @@ function BookPage() {
       resolve(entryRecord);
     });
   });
+  // Add book to localStorage
+  function pushToStorage() {
+    const bookArr = JSON.parse(localStorage.getItem('Recently Viewed'));
+
+    // check if localStorage contains books
+    if (bookArr) {
+      // check if book already in localStorage
+      if (bookArr.includes(bookId)) {
+        // remove book and add to front
+        const index = bookArr.indexOf(bookId);
+        if (index > -1) {
+          bookArr.splice(index, 1); // 2nd parameter means remove one item only
+        }
+      }
+      bookArr.unshift(bookId);
+      if (bookArr.length > 14) {
+        bookArr.pop();
+      }
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArr));
+    } else {
+      const bookArrTemp = [];
+      bookArrTemp.push(bookId);
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArrTemp));
+    }
+  }
 
   // This is similar to promise chaining with .then() calls,
   // but in a (hopefully) more succinct way
@@ -40,7 +66,31 @@ function BookPage() {
 
     getEntry('Creator', illustratorId, setIllustrator);
   };
-  useEffect(getEntries, [bookId]); // Runs on mount and on change of bookId
+
+  // Gets list of recommended books
+  const getBooksLikeThis = async () => {
+    if (book) {
+      const recList = await RecFilter(
+        book.id,
+        book.fields.age_min,
+        book.fields.age_max,
+        book.fields.grade_min,
+        book.fields.grade_max,
+        book.fields['race/ethnicity'],
+        book.fields.genre,
+      );
+      console.log('recList: ', recList);
+    }
+  };
+
+  useEffect(() => {
+    pushToStorage();
+    getEntries();
+  }, [bookId]); // Runs on mount and on change of bookId
+
+  useEffect(() => {
+    getBooksLikeThis();
+  }, [book]);
 
   if (!book) {
     return <div>Scouring our library...</div>;
