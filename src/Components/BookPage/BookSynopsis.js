@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Card, CardContent, Typography, Box,
+  Box,
 } from '@mui/material';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import Logo from '../../Assets/Images/TCK PNG Logo.png';
 
 import BookCover from './BookCover';
@@ -29,9 +28,6 @@ function BookSynopsis({
   genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
   illustrators, bookType, datePublished,
 }) {
-  const [seeMore, setSeeMore] = useState(true);
-  const toggleSeeMore = () => setSeeMore(!seeMore);
-
   return (
     <Box sx={styles.synopsis}>
       <BookCover
@@ -43,12 +39,10 @@ function BookSynopsis({
         themesLessons={themesLessons}
         religion={religion}
       />
-
       <BookDesc
         title={title}
         desc={desc}
       />
-
       <SideCards
         authors={authors}
         illustrators={illustrators}
@@ -62,7 +56,6 @@ function BookSynopsis({
         educatorURLs={educatorURLs}
         bookshopURL={bookshopURL}
       />
-
     </Box>
   );
 }
@@ -121,9 +114,6 @@ BookSynopsis.defaultProps = {
 
 /* TO DO
   1. Get Educator Guide titles, read-aloud title
-  1. Break up into components
-    BookDesc: Card + description
-    SideCards: Side Cards
     6. Bookshop on hover
     4. See More and arrow hover needs to be in sync
       -idk lol not important
