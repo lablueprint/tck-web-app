@@ -126,4 +126,10 @@ BookSynopsis.defaultProps = {
     4. See More and arrow hover needs to be in sync
       -idk lol not important
 
+  const [readAloudTitle, setReadAloudTitle] = useState('');
+  const getReadAloudTitle = () => {
+    fetch(`https://noembed.com/embed?dataType=json&url=${vidurl}`)
+  .then(res => res.json())
+  .then(data => console.log('fetch', data.title))
+  };
 */
