@@ -118,8 +118,12 @@ BookSynopsis.defaultProps = {
 };
 
 /* TO DO
-  1. Get Educator Guide titles, read-aloud title
-    6. Bookshop on hover
+  1. Books like this
+      Components({bookID}) {
+        use RecFilter to get array of similar books
+        for each similar book, grab creators
+        put in carousel
+      }
     4. See More and arrow hover needs to be in sync
       -idk lol not important
 
