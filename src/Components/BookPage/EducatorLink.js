@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
-  Link as LinkUI, Button, Menu, MenuItem, Fade,
+  Link as LinkUI, Menu, MenuItem, Fade, Typography,
 } from '@mui/material';
 
 const styles = {
@@ -12,6 +12,9 @@ const styles = {
     lineHeight: '1.8em',
     fontSize: '1.05em',
     display: 'block',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   button: {
     textTransform: 'none',
@@ -28,7 +31,10 @@ const styles = {
   menuItem: {
     minWidth: '15vw',
     fontFamily: 'Work Sans',
-    fontWeight: '600',
+    color: '#3477DE',
+    fontWeight: '700',
+    lineHeight: '1.8em',
+    fontSize: '1.05em',
   },
 };
 
@@ -45,8 +51,8 @@ function EducatorLink({ url, index }) {
 
   const educatorMenuItem = (
     <MenuItem
-      value={url}
       sx={styles.menuItem}
+      value={url}
     >
       <LinkUI
         sx={styles.linkUI}
@@ -61,15 +67,13 @@ function EducatorLink({ url, index }) {
   );
   return (
     <div>
-      <Button
-        sx={styles.button}
-        id="basic-button"
-        variant="outlined"
+
+      <Typography
+        sx={styles.linkUI}
         onClick={handleClick}
-        size="small"
       >
         {`Educator Guide #${index}`}
-      </Button>
+      </Typography>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
