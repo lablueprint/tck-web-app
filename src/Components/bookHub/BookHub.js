@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
 import BookList from '../BookList/BookList';
 
@@ -14,10 +14,16 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 function CardsDisplay() {
+  const searchTextInput = useRef(null);
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchTerms, setSearchTerms] = useState('');
   const [defaultSearch, setDefaultSearch] = useState(true);
+
+  const resetSearchText = () => {
+    setSearchTerms('');
+    searchTextInput.current.value = '';
+  };
 
   const getCards = () => {
     base('Book').select({ view: 'Grid view' }).all()
@@ -102,8 +108,12 @@ function CardsDisplay() {
 
   return (
     <div>
-      <SearchBar setSearchTerms={setSearchTerms} setDefaultSearch={setDefaultSearch} />
-      <BookList books={filteredBooks} />
+      <SearchBar
+        setSearchTerms={setSearchTerms}
+        setDefaultSearch={setDefaultSearch}
+        searchTextInput={searchTextInput}
+      />
+      <BookList books={filteredBooks} resetSearchText={resetSearchText} />
     </div>
   );
 }

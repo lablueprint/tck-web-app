@@ -4,7 +4,7 @@ import {
   TextField, Select, FormControl, InputLabel, MenuItem,
 } from '@mui/material';
 
-function SearchBar({ setSearchTerms, setDefaultSearch }) {
+function SearchBar({ setSearchTerms, setDefaultSearch, searchTextInput }) {
   const handleChange = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -32,6 +32,7 @@ function SearchBar({ setSearchTerms, setDefaultSearch }) {
         id="filled-basic"
         label="search"
         placeholder="Enter keyword"
+        inputRef={searchTextInput}
         variant="filled"
         onKeyPress={handleChange}
       />
@@ -44,6 +45,7 @@ export default SearchBar;
 SearchBar.propTypes = {
   setSearchTerms: PropTypes.func.isRequired,
   setDefaultSearch: PropTypes.func.isRequired,
+  searchTextInput: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
 };
 
 /* NOTES

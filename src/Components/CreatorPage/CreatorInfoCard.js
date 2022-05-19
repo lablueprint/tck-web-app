@@ -44,19 +44,20 @@ const styles = {
   cardImage: {
     width: 'auto',
     borderRadius: '15px',
+    maxWidth: '100%',
   },
   bigText: {
     fontFamily: 'Work Sans',
     fontStyle: 'normal',
     lineHeight: '35px',
     fontWeight: 600,
-    fontSize: '28px',
+    fontSize: '27px',
     color: '#333333',
   },
   mediumText: {
     fontFamily: 'Work Sans',
     fontWeight: 500,
-    fontSize: '22px',
+    fontSize: '21px',
     lineHeight: '35px',
     color: '#333333',
   },
