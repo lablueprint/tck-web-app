@@ -67,7 +67,6 @@ function EducatorLink({ url, index }) {
   );
   return (
     <div>
-
       <Typography
         sx={styles.linkUI}
         onClick={handleClick}

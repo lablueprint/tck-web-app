@@ -113,7 +113,7 @@ function BookPage() {
 
     // Curried function so we can create different function compositions as seen below
     const setNewCreator = (setter) => (newCreator) => {
-      setter((prevState) => setter([...prevState, newCreator]));
+      setter((prevState) => [...prevState, newCreator]);
     };
 
     const creatorEntries = [];
