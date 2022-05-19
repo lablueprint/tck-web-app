@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 import {
   TextField, Select, FormControl, InputLabel, MenuItem, Button,
 } from '@mui/material';
-
-import { Search } from '@mui/icons-material';
+import { NavLink } from 'react-router-dom';
+import { Search, ChevronLeft } from '@mui/icons-material';
 
 import './SearchBar.css';
 
@@ -32,6 +32,10 @@ const styles = {
     marginLeft: '-1vw',
     position: 'relative',
     zIndex: '1',
+  },
+  homepageButton: {
+    textTransform: 'none',
+    fontFamily: 'DM Sans',
   },
 };
 
@@ -98,6 +102,15 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
         size="large"
         endIcon={<Search />}
       />
+
+      <NavLink
+        to="/"
+        className="homepage-button"
+      >
+        <Button sx={styles.homepageButton} startIcon={<ChevronLeft />}>
+          Return to Homepage
+        </Button>
+      </NavLink>
     </div>
   );
 }
