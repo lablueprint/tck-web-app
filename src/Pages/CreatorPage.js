@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
-import CreatorInfoCard from '../Components/creatorPage/CreatorInfoCard';
-import CreatedWorksCard from '../Components/creatorPage/OtherWorks';
+import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
+import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
 
 const styles = {
   root: {
