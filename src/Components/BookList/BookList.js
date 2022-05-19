@@ -7,6 +7,7 @@ import {
 
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
+import NoResults from './NoResults';
 
 import './BookList.css';
 
@@ -98,7 +99,7 @@ const PAGINATION_SX = {
 
 };
 
-function BookList({ books }) {
+function BookList({ books, resetSearchText }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(18);
 
@@ -174,12 +175,16 @@ function BookList({ books }) {
       </div>
     </div>
   ) : (
-    <h1>Sorry, there&apos;s no books here! 😰</h1>
+    <NoResults resetSearchText={resetSearchText} />
   );
 }
 
 BookList.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  books: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    fields: PropTypes.shape({}),
+  })).isRequired,
+  resetSearchText: PropTypes.func.isRequired,
 };
 
 export default BookList;
