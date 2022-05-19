@@ -33,12 +33,6 @@ function CardsDisplay({
 
   const isMatchTitleDescIdentity = (book) => {
     // Filter function for books stored in 'books' state
-    /* FOR FUTURE DEV
-        On Airtable, there is identity_tags and identity. We may need to change this
-        code to reflect that depending on final design.
-          - identities = identity_tags.map(tag => tag.toLowerCase())
-          - any(identities.map(identity => identity.includes(lowercaseTerms)))
-    */
     if (!book) return false;
     let title = book.get('title');
     let desc = book.get('description');
@@ -210,13 +204,3 @@ CardsDisplay.propTypes = {
   ).isRequired,
   multiSelectInput: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
-
-/*
-  NOTES:
-    - inefficient lookup of a Creator's authored/illustrated
-      - maybe put all books into a some data structure that has fast lookup and pass it
-        to searchByTerm???
-          - books is a Map<bookId, book> instead of Array
-      - hard to see the current algorithm will be too slow for our purposes
-         without having a big amount of data alr
-*/
