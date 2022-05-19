@@ -24,6 +24,7 @@ function App() {
     genre: [],
     book_type: [],
   });
+  const [isChild, setIsChild] = useState(null);
   return (
     <div className="App">
       <Header />
@@ -34,10 +35,10 @@ function App() {
         <Route exact path="/creator/:id" element={<CreatorPage />} />
         <Route exact path="/collection/:id" element={<CollectionPage />} />
         <Route exact path="/quiz" element={<StartPage />} />
-        <Route exact path="/quiz/questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} />} />
+        <Route exact path="/quiz/questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} setIsChild={setIsChild} />} />
         <Route exact path="/quiz/questions/adult" element={<Quiz2Adult />} />
         <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
-        <Route exact path="/quiz/results" element={<ResultsPage bookFilters={bookFilters} />} />
+        <Route exact path="/quiz/results" element={<ResultsPage bookFilters={bookFilters} isChild={isChild} />} />
       </Routes>
       <Footer />
     </div>

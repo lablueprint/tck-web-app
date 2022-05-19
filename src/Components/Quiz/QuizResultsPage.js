@@ -28,9 +28,9 @@ function HandleClickToBottom() {
   anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function ResultsPage({ bookFilters }) {
+function ResultsPage({ bookFilters, isChild }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
-
+  let gradeDisplayed = '';
   function getRecommendedBooks() {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
@@ -57,8 +57,17 @@ function ResultsPage({ bookFilters }) {
     getBooksLikeThis();
   });
   useEffect(getRecommendedBooks, []);
+  if (bookFilters.maxGrade === -1) {
+    gradeDisplayed = '0 to Pre-K';
+  } else if (bookFilters.maxGrade === 0) {
+    gradeDisplayed = 'Kindergarten';
+  } else {
+    gradeDisplayed = `${bookFilters.maxGrade}th`;
+  }
   return (
     <div>
+      {isChild
+      && (
       <div className="results-wrapper">
         <p className="results-title" id="result-text">Your Results</p>
         <div className="results-text-wrapper">
@@ -70,8 +79,9 @@ function ResultsPage({ bookFilters }) {
             - - you can read up to a
             {' '}
             <span style={{ color: '#E85757', fontWeight: 'bold' }}>
-              {bookFilters.maxGrade}
-              th grade
+              {gradeDisplayed}
+              {' '}
+              grade
             </span>
             {' '}
             level!
@@ -84,12 +94,11 @@ function ResultsPage({ bookFilters }) {
             -- you have expressed interested in
             {' '}
             <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
-              {bookFilters['race/ethnicity'].map((element) => (
-                <span>
-                  {element}
-                  {', '}
-                </span>
-              ))}
+              {bookFilters['race/ethnicity'].slice(0, -1).join(', ')}
+              {' '}
+              and
+              {' '}
+              {bookFilters['race/ethnicity'].slice(-1)}
               {' '}
               culture.
             </span>
@@ -98,12 +107,12 @@ function ResultsPage({ bookFilters }) {
             We think you would enjoy the
             {' '}
             <span style={{ color: '#393EBA', fontWeight: 'bold' }}>
-              {bookFilters.genre.map((element) => (
-                <span>
-                  {element}
-                  {', '}
-                </span>
-              ))}
+              {bookFilters.genre.slice(0, -1).join(', ')}
+              {' '}
+              and
+              {' '}
+              {bookFilters.genre.slice(-1)}
+              {' '}
             </span>
             genres based on your answers.
           </p>
@@ -112,7 +121,11 @@ function ResultsPage({ bookFilters }) {
           <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
         </button>
       </div>
+      )}
+
       <div className="recommended-books-section-wrapper" id="recommended-books">
+        {isChild
+        && (
         <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToTop}>
           <img
             src={UpArrow}
@@ -121,6 +134,7 @@ function ResultsPage({ bookFilters }) {
           />
 
         </button>
+        )}
         <div className="recommended-books-section-title-wrapper"><p className="results-text recommended-books-section-text">Here are some books we think would be great for you!</p></div>
         <div className="recommended-books-wrapper">
           <div style={{
@@ -159,5 +173,6 @@ ResultsPage.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
+  isChild: propTypes.bool.isRequired,
 };
 export default ResultsPage;

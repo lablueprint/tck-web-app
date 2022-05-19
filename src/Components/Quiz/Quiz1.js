@@ -52,8 +52,7 @@ function reducer(state, action) {
   }
 }
 
-export default function Quiz1({ bookFilters, setBookFilters }) {
-  console.log(bookFilters);
+export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   const initialState = {
     isParent: false,
     isChild: false,
@@ -77,6 +76,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   } = state;
   // console.log(count);
   if (isParent && count === 2) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz2Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -95,6 +95,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isParent && count === 3) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz3 bookFilters={bookFilters} slideCaption="Which races/ethnicities do you want to see represented?" setBookFilters={setBookFilters} />
@@ -114,6 +115,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isParent && count === 4) {
+    setIsChild(isChild);
     const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
     return (
       <div>
@@ -134,6 +136,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isParent && count === 5) {
+    setIsChild(isChild);
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
     return (
       <div>
@@ -154,6 +157,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isParent && count === 6) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz8Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -176,6 +180,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   }
   if (isChild && count === 2) {
     // console.log(bookFilters);
+    setIsChild(isChild);
     return (
       <div>
         <Quiz2Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -194,6 +199,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isChild && count === 3) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz3 bookFilters={bookFilters} setBookFilters={setBookFilters} slideCaption="Which of these races are you interested in reading about?" />
@@ -212,12 +218,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     );
   }
   if (isChild && count === 4) {
-    console.log('ischild:');
-    console.log(isChild);
-    console.log('count:');
-    console.log(count);
-    console.log('sily level:');
-    console.log(sillyLevel[0]);
+    setIsChild(isChild);
     return (
       <div>
         <Quiz4Kid
@@ -248,6 +249,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
       'A detailed retelling of a crucial period of time in an individual’s life',
       'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
     // we need to create new component because this doesnt work w genre
+    setIsChild(isChild);
     return (
       <div>
         <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
@@ -279,6 +281,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     || (isChild && count === 6 && sillyLevel[0] == 3)
     || (isChild && count === 6 && illusion[0] == 1)) {
     // setBookFilters({ ...bookFilters, genre: funGenres });
+    setIsChild(isChild);
     return (
       <div>
         <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -314,6 +317,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   // eslint-disable-next-line eqeqeq
   if ((isChild && count === 5 && sillyLevel[0] == 2)
   || (isChild && count === 5 && sillyLevel[0] == 4)) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz5 setIllusions={changeIllusion} />
@@ -366,6 +370,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   //   );
   // }
   if (isChild && count === 7) {
+    setIsChild(isChild);
     return (
       <div>
         <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
@@ -384,7 +389,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
 
     );
   }
-
+  setIsChild(isChild);
   return (
     <div>
       <Card sx={{
@@ -432,6 +437,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
 }
 Quiz1.propTypes = {
   setBookFilters: propTypes.func.isRequired,
+  setIsChild: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,
     'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
