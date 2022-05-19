@@ -45,8 +45,8 @@ const styles = {
 
 function BookPage() {
   const [book, setBook] = useState();
-  const [author, setAuthor] = useState([]);
-  const [illustrator, setIllustrator] = useState([]);
+  const [author, setAuthor] = useState([]); // array holding author records
+  const [illustrator, setIllustrator] = useState([]); // array holding illustrator records
   const [collections, setCollections] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   /*
@@ -192,6 +192,7 @@ function BookPage() {
   let datePublished;
 
   if (book) {
+    // Cautiously pull data from book if we got something not undefined
     title = (book.get('title')) ? book.get('title') : title;
     desc = (book.get('description')) ? book.get('description') : desc;
     image = (book.get('image')) ? book.get('image') : [{ url: Logo }];
@@ -213,6 +214,8 @@ function BookPage() {
 
   let authors = [];
   if (author) {
+    // Cautiously pull data from author array if we got nonempty array
+    // and format into neater object
     authors = author.map((x) => ({
       name: (x.get('name')) ? x.get('name') : authorName,
       id: (x.get('id')) ? x.get('id') : authorID,
@@ -221,6 +224,8 @@ function BookPage() {
 
   let illustrators = [];
   if (illustrator) {
+    // Cautiously pull data from illustrator array if we got nonempty array
+    // and format into neater object
     illustrators = illustrator.map((x) => ({
       name: (x.get('name')) ? x.get('name') : illustratorName,
       id: (x.get('id')) ? x.get('id') : illustratorID,
