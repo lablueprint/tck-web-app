@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import CardsDisplay from '../Components/bookHub/BookHub';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
@@ -26,8 +25,6 @@ function Home() {
   useEffect(getCollections, []);
   return (
     <div>
-      <h1 className="headings">Book Recommendation Hub</h1>
-      <h2 className="headings">Collections</h2>
       <CollectionsCarousel
         elementArray={collections}
         slidesAtATime={6}
@@ -39,8 +36,16 @@ function Home() {
         cardImageHeightPercent={80}
         cardImageWidthPercent={80}
       />
-      <h2 className="headings">Books</h2>
-      <CardsDisplay />
+      <div className="home-screen-background">
+        <h1 className="headings">Discover books by and about marginalized groups</h1>
+        <p>
+          Get started with our Book Rec Quiz to get a personalized recommendation
+          or use our Book Browser to start your search.
+        </p>
+      </div>
+      <h2 className="headings">New Releases</h2>
+      <h2 className="headings">Black History Month</h2>
+      <h2 className="headings">Stories by Latinx Authors</h2>
     </div>
   );
 }
