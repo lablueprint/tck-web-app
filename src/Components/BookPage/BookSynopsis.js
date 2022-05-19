@@ -123,17 +123,4 @@ BookSynopsis.defaultProps = {
     4. See More and arrow hover needs to be in sync
       -idk lol not important
 
-<SideCards
-        authors={authors}
-        illustrators={illustrators}
-        ageMin={ageMin}
-        ageMax={ageMax}
-        gradeMin={gradeMin}
-        gradeMax={gradeMax}
-        bookType={bookType}
-        datePublished={datePublished}
-        readAloudURL={readAloudURL}
-        educatorURLs={educatorURLs}
-        bookshopURL={bookshopURL}
-      />  
 */
