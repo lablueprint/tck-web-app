@@ -81,6 +81,10 @@ const styles = {
     fontWeight: '600',
     color: '#3477DE',
     background: 'rgba(52, 119, 222, 0.06)',
+    '&:hover': {
+      color: '#FFFFFF',
+      background: '#3477DE',
+    },
   },
   linkUI: {
     textDecoration: 'none',
