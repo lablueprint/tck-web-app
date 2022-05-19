@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import {
-  Paper, Box
+  Paper, Box,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
@@ -40,7 +39,7 @@ const styles = {
     margin: 'auto',
     boxShadow: '0',
     padding: '2vh 0 2vh 0',
-  }
+  },
 };
 
 function BookPage() {
@@ -48,6 +47,12 @@ function BookPage() {
   const [author, setAuthor] = useState([]);
   const [illustrator, setIllustrator] = useState([]);
   const [collections, setCollections] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  /*
+  We want to know if Airtable call failed       (!book && isLoaded)
+      or          if Airtable call succeeded    (book && isLoaded)
+      or          if Airtable call in progr4ess (!book && !isLoaded)
+  */
 
   //  Grab collections
   const getCollections = () => {
@@ -64,6 +69,7 @@ function BookPage() {
 
   const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
     base(tableName).find(entryId, (err, entryRecord) => {
+      if (tableName === 'Book') setIsLoaded(true);
       if (err) {
         reject();
       }
@@ -80,30 +86,43 @@ function BookPage() {
     const illustratorIDs = bookRecord.get('illustrator');
 
     // Curried function so we can create different function compositions as seen below
-    const setNewCreator = (setter) =>  (newCreator) => {setter((prevState) => setter([...prevState, newCreator]))}; 
-    for (const id of authorIDs) {
-      await getEntry('Creator', id, setNewCreator(setAuthor));
-    }
-    
-    for (const id of illustratorIDs) {
-      await getEntry('Creator', id, setNewCreator(setIllustrator));
-    }
-    
+    const setNewCreator = (setter) => (newCreator) => {
+      setter((prevState) => setter([...prevState, newCreator]));
+    };
+
+    const creatorEntries = [];
+
+    authorIDs.forEach((id) => {
+      creatorEntries.push(getEntry('Creator', id, setNewCreator(setAuthor)));
+    });
+
+    illustratorIDs.forEach((id) => {
+      creatorEntries.push(getEntry('Creator', id, setNewCreator(setIllustrator)));
+    });
+
+    await Promise.all(creatorEntries);
   };
   useEffect(getEntries, [bookId]); // Runs on mount and on change of bookId
 
-  if (!book) {
-    return <div>Scouring our library...</div>;
+  // This is for when we are WAITING for Airtable response
+  // We return here before we try to do any bad data accesses
+  if (!book && !isLoaded) {
+    return <div>Loading! 🤖</div>;
+  }
+  // This is for when Airtable call fails
+  if (!book && isLoaded) {
+    return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
   }
 
   /* DEFAULT VALUES FOR DATA PULLED FROM BOOK RECORD
       - some values are saved to be put in terniary operator further below
+      - These are arbitrary default values for when fields are missing
   */
   let title = 'Untitled Book';
-  let authorName = 'Unknown Author';
-  let authorID = '';
-  let illustratorName = 'Unknown Illustrator';
-  let illustratorID = '';
+  const authorName = 'Unknown Author';
+  const authorID = '';
+  const illustratorName = 'Unknown Illustrator';
+  const illustratorID = '';
   let desc = 'It\'s a book. with words. **gasp**';
   let image;
   let readAloudURL;
@@ -144,26 +163,20 @@ function BookPage() {
 
   let authors = [];
   if (author) {
-    authors = author.map((x) => {
-      return {
-        name: (x.get('name')) ? x.get('name') : authorName,
-        id: (x.get('id')) ? x.get('id') : authorID,
-      }
-    });
+    authors = author.map((x) => ({
+      name: (x.get('name')) ? x.get('name') : authorName,
+      id: (x.get('id')) ? x.get('id') : authorID,
+    }));
   }
 
   let illustrators = [];
   if (illustrator) {
-   illustrators = illustrator.map((x) => {
-    return {
+    illustrators = illustrator.map((x) => ({
       name: (x.get('name')) ? x.get('name') : illustratorName,
       id: (x.get('id')) ? x.get('id') : illustratorID,
-    }
-   });
+    }));
   }
 
-  
-  
   const imageURL = image[0].url;
   const isValidUrl = (string) => {
     /* Validate url given by TCK. URL must start with http or https protocol. */
@@ -176,7 +189,7 @@ function BookPage() {
     return url.protocol === 'http:' || url.protocol === 'https:';
   };
   educatorURLs.filter((string) => isValidUrl(string));
-  
+
   const synopsisProps = {
     title,
     authorName,
@@ -200,12 +213,8 @@ function BookPage() {
     authors,
     illustrators,
     bookType,
-    datePublished
+    datePublished,
   };
-  
-  if (title === 'Untitled Book') {
-    return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
-  }
 
   return (
     <Paper elevation={0}>
