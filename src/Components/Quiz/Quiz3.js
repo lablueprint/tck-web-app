@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import QuizButton from './QuizButton';
@@ -28,10 +27,17 @@ export default function Quiz3({ slideCaption, setBookFilters }) {
       });
   };
 
-  function HandleClick(event) {
-    console.log(event.target.value);
-    setBookFilters((prevValue) => ({ ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'].concat(event.target.value) }));
+  function HandleClick(name, checked) {
+    if (checked) {
+      setBookFilters((prevValue) => ({ ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'].concat(name) }));
+    } else {
+      setBookFilters((prevValue) => {
+        const index = prevValue['race/ethnicity'].indexOf(name);
+        return { ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'].splice(index, 1) };
+      });
+    }
   }
+
   useEffect(getFilters, []);
   return (
     <div>
@@ -39,7 +45,10 @@ export default function Quiz3({ slideCaption, setBookFilters }) {
         {slideCaption}
       </h1>
       {filters.map((option) => (
-        <QuizButton buttonCaption={option} value={option} onClick={HandleClick} />
+        <QuizButton
+          buttonCaption={option}
+          onClick={(name, checked) => HandleClick(name, checked)}
+        />
       ))}
     </div>
   );

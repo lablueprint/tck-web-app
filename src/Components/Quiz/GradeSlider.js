@@ -64,7 +64,7 @@ function valueLabelFormat(value) {
 const minDistance = 0;
 
 export default function GradeSlider({ parentCallback }) {
-  const [value1, setValue1] = React.useState([4, 7]);
+  const [value1, setValue1] = React.useState([-1, 12]);
   const [min, setMin] = React.useState(4);
   const [max, setMax] = React.useState(7);
 

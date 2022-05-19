@@ -1,17 +1,24 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
 
-export default function QuizButton({ /* imageSource */buttonCaption }) {
+export default function QuizButton({ /* imageSource */buttonCaption, onClick }) {
   return (
-    <Button sx={{ m: 7 }} size="large" variant="outlined"/* src={imageSource} alt="MISSING IMAGE" */>
-      <Checkbox />
+    <div
+      style={{ padding: '3em', background: '#FCFCFC', border: '#D7D7D7' }}
+    >
+      <Checkbox onChange={(event) => {
+        // setChecked((prevValue) => !prevValue);
+        onClick(buttonCaption, event.target.checked);
+      }}
+      />
       {buttonCaption}
-    </Button>
+    </div>
   );
 }
 QuizButton.propTypes = {
   buttonCaption: PropTypes.string.isRequired,
+  // setChecked: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   // imageSource: PropTypes.string.isRequired,
 };

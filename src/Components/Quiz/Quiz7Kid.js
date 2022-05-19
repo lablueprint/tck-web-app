@@ -2,19 +2,25 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-  Box, Button, Checkbox, Avatar,
+  Box,
 } from '@mui/material';
-import Sample from '../../Assets/Images/DemoImgGenre.png';
+import QuizButton from './QuizButton';
 // import illusion from '../../Assets/Images/illusion.png';
 // import QuizButton from './QuizButton';
 // import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
-export default function Quiz7Kid({ bookFilters, setBookFilters }) {
-  const handleClick = (val) => {
-    // eslint-disable-next-line camelcase
-    setBookFilters({ ...bookFilters, genre: 'genre'.push(val) });
-  };
+export default function Quiz7Kid({ setBookFilters }) {
+  function HandleClick(name, checked) {
+    if (checked) {
+      setBookFilters((prevValue) => ({ ...prevValue, genre: prevValue.genre.concat(name) }));
+    } else {
+      setBookFilters((prevValue) => {
+        const index = prevValue.genre.indexOf(name);
+        return { ...prevValue, genre: prevValue.genre.splice(index, 1) };
+      });
+    }
+  }
   return (
     <div>
       <Box sx={{ padding: 15 }}>
@@ -22,44 +28,16 @@ export default function Quiz7Kid({ bookFilters, setBookFilters }) {
           Which of the following seem fun to you?
         </h1>
         <h3>You can choose more than one.</h3>
-        <Button value="Adventure" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Going on a journey to a new place with your friends</p>
-        </Button>
-        <Button value="Scary/Horror" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Suspenseful events iwth plot twists that may shock you</p>
-        </Button>
-        <Button value="Sci-fi" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Going to outer space and exploring different planets</p>
-        </Button>
-        <Button value="Fantasy" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Living in a magical world where you have powers</p>
-        </Button>
-        <Button value="Romance" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Having a picnic with someone you really like</p>
-        </Button>
-        <Button value="Afro-futurism" onChange={(e) => handleClick(e.target.value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
-          <Checkbox />
-          <p>Visiting an African realm with magic and advanced technology</p>
-        </Button>
+        <QuizButton buttonCaption="Going on a journey to a new place with your friends" onClick={(checked) => HandleClick('Adventure', checked)} />
+        <QuizButton buttonCaption="Suspenseful events iwth plot twists that may shock you" onClick={(checked) => HandleClick('Scary/Horror', checked)} />
+        <QuizButton buttonCaption="Going to outer space and exploring different planets" onClick={(checked) => HandleClick('Sci-fi', checked)} />
+        <QuizButton buttonCaption="Living in a magical world where you have powers" onClick={(checked) => HandleClick('Fantasy', checked)} />
+        <QuizButton buttonCaption="Having a picnic with someone you really like" onClick={(checked) => HandleClick('Romance', checked)} />
+        <QuizButton buttonCaption="Visiting an African realm with magic and advanced technology" onClick={(checked) => HandleClick('Afro-futurism', checked)} />
       </Box>
     </div>
   );
 }
 Quiz7Kid.propTypes = {
   setBookFilters: propTypes.func.isRequired,
-  bookFilters: propTypes.shape({
-    bookId: propTypes.string.isRequired,
-    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
-    minAge: propTypes.number.isRequired,
-    maxAge: propTypes.number.isRequired,
-    minGrade: propTypes.number.isRequired,
-    maxGrade: propTypes.number.isRequired,
-    genre: propTypes.arrayOf(propTypes.string).isRequired,
-    book_type: propTypes.arrayOf(propTypes.string).isRequired,
-  }).isRequired,
 };

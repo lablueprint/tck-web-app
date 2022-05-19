@@ -40,7 +40,7 @@ export default function Quiz4Kid({ /* bookfilters, setBookFilters, */ silly, set
           >
             <FormControlLabel control={<Radio value={1} onChange={(e) => handleClick(e.target.value)} />} label="I am almost always silly" />
             <FormControlLabel control={<Radio value={2} onChange={(e) => handleClick(e.target.value)} />} label="I am usually silly, but I can be serious if I need to be" />
-            <FormControlLabel control={<Radio value={3} onChange={(e) => handleClick(e.target.value)} />} label="Depending on the situation, I can be either silly or serious" />
+            <FormControlLabel control={<Radio value={3} onChange={(e) => handleClick(e.target.value)} />} label="I can be either silly or serious" />
             <FormControlLabel control={<Radio value={4} onChange={(e) => handleClick(e.target.value)} />} label="I am usually serious, but I can be silly sometimes" />
             <FormControlLabel control={<Radio value={5} onChange={(e) => handleClick(e.target.value)} />} label="I am almost always serious" />
           </RadioGroup>

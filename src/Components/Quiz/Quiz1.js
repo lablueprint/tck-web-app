@@ -257,11 +257,14 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
           onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
-        <Button
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
+        <NavLink to="/quiz/results">
+          <Button
+            startIcon={<ArrowForwardIcon />}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+          />
+        </NavLink>
+
       </div>
 
     );
@@ -285,11 +288,25 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
           onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
-        <Button
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        {((isChild && count === 6 && illusion[0] == 1)
+        || (isChild && count === 5 && sillyLevel[0] == 1))
+          ? (
+            <NavLink to="/quiz/results">
+              <Button
+                startIcon={<ArrowForwardIcon />}
+                variant="contained"
+                onClick={() => dispatch({ type: 'parent' })}
+              />
+            </NavLink>
+          )
+          : (
+            <Button
+              startIcon={<ArrowForwardIcon />}
+              variant="contained"
+              onClick={() => dispatch({ type: 'parent' })}
+            />
+          )}
+
       </div>
 
     );
