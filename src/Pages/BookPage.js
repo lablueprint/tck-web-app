@@ -33,6 +33,14 @@ const styles = {
     height: '75%',
     margin: '0 auto 0 auto',
   },
+  carouselContainer: {
+    outline: 'none',
+    background: 'rgba(244, 244, 244, 0.98)',
+    backdropFilter: 'blur(20px)',
+    margin: 'auto',
+    boxShadow: '0',
+    padding: '2vh 0 2vh 0',
+  }
 };
 
 function BookPage() {
@@ -71,6 +79,7 @@ function BookPage() {
     const authorIDs = bookRecord.get('author');
     const illustratorIDs = bookRecord.get('illustrator');
 
+    // Curried function so we can create different function compositions as seen below
     const setNewCreator = (setter) =>  (newCreator) => {setter((prevState) => setter([...prevState, newCreator]))}; 
     for (const id of authorIDs) {
       await getEntry('Creator', id, setNewCreator(setAuthor));
@@ -87,6 +96,9 @@ function BookPage() {
     return <div>Scouring our library...</div>;
   }
 
+  /* DEFAULT VALUES FOR DATA PULLED FROM BOOK RECORD
+      - some values are saved to be put in terniary operator further below
+  */
   let title = 'Untitled Book';
   let authorName = 'Unknown Author';
   let authorID = '';
@@ -98,10 +110,17 @@ function BookPage() {
   let bookshopURL;
   let educatorURLs;
   let identityTags;
+  let raceEthnicity;
+  let genre;
+  let themesLessons;
+  let religion;
+
   let ageMin;
   let ageMax;
   let gradeMin;
   let gradeMax;
+  let bookType;
+  let datePublished;
 
   if (book) {
     title = (book.get('title')) ? book.get('title') : title;
@@ -111,10 +130,16 @@ function BookPage() {
     bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
     educatorURLs = (book.get('educator_guide_link')) ? book.get('educator_guide_link').split('\n') : [];
     identityTags = (book.get('identity_tags')) ? book.get('identity_tags') : [];
+    raceEthnicity = (book.get('race/ethnicity')) ? book.get('race/ethnicity') : [];
+    genre = (book.get('genre')) ? book.get('genre') : [];
+    themesLessons = (book.get('themes/lessons')) ? book.get('themes/lessons') : [];
+    religion = (book.get('religion')) ? book.get('religion') : [];
     ageMin = (book.get('age_min')) ? book.get('age_min') : -1;
     ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
     gradeMin = (book.get('grade_min')) ? book.get('grade_min') : -1;
     gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
+    bookType = (book.get('book_type')) ? book.get('book_type') : '';
+    datePublished = (book.get('date_published')) ? book.get('date_published') : '';
   }
 
   let authors = [];
@@ -164,13 +189,18 @@ function BookPage() {
     readAloudURL,
     educatorURLs,
     identityTags,
+    raceEthnicity,
+    genre,
+    themesLessons,
+    religion,
     ageMin,
     ageMax,
     gradeMin,
     gradeMax,
-
     authors,
-    illustrators
+    illustrators,
+    bookType,
+    datePublished
   };
   
   if (title === 'Untitled Book') {
@@ -178,18 +208,20 @@ function BookPage() {
   }
 
   return (
-    <Paper variant="outlined">
-      <CollectionsCarousel
-        elementArray={collections}
-        slidesAtATime={6}
-        prevArrow={LeftArrow}
-        nextArrow={RightArrow}
-        widthPercent={100}
-        spaceBetweenEntries={16}
-        swiperHeight={120}
-        cardImageHeightPercent={80}
-        cardImageWidthPercent={80}
-      />
+    <Paper elevation={0}>
+      <Paper sx={styles.carouselContainer}>
+        <CollectionsCarousel
+          elementArray={collections}
+          slidesAtATime={6}
+          prevArrow={LeftArrow}
+          nextArrow={RightArrow}
+          widthPercent={100}
+          spaceBetweenEntries={16}
+          swiperHeight={120}
+          cardImageHeightPercent={80}
+          cardImageWidthPercent={80}
+        />
+      </Paper>
       <BookSynopsis {...synopsisProps} />
       {(readAloudURL) && (
         <Box sx={styles.iframeContainer}>
@@ -208,12 +240,3 @@ function BookPage() {
 }
 
 export default BookPage;
-
-/* Notes for future development
-  1. For tags, use MaterialUI chips
-  2. Q: For when Book or Creator is missing, do we want to display defaults or raise error
-      saying that we couldn't pull the correct information for this entry?
-        - What is the necessary condition when we should *not* display available info
-          and just say that we couldn't pull the correct info?
-            - Currently when there is no book title
-*/

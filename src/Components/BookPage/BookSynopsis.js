@@ -51,7 +51,7 @@ const styles = {
     },
   },
   description: {
-    minWidth: '30vw',
+    minWidth: '27vw',
 
     textAlign: 'left',
     display: 'flex',
@@ -118,6 +118,7 @@ const styles = {
     fontFamily: 'DM Sans',
   },
   bolded: {
+    display: 'inline',
     textAlign: 'left',
     fontFamily: 'Work Sans',
     fontSize: '1.12em',
@@ -130,19 +131,25 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     marginTop: '4vh',
+    flexWrap: 'wrap',
+    justifyContent: 'start',
+    '& ::after': {
+      content: '',
+      flex: 'auto',
+    },
   },
   block: {
     fontFamily: 'DM Sans',
     width: '45%',
     textAlign: 'left',
-    flex: 'none',
     order: '1',
     flexGrow: '0',
-
+    margin: 'auto',
   },
   sub: {
     lineHeight: '1.5em',
     color: '#656565',
+    marginTop: '0.5em',
   },
   bookshop: {
     fontFamily: 'Work Sans',
@@ -191,17 +198,25 @@ const styles = {
 };
 
 const chipColors = [
-  { // blue
-    color: '#004A90',
-    backgroundColor: '#D0E6FB',
-  },
-  { // red
+  { // red  -- race/ethnicity
     color: '#A51717',
     backgroundColor: '#FFDFDF',
   },
-  { // green
-    color: '#006A63',
-    backgroundColor: '#C1F0ED',
+  { // green  -- genre
+    color: '#004F4A',
+    backgroundColor: '#D5EFF1',
+  },
+  { // yellow -- identity
+    color: '#6F4323',
+    backgroundColor: '#FAE9D0',
+  },
+  { // blue -- themes/lessons
+    color: '#004A90',
+    backgroundColor: '#D0E6FB',
+  },
+  { // purple -- religion
+    color: '#131C72',
+    backgroundColor: '#E2E5FF',
   },
 ];
 
@@ -216,10 +231,20 @@ const createGradeRange = (gradeMin, gradeMax) => {
   let gradeRange;
   if (!gradeMin) {
     // gradeMin not given
-    gradeRange = gradeMax;
+    if (gradeMax === '0 to Pre-K' || gradeMax === 'Kindergarten') {
+      // We don't want to add 'grade' to long levels
+      gradeRange = gradeMax;
+    } else {
+      gradeRange = `${gradeMax} Grade`;
+    }
   } else if (!gradeMax || gradeMin === gradeMax) {
     // gradeMax not given or gradeMin same as gradeMax
-    gradeRange = gradeMin;
+    if (gradeMin === '0 to Pre-K' || gradeMin === 'Kindergarten') {
+      // We don't want to add 'grade' to long levels
+      gradeRange = gradeMin;
+    } else {
+      gradeRange = `${gradeMin} Grade`;
+    }
   } else if (gradeMin === '0 to Pre-K' && gradeMax.length < 5) {
     // 0 to Pre-K to short grade
     gradeRange = `Up to ${gradeMax}`;
@@ -243,7 +268,7 @@ const createAgeRange = (ageMin, ageMax) => {
   let ageRange;
   if (ageMin === -1 && ageMax === -1) {
     // Bofa
-    ageRange = 'All';
+    ageRange = '-';
   } else if (ageMin === ageMax) {
     // Valid but equal ages
     ageRange = `Age ${ageMin}`;
@@ -263,19 +288,11 @@ const createAgeRange = (ageMin, ageMax) => {
   return ageRange;
 };
 
-function BookSynopsis({
-  title, desc, imageURL, bookshopURL, readAloudURL, educatorURLs, identityTags,
-  ageMin, ageMax, gradeMin, gradeMax, authors, illustrators,
-}) {
-  const [seeMore, setSeeMore] = useState(true);
-  const toggleSeeMore = () => setSeeMore(!seeMore);
-
-  const identityChips = identityTags.map((tag) => {
-    /* Randomly select colors for identity tag
-       This does not guarantee a variety of colors.
-    */
-    const rand = Math.floor(Math.random() * 3);
-    const chipStyle = { ...chipColors[rand], ...styles.chip };
+/* Tags
+ */
+const createTags = (identityTags, raceEthnicity, genre, themesLessons, religion) => {
+  const createTagsHelper = (tags) => (colorIndex) => tags.map((tag) => {
+    const chipStyle = { ...chipColors[colorIndex], ...styles.chip };
     return (
       <Chip
         label={tag}
@@ -286,9 +303,41 @@ function BookSynopsis({
       />
     );
   });
+  const raceEthChips = createTagsHelper(raceEthnicity)(0);
+  const genreChips = createTagsHelper(genre)(1);
+  const identityChips = createTagsHelper(identityTags)(2);
+  const themesChips = createTagsHelper(themesLessons)(3);
+  const religionChips = createTagsHelper(religion)(4);
+  return [...raceEthChips, ...genreChips, ...identityChips, ...themesChips, ...religionChips];
+};
+
+/* Date Published
+  Take in a UTC date string and return an array of [dayOfWeek, month, day, year]
+*/
+const processDate = (date) => {
+  const dateObject = new Date(date);
+  const dateArray = dateObject.toDateString().split(' ');
+
+  // Remove leading zeros from day
+  dateArray[2] = parseInt(dateArray[2], 10);
+  return dateArray;
+};
+
+function BookSynopsis({
+  title, desc, imageURL, bookshopURL, readAloudURL, educatorURLs, identityTags, raceEthnicity,
+  genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
+  illustrators, bookType, datePublished,
+}) {
+  const [seeMore, setSeeMore] = useState(true);
+  const toggleSeeMore = () => setSeeMore(!seeMore);
 
   const gradeRange = createGradeRange(gradeMin, gradeMax);
   const ageRange = createAgeRange(ageMin, ageMax);
+
+  const tags = createTags(identityTags, raceEthnicity, genre, themesLessons, religion);
+
+  // Process date_published
+  const publishDate = processDate(datePublished);
 
   /*
     For now, name educator links with arbitrary number, ask designers how to proceed
@@ -339,7 +388,7 @@ function BookSynopsis({
         />
         <Typography sx={styles.tagHeader}>Tags</Typography>
         <Box sx={styles.tagContainer}>
-          {identityChips}
+          {tags}
         </Box>
       </Box>
 
@@ -377,12 +426,10 @@ function BookSynopsis({
             <Box sx={styles.sideCardContainer}>
               <Typography sx={styles.sideCardTitle}>About This Book</Typography>
               <Box sx={styles.sideCardLinkContainer}>
-                <Typography sx={styles.creator}> Written by: </Typography>
-                {' '}
+                <Typography sx={styles.creator}> Written by:&nbsp;&nbsp;</Typography>
                 {authorLinks}
                 <br />
-                <Typography sx={styles.creator}> Illustrated by: </Typography>
-                {' '}
+                <Typography sx={styles.creator}> Illustrated by:&nbsp;&nbsp;</Typography>
                 {illustratorLinks}
               </Box>
               <div style={styles.blockContainer}>
@@ -393,16 +440,38 @@ function BookSynopsis({
                   <p style={styles.sub}>Age Range</p>
                 </div>
                 {
-                    (gradeMin || gradeMax) && (
+                    (gradeMin || gradeMax) ? (
                       <div style={styles.block}>
                         <Box sx={styles.bolded}>
                           {gradeRange}
                           {' '}
                         </Box>
-                        <p style={styles.sub}>Grade level</p>
+                        <p style={styles.sub}>Reading Level</p>
                       </div>
-                    )
-                  }
+                    ) : <div style={styles.block} />
+                }
+                {
+                  (bookType) ? (
+                    <div style={styles.block}>
+                      <Box sx={styles.bolded}>
+                        {bookType}
+                        {' '}
+                      </Box>
+                      <p style={styles.sub}>Book Format</p>
+                    </div>
+                  ) : <div style={styles.block} />
+                }
+                {
+                  (datePublished) ? (
+                    <div style={styles.block}>
+                      <Box sx={styles.bolded}>
+                        {`${publishDate[1]} ${publishDate[2]}, ${publishDate[3]}`}
+                        {' '}
+                      </Box>
+                      <p style={styles.sub}>Date Published</p>
+                    </div>
+                  ) : <div style={styles.block} />
+                }
               </div>
               {
                 (bookshopURL) && (
@@ -451,6 +520,10 @@ BookSynopsis.propTypes = {
   readAloudURL: PropTypes.string,
   educatorURLs: PropTypes.arrayOf(PropTypes.string),
   identityTags: PropTypes.arrayOf(PropTypes.string),
+  raceEthnicity: PropTypes.arrayOf(PropTypes.string),
+  genre: PropTypes.arrayOf(PropTypes.string),
+  themesLessons: PropTypes.arrayOf(PropTypes.string),
+  religion: PropTypes.arrayOf(PropTypes.string),
   ageMin: PropTypes.number,
   ageMax: PropTypes.number,
   gradeMin: PropTypes.string,
@@ -463,6 +536,8 @@ BookSynopsis.propTypes = {
     name: PropTypes.string,
     id: PropTypes.string,
   })),
+  bookType: PropTypes.string,
+  datePublished: PropTypes.string,
 };
 
 BookSynopsis.defaultProps = {
@@ -473,10 +548,27 @@ BookSynopsis.defaultProps = {
   readAloudURL: '',
   educatorURLs: [],
   identityTags: [],
+  raceEthnicity: [],
+  genre: [],
+  themesLessons: [],
+  religion: [],
   ageMin: -1,
   ageMax: -1,
   gradeMin: '',
   gradeMax: '',
   authors: [],
   illustrators: [],
+  bookType: '',
+  datePublished: '',
 };
+
+/* TO DO
+  1. Get Educator Guide titles, read-aloud title
+  1. Break up into components
+    BookDesc: Card + description
+    SideCards: Side Cards
+    6. Bookshop on hover
+    4. See More and arrow hover needs to be in sync
+      -idk lol not important
+
+*/
