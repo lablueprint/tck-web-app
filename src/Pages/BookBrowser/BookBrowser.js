@@ -75,12 +75,10 @@ function BookBrowser() {
               />
             )
             : (
-              <div className="filter">
-                <Filter
-                  setRangeState={setRangeInput}
-                  setMultiSelectInput={setMultiSelectInput}
-                />
-              </div>
+              <Filter
+                setRangeState={setRangeInput}
+                setMultiSelectInput={setMultiSelectInput}
+              />
             )
         }
 
