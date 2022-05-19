@@ -4,6 +4,8 @@ import {
   Card, CardContent, Typography, Link as LinkUI, Box,
 } from '@mui/material';
 
+import EducatorLink from './EducatorLink';
+
 const styles = {
   sideCardContainer: {
     margin: 'auto 1vw auto 1vw',
@@ -49,15 +51,10 @@ function AdditionalResources({ readAloudURL, educatorURLs }) {
     For now, name educator links with arbitrary number, ask designers how to proceed
   */
   const educatorLinks = educatorURLs.map((url, index) => (
-    <LinkUI
-      sx={styles.linkUI}
-      href={url}
-      key={url}
-      rel="noreferrer"
-      target="_blank"
-    >
-      {`Educator Guide #${index}`}
-    </LinkUI>
+    <EducatorLink
+      url={url}
+      index={index}
+    />
   ));
   return (
     <Card sx={styles.sideCard}>
@@ -89,3 +86,14 @@ AdditionalResources.defaultProps = {
 };
 
 export default AdditionalResources;
+/*
+<LinkUI
+      sx={styles.linkUI}
+      href={url}
+      key={url}
+      rel="noreferrer"
+      target="_blank"
+    >
+      {`Educator Guide ${index}`}
+    </LinkUI>
+*/
