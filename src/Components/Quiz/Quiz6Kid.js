@@ -9,8 +9,12 @@ import Sample from '../../Assets/Images/DemoImgGenre.png';
 export default function Quiz6Kid({
   title, buttonCaptions, bookFilters, setBookFilters,
 }) {
-  const handleClick = (val) => {
-    setBookFilters({ ...bookFilters, genre: 'genre'.push(val) });
+  const handleClick = (event, val) => {
+    if (event.target.value === 'on') {
+      setBookFilters((prevValue) => ({ ...bookFilters, genre: prevValue.genre.concat(val) }));
+    } else {
+      setBookFilters((prevValue) => ({ ...bookFilters, genre: prevValue.genre.remove(val) }));
+    }
   };
   return (
     <div>
@@ -19,27 +23,27 @@ export default function Quiz6Kid({
           {title}
         </h1>
         <h3>You can choose more than one.</h3>
-        <Button value="Biography" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Biography" onClick={(event) => handleClick(event, 'Biography')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[0]}</p>
         </Button>
-        <Button value="Non-fiction" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Non-fiction" onClick={(event) => handleClick(event, 'Non-fiction')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[1]}</p>
         </Button>
-        <Button value="Historical fiction" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Historical fiction" onClick={(event) => handleClick(event, 'Historical fiction')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[2]}</p>
         </Button>
-        <Button value="Memoir" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Memoir" onClick={(event) => handleClick(event, 'Memoir')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[3]}</p>
         </Button>
-        <Button value="Mystery" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Mystery" onClick={(event) => handleClick(event, 'Mystery')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[4]}</p>
         </Button>
-        <Button value="Poetry" onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value="Poetry" onClick={(event) => handleClick(event, 'Poetry')} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
           <Checkbox />
           <p>{buttonCaptions[4]}</p>
         </Button>
