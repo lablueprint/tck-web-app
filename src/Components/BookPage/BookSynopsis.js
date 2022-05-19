@@ -8,7 +8,8 @@ import Logo from '../../Assets/Images/TCK PNG Logo.png';
 
 import BookCover from './BookCover';
 import BookDesc from './BookDesc';
-import SideCards from './SideCards';
+import AboutBook from './AboutBook';
+import AdditionalResources from './AdditionalResources';
 
 const styles = {
   synopsis: {
@@ -43,19 +44,23 @@ function BookSynopsis({
         title={title}
         desc={desc}
       />
-      <SideCards
-        authors={authors}
-        illustrators={illustrators}
-        ageMin={ageMin}
-        ageMax={ageMax}
-        gradeMin={gradeMin}
-        gradeMax={gradeMax}
-        bookType={bookType}
-        datePublished={datePublished}
-        readAloudURL={readAloudURL}
-        educatorURLs={educatorURLs}
-        bookshopURL={bookshopURL}
-      />
+      <div>
+        <AboutBook
+          authors={authors}
+          illustrators={illustrators}
+          ageMin={ageMin}
+          ageMax={ageMax}
+          gradeMin={gradeMin}
+          gradeMax={gradeMax}
+          bookType={bookType}
+          datePublished={datePublished}
+          bookshopURL={bookshopURL}
+        />
+        <AdditionalResources
+          readAloudURL={readAloudURL}
+          educatorURLs={educatorURLs}
+        />
+      </div>
     </Box>
   );
 }
@@ -118,4 +123,17 @@ BookSynopsis.defaultProps = {
     4. See More and arrow hover needs to be in sync
       -idk lol not important
 
+<SideCards
+        authors={authors}
+        illustrators={illustrators}
+        ageMin={ageMin}
+        ageMax={ageMax}
+        gradeMin={gradeMin}
+        gradeMax={gradeMax}
+        bookType={bookType}
+        datePublished={datePublished}
+        readAloudURL={readAloudURL}
+        educatorURLs={educatorURLs}
+        bookshopURL={bookshopURL}
+      />  
 */
