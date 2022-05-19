@@ -8,6 +8,7 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import Logo from '../Assets/Images/TCK PNG Logo.png';
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
+import RecFilter from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
 
@@ -77,6 +78,31 @@ function BookPage() {
       resolve(entryRecord);
     });
   });
+  // Add book to localStorage
+  function pushToStorage() {
+    const bookArr = JSON.parse(localStorage.getItem('Recently Viewed'));
+
+    // check if localStorage contains books
+    if (bookArr) {
+      // check if book already in localStorage
+      if (bookArr.includes(bookId)) {
+        // remove book and add to front
+        const index = bookArr.indexOf(bookId);
+        if (index > -1) {
+          bookArr.splice(index, 1); // 2nd parameter means remove one item only
+        }
+      }
+      bookArr.unshift(bookId);
+      if (bookArr.length > 14) {
+        bookArr.pop();
+      }
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArr));
+    } else {
+      const bookArrTemp = [];
+      bookArrTemp.push(bookId);
+      localStorage.setItem('Recently Viewed', JSON.stringify(bookArrTemp));
+    }
+  }
 
   // This is similar to promise chaining with .then() calls,
   // but in a (hopefully) more succinct way
@@ -102,7 +128,31 @@ function BookPage() {
 
     await Promise.all(creatorEntries);
   };
-  useEffect(getEntries, [bookId]); // Runs on mount and on change of bookId
+
+  // Gets list of recommended books
+  const getBooksLikeThis = async () => {
+    if (book) {
+      const recList = await RecFilter(
+        book.id,
+        book.fields.age_min,
+        book.fields.age_max,
+        book.fields.grade_min,
+        book.fields.grade_max,
+        book.fields['race/ethnicity'],
+        book.fields.genre,
+        book.fields.book_type,
+      );
+    }
+  };
+
+  useEffect(() => {
+    pushToStorage();
+    getEntries();
+  }, [bookId]); // Runs on mount and on change of bookId
+
+  useEffect(() => {
+    getBooksLikeThis();
+  }, [book]);
 
   // This is for when we are WAITING for Airtable response
   // We return here before we try to do any bad data accesses
