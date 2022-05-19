@@ -8,9 +8,10 @@ import { Search, ChevronLeft } from '@mui/icons-material';
 
 import './SearchBar.css';
 
-const MENU_STYLE = { fontFamily: "'DM Sans', sans-serif" };
-
 const styles = {
+  menu: {
+    fontFamily: 'DM Sans',
+  },
   formControl: {
     width: '20%',
   },
@@ -18,7 +19,7 @@ const styles = {
     background: '#EEEEEE',
     textAlign: 'left',
     borderRadius: '12px 0px 0px 12px',
-    ...MENU_STYLE,
+    fontFamily: 'DM Sans',
   },
   searchField: {
     width: '70%',
@@ -76,12 +77,12 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
           onChange={handleSelect}
           sx={styles.selectMenu}
         >
-          <MenuItem value="keyword" sx={MENU_STYLE}>Keyword</MenuItem>
-          <MenuItem value="title" sx={MENU_STYLE}>Title</MenuItem>
-          <MenuItem value="description" sx={MENU_STYLE}>Description</MenuItem>
-          <MenuItem value="identity" sx={MENU_STYLE}>Identity</MenuItem>
-          <MenuItem value="author" sx={MENU_STYLE}>Author</MenuItem>
-          <MenuItem value="illustrator" sx={MENU_STYLE}>Illustrator</MenuItem>
+          <MenuItem value="keyword" sx={styles.menu}>Keyword</MenuItem>
+          <MenuItem value="title" sx={styles.menu}>Title</MenuItem>
+          <MenuItem value="description" sx={styles.menu}>Description</MenuItem>
+          <MenuItem value="identity" sx={styles.menu}>Identity</MenuItem>
+          <MenuItem value="author" sx={styles.menu}>Author</MenuItem>
+          <MenuItem value="illustrator" sx={styles.menu}>Illustrator</MenuItem>
         </Select>
       </FormControl>
 
