@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import QuizButton from './QuizButton';
@@ -11,8 +12,9 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Quiz3({ slideCaption, bookFilters, setBookFilters }) {
+export default function Quiz3({ slideCaption, setBookFilters }) {
   const [filters, setFilters] = useState([]);
+  let filterVar;
 
   const getFilters = () => {
     base('Book Tag Metadata').select({
@@ -20,10 +22,16 @@ export default function Quiz3({ slideCaption, bookFilters, setBookFilters }) {
       view: 'Grid view',
     }).all()
       .then((records) => {
-        setFilters(records[0].fields.options.split(','));
-        setBookFilters({ ...bookFilters, 'race/ethnicity': filters });
+        console.log(records);
+        filterVar = records[0].fields.options.split(',').map((element) => element.trim());
+        setFilters(filterVar);
       });
   };
+
+  function HandleClick(event) {
+    console.log(event.target.value);
+    setBookFilters((prevValue) => ({ ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'].concat(event.target.value) }));
+  }
   useEffect(getFilters, []);
   return (
     <div>
@@ -31,7 +39,7 @@ export default function Quiz3({ slideCaption, bookFilters, setBookFilters }) {
         {slideCaption}
       </h1>
       {filters.map((option) => (
-        <QuizButton buttonCaption={option} />
+        <QuizButton buttonCaption={option} value={option} onClick={HandleClick} />
       ))}
     </div>
   );

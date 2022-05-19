@@ -37,7 +37,7 @@ function App() {
         <Route exact path="/quiz/questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} />} />
         <Route exact path="/quiz/questions/adult" element={<Quiz2Adult />} />
         <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
-        <Route exact path="/results" element={<ResultsPage />} />
+        <Route exact path="/quiz/results" element={<ResultsPage bookFilters={bookFilters} />} />
       </Routes>
       <Footer />
     </div>

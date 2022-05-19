@@ -67,9 +67,12 @@ function ResultsPage({ bookFilters }) {
             {' '}
             <span style={{ color: '#3477DE', fontWeight: 'bold' }}>smart</span>
             {' '}
-            - - you can read upto a
+            - - you can read up to a
             {' '}
-            <span style={{ color: '#E85757', fontWeight: 'bold' }}>5th grade</span>
+            <span style={{ color: '#E85757', fontWeight: 'bold' }}>
+              {bookFilters.maxGrade}
+              th grade
+            </span>
             {' '}
             level!
           </p>
@@ -80,12 +83,18 @@ function ResultsPage({ bookFilters }) {
             {' '}
             -- you have expressed interested in
             {' '}
-            <span style={{ color: '#F99E16', fontWeight: 'bold' }}>African, Latino/Latinx, and South Asian culture.</span>
+            <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
+              {bookFilters['race/ethnicity'].map((element) => element)}
+              {' '}
+              culture.
+            </span>
           </p>
           <p className="results-text fade-in-animation-delay-6s">
             We think you would enjoy the
             {' '}
-            <span style={{ color: '#393EBA', fontWeight: 'bold' }}>Non-fiction, Adventure, Scary/Horror, and Fantasy</span>
+            <span style={{ color: '#393EBA', fontWeight: 'bold' }}>
+              {bookFilters.genre.map((element) => element)}
+            </span>
             {' '}
             genres based on your answers.
           </p>

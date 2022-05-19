@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { NavLink } from 'react-router-dom';
 import Quiz2Adult from './Quiz2Adult';
 import Quiz3 from './Quiz3';
 import Quiz4Kid from './Quiz4Kid';
@@ -17,7 +18,6 @@ import Quiz6 from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
 import Quiz6Kid from './Quiz6Kid';
 import ProgressAndArrows from './ProgressAndArrows';
-
 // const funGenres = ['Adventure', 'Fantasy', 'Scary/Horror', 'Romance', 'Sci-fi', 'Afro-futurism'];
 // eslint-disable-next-line max-len
 // const seriousGenres = ['Biography', 'Non-fiction', 'Historical fiction', 'Poetry', 'Mystery', 'Memoir'];
@@ -53,6 +53,7 @@ function reducer(state, action) {
 }
 
 export default function Quiz1({ bookFilters, setBookFilters }) {
+  console.log(bookFilters);
   const initialState = {
     isParent: false,
     isChild: false,
@@ -162,11 +163,13 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
           onClick={() => dispatch({ type: 'parent back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
-        <Button
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        <NavLink to="/quiz/results">
+          <Button
+            startIcon={<ArrowForwardIcon />}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+          />
+        </NavLink>
       </div>
 
     );
@@ -364,6 +367,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
 
     );
   }
+
   return (
     <div>
       <Card sx={{
