@@ -19,6 +19,12 @@
     display: inline-block;
     width: 90%;
     padding: 1vh 1vw 1vh 1vw;
-    margin: 1vh auto 6vh auto;
+    margin: 1vh auto 1vh auto;
     text-align: left;
+}
+
+.homepage-button{
+    text-decoration: none;
+    align-items: left;
+    margin: 5vh 0 0 0;
 }
