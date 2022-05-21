@@ -1,9 +1,31 @@
 .button {
     vertical-align: bottom;
-    display: inline-block;
+    display: flex;
+    flex-direction:column;
     text-align: center;
     min-width: 100%;
-    border-color: lightgrey;
+    height:300px;
+    width:200px;
+    place-items:center;
+}
+
+.buttonText{
+    color: black;
+    text-transform: none;
+    font-size: 18px;
+}
+
+.silly-button{
+    display: flex;
+    flex-direction: column;
+    padding-top:5em;
+    column-gap:3em;
+    align-items:center;
+    width: 228px;
+    height:250px;
+    border: 2.5px solid #D7D7D7;
+    border-radius: 30px;
+    background:#ffffff;
 }
 /* .Avatar {
     vertical-align: top;

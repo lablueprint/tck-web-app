@@ -32,6 +32,8 @@ function HandleClickToBottom() {
 function ResultsPage({ bookFilters, isChild }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   let gradeDisplayed = '';
+  let raceMessage = '';
+  let genreMessage = '';
   /* function getRecommendedBooks() {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
@@ -71,6 +73,16 @@ function ResultsPage({ bookFilters, isChild }) {
   } else {
     gradeDisplayed = `${bookFilters.maxGrade}th`;
   }
+  if (bookFilters['race/ethnicity'].length > 1) {
+    raceMessage = `${bookFilters['race/ethnicity'].slice(0, -1).join(', ')} and ${bookFilters['race/ethnicity'].slice(-1)} cultures.`;
+  } else {
+    raceMessage = `${bookFilters['race/ethnicity'].slice(-1)} culture.`;
+  }
+  if (bookFilters.genre.length > 1) {
+    genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)} genres `;
+  } else {
+    genreMessage = `${bookFilters.genre.slice(-1)} genre `;
+  }
   return (
     <div>
       {isChild
@@ -101,27 +113,16 @@ function ResultsPage({ bookFilters, isChild }) {
             -- you have expressed interested in
             {' '}
             <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
-              {bookFilters['race/ethnicity'].slice(0, -1).join(', ')}
-              {' '}
-              and
-              {' '}
-              {bookFilters['race/ethnicity'].slice(-1)}
-              {' '}
-              culture.
+              {raceMessage}
             </span>
           </p>
           <p className="results-text fade-in-animation-delay-6s">
             We think you would enjoy the
             {' '}
             <span style={{ color: '#393EBA', fontWeight: 'bold' }}>
-              {bookFilters.genre.slice(0, -1).join(', ')}
-              {' '}
-              and
-              {' '}
-              {bookFilters.genre.slice(-1)}
-              {' '}
+              {genreMessage}
             </span>
-            genres based on your answers.
+            based on your answers.
           </p>
         </div>
         <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToBottom}>

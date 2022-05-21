@@ -39,16 +39,18 @@ export default function Quiz3({ slideCaption, setBookFilters }) {
 
   useEffect(getFilters, []);
   return (
-    <div>
+    <div style={{ background: '#E5E5E5', margin: '0', height: '100%' }}>
       <h1>
         {slideCaption}
       </h1>
-      {filters.map((option) => (
-        <QuizButton
-          buttonCaption={option}
-          onClick={(name, checked) => HandleClick(name, checked)}
-        />
-      ))}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', margin: '0 12em 0 12em' }}>
+        {filters.map((option) => (
+          <QuizButton
+            buttonCaption={option}
+            onClick={(name, checked) => HandleClick(name, checked)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

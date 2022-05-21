@@ -390,31 +390,94 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   }
 
   return (
-    <div>
-      <Card sx={{
-        borderRadius: 5, boxShadow: 5, margin: 10,
-      }}
-      >
-        <div>
-          <h2>
-            Are you a parent, educator, or kid?
-          </h2>
-          <Box>
-            <Button className="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Parent} style={{ borderRadius: 0 }} />}>
-              <p>Parent</p>
-            </Button>
-            <Button className="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Educator} style={{ borderRadius: 0 }} />}>
-              <p>Educator</p>
-            </Button>
-            <Button className="button" onClick={() => dispatch({ type: 'child' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Child} style={{ borderRadius: 0 }} />}>
-              <p>Kid</p>
-            </Button>
-          </Box>
-        </div>
-        <div>
-          <Box sx={{ flexGrow: 1 }} />
-        </div>
-      </Card>
+    <div style={{ background: '#E5E5E5', height: '100%' }}>
+      <div>
+        <h2 style={{
+          fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em',
+        }}
+        >
+          Are you a parent, educator, or kid?
+        </h2>
+        <Box sx={{ paddingBottom: '4em' }}>
+          <Button
+            className="button"
+            sx={{
+              border: '2px solid #d7d7d7',
+              borderRadius: '21px',
+              m: 7,
+              '& .MuiButton-startIcon': {
+                marginRight: '0',
+              },
+              background: '#ffffff',
+            }}
+            onClick={() => dispatch({ type: 'parent' })}
+            size="large"
+            variant="outlined"
+            startIcon={(
+              <Avatar
+                sx={{ width: 100, height: 100 }}
+                src={Parent}
+                style={{ borderRadius: 0 }}
+              />
+            )}
+          >
+            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>
+              Parent
+            </p>
+          </Button>
+          <Button
+            className="button"
+            sx={{
+              border: '2px solid #d7d7d7',
+              borderRadius: '21px',
+              m: 7,
+              '& .MuiButton-startIcon': {
+                marginRight: '0',
+              },
+              background: '#ffffff',
+            }}
+            onClick={() => dispatch({ type: 'parent' })}
+            size="large"
+            variant="outlined"
+            startIcon={(
+              <Avatar
+                sx={{ width: 100, height: 100 }}
+                src={Educator}
+                style={{ borderRadius: 0 }}
+              />
+            )}
+          >
+            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>Educator</p>
+          </Button>
+          <Button
+            className="button"
+            sx={{
+              border: '2px solid #d7d7d7',
+              borderRadius: '21px',
+              m: 7,
+              background: '#ffffff',
+              '& .MuiButton-startIcon': {
+                marginRight: '0',
+              },
+            }}
+            onClick={() => dispatch({ type: 'child' })}
+            size="large"
+            variant="outlined"
+            startIcon={(
+              <Avatar
+                sx={{ width: 100, height: 100 }}
+                src={Child}
+                style={{ borderRadius: 0 }}
+              />
+            )}
+          >
+            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>Kid</p>
+          </Button>
+        </Box>
+      </div>
+      <div>
+        <Box sx={{ flexGrow: 1 }} />
+      </div>
     </div>
   );
 }
