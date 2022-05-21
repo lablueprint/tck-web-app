@@ -47,13 +47,12 @@ const styles = {
 };
 
 function AdditionalResources({ readAloudURL, educatorURLs }) {
-  /*
-    For now, name educator links with arbitrary number, ask designers how to proceed
-  */
+  // WARNING: We use url as key here, assuming that URLs are all UNIQUE
   const educatorLinks = educatorURLs.map((url, index) => (
     <EducatorLink
       url={url}
       index={index}
+      key={url}
     />
   ));
   return (
@@ -86,14 +85,3 @@ AdditionalResources.defaultProps = {
 };
 
 export default AdditionalResources;
-/*
-<LinkUI
-      sx={styles.linkUI}
-      href={url}
-      key={url}
-      rel="noreferrer"
-      target="_blank"
-    >
-      {`Educator Guide ${index}`}
-    </LinkUI>
-*/
