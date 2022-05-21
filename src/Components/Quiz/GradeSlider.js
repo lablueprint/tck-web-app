@@ -90,7 +90,7 @@ export default function GradeSlider({ parentCallback }) {
     <div>
       <Box sx={{ width: 550 }}>
         <CustomQuizSlider
-          Label={() => 'Minimum distance'}
+          label={() => 'Minimum distance'}
           aria-label="Custom marks"
           marks={marks}
           value={value1}

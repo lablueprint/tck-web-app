@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
@@ -18,12 +17,17 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
     setBookFilters({ ...bookFilters, maxGrade: maxData });
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const [disabledStat, setDisabledStat] = useState(true);
+  const disabledStat = true;
 
   return (
     <Card sx={{
-      borderRadius: 5, margin: 4, boxShadow: 5, marginRight: 15, marginLeft: 15, paddingBottom: 5, paddingTop: 15,
+      borderRadius: 5,
+      margin: 4,
+      boxShadow: 5,
+      marginRight: 15,
+      marginLeft: 15,
+      paddingBottom: 5,
+      paddingTop: 15,
     }}
     >
       <div style={{ paddingBottom: 200 }}>
@@ -41,8 +45,21 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
     </Card>
   );
 }
+Quiz2Kid.defaultProps = {
+  setBookFilters: null,
+  bookFilters: propTypes.shape({
+    bookId: '',
+    'race/ethnicity': [],
+    minAge: 0,
+    maxAge: 18,
+    minGrade: -1,
+    maxGrade: 12,
+    genre: [],
+    book_type: [],
+  }),
+};
 Quiz2Kid.propTypes = {
-  setBookFilters: propTypes.func.isRequired,
+  setBookFilters: propTypes.func,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,
     'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
@@ -52,5 +69,5 @@ Quiz2Kid.propTypes = {
     maxGrade: propTypes.number.isRequired,
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
-  }).isRequired,
+  }),
 };

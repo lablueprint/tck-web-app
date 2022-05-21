@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
@@ -7,7 +6,6 @@ import {
 import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
-// eslint-disable-next-line no-unused-vars
 export default function Quiz2Adult({ bookFilters, setBookFilters }) {
   const [minData, setMinData] = useState(4);
   const [maxData, setMaxData] = useState(7);
@@ -21,7 +19,13 @@ export default function Quiz2Adult({ bookFilters, setBookFilters }) {
 
   return (
     <Card sx={{
-      borderRadius: 5, margin: 4, boxShadow: 5, marginRight: 15, marginLeft: 15, paddingBottom: 5, paddingTop: 15,
+      borderRadius: 5,
+      margin: 4,
+      boxShadow: 5,
+      marginRight: 15,
+      marginLeft: 15,
+      paddingBottom: 5,
+      paddingTop: 15,
     }}
     >
       <div style={{ paddingBottom: 200 }}>

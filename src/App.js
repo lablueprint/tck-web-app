@@ -9,8 +9,6 @@ import { Header, Footer } from './Components/index';
 import './App.css';
 import StartPage from './Components/Quiz/StartPage';
 import Quiz1 from './Components/Quiz/Quiz1';
-import Quiz2Kid from './Components/Quiz/Quiz2Kid';
-import Quiz2Adult from './Components/Quiz/Quiz2Adult';
 import ResultsPage from './Components/Quiz/QuizResultsPage';
 
 function App() {
@@ -36,8 +34,6 @@ function App() {
         <Route exact path="/collection/:id" element={<CollectionPage />} />
         <Route exact path="/quiz" element={<StartPage />} />
         <Route exact path="/quiz/questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} setIsChild={setIsChild} />} />
-        <Route exact path="/quiz/questions/adult" element={<Quiz2Adult />} />
-        <Route exact path="/quiz/questions/kid" element={<Quiz2Kid />} />
         <Route exact path="/quiz/results" element={<ResultsPage bookFilters={bookFilters} isChild={isChild} />} />
       </Routes>
       <Footer />

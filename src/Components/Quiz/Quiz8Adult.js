@@ -1,16 +1,12 @@
-/* eslint-disable max-len */
 import React from 'react';
 import propTypes from 'prop-types';
 import {
   Box,
 } from '@mui/material';
-// import illusion from '../../Assets/Images/illusion.png';
 import QuizButton from './QuizButton';
-// import { Link } from 'react-router-dom';
 
 export default function Quiz8Adult({ bookFilters, setBookFilters }) {
   const handleClick = (val) => {
-    // eslint-disable-next-line camelcase
     setBookFilters({ ...bookFilters, book_type: 'book_type'.push(val) });
   };
   return (

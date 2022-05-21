@@ -1,15 +1,10 @@
-/* eslint-disable max-len */
 import React from 'react';
 import propTypes from 'prop-types';
 import {
   Box,
 } from '@mui/material';
 import QuizButton from './QuizButton';
-// import illusion from '../../Assets/Images/illusion.png';
-// import QuizButton from './QuizButton';
-// import { Link } from 'react-router-dom';
 
-// eslint-disable-next-line no-unused-vars
 export default function Quiz7Kid({ setBookFilters }) {
   function HandleClick(name, checked) {
     if (checked) {

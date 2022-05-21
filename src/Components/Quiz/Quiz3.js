@@ -21,7 +21,6 @@ export default function Quiz3({ slideCaption, setBookFilters }) {
       view: 'Grid view',
     }).all()
       .then((records) => {
-        console.log(records);
         filterVar = records[0].fields.options.split(',').map((element) => element.trim());
         setFilters(filterVar);
       });
