@@ -4,12 +4,14 @@ import './QuizResultsPage.css';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
 import shareIcon from '../../Assets/Images/upload-icon.svg';
-import BookCard from '../bookHub/BookCard';
+// import BookCard from '../bookHub/BookCard';
 import RecFilter from '../Recommendations/BookRec';
+import RightArrow from '../../Assets/Images/right-arrow.svg';
+import LeftArrow from '../../Assets/Images/left-arrow.svg';
+import Carousel from '../CreatorPage/BookCarousel';
+// const sampleBookIDs = ['rectqkZI0hdvX5CMP', 'recbTpz98TrLIwEk0', 'recxhYkewzxt0Zu6k'];
 
-const sampleBookIDs = ['rectqkZI0hdvX5CMP', 'recbTpz98TrLIwEk0', 'recxhYkewzxt0Zu6k'];
-
-const Airtable = require('airtable');
+/* const Airtable = require('airtable');
 
 const airtableConfig = {
   apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
@@ -17,8 +19,7 @@ const airtableConfig = {
 };
 
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
-
+  .base(airtableConfig.baseKey); */
 function HandleClickToTop() {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 }
@@ -31,12 +32,12 @@ function HandleClickToBottom() {
 function ResultsPage({ bookFilters, isChild }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   let gradeDisplayed = '';
-  function getRecommendedBooks() {
+  /* function getRecommendedBooks() {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setRecommendedBooks(records.filter((element) => sampleBookIDs.indexOf(element.id) > -1));
       });
-  }
+  } */
   setTimeout(HandleClickToBottom, 2000);
   useEffect(() => {
     const getBooksLikeThis = async () => {
@@ -51,12 +52,18 @@ function ResultsPage({ bookFilters, isChild }) {
           bookFilters.genre,
           bookFilters.book_type,
         );
+        setRecommendedBooks(recList.map((element) => ({
+          author: (element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR']),
+          image: (element.fields.image !== undefined ? element.fields.image[0].url : ''),
+          title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
+          id: element.id,
+        })));
         console.log('recList: ', recList);
       }
     };
     getBooksLikeThis();
-  });
-  useEffect(getRecommendedBooks, []);
+  }, [bookFilters]);
+  // useEffect(getRecommendedBooks, []);
   if (bookFilters.maxGrade === -1) {
     gradeDisplayed = '0 to Pre-K';
   } else if (bookFilters.maxGrade === 0) {
@@ -138,18 +145,29 @@ function ResultsPage({ bookFilters, isChild }) {
         <div className="recommended-books-section-title-wrapper"><p className="results-text recommended-books-section-text">Here are some books we think would be great for you!</p></div>
         <div className="recommended-books-wrapper">
           <div style={{
-            flex: '0 0 80%', flexDirection: 'row', display: 'flex', columnGap: '3em', margin: '0 auto',
+            margin: '0 auto', maxWidth: '100%',
           }}
           >
-            {recommendedBooks.length && recommendedBooks.map((record) => (
+            <Carousel
+              elementArray={recommendedBooks}
+              slidesAtATime={6}
+              prevArrow={LeftArrow}
+              nextArrow={RightArrow}
+              widthPercent={100}
+              spaceBetweenEntries={16}
+            />
+            {/* {recommendedBooks.length && recommendedBooks.map((record) => (
               <BookCard
                 id={record.id}
-                image={record.fields.image !== undefined ? record.fields.image[0].thumbnails.large.url : ''}
+                image={record.fields.image !==
+                  undefined ? record.fields.image[0].thumbnails.large.url : ''}
                 title={record.fields.title !== undefined ? record.fields.title : 'No Title'}
-                author={record.fields.author !== undefined ? record.fields.author : 'MISSING CREATOR'}
+                author={record.fields.author !==
+                  undefined ? record.fields.author : ['MISSING CREATOR']}
+                key={record.fields.id}
 
               />
-            ))}
+            ))} */}
           </div>
           <div style={{
             maxHeight: '100%', display: 'flex', justifyContent: 'end', margin: '0 2em 0 0',

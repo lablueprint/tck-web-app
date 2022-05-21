@@ -72,7 +72,7 @@
 }
 
 .recommended-books-wrapper{
-  height:65vh;
+  /* height:65vh; */
   background:#FCFCFC;
   width:80%;
   display:flex;

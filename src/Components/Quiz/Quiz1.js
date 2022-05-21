@@ -62,6 +62,8 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     count: 1,
     goneBack: false,
   };
+
+  // eslint-disable-next-line no-unused-vars
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
