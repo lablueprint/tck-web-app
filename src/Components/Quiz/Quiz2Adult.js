@@ -8,9 +8,15 @@ import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
 // eslint-disable-next-line no-unused-vars
-export default function Quiz2Adult({ bookFilters, setBookFilters }) {
+export default function Quiz2Adult({ bookFilters, setBookFilters, parentCallback02A }) {
+  const [isDisabled02A, setisDisabled02A] = useState(true);
   const [minData, setMinData] = useState(4);
   const [maxData, setMaxData] = useState(7);
+
+  const callbackSlider = (isDisabled) => {
+    setisDisabled02A(isDisabled);
+    parentCallback02A(isDisabled02A);
+  };
 
   const callback = (min, max) => {
     setMinData(min);
@@ -29,7 +35,7 @@ export default function Quiz2Adult({ bookFilters, setBookFilters }) {
           What grade levels are you looking for?
         </h1>
         <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider parentCallback={callback} />
+          <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
         </Grid>
       </div>
       <ProgressAndArrows
@@ -39,6 +45,7 @@ export default function Quiz2Adult({ bookFilters, setBookFilters }) {
   );
 }
 Quiz2Adult.propTypes = {
+  parentCallback02A: propTypes.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

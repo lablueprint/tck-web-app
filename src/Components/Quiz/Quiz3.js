@@ -11,8 +11,11 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Quiz3({ slideCaption, bookFilters, setBookFilters }) {
+export default function Quiz3({
+  slideCaption, bookFilters, setBookFilters, parentCallback03,
+}) {
   const [filters, setFilters] = useState([]);
+  const [isDisabled, setIsDisabled] = useState();
 
   const getFilters = () => {
     base('Book Tag Metadata').select({
@@ -25,18 +28,25 @@ export default function Quiz3({ slideCaption, bookFilters, setBookFilters }) {
       });
   };
   useEffect(getFilters, []);
+
+  const handleChange = () => {
+    setIsDisabled(false);
+    parentCallback03(isDisabled);
+  };
+
   return (
     <div>
       <h1>
         {slideCaption}
       </h1>
       {filters.map((option) => (
-        <QuizButton buttonCaption={option} />
+        <QuizButton onChange={handleChange} buttonCaption={option} />
       ))}
     </div>
   );
 }
 Quiz3.propTypes = {
+  parentCallback03: propTypes.isRequired,
   slideCaption: propTypes.string.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({

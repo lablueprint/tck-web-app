@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box, Button, Avatar, Checkbox,
 } from '@mui/material';
@@ -16,10 +16,12 @@ import Sample from '../../Assets/Images/DemoImgGenre.png';
 // import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
-export default function Quiz4Kid({ /* bookfilters, setBookFilters, */ silly, setSilly }/* {  title, buttonCaptions } */) {
+export default function Quiz4Kid({ /* bookfilters, setBookFilters, */ silly, setSilly, parentCallback04 }/* {  title, buttonCaptions } */) {
+  const [isDisabled, setIsDisabled] = useState();
   const handleClick = (val) => {
-    // eslint-disable-next-line no-param-reassign
     setSilly(val);
+    setIsDisabled(false);
+    parentCallback04(isDisabled);
     // silly = val;
     // console.log('silly:');
     // console.log(silly);
@@ -81,6 +83,7 @@ Quiz4Kid.propTypes = {
   //   genre: propTypes.arrayOf(propTypes.string).isRequired,
   //   book_type: propTypes.arrayOf(propTypes.string).isRequired,
   // }).isRequired,
+  parentCallback04: propTypes.isRequired,
   setSilly: propTypes.func.isRequired,
   silly: propTypes.number.isRequired,
 };

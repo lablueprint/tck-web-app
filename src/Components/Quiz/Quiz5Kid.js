@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -14,10 +14,13 @@ import illusion from '../../Assets/Images/illusion.png';
 
 // import { Link } from 'react-router-dom';
 
-export default function Quiz5({ /* bookfilters, setBookFilters */ setIllusions }) {
+export default function Quiz5({ /* bookfilters, setBookFilters */ setIllusions, parentCallback05 }) {
+  const [isDisabled, setIsDisabled] = useState();
   const handleClick = (val) => {
     // eslint-disable-next-line no-param-reassign
     // console.timeLog('val');
+    setIsDisabled(false);
+    parentCallback05(isDisabled);
     console.log(val);
     setIllusions(val);
     // silly = val;
@@ -63,4 +66,5 @@ Quiz5.propTypes = {
   //   book_type: propTypes.arrayOf(propTypes.string).isRequired,
   // }).isRequired,
   setIllusions: propTypes.func.isRequired,
+  parentCallback05: propTypes.isRequired,
 };

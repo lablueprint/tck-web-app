@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import {
@@ -53,6 +53,48 @@ function reducer(state, action) {
 }
 
 export default function Quiz1({ bookFilters, setBookFilters }) {
+  const [isDisabled02A, setIsDisabled02A] = useState(true);
+  const [isDisabled02K, setisDisabled02K] = useState(true);
+  const [isDisabled03, setIsDisabled03] = useState(true);
+  const [isDisabled04, setIsDisabled04] = useState(true);
+  const [isDisabled05, setIsDisabled05] = useState(true);
+  // const [isDisabled06A04, setIsDisabled06A04] = useState(true);
+  // const [isDisabled06A05, setIsDisabled06A05] = useState(true);
+  // const [isDisabled06K, setIsDisabled06K] = useState(true);
+  // const [isDisabled07K, setIsDisabled07K] = useState(true);
+  const [isDisabled08, setIsDisabled08] = useState(true);
+
+  const callback02A = (isDisabledFromChild) => {
+    setIsDisabled02A(isDisabledFromChild);
+  };
+  const callback02K = (isDisabledFromChild) => {
+    setisDisabled02K(isDisabledFromChild);
+  };
+  const callback03 = (isDisabledFromChild) => {
+    setIsDisabled03(isDisabledFromChild);
+  };
+  const callback04 = (isDisabledFromChild) => {
+    setIsDisabled04(isDisabledFromChild);
+  };
+  const callback05 = (isDisabledFromChild) => {
+    setIsDisabled05(isDisabledFromChild);
+  };
+  // const callback06A04 = (isDisabledFromChild) => {
+  //   setIsDisabled06A04(isDisabledFromChild);
+  // };
+  // const callback06A05 = (isDisabledFromChild) => {
+  //   setIsDisabled06A05(isDisabledFromChild);
+  // };
+  // const callback06K = (isDisabledFromChild) => {
+  //   setIsDisabled06K(isDisabledFromChild);
+  // };
+  // const callback07K = (isDisabledFromChild) => {
+  //   setIsDisabled07K(isDisabledFromChild);
+  // };
+  const callback08 = (isDisabledFromChild) => {
+    setIsDisabled08(isDisabledFromChild);
+  };
+
   const initialState = {
     isParent: false,
     isChild: false,
@@ -78,13 +120,18 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   if (isParent && count === 2) {
     return (
       <div>
-        <Quiz2Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz2Adult
+          parentCallback02A={callback02A}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
         <Button
+          disabled={isDisabled02A}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -96,7 +143,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   if (isParent && count === 3) {
     return (
       <div>
-        <Quiz3 bookFilters={bookFilters} slideCaption="Which races/ethnicities do you want to see represented?" setBookFilters={setBookFilters} />
+        <Quiz3 parentCallback03={callback03} bookFilters={bookFilters} slideCaption="Which races/ethnicities do you want to see represented?" setBookFilters={setBookFilters} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -104,6 +151,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={isDisabled03}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -116,7 +164,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
     return (
       <div>
-        <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 count={4} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} /* parentCallback06A04={callback06A04} */ />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -124,6 +172,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          // button={isDisabled06A04}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -136,7 +185,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
     return (
       <div>
-        <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 count={5} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} /* parentCallback06A05={callback06A05} */ />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -144,6 +193,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          // disabled={isDisabled06A05}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -155,7 +205,11 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   if (isParent && count === 6) {
     return (
       <div>
-        <Quiz8Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz8Adult
+          parentCallback08={callback08}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -163,6 +217,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          button={isDisabled08}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -175,13 +230,18 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     // console.log(bookFilters);
     return (
       <div>
-        <Quiz2Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz2Kid
+          parentCallback02K={callback02K}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
         <Button
+          disabled={isDisabled02K}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -193,7 +253,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   if (isChild && count === 3) {
     return (
       <div>
-        <Quiz3 bookFilters={bookFilters} setBookFilters={setBookFilters} slideCaption="Which of these races are you interested in reading about?" />
+        <Quiz3 parentCallback03={callback03} bookFilters={bookFilters} setBookFilters={setBookFilters} slideCaption="Which of these races are you interested in reading about?" />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -201,6 +261,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={isDisabled03}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -219,6 +280,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
       <div>
         <Quiz4Kid
           setSilly={increment}
+          parentCallback04={callback04}
         />
         <Button
           startIcon={<ArrowBackIcon />}
@@ -227,6 +289,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={isDisabled04}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -247,7 +310,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     // we need to create new component because this doesnt work w genre
     return (
       <div>
-        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} /* parentCallback06K={callback06K} */ />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -255,6 +318,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={false}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -275,7 +339,11 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
     // setBookFilters({ ...bookFilters, genre: funGenres });
     return (
       <div>
-        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz7Kid
+          // parentCallback07K={callback07K}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -283,6 +351,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          // button={isDisabled07K}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -296,7 +365,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   || (isChild && count === 5 && sillyLevel[0] == 4)) {
     return (
       <div>
-        <Quiz5 setIllusions={changeIllusion} />
+        <Quiz5 parentCallback05={callback05} setIllusions={changeIllusion} />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -304,6 +373,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={isDisabled05}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -348,7 +418,11 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
   if (isChild && count === 7) {
     return (
       <div>
-        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz7Kid
+          // parentCallback07K={callback07K}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
@@ -356,6 +430,7 @@ export default function Quiz1({ bookFilters, setBookFilters }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          // disabled={isDisabled07K}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}

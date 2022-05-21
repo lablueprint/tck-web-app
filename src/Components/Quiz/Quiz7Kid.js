@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
   Box, Button, Checkbox, Avatar,
@@ -10,10 +10,13 @@ import Sample from '../../Assets/Images/DemoImgGenre.png';
 // import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line no-unused-vars
-export default function Quiz7Kid({ bookFilters, setBookFilters }) {
+export default function Quiz7Kid({ bookFilters, setBookFilters, parentCallback07K }) {
+  const [isDisabled, setIsDisabled] = useState();
   const handleClick = (val) => {
     // eslint-disable-next-line camelcase
     setBookFilters({ ...bookFilters, genre: 'genre'.push(val) });
+    setIsDisabled(false);
+    parentCallback07K(isDisabled);
   };
   return (
     <div>
@@ -51,6 +54,7 @@ export default function Quiz7Kid({ bookFilters, setBookFilters }) {
   );
 }
 Quiz7Kid.propTypes = {
+  parentCallback07K: propTypes.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

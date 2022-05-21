@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import {
   Box,
@@ -8,10 +8,13 @@ import {
 import QuizButton from './QuizButton';
 // import { Link } from 'react-router-dom';
 
-export default function Quiz8Adult({ bookFilters, setBookFilters }) {
+export default function Quiz8Adult({ bookFilters, setBookFilters, parentCallback08 }) {
+  const [isDisabled, setIsDisabled] = useState();
   const handleClick = (val) => {
     // eslint-disable-next-line camelcase
     setBookFilters({ ...bookFilters, book_type: 'book_type'.push(val) });
+    setIsDisabled(false);
+    parentCallback08(isDisabled);
   };
   return (
     <div>
@@ -33,6 +36,7 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
   );
 }
 Quiz8Adult.propTypes = {
+  parentCallback08: propTypes.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

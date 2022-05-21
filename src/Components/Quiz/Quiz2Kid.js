@@ -7,9 +7,16 @@ import {
 import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
-export default function Quiz2Kid({ bookFilters, setBookFilters }) {
+// eslint-disable-next-line no-unused-vars
+export default function Quiz2Kid({ bookFilters, setBookFilters, parentCallback02K }) {
+  const [isDisabled02K, setisDisabled02K] = useState(true);
   const [minData, setMinData] = useState(4);
   const [maxData, setMaxData] = useState(7);
+
+  const callbackSlider = (isDisabled) => {
+    setisDisabled02K(isDisabled);
+    parentCallback02K(isDisabled02K);
+  };
 
   const callback = (min, max) => {
     setMinData(min);
@@ -17,9 +24,6 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
     setBookFilters({ ...bookFilters, minGrade: minData });
     setBookFilters({ ...bookFilters, maxGrade: maxData });
   };
-
-  // eslint-disable-next-line no-unused-vars
-  const [disabledStat, setDisabledStat] = useState(true);
 
   return (
     <Card sx={{
@@ -31,17 +35,17 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
           What grade levels are you comfortable reading at?
         </h1>
         <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider parentCallback={callback} />
+          <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
         </Grid>
       </div>
       <ProgressAndArrows
         progress={17}
-        disabledStat={disabledStat}
       />
     </Card>
   );
 }
 Quiz2Kid.propTypes = {
+  parentCallback02K: propTypes.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

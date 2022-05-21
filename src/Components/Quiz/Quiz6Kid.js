@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box, Button, Avatar, Checkbox,
 } from '@mui/material';
@@ -7,10 +7,13 @@ import propTypes from 'prop-types';
 import Sample from '../../Assets/Images/DemoImgGenre.png';
 
 export default function Quiz6Kid({
-  title, buttonCaptions, bookFilters, setBookFilters,
+  title, buttonCaptions, bookFilters, setBookFilters, parentCallback06K,
 }) {
+  const [isDisabled06K, setIsDisabled06K] = useState();
   const handleClick = (val) => {
     setBookFilters({ ...bookFilters, genre: 'genre'.push(val) });
+    setIsDisabled06K(false);
+    parentCallback06K(isDisabled06K);
   };
   return (
     <div>
@@ -48,6 +51,7 @@ export default function Quiz6Kid({
   );
 }
 Quiz6Kid.propTypes = {
+  parentCallback06K: propTypes.isRequired,
   title: propTypes.string.isRequired,
   buttonCaptions: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
   setBookFilters: propTypes.func.isRequired,
