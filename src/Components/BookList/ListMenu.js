@@ -96,7 +96,12 @@ ListMenu.defaultProps = {
 ListMenu.propTypes = {
   menuText: PropTypes.string.isRequired,
   menuIcon: PropTypes.element,
-  options: PropTypes.PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    icon: PropTypes.element,
+    value: PropTypes.number,
+  })).isRequired,
   value: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
