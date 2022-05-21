@@ -90,7 +90,7 @@ BookSynopsis.propTypes = {
     name: PropTypes.string,
     id: PropTypes.string,
   })),
-  bookType: PropTypes.string,
+  bookType: PropTypes.arrayOf(PropTypes.string),
   datePublished: PropTypes.string,
 };
 
