@@ -1,6 +1,13 @@
 .headings {
+    width: 1782px;
+    height: 41px;
+    left: 98px;
+    top: 1125px;
     padding-left: 2%;
     text-align: start;
+    color: #2F2F2F;
+    font-family: 'Work Sans';
+    font-size: 24px;
 }
 
 .title {
@@ -14,12 +21,39 @@
 }
 
 .home-screen-background {
-    background-image: url();
-    background-color: yellow;
+    margin-top: 1vh;
+    background-image: url(../Assets/Images/\(temporary\)\ TCK\ Browser\ Illustration.png);
     width: 100%;
     height: 75vh;
+    /* ^ So the image ends exactly at the bottom of the screen */
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
 
+.main-text {
+    font-family: 'Work Sans';
+    text-align: center;
+    color: #fff;
+}
+
+h1.main-text {
+    font-size: 64px;
+}
+
+p.main-text {
+    font-size: 24px;
+}
+
+.button-stack {
+    width: 228px;
+    height: 63px;
+    background-color: #EAF3FE !important;
+    border-radius: 13px !important;
+    color: #1A296A !important;
+    font-family: 'Work Sans' !important;
+    font-size: 20px !important;
+    text-transform: none !important;
+    font-weight: 600 o !important;
+    font-style: normal !important;
 }
