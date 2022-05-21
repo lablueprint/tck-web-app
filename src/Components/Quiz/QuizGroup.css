@@ -1,6 +1,11 @@
 .button {
-    vertical-align: top;
+    vertical-align: bottom;
     display: inline-block;
     text-align: center;
-    width: 120px
+    min-width: 100%;
+    border-color: lightgrey;
 }
+/* .Avatar {
+    vertical-align: top;
+
+} */

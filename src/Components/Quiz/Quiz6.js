@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  Box, Button, Avatar, Checkbox,
+  Box, Button, Checkbox,
 } from '@mui/material';
 import propTypes from 'prop-types';
-import Sample from '../../Assets/Images/DemoImgGenre.png';
 
 export default function Quiz6({
   title, buttonCaptions, bookFilters, setBookFilters,
@@ -18,23 +17,23 @@ export default function Quiz6({
           {title}
         </h1>
         <h3>You can choose more than one.</h3>
-        <Button value={buttonCaptions[0]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value={buttonCaptions[0]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
           <Checkbox />
           <p>{buttonCaptions[0]}</p>
         </Button>
-        <Button value={buttonCaptions[1]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value={buttonCaptions[1]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
           <Checkbox />
           <p>{buttonCaptions[1]}</p>
         </Button>
-        <Button value={buttonCaptions[2]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value={buttonCaptions[2]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
           <Checkbox />
           <p>{buttonCaptions[2]}</p>
         </Button>
-        <Button value={buttonCaptions[3]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value={buttonCaptions[3]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
           <Checkbox />
           <p>{buttonCaptions[3]}</p>
         </Button>
-        <Button value={buttonCaptions[4]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Sample} style={{ borderRadius: 0 }} />}>
+        <Button value={buttonCaptions[4]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
           <Checkbox />
           <p>{buttonCaptions[4]}</p>
         </Button>

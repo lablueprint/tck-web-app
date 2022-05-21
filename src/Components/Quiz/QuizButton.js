@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
 
-export default function QuizButton({ /* imageSource */buttonCaption, onClick }) {
+export default function QuizButton({ buttonCaption, onClick }) {
   return (
     <div
       style={{ padding: '3em', background: '#FCFCFC', border: '#D7D7D7' }}
