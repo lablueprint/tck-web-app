@@ -65,7 +65,7 @@ const styles = {
   },
   block: {
     fontFamily: 'DM Sans',
-    width: '45%',
+    width: '50%',
     textAlign: 'left',
     order: '1',
     flexGrow: '0',
@@ -81,6 +81,7 @@ const styles = {
     fontWeight: '600',
     color: '#3477DE',
     background: 'rgba(52, 119, 222, 0.06)',
+    textTransform: 'none',
     '&:hover': {
       color: '#FFFFFF',
       background: '#3477DE',
