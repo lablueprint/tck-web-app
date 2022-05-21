@@ -179,7 +179,36 @@ function BookList({ books }) {
 }
 
 BookList.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  books: PropTypes.arrayOf(PropTypes.shape({
+    fields: PropTypes.shape({
+      title: PropTypes.string,
+      author: PropTypes.arrayOf(PropTypes.string),
+      image: PropTypes.arrayOf(PropTypes.shape({
+        url: PropTypes.string,
+      })),
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    }),
+  })),
+};
+
+BookList.defaultProps = {
+  books: [
+    {
+      fields: {
+        title: 'MISSING TITLE',
+        author: ['MISSING CREATOR'],
+        image: [
+          {
+            url: 'MISSING IMAGE',
+          },
+        ],
+        id: '',
+      },
+    },
+  ],
 };
 
 export default BookList;
@@ -196,13 +225,8 @@ export default BookList;
             - RECENT = 2
             - ADDED = 3
 
-    books format:
-        books is to be an array of Records pulled from Airtable.
-        shape({
-    fields: {
-      title: PropTypes.string.isRequired,
-      author: PropTypes.arrayOf(PropTypes.string),
-      image: PropTypes.
-    },
-  })
+    remark: although we have defined defaultProps for books,
+            this is only triggered when we don't have a books prop
+            NOT when we have a books prop and some books are missing fields,
+            thus we do extra checking within the component
 */
