@@ -208,7 +208,7 @@ function BookPage() {
     ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
     gradeMin = (book.get('grade_min')) ? book.get('grade_min') : -1;
     gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
-    bookType = (book.get('book_type')) ? book.get('book_type') : [''];
+    bookType = (book.get('book_type')) ? book.get('book_type') : [];
     datePublished = (book.get('date_published')) ? book.get('date_published') : '';
   }
 
