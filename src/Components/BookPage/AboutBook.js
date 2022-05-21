@@ -240,7 +240,7 @@ function AboutBook({
                           {gradeRange}
                           {' '}
                         </Box>
-                        <p style={styles.sub}>Reading Level</p>
+                        <p style={styles.sub}>Grade Level</p>
                       </div>
                     ) : <div style={styles.block} />
                 }
