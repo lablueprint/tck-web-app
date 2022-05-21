@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import {
   Card, CardContent, Typography, Link as LinkUI, Box,
 } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
 import EducatorLink from './EducatorLink';
 
@@ -47,12 +48,11 @@ const styles = {
 };
 
 function AdditionalResources({ readAloudURL, educatorURLs }) {
-  // WARNING: We use url as key here, assuming that URLs are all UNIQUE
   const educatorLinks = educatorURLs.map((url, index) => (
     <EducatorLink
       url={url}
       index={index}
-      key={url}
+      key={uuidv4()}
     />
   ));
   return (
