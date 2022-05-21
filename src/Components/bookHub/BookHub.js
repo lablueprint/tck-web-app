@@ -109,14 +109,3 @@ function CardsDisplay() {
 }
 
 export default CardsDisplay;
-
-/*
-  NOTES:
-    - inefficient lookup of a Creator's authored/illustrated
-      - maybe put all books into a some data structure that has fast lookup and pass it
-        to searchByTerm???
-          - books is a Map<bookId, book> instead of Array
-      - hard to see the current algorithm will be too slow for our purposes
-         without having a big amount of data alr
-
-*/
