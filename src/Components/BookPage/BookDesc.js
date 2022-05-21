@@ -8,7 +8,6 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 const styles = {
   description: {
     minWidth: '27vw',
-
     textAlign: 'left',
     display: 'flex',
     margin: '1vh 2vw 1vh 2vw',
