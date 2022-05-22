@@ -27,6 +27,20 @@
     border-radius: 30px;
     background:#ffffff;
 }
+
+.woman-question{
+    display: flex;
+    flex-direction: column;
+    padding-top:2em;
+    padding-bottom:4em;
+    column-gap:3em;
+    align-items:center;
+    width: 328px;
+    height:50px;
+    border: 2.5px solid #D7D7D7;
+    border-radius: 30px;
+    background:#ffffff;
+}
 /* .Avatar {
     vertical-align: top;
 

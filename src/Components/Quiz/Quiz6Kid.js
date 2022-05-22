@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import QuizButton from './QuizButton';
 
 export default function Quiz6Kid({
-  title, buttonCaptions, setBookFilters,
+  title, buttonCaptions, setBookFilters, bookFilters,
 }) {
   function HandleClick(name, checked) {
     if (checked) {
@@ -25,12 +25,17 @@ export default function Quiz6Kid({
           {title}
         </h1>
         <h3>You can choose more than one.</h3>
-        <QuizButton buttonCaption={buttonCaptions[0]} onClick={(checked) => HandleClick('Autobiography', checked)} />
-        <QuizButton buttonCaption={buttonCaptions[1]} onClick={(checked) => HandleClick('Non-fiction', checked)} />
-        <QuizButton buttonCaption={buttonCaptions[2]} onClick={(checked) => HandleClick('Historical fiction', checked)} />
-        <QuizButton buttonCaption={buttonCaptions[3]} onClick={(checked) => HandleClick('Memoir', checked)} />
-        <QuizButton buttonCaption={buttonCaptions[4]} onClick={(checked) => HandleClick('Mystery', checked)} />
-        <QuizButton buttonCaption={buttonCaptions[5]} onClick={(checked) => HandleClick('Poetry', checked)} />
+        {bookFilters.genre !== undefined
+        && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+          <QuizButton buttonCaption={buttonCaptions[0]} desiredLabel="Autobiography" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton buttonCaption={buttonCaptions[1]} desiredLabel="Non-fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton buttonCaption={buttonCaptions[2]} desiredLabel="Historical fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton buttonCaption={buttonCaptions[3]} desiredLabel="Memoir" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton buttonCaption={buttonCaptions[4]} desiredLabel="Mystery" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton buttonCaption={buttonCaptions[5]} desiredLabel="Poetry" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+        </div>
+        )}
       </Box>
     </div>
   );
@@ -39,4 +44,14 @@ Quiz6Kid.propTypes = {
   title: propTypes.string.isRequired,
   buttonCaptions: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
   setBookFilters: propTypes.func.isRequired,
+  bookFilters: propTypes.shape({
+    bookId: propTypes.string.isRequired,
+    'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
+    minAge: propTypes.number.isRequired,
+    maxAge: propTypes.number.isRequired,
+    minGrade: propTypes.number.isRequired,
+    maxGrade: propTypes.number.isRequired,
+    genre: propTypes.arrayOf(propTypes.string).isRequired,
+    book_type: propTypes.arrayOf(propTypes.string).isRequired,
+  }).isRequired,
 };

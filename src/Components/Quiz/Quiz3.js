@@ -11,7 +11,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Quiz3({ slideCaption, setBookFilters }) {
+export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
   const [filters, setFilters] = useState([]);
   let filterVar;
 
@@ -46,8 +46,10 @@ export default function Quiz3({ slideCaption, setBookFilters }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', margin: '0 12em 0 12em' }}>
         {filters.map((option) => (
           <QuizButton
+            desiredLabel={option}
             buttonCaption={option}
             onClick={(name, checked) => HandleClick(name, checked)}
+            desiredArray={bookFilters['race/ethnicity']}
           />
         ))}
       </div>

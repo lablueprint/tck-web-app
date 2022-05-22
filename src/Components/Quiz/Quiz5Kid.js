@@ -8,6 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import illusion from '../../Assets/Images/illusion.png';
+import './QuizGroup.css';
 
 export default function Quiz5({ setIllusions }) {
   const handleClick = (val) => {
@@ -15,7 +16,7 @@ export default function Quiz5({ setIllusions }) {
   };
   return (
     <div>
-      <Box sx={{ padding: 15 }}>
+      <Box sx={{ padding: 15, background: '#FAFAFA' }}>
         <h1>
           What do you see in the picture below?
         </h1>
@@ -25,9 +26,40 @@ export default function Quiz5({ setIllusions }) {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
+            sx={{
+              display: 'flex', flexDirection: 'row', columnGap: '4em', marginTop: '3em',
+            }}
           >
-            <FormControlLabel control={<Radio value={1} onChange={(e) => handleClick(e.target.value)} />} label="A younger person" />
-            <FormControlLabel control={<Radio value={2} onChange={(e) => handleClick(e.target.value)} />} label="An older person" />
+            <FormControlLabel
+              control={<Radio value={1} onChange={(e) => handleClick(e.target.value)} />}
+              className="woman-question"
+              sx={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
+              }}
+              label={(
+                <p style={{
+                  fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                }}
+                >
+                  A younger person
+                </p>
+                )}
+            />
+            <FormControlLabel
+              control={<Radio value={2} onChange={(e) => handleClick(e.target.value)} />}
+              className="woman-question"
+              sx={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
+              }}
+              label={(
+                <p style={{
+                  fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                }}
+                >
+                  An older person
+                </p>
+                )}
+            />
           </RadioGroup>
         </FormControl>
       </Box>

@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 import './QuizResultsPage.css';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
-import shareIcon from '../../Assets/Images/upload-icon.svg';
 // import BookCard from '../bookHub/BookCard';
 import RecFilter from '../Recommendations/BookRec';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
-// const sampleBookIDs = ['rectqkZI0hdvX5CMP', 'recbTpz98TrLIwEk0', 'recxhYkewzxt0Zu6k'];
+import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
 
-/* const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey); */
 function HandleClickToTop() {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-}
-
-function HandleClickToBottom() {
-  const anchor = document.querySelector('#recommended-books');
-  anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function ResultsPage({ bookFilters, isChild }) {
@@ -34,6 +19,13 @@ function ResultsPage({ bookFilters, isChild }) {
   let gradeDisplayed = '';
   let raceMessage = '';
   let genreMessage = '';
+  const myRef = useRef(null);
+
+  function HandleClickToBottom() {
+    if (myRef && myRef.current) {
+      myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   /* function getRecommendedBooks() {
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
@@ -65,7 +57,7 @@ function ResultsPage({ bookFilters, isChild }) {
     };
     getBooksLikeThis();
   }, [bookFilters]);
-  // useEffect(getRecommendedBooks, []);
+
   if (bookFilters.maxGrade === -1) {
     gradeDisplayed = '0 to Pre-K';
   } else if (bookFilters.maxGrade === 0) {
@@ -73,18 +65,23 @@ function ResultsPage({ bookFilters, isChild }) {
   } else {
     gradeDisplayed = `${bookFilters.maxGrade}th`;
   }
+
   if (bookFilters['race/ethnicity'].length > 1) {
     raceMessage = `${bookFilters['race/ethnicity'].slice(0, -1).join(', ')} and ${bookFilters['race/ethnicity'].slice(-1)} cultures.`;
   } else {
     raceMessage = `${bookFilters['race/ethnicity'].slice(-1)} culture.`;
   }
+
   if (bookFilters.genre.length > 1) {
     genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)} genres `;
   } else {
     genreMessage = `${bookFilters.genre.slice(-1)} genre `;
   }
   return (
-    <div>
+    <div style={{
+      background: '#cbe7ee', paddingTop: '5em',
+    }}
+    >
       {isChild
       && (
       <div className="results-wrapper">
@@ -125,13 +122,20 @@ function ResultsPage({ bookFilters, isChild }) {
             based on your answers.
           </p>
         </div>
-        <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToBottom}>
+        <img style={{ position: 'relative', bottom: '4em', right: '15em' }} src={CloudImage} alt="sky illustration with clouds" />
+        <button
+          type="button"
+          style={{
+            border: 'none', background: 'none', position: 'relative', bottom: '300px',
+          }}
+          onClick={HandleClickToBottom}
+        >
           <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
         </button>
       </div>
       )}
-
-      <div className="recommended-books-section-wrapper" id="recommended-books">
+      {/* here */}
+      <div className="recommended-books-section-wrapper" style={{ background: isChild ? '#ffffff' : '#cbe7ee', height: isChild ? '100vh' : '70vh', marginTop: isChild ? '40vh' : '0' }} ref={myRef}>
         {isChild
         && (
         <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToTop}>
@@ -173,9 +177,7 @@ function ResultsPage({ bookFilters, isChild }) {
           <div style={{
             maxHeight: '100%', display: 'flex', justifyContent: 'end', margin: '0 2em 0 0',
           }}
-          >
-            <img src={shareIcon} alt="icon to share results" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-          </div>
+          />
         </div>
       </div>
     </div>

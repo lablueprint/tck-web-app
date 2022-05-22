@@ -1,15 +1,24 @@
 import React from 'react';
 import {
-  Box, Button, Checkbox,
+  Box,
 } from '@mui/material';
 import propTypes from 'prop-types';
+import QuizButton from './QuizButton';
 
 export default function Quiz6({
-  title, buttonCaptions, bookFilters, setBookFilters,
+  title, buttonCaptions, setBookFilters, bookFilters,
 }) {
-  const handleClick = (val) => {
-    setBookFilters({ ...bookFilters, genre: 'genre'.push(val) });
-  };
+  function HandleClick(name, checked) {
+    if (checked) {
+      setBookFilters((prevValue) => ({ ...prevValue, genre: prevValue.genre.concat(name) }));
+    } else {
+      setBookFilters((prevValue) => {
+        const index = prevValue.genre.indexOf(name);
+        return { ...prevValue, genre: prevValue.genre.splice(index, 1) };
+      });
+    }
+  }
+  console.log(bookFilters);
   return (
     <div>
       <Box sx={{ padding: 15 }}>
@@ -17,26 +26,41 @@ export default function Quiz6({
           {title}
         </h1>
         <h3>You can choose more than one.</h3>
-        <Button value={buttonCaptions[0]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
-          <Checkbox />
-          <p>{buttonCaptions[0]}</p>
-        </Button>
-        <Button value={buttonCaptions[1]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
-          <Checkbox />
-          <p>{buttonCaptions[1]}</p>
-        </Button>
-        <Button value={buttonCaptions[2]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
-          <Checkbox />
-          <p>{buttonCaptions[2]}</p>
-        </Button>
-        <Button value={buttonCaptions[3]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
-          <Checkbox />
-          <p>{buttonCaptions[3]}</p>
-        </Button>
-        <Button value={buttonCaptions[4]} onClick={(value) => handleClick(value)} class="button" sx={{ m: 7 }} size="large" variant="outlined">
-          <Checkbox />
-          <p>{buttonCaptions[4]}</p>
-        </Button>
+
+        {bookFilters.genre !== undefined && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+            <QuizButton
+              desiredLabel={buttonCaptions[0]}
+              buttonCaption={buttonCaptions[0]}
+              desiredArray={bookFilters.genre}
+              onClick={(name, checked) => HandleClick(name, checked)}
+            />
+            <QuizButton
+              desiredLabel={buttonCaptions[1]}
+              buttonCaption={buttonCaptions[1]}
+              desiredArray={bookFilters.genre}
+              onClick={(name, checked) => HandleClick(name, checked)}
+            />
+            <QuizButton
+              desiredLabel={buttonCaptions[2]}
+              buttonCaption={buttonCaptions[2]}
+              desiredArray={bookFilters.genre}
+              onClick={(name, checked) => HandleClick(name, checked)}
+            />
+            <QuizButton
+              desiredLabel={buttonCaptions[3]}
+              buttonCaption={buttonCaptions[3]}
+              desiredArray={bookFilters.genre}
+              onClick={(name, checked) => HandleClick(name, checked)}
+            />
+            <QuizButton
+              desiredLabel={buttonCaptions[4]}
+              buttonCaption={buttonCaptions[4]}
+              desiredArray={bookFilters.genre}
+              onClick={(name, checked) => HandleClick(name, checked)}
+            />
+          </div>
+        )}
       </Box>
     </div>
   );

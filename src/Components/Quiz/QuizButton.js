@@ -2,7 +2,10 @@ import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
 
-export default function QuizButton({ buttonCaption, onClick }) {
+export default function QuizButton({
+  buttonCaption, onClick, desiredArray, desiredLabel,
+}) {
+  console.log(desiredArray);
   return (
     <div
       style={{
@@ -13,8 +16,9 @@ export default function QuizButton({ buttonCaption, onClick }) {
         sx={{ position: 'relative', bottom: '35px' }}
         onChange={(event) => {
           // setChecked((prevValue) => !prevValue);
-          onClick(buttonCaption, event.target.checked);
+          onClick(desiredLabel, event.target.checked);
         }}
+        checked={desiredArray.indexOf(desiredLabel) > -1}
       />
       <p style={{
         fontFamily: 'DM Sans', fontWeight: 'bold', flex: '0 0 75%', justifyContent: 'center',
@@ -29,5 +33,7 @@ QuizButton.propTypes = {
   buttonCaption: PropTypes.string.isRequired,
   // setChecked: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
+  desiredArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  desiredLabel: PropTypes.string.isRequired,
   // imageSource: PropTypes.string.isRequired,
 };

@@ -13,19 +13,24 @@ import ResultsPage from './Components/Quiz/QuizResultsPage';
 
 function App() {
   const maxGradeVal = Number(localStorage.getItem('maxGrade'));
+  const minGradeVal = Number(localStorage.getItem('minGrade'));
+  const minAgeVal = Number(localStorage.getItem('minAge'));
+  const maxAgeVal = Number(localStorage.getItem('maxAge'));
+  const bookTypeVal = typeof localStorage.getItem('bookType') === 'string' ? localStorage.getItem('bookType').split(',') : [];
   const genreVal = typeof localStorage.getItem('genres') === 'string' ? localStorage.getItem('genres').split(',') : [];
   const raceVal = typeof localStorage.getItem('race/ethnicity') === 'string' ? localStorage.getItem('race/ethnicity').split(',') : [];
   const location = useLocation();
   const lastLocation = typeof localStorage.getItem('lastLocation') === 'string' ? localStorage.getItem('lastLocation') : '';
+
   const [bookFilters, setBookFilters] = useState({
     bookId: '',
-    minAge: 0,
-    maxAge: 18,
-    minGrade: -1,
-    maxGrade: Number.isInteger(maxGradeVal) ? maxGradeVal : 0,
+    minAge: Number.isInteger(minAgeVal) ? maxGradeVal : 0,
+    maxAge: Number.isInteger(maxAgeVal) ? maxGradeVal : 18,
+    minGrade: Number.isInteger(minGradeVal) ? maxGradeVal : -1,
+    maxGrade: Number.isInteger(maxGradeVal) ? maxGradeVal : 12,
     'race/ethnicity': raceVal,
     genre: genreVal,
-    book_type: [],
+    book_type: bookTypeVal,
   });
 
   const storedValueAsNumber = localStorage.getItem('isChild') === 'true' ? 1 : 0;
@@ -38,13 +43,21 @@ function App() {
 
   useEffect(() => {
     if (lastLocation === '/quiz/results' || lastLocation === '/quiz/questions') {
+      localStorage.setItem('maxAge', String(bookFilters.maxAge));
+      localStorage.setItem('minAge', String(bookFilters.minAge));
       localStorage.setItem('maxGrade', String(bookFilters.maxGrade));
+      localStorage.setItem('minGrade', String(bookFilters.minGrade));
       localStorage.setItem('genres', String(bookFilters.genre.join(',')));
       localStorage.setItem('race/ethnicity', String(bookFilters['race/ethnicity'].join(',')));
+      localStorage.setItem('bookType', String(bookFilters['race/ethnicity'].join(',')));
     } else {
+      localStorage.setItem('maxAge', '18');
+      localStorage.setItem('minAge', '0');
       localStorage.setItem('maxGrade', '12');
+      localStorage.setItem('minGrade', '-1');
       localStorage.setItem('genres', '');
       localStorage.setItem('race/ethnicity', '');
+      localStorage.setItem('bookType', '');
       setBookFilters({
         bookId: '',
         minAge: 0,

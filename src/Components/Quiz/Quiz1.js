@@ -119,7 +119,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isParent && count === 4) {
     setIsChild(isChild);
-    const parentButtonCaptions = ['Autobiographies and biographies', 'Non-fiction', 'Historical fiction', 'Memoirs', 'Mystery'];
+    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery'];
     return (
       <div>
         <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />

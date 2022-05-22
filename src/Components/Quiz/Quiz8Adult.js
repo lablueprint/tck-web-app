@@ -6,9 +6,17 @@ import {
 import QuizButton from './QuizButton';
 
 export default function Quiz8Adult({ bookFilters, setBookFilters }) {
-  const handleClick = (val) => {
-    setBookFilters({ ...bookFilters, book_type: 'book_type'.push(val) });
-  };
+  function HandleClick(name, checked) {
+    if (checked) {
+      setBookFilters((prevValue) => (
+        { ...prevValue, book_type: prevValue.book_type.concat(name) }));
+    } else {
+      setBookFilters((prevValue) => {
+        const index = prevValue.book_type.indexOf(name);
+        return { ...prevValue, book_type: prevValue.book_type.splice(index, 1) };
+      });
+    }
+  }
   return (
     <div>
       <Box sx={{ padding: 15 }}>
@@ -16,14 +24,19 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
           Please select your preferred book formats
         </h1>
         <h3>These will be used to rank your results but availability is not guaranteed!</h3>
-        <QuizButton value="Picture Book" buttonCaption="Picture Book" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Chapter Book" buttonCaption="Chapter Book" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Early Reader" buttonCaption="Early Reader" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Middle Grade" buttonCaption="Middle Grade" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Young Adult" buttonCaption="Young Adult" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Series" buttonCaption="Series" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Anthology" buttonCaption="Anthology" onChange={(e) => handleClick(e.target.value)} />
-        <QuizButton value="Board Book" buttonCaption="Board Book" onChange={(e) => handleClick(e.target.value)} />
+        {bookFilters.book_type !== undefined
+        && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Picture Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Chapter Book" buttonCaption="Chapter Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Middle Grade Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Middle Grade" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="YA Book" buttonCaption="YA Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Series" buttonCaption="Series" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Anthology" buttonCaption="Anthology" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Board Book" buttonCaption="Board Book" onClick={(name, checked) => HandleClick(name, checked)} />
+        </div>
+        )}
       </Box>
     </div>
   );
