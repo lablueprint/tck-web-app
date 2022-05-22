@@ -36,5 +36,4 @@ export default function ProgressAndArrows({ progress }) {
 
 ProgressAndArrows.propTypes = {
   progress: PropTypes.number.isRequired,
-  // disabledStat: PropTypes.isRequired,
 };

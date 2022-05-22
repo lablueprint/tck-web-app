@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import {
@@ -55,7 +55,10 @@ function reducer(state, action) {
   }
 }
 
+const issDisabled = (anArr) => (anArr.length === 0);
+
 export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
+  console.log(bookFilters.genre);
   const initialState = {
     isParent: false,
     isChild: false,
@@ -63,17 +66,28 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     goneBack: false,
   };
 
-  // eslint-disable-next-line no-unused-vars
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
     sillyLevel[1](value);
   };
+  const sillyNotSet = () => (!(sillyLevel[0]));
   const illusion = React.useState(0);
   const changeIllusion = (value) => {
     illusion[0] = value;
     illusion[1](value);
   };
+  const isIllusionDisabled = () => (!(illusion[0]));
+  const [isDisabled02A, setIsDisabled02A] = useState(true);
+  const [isDisabled02K, setisDisabled02K] = useState(true);
+
+  const callback02A = (isDisabledFromChild) => {
+    setIsDisabled02A(isDisabledFromChild);
+  };
+  const callback02K = (isDisabledFromChild) => {
+    setisDisabled02K(isDisabledFromChild);
+  };
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     isParent, isChild, count, goneBack,
@@ -82,13 +96,18 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz2Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz2Adult
+          parentCallback02A={callback02A}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
         <Button
+          disabled={isDisabled02A}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -109,6 +128,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" progress={0} />
         <Button
+          disabled={issDisabled(bookFilters['race/ethnicity'])}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -130,6 +150,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" progress={0} />
         <Button
+          disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -151,6 +172,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" progress={0} />
         <Button
+          disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
@@ -172,6 +194,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         <ProgressAndArrows variant="determinate" value={0} />
         <NavLink to="/quiz/results">
           <Button
+            disabled={issDisabled(bookFilters.book_type)}
             startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
@@ -185,13 +208,18 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz2Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Quiz2Kid
+          parentCallback02K={callback02K}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+        />
         <Button
           startIcon={<ArrowBackIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
         <Button
+          disabled={isDisabled02K}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -212,6 +240,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" progress={0} />
         <Button
+          disabled={issDisabled(bookFilters['race/ethnicity'])}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -233,6 +262,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={sillyNotSet()}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -262,6 +292,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         <ProgressAndArrows variant="determinate" value={0} />
         <NavLink to="/quiz/results">
           <Button
+            disabled={issDisabled(bookFilters.genre)}
             startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
@@ -298,6 +329,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           )
           : (
             <Button
+              disabled={issDisabled(bookFilters.genre)}
               startIcon={<ArrowForwardIcon />}
               variant="contained"
               onClick={() => dispatch({ type: 'parent' })}
@@ -322,6 +354,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" progress={0} />
         <Button
+          disabled={isIllusionDisabled()}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
@@ -342,6 +375,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         />
         <ProgressAndArrows variant="determinate" value={0} />
         <Button
+          disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}

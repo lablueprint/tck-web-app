@@ -6,15 +6,21 @@ import {
 import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
-export default function Quiz2Kid({ bookFilters, setBookFilters }) {
-  const [minData, setMinData] = useState(4);
-  const [maxData, setMaxData] = useState(7);
+export default function Quiz2Kid({ parentCallback02K, bookFilters, setBookFilters }) {
+  const [minData, setMinData] = useState();
+  const [maxData, setMaxData] = useState();
+  const [isDisabled02K, setisDisabled02K] = useState();
 
   const callback = (min, max) => {
     setMinData(min);
     setMaxData(max);
     setBookFilters({ ...bookFilters, minGrade: minData });
     setBookFilters({ ...bookFilters, maxGrade: maxData });
+  };
+
+  const callbackSlider = (isDisabled) => {
+    setisDisabled02K(isDisabled);
+    parentCallback02K(isDisabled02K);
   };
 
   const disabledStat = true;
@@ -35,7 +41,7 @@ export default function Quiz2Kid({ bookFilters, setBookFilters }) {
           What grade levels are you comfortable reading at?
         </h1>
         <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider parentCallback={callback} />
+          <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
         </Grid>
       </div>
       <ProgressAndArrows
@@ -59,6 +65,7 @@ Quiz2Kid.defaultProps = {
   }),
 };
 Quiz2Kid.propTypes = {
+  parentCallback02K: propTypes.isRequired,
   setBookFilters: propTypes.func,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

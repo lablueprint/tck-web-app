@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 /* Styling */
 const CustomQuizSlider = styled(Slider)({
-  color: '#F79927',
+  color: '#3477DE',
   height: 8,
   '& .MuiSlider-track': {
     border: 'none',
@@ -14,7 +14,7 @@ const CustomQuizSlider = styled(Slider)({
   '& .MuiSlider-thumb': {
     height: 32,
     width: 32,
-    backgroundColor: '#F79927',
+    backgroundColor: '#3477DE',
     border: '2px solid currentColor',
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
@@ -31,7 +31,7 @@ const CustomQuizSlider = styled(Slider)({
     width: 55,
     height: 55,
     borderRadius: '50% 50% 50% 0',
-    backgroundColor: '#F79927',
+    backgroundColor: '#3477DE',
     transformOrigin: 'bottom left',
     transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
     '&:before': { display: 'none' },
@@ -63,12 +63,15 @@ function valueLabelFormat(value) {
 
 const minDistance = 0;
 
-export default function GradeSlider({ parentCallback }) {
-  const [value1, setValue1] = React.useState([-1, 12]);
+export default function GradeSlider({ parentCallback, parentCallbackButton }) {
+  const [value1, setValue1] = React.useState([4, 7]);
+  const [isDisabledSlider, setIsDisabledSlider] = React.useState();
   const [min, setMin] = React.useState(4);
   const [max, setMax] = React.useState(7);
 
   const handleChange1 = (event, newValue, activeThumb) => {
+    setIsDisabledSlider(false);
+    parentCallbackButton(isDisabledSlider);
     setMin(newValue[0]);
     setMax(newValue[1]);
     parentCallback(min, max);
@@ -108,5 +111,6 @@ export default function GradeSlider({ parentCallback }) {
 }
 
 GradeSlider.propTypes = {
+  parentCallbackButton: propTypes.isRequired,
   parentCallback: propTypes.isRequired,
 };

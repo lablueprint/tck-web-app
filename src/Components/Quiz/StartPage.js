@@ -21,7 +21,7 @@ export default function StartPage() {
           fontFamily: 'Work Sans', color: '#333333', fontSize: '22px', fontWeight: 'normal',
         }}
         >
-          Do not know what to search for? Try this short quiz to receive personalized book reccomendations from The Conscious Kids collection! Take this is you are a kid, parent, or educator looking for a fun read!
+          Do not know what to search for? Try this short quiz to receive personalized book recommendations from The Conscious Kids collection! Take this is you are a kid, parent, or educator looking for a fun read!
         </h4>
         <NavLink to="/quiz/questions">
           <button
