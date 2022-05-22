@@ -44,21 +44,24 @@ const styles = {
   cardImage: {
     width: 'auto',
     borderRadius: '15px',
+    maxHeight: '250px',
   },
   bigText: {
     fontFamily: 'Work Sans',
     fontStyle: 'normal',
     lineHeight: '35px',
     fontWeight: 600,
-    fontSize: '28px',
+    fontSize: '27px',
     color: '#333333',
+    paddingTop: 3,
   },
   mediumText: {
     fontFamily: 'Work Sans',
     fontWeight: 500,
-    fontSize: '22px',
+    fontSize: '21px',
     lineHeight: '35px',
     color: '#333333',
+    paddingTop: 3,
   },
   leftText: {
     paddingTop: 0.5,
@@ -74,7 +77,8 @@ const styles = {
     fontWeight: 700,
     fontSize: '14px',
     color: '#0068C9',
-    paddingTop: 1,
+    paddingTop: 2,
+    paddingBottom: 2,
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
@@ -83,7 +87,8 @@ const styles = {
   seeMoreIcon: {
     fontSize: '16px',
     color: '#0068C9',
-    paddingTop: 1,
+    paddingTop: 2,
+    paddingBottom: 2,
     paddingLeft: 0.25,
     '&:hover': {
       color: '#669afa',
@@ -117,17 +122,17 @@ export default function CreatorInfoCard({
   return (
     <Box sx={styles.root}>
       <Card sx={styles.card}>
-        <Box sx={styles.centeredContainer}>
-          {creatorImage !== '' && (
-          <CardMedia
-            component="img"
-            image={creatorImage}
-            alt="Creator Picture"
-            sx={styles.cardImage}
-          />
-          )}
-        </Box>
         <CardContent>
+          <Box>
+            {creatorImage !== '' && (
+            <CardMedia
+              component="img"
+              image={creatorImage}
+              alt="Creator Picture"
+              sx={styles.cardImage}
+            />
+            )}
+          </Box>
           <Box sx={styles.topTextBox}>
             <Typography variant="h5" sx={styles.bigText}>
               {creatorName}
