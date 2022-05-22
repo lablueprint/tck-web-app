@@ -28,6 +28,7 @@ function BookCardsDisplay({
     base('Book').select({ view: 'Grid view' }).all()
       .then((records) => {
         setAllBooks(records);
+        setFilteredBooks(records);
       });
   };
 
