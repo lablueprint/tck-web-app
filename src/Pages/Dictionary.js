@@ -20,7 +20,6 @@ function Dictionary() {
     base('Definition').select({ view: 'Grid view' }).all()
       .then((records) => {
         setDefinitions(records);
-        console.log(records);
       });
   };
 
