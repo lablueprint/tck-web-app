@@ -59,18 +59,6 @@
   font-display: swap;
 }
 
-@font-face{
-  font-family:'Arimo';
-  src: url('./Assets/Fonts/DMSans-Bold.eot');
-  src: url('./Assets/Fonts/Arimo-Regular.woff') format('woff'), /* Modern Browsers */
-  url('./Assets/Fonts/Arimo-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-  url('./Assets/Fonts/Arimo-Regular.woff2') format('woff2'),
-  url('./Assets/Fonts/Arimo-Regular.svg#Arimo-Regular') format('svg'); /* Legacy IOS */
-font-weight: normal;
-font-style: normal;
-font-display: swap;
-}
-
 .App {
   text-align: center;
 }
