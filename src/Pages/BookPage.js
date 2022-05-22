@@ -17,12 +17,17 @@ const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
   .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
 
 const styles = {
+  readAloud: {
+    overflow: 'auto',
+    width: '75%',
+    margin: 'auto',
+  },
   iframeContainer: {
     position: 'relative',
     overflow: 'hidden',
     width: '100%',
     paddingTop: '56.25%',
-    margin: '0 auto 0 auto',
+    margin: '0 auto 5vh auto',
   },
   iframe: {
     position: 'absolute',
@@ -30,8 +35,8 @@ const styles = {
     left: '0',
     bottom: '0',
     right: '0',
-    width: '75%',
-    height: '75%',
+    width: '100%',
+    height: '100%',
     margin: '0 auto 0 auto',
   },
   carouselContainer: {
@@ -275,16 +280,18 @@ function BookPage() {
         </Paper>
         <BookSynopsis {...synopsisProps} />
         {(readAloudURL) && (
-        <Box sx={styles.iframeContainer}>
-          <iframe
-            style={styles.iframe}
-            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
-        </Box>
+          <Box sx={styles.readAloud}>
+            <Box sx={styles.iframeContainer}>
+              <iframe
+                style={styles.iframe}
+                src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />
+            </Box>
+          </Box>
         ) }
       </Paper>
       {book && (
