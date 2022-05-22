@@ -1,18 +1,38 @@
 import React, { useEffect, useState } from 'react';
+import { Typography, Box } from '@mui/material';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
 import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
-import RightArrow from '../../Assets/Images/right-arrow.svg';
-import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from './BookCarousel';
 
 const styles = {
   root: {
-    width: '55%',
+    width: '45%',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '3rem',
+    alignItems: 'center',
+    paddingTop: 75,
+    paddingRight: 50,
+  },
+  titleText: {
+    alignSelf: 'flex-start',
+    fontFamily: 'Work Sans',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: '20px',
+    lineHeight: '28px',
+    textAlign: 'center',
+    color: '#444444',
+    paddingBottom: 2,
+  },
+  creatorText: {
+    alignSelf: 'flex-start',
+    paddingLeft: 5,
+    fontWeight: 700,
+    fontSize: '12px',
+    textTransform: 'uppercase',
+    color: '#444444',
   },
 };
 
@@ -77,27 +97,28 @@ function CreatedWorksCard({ authorId }) {
   useEffect(FindWorks, []);
 
   return (
-    <div style={styles.root}>
-      {authoredWorks.length && <div> Authored Works: </div>}
+    <Box style={styles.root}>
+      <Typography sx={styles.titleText}>Featured Books</Typography>
+      {authoredWorks.length && <Typography sx={styles.creatorText}> Authored </Typography>}
       <Carousel
         elementArray={authoredWorks}
         slidesAtATime={3}
         prevArrow={LeftArrowAuthorPage}
         nextArrow={RightArrowAuthorPage}
-        widthPercent={50}
+        widthPercent={100}
         spaceBetweenEntries={16}
       />
-      {illustratedWorks.length && <div> Illustrated Works: </div>}
+      {illustratedWorks.length && <Typography sx={styles.creatorText}> Illustrated </Typography>}
       <Carousel
         elementArray={illustratedWorks}
-        slidesAtATime={7}
-        prevArrow={LeftArrow}
-        nextArrow={RightArrow}
+        slidesAtATime={3}
+        prevArrow={LeftArrowAuthorPage}
+        nextArrow={RightArrowAuthorPage}
         widthPercent={100}
         spaceBetweenEntries={16}
       />
 
-    </div>
+    </Box>
   );
 }
 
