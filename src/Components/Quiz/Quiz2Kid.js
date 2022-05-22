@@ -23,8 +23,6 @@ export default function Quiz2Kid({ parentCallback02K, bookFilters, setBookFilter
     parentCallback02K(isDisabled02K);
   };
 
-  const disabledStat = true;
-
   return (
     <Card sx={{
       borderRadius: 5,
@@ -46,7 +44,6 @@ export default function Quiz2Kid({ parentCallback02K, bookFilters, setBookFilter
       </div>
       <ProgressAndArrows
         progress={17}
-        disabledStat={disabledStat}
       />
     </Card>
   );

@@ -126,7 +126,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
-        <ProgressAndArrows variant="determinate" progress={0} />
+        <ProgressAndArrows variant="determinate" progress={29} />
         <Button
           disabled={issDisabled(bookFilters['race/ethnicity'])}
           startIcon={<ArrowForwardIcon />}
@@ -148,7 +148,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
-        <ProgressAndArrows variant="determinate" progress={0} />
+        <ProgressAndArrows variant="determinate" progress={80} />
         <Button
           disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
@@ -170,7 +170,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
-        <ProgressAndArrows variant="determinate" progress={0} />
+        <ProgressAndArrows variant="determinate" progress={80} />
         <Button
           disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
@@ -191,7 +191,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'parent back' })}
         />
-        <ProgressAndArrows variant="determinate" value={0} />
+        <ProgressAndArrows variant="determinate" value={85} />
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.book_type)}
@@ -241,7 +241,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" progress={0} />
+        <ProgressAndArrows variant="determinate" progress={29} />
         <Button
           disabled={issDisabled(bookFilters['race/ethnicity'])}
           startIcon={<ArrowForwardIcon />}
@@ -263,7 +263,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" value={0} />
+        <ProgressAndArrows variant="determinate" progress={41} />
         <Button
           disabled={sillyNotSet()}
           startIcon={<ArrowForwardIcon />}
@@ -292,7 +292,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" value={0} />
+        <ProgressAndArrows variant="determinate" value={85} />
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.genre)}
@@ -321,7 +321,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" value={0} />
+        <ProgressAndArrows variant="determinate" value={85} />
         {((isChild && count === 6 && illusion[0] == 1)
         || (isChild && count === 5 && sillyLevel[0] == 1))
           ? (
@@ -362,7 +362,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" progress={0} />
+        <ProgressAndArrows variant="determinate" progress={65} />
         <Button
           disabled={isIllusionDisabled()}
           startIcon={<ArrowForwardIcon />}
@@ -383,7 +383,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
         />
-        <ProgressAndArrows variant="determinate" value={0} />
+        <ProgressAndArrows variant="determinate" value={85} />
         <Button
           disabled={issDisabled(bookFilters.genre)}
           startIcon={<ArrowForwardIcon />}
