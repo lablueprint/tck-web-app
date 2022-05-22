@@ -192,13 +192,17 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           onClick={() => dispatch({ type: 'parent back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
-        <NavLink to="/quiz/results">
+        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.book_type)}
             startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
+            sx={{ background: '#F99E16' }}
           />
+          Your Results
+          {' '}
+          {'>'}
         </NavLink>
       </div>
 
@@ -290,13 +294,17 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           onClick={() => dispatch({ type: 'child back' })}
         />
         <ProgressAndArrows variant="determinate" value={0} />
-        <NavLink to="/quiz/results">
+        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.genre)}
             startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
+            sx={{ background: '#F99E16' }}
           />
+          Your Results
+          {' '}
+          {'>'}
         </NavLink>
 
       </div>
@@ -319,12 +327,16 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         {((isChild && count === 6 && illusion[0] == 1)
         || (isChild && count === 5 && sillyLevel[0] == 1))
           ? (
-            <NavLink to="/quiz/results">
+            <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
               <Button
                 startIcon={<ArrowForwardIcon />}
                 variant="contained"
                 onClick={() => dispatch({ type: 'parent' })}
+                sx={{ background: '#F99E16' }}
               />
+              Your Results
+              {' '}
+              {'>'}
             </NavLink>
           )
           : (
