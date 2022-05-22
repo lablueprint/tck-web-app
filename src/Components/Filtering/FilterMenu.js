@@ -27,13 +27,13 @@ const styles = {
   resetButton: {
     textTransform: 'none',
     marginRight: '2.5em',
-    fontFamily: 'Arimo',
+    fontFamily: 'DM Sans',
   },
   searchButton: {
     borderRadius: '12px',
     padding: '0.7em 1.25em',
     textTransform: 'none',
-    fontFamily: 'Arimo',
+    fontFamily: 'DM Sans',
   },
 };
 
