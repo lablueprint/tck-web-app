@@ -20,7 +20,7 @@ const styles = {
     height: '50px',
   },
 };
-export default function MultiselectComponent({
+export default function MultiselectFilter({
   filterOptions, input, setInput, filterLabel, filterName,
 }) {
   const result = filterOptions ? filterOptions.split(',') : null;
@@ -56,7 +56,7 @@ export default function MultiselectComponent({
   );
 }
 
-MultiselectComponent.propTypes = {
+MultiselectFilter.propTypes = {
   filterOptions: PropTypes.string.isRequired,
   input: PropTypes.shape({
     'race/ethnicity': PropTypes.arrayOf(PropTypes.string).isRequired,

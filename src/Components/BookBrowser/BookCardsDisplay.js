@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
-import { gradeRangeMetadata, ageRangeMetadata } from '../Filtering/Filtering';
+import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -14,7 +14,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-function CardsDisplay({
+function BookCardsDisplay({
   searchTerms, searchCategory, alignment, rangeInput, multiSelectInput,
 }) {
   const [allBooks, setAllBooks] = useState([]);
@@ -183,6 +183,7 @@ function CardsDisplay({
       ));
     }
   }, [rangeInput, multiSelectInput, alignment]);
+
   return (
     <div>
       <BookList books={filteredBooks} />
@@ -190,9 +191,9 @@ function CardsDisplay({
   );
 }
 
-export default CardsDisplay;
+export default BookCardsDisplay;
 
-CardsDisplay.propTypes = {
+BookCardsDisplay.propTypes = {
   searchTerms: PropTypes.string.isRequired,
   searchCategory: PropTypes.string.isRequired,
   alignment: PropTypes.string.isRequired,
