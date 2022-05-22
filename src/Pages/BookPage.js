@@ -8,7 +8,7 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import Logo from '../Assets/Images/TCK PNG Logo.png';
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
-import RecFilter from '../Components/Recommendations/BookRec';
+// import RecFilter from '../Components/Recommendations/BookRec';
 
 const Airtable = require('airtable');
 
@@ -132,6 +132,7 @@ function BookPage() {
   // Gets list of recommended books
   const getBooksLikeThis = async () => {
     if (book) {
+      /*
       const recList = await RecFilter(
         book.id,
         book.fields.age_min,
@@ -142,6 +143,7 @@ function BookPage() {
         book.fields.genre,
         book.fields.book_type,
       );
+      */
     }
   };
 
