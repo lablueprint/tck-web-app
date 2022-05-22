@@ -12,7 +12,8 @@ export default function Quiz7Kid({ setBookFilters, bookFilters }) {
     } else {
       setBookFilters((prevValue) => {
         const index = prevValue.genre.indexOf(name);
-        return { ...prevValue, genre: prevValue.genre.splice(index, 1) };
+        prevValue.genre.splice(index, 1);
+        return { ...prevValue, genre: prevValue.genre };
       });
     }
   }

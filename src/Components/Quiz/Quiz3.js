@@ -32,7 +32,9 @@ export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
     } else {
       setBookFilters((prevValue) => {
         const index = prevValue['race/ethnicity'].indexOf(name);
-        return { ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'].splice(index, 1) };
+        console.log(index);
+        prevValue['race/ethnicity'].splice(index, 1);
+        return { ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'] };
       });
     }
   }

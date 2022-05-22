@@ -122,7 +122,7 @@ function ResultsPage({ bookFilters, isChild }) {
             based on your answers.
           </p>
         </div>
-        <img style={{ position: 'relative', bottom: '4em', right: '15em' }} src={CloudImage} alt="sky illustration with clouds" />
+        <img style={{ position: 'relative', bottom: '2.5em', right: '15em' }} src={CloudImage} alt="sky illustration with clouds" />
         <button
           type="button"
           style={{

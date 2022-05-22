@@ -13,7 +13,8 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
     } else {
       setBookFilters((prevValue) => {
         const index = prevValue.book_type.indexOf(name);
-        return { ...prevValue, book_type: prevValue.book_type.splice(index, 1) };
+        prevValue.book_type.splice(index, 1);
+        return { ...prevValue, book_type: prevValue.book_type };
       });
     }
   }
