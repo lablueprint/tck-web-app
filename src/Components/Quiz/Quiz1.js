@@ -195,14 +195,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.book_type)}
-            startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{ background: '#F99E16' }}
-          />
-          Your Results
-          {' '}
-          {'>'}
+          >
+            Your Results
+            <ArrowForwardIcon />
+          </Button>
         </NavLink>
       </div>
 
@@ -297,14 +296,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled(bookFilters.genre)}
-            startIcon={<ArrowForwardIcon />}
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{ background: '#F99E16' }}
-          />
-          Your Results
-          {' '}
-          {'>'}
+          >
+            Your Results
+            <ArrowForwardIcon />
+          </Button>
         </NavLink>
 
       </div>
@@ -329,14 +327,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           ? (
             <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
               <Button
-                startIcon={<ArrowForwardIcon />}
+                disabled={issDisabled(bookFilters.genre)}
                 variant="contained"
                 onClick={() => dispatch({ type: 'parent' })}
                 sx={{ background: '#F99E16' }}
-              />
-              Your Results
-              {' '}
-              {'>'}
+              >
+                Your Results
+                <ArrowForwardIcon />
+              </Button>
             </NavLink>
           )
           : (
