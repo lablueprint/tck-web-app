@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
+import NoResults from '../BookList/NoResults';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -187,7 +188,7 @@ function BookCardsDisplay({
 
   return (
     <div>
-      <BookList books={filteredBooks} />
+      <BookList books={filteredBooks} NoResults={NoResults} />
     </div>
   );
 }
