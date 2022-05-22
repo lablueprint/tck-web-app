@@ -1,0 +1,25 @@
+.subtitle {
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: large;
+    line-height: 28px;
+    color: #5F5F5F;
+    text-align: left;
+    margin: 2vh 1vw 4vh 0;
+    width: 90%;
+}
+
+.search-container {
+    font-family: 'Work Sans', sans-serif;
+    display: inline-block;
+    width: 90%;
+    padding: 3vh 1vw 3vh 1vw;
+    margin: 1vh auto 1vh auto;
+    text-align: left;
+}
+
+.search-bar{
+    display:flex;
+    flex-direction: row;
+}

@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Typography, Link } from '@mui/material';
 import NoResultsPicture from '../../Assets/Images/no-results.svg';
+import { useNavigate } from 'react-router-dom';
+
 
 const styles = {
     root: {
@@ -78,13 +80,15 @@ const styles = {
     },
   };
 
-export default function NoResults({ resetSearchText }) {
+export default function NoResults() {
+  const navigate = useNavigate();
+
   const redirectToRequestForm = (e) => {
     e.preventDefault();
     window.location.href = 'https://airtable.com/shrDHScpHXB2Sm8qc';
   };
   const onResetSearchText = () => {
-    resetSearchText();
+    navigate('/browser');
   };
   return (
     <Box sx={styles.root}>
@@ -110,7 +114,3 @@ export default function NoResults({ resetSearchText }) {
     </Box>
   );
 }
-
-NoResults.propTypes = {
-  resetSearchText: PropTypes.func.isRequired,
-};

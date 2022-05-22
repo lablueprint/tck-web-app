@@ -35,7 +35,7 @@ export default function DictionaryCard({
             : (
               <div>
                 {showMore ? def : `${def.substring(0, 250)}`}
-                <Button style={{ textTransform: 'none', color: '#607AAD' }} onClick={() => setShowMore(!showMore)}>
+                <Button className="card-button" onClick={() => setShowMore(!showMore)}>
                   {showMore ? 'See less' : 'See more'}
                 </Button>
               </div>

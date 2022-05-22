@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import BookList from '../BookList/BookList';
-import '../bookHub/BookCard.css';
+import '../BookBrowser/BookCard.css';
 
 const Airtable = require('airtable');
 

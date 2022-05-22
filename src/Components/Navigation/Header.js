@@ -12,7 +12,7 @@ import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
 const options = [
   { name: 'Home', nav: '/' },
-  { name: 'Book Browser', nav: '/browse' },
+  { name: 'Book Browser', nav: '/browser' },
   { name: 'Book Rec Quiz', nav: '/quiz' },
   { name: 'Collections', nav: '/collection/init' },
   { name: 'Racial Literacy Dictionary', nav: '/dictionary' },
@@ -121,7 +121,7 @@ function Header() {
               </li>
               <li>
                 <NavLink
-                  to="/browse"
+                  to="/browser"
                   className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
                 >
                   Book Browser
