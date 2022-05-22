@@ -7,7 +7,6 @@ import {
 
 import BookCard from '../bookHub/BookCard';
 import ListMenu from './ListMenu';
-import NoResults from './NoResults';
 
 import './BookList.css';
 
@@ -99,7 +98,7 @@ const PAGINATION_SX = {
 
 };
 
-function BookList({ books, resetSearchText }) {
+function BookList({ books }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(18);
 
@@ -175,16 +174,41 @@ function BookList({ books, resetSearchText }) {
       </div>
     </div>
   ) : (
-    <NoResults resetSearchText={resetSearchText} />
+    <h1>Sorry, there&apos;s no books here! 😰</h1>
   );
 }
 
 BookList.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    fields: PropTypes.shape({}),
-  })).isRequired,
-  resetSearchText: PropTypes.func.isRequired,
+    fields: PropTypes.shape({
+      title: PropTypes.string,
+      author: PropTypes.arrayOf(PropTypes.string),
+      image: PropTypes.arrayOf(PropTypes.shape({
+        url: PropTypes.string,
+      })),
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    }),
+  })),
+};
+
+BookList.defaultProps = {
+  books: [
+    {
+      fields: {
+        title: 'MISSING TITLE',
+        author: ['MISSING CREATOR'],
+        image: [
+          {
+            url: 'MISSING IMAGE',
+          },
+        ],
+        id: '',
+      },
+    },
+  ],
 };
 
 export default BookList;
@@ -201,13 +225,8 @@ export default BookList;
             - RECENT = 2
             - ADDED = 3
 
-    books format:
-        books is to be an array of Records pulled from Airtable.
-        shape({
-    fields: {
-      title: PropTypes.string.isRequired,
-      author: PropTypes.arrayOf(PropTypes.string),
-      image: PropTypes.
-    },
-  })
+    remark: although we have defined defaultProps for books,
+            this is only triggered when we don't have a books prop
+            NOT when we have a books prop and some books are missing fields,
+            thus we do extra checking within the component
 */
