@@ -5,22 +5,24 @@ import {
 } from '@mui/material';
 import { Check } from '@mui/icons-material';
 
-const BUTTON_SX = {
-  textTransform: 'none',
-  borderRadius: '10px',
-  margin: '2vh 0 1vh 1vw',
-  fontFamily: 'Work Sans',
-  fontWeight: '600',
-};
-
-const MENULIST_SX = {
-  '.MuiMenu-paper': {
-    borderRadius: '15px',
+const styles = {
+  button: {
+    textTransform: 'none',
+    borderRadius: '10px',
+    margin: '2vh 0 1vh 1vw',
+    fontFamily: 'Work Sans',
+    fontWeight: '600',
   },
-};
-
-const MENUITEM_SX = {
-  minWidth: '15vw', fontFamily: 'Work Sans', fontWeight: '600',
+  menuList: {
+    '.MuiMenu-paper': {
+      borderRadius: '15px',
+    },
+  },
+  menuItem: {
+    minWidth: '15vw',
+    fontFamily: 'Work Sans',
+    fontWeight: '600',
+  },
 };
 
 function ListMenu({
@@ -45,7 +47,7 @@ function ListMenu({
       key={option.id}
       value={option.value}
       onClick={handleChoose}
-      sx={MENUITEM_SX}
+      sx={styles.menuItem}
     >
       {
                 (option.icon) ? <ListItemIcon>{option.icon}</ListItemIcon> : <div />
@@ -60,7 +62,7 @@ function ListMenu({
   return (
     <div>
       <Button
-        sx={BUTTON_SX}
+        sx={styles.button}
         id="basic-button"
         variant="outlined"
         onClick={handleClick}
@@ -78,7 +80,7 @@ function ListMenu({
         MenuListProps={{
           onClick: handleClose,
         }}
-        sx={MENULIST_SX}
+        sx={styles.menuList}
       >
         { menuItems }
 
@@ -96,7 +98,12 @@ ListMenu.defaultProps = {
 ListMenu.propTypes = {
   menuText: PropTypes.string.isRequired,
   menuIcon: PropTypes.element,
-  options: PropTypes.PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    icon: PropTypes.element,
+    value: PropTypes.number,
+  })).isRequired,
   value: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
