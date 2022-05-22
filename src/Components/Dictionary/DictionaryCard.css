@@ -46,3 +46,8 @@
     display: flex;
     flex-direction: row;
 }
+
+.card-button{ 
+    text-transform: 'none';
+    color: '#607AAD';
+}

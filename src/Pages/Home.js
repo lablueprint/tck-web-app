@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import CardsDisplay from '../Components/bookHub/BookHub';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
 import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
@@ -40,7 +39,6 @@ function Home() {
         cardImageWidthPercent={80}
       />
       <h2 className="headings">Books</h2>
-      <CardsDisplay />
     </div>
   );
 }

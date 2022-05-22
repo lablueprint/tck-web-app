@@ -26,7 +26,7 @@ function Footer() {
           Home
         </NavLink>
         <NavLink
-          to="/browse"
+          to="/browser"
           className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
           Book Browser
