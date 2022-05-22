@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
 import propTypes from 'prop-types';
 import { Search, ChevronLeft } from '@mui/icons-material';
-import MultSelectElem from './MultiselectFilters';
+import MultiselectFilter from './MultiselectFilter';
+import RangeFilter from './RangeFilter';
 import './Filtering.css';
-import RangeFilterCard from './RangeFilterCard';
+import { ageRangeMetadata, gradeRangeMetadata } from '../../Constants';
 
-export const gradeRangeMetadata = ['0 to Pre-K', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-export const ageRangeMetadata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+// airtable configuration
+const Airtable = require('airtable');
+
+const airtableConfig = {
+  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
+  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
+};
+const base = new Airtable({ apiKey: airtableConfig.apiKey })
+  .base(airtableConfig.baseKey);
 
 const styles = {
   homepageButton: {
     textTransform: 'none',
-    marginLeft: '2.25em',
+    marginLeft: '3vw',
     fontFamily: 'DM Sans',
   },
   resetButton: {
@@ -31,11 +37,12 @@ const styles = {
   },
 };
 
-export default function Filter({ setRangeState, setMultiSelectInput }) {
+export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age: [-1, 17],
     grade: [-1, 12],
   });
+
   const [tempMultiSelect, setTempMultiSelect] = useState({
     'race/ethnicity': [],
     identity_tags: [],
@@ -44,6 +51,15 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     'theme/lessons': [],
     book_type: [],
   });
+
+  const [multiselectMetadata, setMultiselectMetadata] = useState([]);
+
+  const getMetadata = () => {
+    base('Book Tag Metadata').select({ view: 'Grid view' }).all()
+      .then((records) => {
+        setMultiselectMetadata(records);
+      });
+  };
 
   const handleSave = () => {
     setRangeState(tempRangeFilterData);
@@ -77,28 +93,41 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
     });
   };
 
+  useEffect(getMetadata, []);
+
   return (
-    <div className="filter-wrapper">
-      <div className="range-filter-wrapper">
-
-        <RangeFilterCard filterTitle="Age" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={ageRangeMetadata} />
-
-        <RangeFilterCard filterTitle="Grade" setData={setTempRangeFilterData} data={tempRangeFilterData} optionsArray={gradeRangeMetadata} />
+    <div className="menu-wrapper">
+      <div className="range-filter-grid">
+        <RangeFilter
+          filterLabel="Age"
+          input={tempRangeFilterData}
+          setInput={setTempRangeFilterData}
+          filterOptions={ageRangeMetadata}
+        />
+        <RangeFilter
+          filterLabel="Grade"
+          input={tempRangeFilterData}
+          setInput={setTempRangeFilterData}
+          filterOptions={gradeRangeMetadata}
+        />
       </div>
-      <MultSelectElem
-        setTempMultiSelect={setTempMultiSelect}
-        tempMultiSelect={tempMultiSelect}
-      />
-
+      <div className="multiselect-grid">
+        {multiselectMetadata && multiselectMetadata.map((option) => (
+          <div className="multi-select-component" key={option.fields.id}>
+            <MultiselectFilter
+              filterLabel={option.fields.display}
+              filterOptions={(option.fields.options)}
+              input={tempMultiSelect}
+              setInput={setTempMultiSelect}
+              filterName={option.fields.name}
+            />
+          </div>
+        ))}
+      </div>
       <div className="filter-button-wrapper">
-        <NavLink
-          to="/"
-          className="homepage-button"
-        >
-          <Button sx={styles.homepageButton} startIcon={<ChevronLeft />}>
-            Return to Homepage
-          </Button>
-        </NavLink>
+        <Button component={NavLink} to="/" sx={styles.homepageButton} startIcon={<ChevronLeft />}>
+          Return to Homepage
+        </Button>
         <div className="cancel-and-go-button-wrapper">
           <Button onClick={handleCancel} sx={styles.resetButton}>
             Reset
@@ -119,7 +148,7 @@ export default function Filter({ setRangeState, setMultiSelectInput }) {
   );
 }
 
-Filter.propTypes = {
+FilterMenu.propTypes = {
   setMultiSelectInput: propTypes.func.isRequired,
   setRangeState: propTypes.func.isRequired,
 };

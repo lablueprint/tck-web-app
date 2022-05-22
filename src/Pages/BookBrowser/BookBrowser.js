@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import {
-  ToggleButton, ToggleButtonGroup,
+  Tabs, Tab,
 } from '@mui/material';
 import { Tune, Search } from '@mui/icons-material';
-import CardsDisplay from '../../Components/BookBrowser/BookHub';
+import BookCardsDisplay from '../../Components/BookBrowser/BookCardsDisplay';
 import SearchBar from '../../Components/SearchBar/SearchBar';
-import Filter from '../../Components/Filtering/Filtering';
-
+import FilterMenu from '../../Components/Filtering/FilterMenu';
 import './BookBrowser.css';
 
 const styles = {
-  toggleGroup: {
-    margin: '6vh auto 6vh 4vw',
+  tab: {
+    textTransform: 'none',
+    font: 'DM Sans',
+    fontWeight: 'bold',
+    fontSize: '15px',
+    paddingBottom: '0px',
+  },
+  tabGroup: {
+    margin: '1vh auto 4vh 4vw',
   },
 };
 function BookBrowser() {
-  const [alignment, setAlignment] = useState('Search');
+  const [alignment, setAlignment] = useState('Filter');
 
   // Searching
   const [searchTerms, setSearchTerms] = useState('');
@@ -42,30 +48,35 @@ function BookBrowser() {
   };
 
   return (
-    <div id="background">
-      <div className="browser">
-        <div className="browser-head">
-          <div className="browser-quote">Book Browser</div>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-            sx={styles.toggleGroup}
-          >
-            <ToggleButton value="Filter">
-              <Tune />
-              Filter
-            </ToggleButton>
-            <ToggleButton value="Search">
-
-              <Search />
-              Search
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
-        <div className="browser-body">
-          {
+    <div>
+      <div className="browser-background">
+        <div className="browser">
+          <div className="browser-head">
+            <div className="browser-quote">Book Search</div>
+            <Tabs
+              color="primary"
+              value={alignment}
+              onChange={handleChange}
+              sx={styles.tabGroup}
+            >
+              <Tab
+                value="Filter"
+                label="Filter"
+                icon={<Tune />}
+                iconPosition="start"
+                sx={styles.tab}
+              />
+              <Tab
+                value="Search"
+                label="Search"
+                icon={<Search />}
+                iconPosition="start"
+                sx={styles.tab}
+              />
+            </Tabs>
+          </div>
+          <div className="browser-body">
+            {
           (alignment === 'Search')
             ? (
               <SearchBar
@@ -75,16 +86,17 @@ function BookBrowser() {
               />
             )
             : (
-              <Filter
+              <FilterMenu
                 setRangeState={setRangeInput}
                 setMultiSelectInput={setMultiSelectInput}
               />
             )
         }
 
+          </div>
         </div>
       </div>
-      <CardsDisplay
+      <BookCardsDisplay
         searchTerms={searchTerms}
         searchCategory={searchCategory}
         alignment={alignment}

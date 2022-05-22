@@ -13,7 +13,7 @@ const styles = {
     fontFamily: 'DM Sans',
   },
   formControl: {
-    width: '20%',
+    width: '12em',
   },
   selectMenu: {
     background: '#EEEEEE',
@@ -22,13 +22,11 @@ const styles = {
     fontFamily: 'DM Sans',
   },
   searchField: {
-    width: '70%',
     position: 'relative',
     zIndex: '2',
     background: '#F9F9F9',
   },
   submitButton: {
-    width: '5%',
     borderRadius: '0 12px 12px 0',
     marginLeft: '-1vw',
     position: 'relative',
@@ -37,6 +35,7 @@ const styles = {
   homepageButton: {
     textTransform: 'none',
     fontFamily: 'DM Sans',
+    margin: '3vh 0 0 0',
   },
 };
 
@@ -60,58 +59,54 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
   };
 
   return (
-    <div className="SearchBar">
-      <div className="Subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
-      <FormControl
-        variant="outlined"
-        margin="none"
-        sx={styles.formControl}
-        size="small"
-      >
-        <InputLabel id="search-by-label">search by</InputLabel>
-        <Select
-          labelId="search-by-label"
-          id="search-by"
-          value={searchCategory}
-          label="search by"
-          onChange={handleSelect}
-          sx={styles.selectMenu}
+    <div className="search-container">
+      <div className="subtitle">Search by Title, Author, Illustrator, Identity, or Book Description</div>
+      <div className="search-bar">
+        <FormControl
+          variant="outlined"
+          margin="none"
+          sx={styles.formControl}
+          size="small"
         >
-          <MenuItem value="keyword" sx={styles.menu}>Keyword</MenuItem>
-          <MenuItem value="title" sx={styles.menu}>Title</MenuItem>
-          <MenuItem value="description" sx={styles.menu}>Description</MenuItem>
-          <MenuItem value="identity" sx={styles.menu}>Identity</MenuItem>
-          <MenuItem value="author" sx={styles.menu}>Author</MenuItem>
-          <MenuItem value="illustrator" sx={styles.menu}>Illustrator</MenuItem>
-        </Select>
-      </FormControl>
-
-      <TextField
-        sx={styles.searchField}
-        size="small"
-        id="outlined-basic"
-        hiddenLabel
-        variant="outlined"
-        margin="none"
-        onKeyUp={handleChange}
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        onClick={handleGo}
-        sx={styles.submitButton}
-        size="large"
-        endIcon={<Search />}
-      />
-
-      <NavLink
-        to="/"
-        className="homepage-button"
-      >
-        <Button sx={styles.homepageButton} startIcon={<ChevronLeft />}>
-          Return to Homepage
-        </Button>
-      </NavLink>
+          <InputLabel id="search-by-label">Search By</InputLabel>
+          <Select
+            labelId="search-by-label"
+            id="search-by"
+            value={searchCategory}
+            label="search by"
+            onChange={handleSelect}
+            sx={styles.selectMenu}
+          >
+            <MenuItem value="keyword" sx={styles.menu}>Keyword</MenuItem>
+            <MenuItem value="title" sx={styles.menu}>Title</MenuItem>
+            <MenuItem value="description" sx={styles.menu}>Description</MenuItem>
+            <MenuItem value="identity" sx={styles.menu}>Identity</MenuItem>
+            <MenuItem value="author" sx={styles.menu}>Author</MenuItem>
+            <MenuItem value="illustrator" sx={styles.menu}>Illustrator</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField
+          sx={styles.searchField}
+          size="small"
+          id="outlined-basic"
+          hiddenLabel
+          variant="outlined"
+          margin="none"
+          onKeyUp={handleChange}
+          fullWidth
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          onClick={handleGo}
+          sx={styles.submitButton}
+          size="large"
+          endIcon={<Search />}
+        />
+      </div>
+      <Button component={NavLink} to="/" sx={styles.homepageButton} startIcon={<ChevronLeft />}>
+        Return to Homepage
+      </Button>
     </div>
   );
 }

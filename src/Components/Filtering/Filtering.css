@@ -1,48 +1,50 @@
-.filter-wrapper{
+.menu-wrapper{
     display: flex;
     flex-direction: column;
     row-gap: 10; 
 }
 
-.multi-select-wrapper{
+.multiselect-grid{
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
-    margin: 1vh auto 1vh auto;
     column-gap:1em;
-    row-gap:1.5em;
+    row-gap:.25em;
+    margin: 0vh auto 0vh auto;
+}
+
+.range-filter-grid{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 95%;
+    column-gap: 1em;
+    margin: 0vh auto;
 }
 
 .multi-select-component{
     width: 40%;
-    margin: 0.1vh auto 0.1vh auto; 
-}
-.range-filter-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    margin: 0vh auto;
+    margin: 0.1vh 0 0.1vh 0;
+    min-width: 210px;
 }
 
 .filter-button-wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.homepage-button{
-    text-decoration: none;
     align-items: center;
-    display: flex;
+    width: 99%;
+    margin-bottom: 1vh;
 }
 
 .cancel-and-go-button-wrapper{
     text-align: right;
     text-transform: none;
     margin: 1vh 2vw 1vh 2vw;
-    padding: 5vh 1vw 5vh 5vw;
+    padding: 2vh 1vw 2vh 5vw;
 }
 
 .filterlabel-text{
@@ -52,15 +54,18 @@
     text-align: left;
     margin-bottom: 0.2em;
 }
+
 .range-slider-wrapper{
-    flex: 0 0 35%;
-    margin: 1vh auto 1vh auto;
+    flex: 0 0 40%;
+    margin: .1vh auto .1vh auto;
+    min-width: 200px;
 }
+
 .range-slider-title{
     text-align: left;
     font-family: DM Sans;
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.5);
-    margin-left: -1em;
+    margin-left: -.5em;
 }
