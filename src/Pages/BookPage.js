@@ -8,8 +8,8 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import RightArrow from '../Assets/Images/right-arrow.svg';
-import LeftArrow from '../Assets/Images/left-arrow.svg';
+import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
+import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
 
 const Airtable = require('airtable');
 
@@ -48,7 +48,6 @@ const styles = {
     padding: '2vh 0 2vh 0',
   },
   bookContainer: {
-    // background-color: '#FCFCFC',
     background: 'linear-gradient(180deg, rgba(204, 216, 218, 0) 0%, rgba(204, 216, 218, 0.15) 100%)',
   },
 };
