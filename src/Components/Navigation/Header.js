@@ -12,10 +12,10 @@ import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
 const options = [
   { name: 'Home', nav: '/' },
-  { name: 'Book Browser', nav: '/browser' },
-  { name: 'Book Rec Quiz', nav: '/quiz' },
+  { name: 'Book Search', nav: '/browser' },
+  { name: 'Book Finder Quiz', nav: '/quiz' },
   { name: 'Collections', nav: '/collection/init' },
-  { name: 'Racial Literacy Dictionary', nav: '/dictionary' },
+  { name: 'Terms to Know', nav: '/dictionary' },
 ];
 
 const ITEM_HEIGHT = 48;
@@ -124,7 +124,15 @@ function Header() {
                   to="/browser"
                   className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
                 >
-                  Book Browser
+                  Book Search
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/quiz"
+                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+                >
+                  Book Finder Quiz
                 </NavLink>
               </li>
               <li>
@@ -137,18 +145,10 @@ function Header() {
               </li>
               <li>
                 <NavLink
-                  to="/quiz"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Book Rec Quiz
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
                   to="/dictionary"
                   className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
                 >
-                  Racial Literacy Dictionary
+                  Terms to Know
                 </NavLink>
               </li>
             </ul>
