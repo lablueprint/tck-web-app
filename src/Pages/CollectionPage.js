@@ -48,15 +48,21 @@ function CollectionPage() {
   }, []);
   return (
     <div>
+      <p style={{
+        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '3em 0 2em 8em',
+      }}
+      >
+        Please select a collection
+      </p>
       {collecID !== null && collecID !== 'init' && collections !== null ? (
         <CollectionsCarousel
           elementArray={collections}
-          slidesAtATime={1.5}
+          slidesAtATime={3.25}
           prevArrow={PrevArrow}
           nextArrow={NextArrow}
           widthPercent={100}
           spaceBetweenEntries={40}
-          swiperHeight={277}
+          swiperHeight={150}
           cardImageHeightPercent={90}
           cardImageWidthPercent={90}
           cardFontSize={100}
@@ -65,6 +71,7 @@ function CollectionPage() {
           isCollectionPageHeader
           setCollecID={updateCollecID}
           initialID={collecID}
+          style={{ margin: '0 2em' }}
         />
       )
         : <p>An error might have occurred or the content requested is too big in size</p>}

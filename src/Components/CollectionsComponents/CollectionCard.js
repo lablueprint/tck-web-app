@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Collection.css';
 
 export default function Collection({
-  collectionId, image, name, imageHeightPercent,
+  collectionId, image, bigLine, imageHeightPercent,
   imageWidthPercent, isCollectionPageHeader, isSlideActive, color,
 }) {
   return (
@@ -15,45 +15,65 @@ export default function Collection({
     <Link
       className="link"
       to={`/collection/${collectionId}`}
-      id="collection-card"
-      style={{ background: color }}
+      id="collection-card-wrapper"
+      style={{ background: color, justifyContent: 'start' }}
     >
-      <div className="collection-image-container">
-        <img className="collection-image" src={image} style={{ maxWidth: `${imageWidthPercent}%`, maxHeight: `${imageHeightPercent}%` }} alt="description" />
+
+      <div className="card-description-wrapper">
+        <p className="card-description">
+          {isSlideActive && 'Currently Viewing'}
+        </p>
       </div>
 
-      {isCollectionPageHeader
-        ? (
-          <div className="card-text-container">
-            <p
-              className="card-title"
-              style={{
-                fontSize: '1.75rem',
-                alignItems: isSlideActive ? 'end' : 'center',
+      <div className="collection-card">
+        <div className="collection-image-container">
+          <img
+            src={image}
+            style={{
+              maxWidth: `${imageWidthPercent}%`,
+              maxHeight: `${imageHeightPercent}%`,
+              position: isSlideActive ? 'relative' : 'static',
+              bottom: isSlideActive ? '10px' : '0px',
+            }}
+            alt="description"
+          />
+        </div>
+
+        {isCollectionPageHeader
+          ? (
+            <div className="collection-text-wrapper">
+              <p style={{
+                fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '20px', textAlign: 'start', margin: isSlideActive ? '0.65em 0 1em 0' : '1.5em 0 0.5em 0',
               }}
-            >
-              {name}
-            </p>
-            {isSlideActive
-            && (
-            <div className="card-description-wrapper">
-              <p className="card-description">
-                Currently Viewing
+              >
+                Stories from
+              </p>
+              <p
+                className="card-title"
+                style={{
+                  fontSize: '1.55rem',
+                  position: isSlideActive ? 'relative' : 'static',
+                  bottom: isSlideActive ? '10px' : '0px',
+                }}
+              >
+                {bigLine}
               </p>
             </div>
-            )}
-          </div>
-        )
-        : (
-          <p
-            className="card-title"
-            style={{
-              fontSize: '1.05rem',
-            }}
-          >
-            {name}
-          </p>
-        )}
+          )
+          : (
+            <div>
+              <p
+                className="card-title"
+                style={{
+                  fontSize: '1.05rem',
+                }}
+              >
+                {bigLine}
+              </p>
+            </div>
+          )}
+
+      </div>
     </Link>
 
   );
@@ -62,7 +82,7 @@ export default function Collection({
 Collection.propTypes = {
   collectionId: PropTypes.string.isRequired,
   image: PropTypes.string,
-  name: PropTypes.string,
+  bigLine: PropTypes.string,
   imageHeightPercent: PropTypes.number.isRequired,
   imageWidthPercent: PropTypes.number.isRequired,
   isCollectionPageHeader: PropTypes.bool,
@@ -72,7 +92,7 @@ Collection.propTypes = {
 
 Collection.defaultProps = {
   image: 'MISSING IMAGE',
-  name: 'MISSING NAME',
+  bigLine: 'MISSING NAME',
   isCollectionPageHeader: false,
   isSlideActive: false,
   color: '#2E3E64',

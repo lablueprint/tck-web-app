@@ -42,9 +42,6 @@ function BooksInCollection({ authorId }) {
 
   return (
     <div>
-      <div>
-        Books in this collection:
-      </div>
       <BookList books={books} />
     </div>
   );

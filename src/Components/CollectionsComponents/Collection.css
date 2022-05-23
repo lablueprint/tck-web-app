@@ -4,62 +4,69 @@
   justify-content: center;
 }
 
-#collection-card{
+#collection-card-wrapper{
   height: 100%;
   border-radius: 10px;
   display: flex;
-  flex-flow: row;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
+  flex-direction:column;
+ justify-content: center;
   color: white;
   text-decoration: none;
+}
+
+.collection-card{
+  display:flex;
+  flex-direction: row;
+  text-align: center;
   width:inherit;
+  justify-content: center;
+  height:100%;
+  /* align-items:center; */
 }
 
 .collection-image-container{
-  flex:1 0 25%;
+  flex:0 0 25%;
   display: flex;
-  justify-content: end;
   align-items: center;
   height: 100%;
 }
 
-.collection-image {
-  margin-left: 2rem;
-}
 
-.card-text-container{
-  display: flex;
-  flex-direction: column;
-  flex:0 1 75%;
-  margin:0 1rem 0 0;
+.card-text-wrapper{
+    display: flex;
+    flex:1 0 75%;
+    flex-direction:column;
+    align-items: start;
+    justify-content: center;
 }
 .card-title{
     line-height: 100%;
     color:white;
     width: 100%;
     height: 100%;
-    display: flex;
     font-family: 'Work Sans';
     font-weight: bolder;
-    justify-content: center;
-    align-items: center;
     margin:0;
+    align-self:center;
+  
 }
 
 .card-description-wrapper{
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: start;
+  align-self: flex-end;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius:25px;
+  margin-right:15px;
+  margin-top:10px;
+  width:40%;
 }
 .card-description{
-   max-height:4.5rem;
-    color:white;
+    color:#FAFAFA;
     width: 100%;
     font-family: 'DM Sans';
-    font-weight: regular;
-    font-size: 1.05rem;    
+    font-weight: bold;
+    font-size: 0.80rem;  
+    font-style:italic;
+    margin:0; 
 }
 

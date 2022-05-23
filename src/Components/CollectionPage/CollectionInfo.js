@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import PropTypes from 'prop-types';
 import React from 'react';
 import './CollectionPage.css';
@@ -7,6 +8,8 @@ export default function CollectionInfo({ name, description }) {
   return (
     <div>
       <div className="collection-heading">
+        Children's Books from
+        {' '}
         {name}
       </div>
       <div className="collection-paragraph">
