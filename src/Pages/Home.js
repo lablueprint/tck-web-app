@@ -6,7 +6,6 @@ import Carousel from '../Components/CreatorPage/BookCarousel';
 import LeftArrow from '../Assets/Images/left-arrow.svg';
 import RightArrow from '../Assets/Images/right-arrow.svg';
 import './PagesTemp.css';
-// import homescreenIllustration from '../Assets/Images/(temporary) TCK Browser Illustration.png';
 
 // Airtable Configuration
 const Airtable = require('airtable');
@@ -18,11 +17,25 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
+const styles = {
+  buttonStack: {
+    backgroundColor: '#EAF3FE',
+    color: '#1A296A',
+    padding: '10px',
+    width: '12vw',
+    borderRadius: '10px',
+    fontfamily: 'Work Sans',
+    fontSize: '15px',
+    textTransform: 'none',
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+  },
+};
+
 // main function
 function Home() {
   const [collections, setCollections] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
-  const [featuredCollections, setFeaturedCollections] = useState([]);
 
   // Collections Carousel part
   const getCollections = () => {
@@ -56,53 +69,65 @@ function Home() {
     });
   });
 
-  // Featured Collections
-  // filters for the first 14 books of each 'featured' collection
-  const featured = collections.filter((collection) => collection.fields.featured);
+  const fetchNewReleases = async () => {
+    const tempReleases = await NewReleasesFunction();
+    setNewReleases(tempReleases);
+  };
 
-  // this fx doesn't work because it has many places where we must wait for an airtable call,
-  // but I am v tired so we can continue tmrw!
+  useEffect(() => {
+    getCollections();
+    fetchNewReleases();
+  }, []);
 
-  const getFeaturedCollections = () => new Promise((resolve, reject) => {
+  /* This is all the code for the feature displays! Making so many airtable calls at once,
+  causes rate limit issues, so we will have to refine the implementation later.
+
+  const [featuredCollections, setFeaturedCollections] = useState([]);
+
+  // sub asyn function to grab a singular book from the base!
+  const getBook = (id) => new Promise((resolve, reject) => {
+    base('Book').find(id, (error, record) => {
+      if (error) {
+        reject(error);
+      }
+      const tempObj = {
+        author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+        image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
+        title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+        id: record.id,
+      };
+      resolve(tempObj);
+    });
+  });
+
+  const getFeaturedCollections = async () => {
     const tempCollectionObject = {};
-    featured.forEach((collection) => {
+    collections.filter((collection) => collection.fields.featured).forEach(async (collection) => {
       tempCollectionObject[collection.id] = {
         name: collection.fields.name,
         books: [],
       };
-      let tempArr = [];
 
-      collection.fields.books.forEach((book) => {
-        base('Book').find(book, (error, record) => {
-          if (error) {
-            reject(error);
-          }
-          const tempObj = {
-            author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
-            image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
-            title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-            id: record.id,
-          };
-          tempArr = [...tempArr, tempObj];
-        });
+      const { books } = collection.fields;
+
+      if (books.length) {
+        const tempArr = await Promise.all(books.map(async (book) => getBook(book)));
         tempCollectionObject[collection.id].books = tempArr;
-      });
+      }
+      setFeaturedCollections(tempCollectionObject);
     });
-    resolve(tempCollectionObject);
-  });
+  };
 
-  async function fetchData() {
-    const tempReleases = await NewReleasesFunction();
-    setNewReleases(tempReleases);
-
-    const tempCollections = await getFeaturedCollections();
-    setFeaturedCollections(tempCollections);
+  async function fetchFeaturedCollections() {
+    if (collections.length) {
+      await getFeaturedCollections();
+    }
   }
 
   useEffect(() => {
-    getCollections();
-    fetchData();
-  }, []);
+    fetchFeaturedCollections();
+  }, [collections]);
+  */
 
   return (
     <div>
@@ -118,25 +143,24 @@ function Home() {
         cardImageWidthPercent={80}
       />
       <div className="home-screen-background">
-        {/* <img src={homescreenIllustration} alt="homescreen illustration" /> */}
-        <h1 className="main-text">
+        <div className="hero-text">
           Discover books by and about
           <br />
           marginalized groups
-        </h1>
-        <p className="main-text">
+        </div>
+        <div className="subtext">
           Get started with our Book Rec Quiz to get a personalized
           <br />
           recommendation
           or use our Book Browser to start your search.
-        </p>
+        </div>
         <Stack
           direction="row"
-          spacing={2}
+          spacing={3}
           alignSelf="center"
         >
-          <Button className="button-stack" variant="contained">Take The Quiz</Button>
-          <Button className="button-stack" variant="contained">Start Your Search</Button>
+          <Button sx={styles.buttonStack} variant="contained">Take The Quiz</Button>
+          <Button sx={styles.buttonStack} variant="contained">Start Your Search</Button>
         </Stack>
       </div>
       {newReleases && (
@@ -152,7 +176,7 @@ function Home() {
           />
         </>
       )}
-      { featuredCollections.map((collection) => (
+      { /* featuredCollections.length && featuredCollections.map((collection) => (
         <>
           <h2 className="headings">{collection.name}</h2>
           <Carousel
@@ -164,11 +188,19 @@ function Home() {
             spaceBetweenEntries={16}
           />
         </>
-      ))}
-      <h2 className="headings">Black History Month</h2>
-      <h2 className="headings">Stories by Latinx Authors</h2>
+      )) */}
     </div>
   );
 }
 
 export default Home;
+
+/*
+Notes:
+
+The code as is does not seem to work due to airtable rate limits. There
+are calls for collections, books and authors for each component, and for even one
+person to run the page it seems to exceed the limit. We can attempt to batch the
+calls to avoid these errors, but it would probably be wise to consider whether this
+is worth it at all.
+*/
