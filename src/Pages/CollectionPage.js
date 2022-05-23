@@ -24,7 +24,6 @@ function CollectionPage() {
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
-        // if (err) { console.error(err); }
         setCollections(records);
         setCollecID((params.id === 'init' ? records[0].id : params.id));
       });
