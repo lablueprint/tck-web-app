@@ -58,7 +58,6 @@ function reducer(state, action) {
 const issDisabled = (anArr) => (anArr.length === 0);
 
 export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
-  // console.log(bookFilters.genre);
   const initialState = {
     isParent: false,
     isChild: false,
@@ -274,6 +273,59 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
 
     );
   }
+  if (isChild && count === 5 && sillyLevel[0] == 3) {
+    const childButtonCaptions = ['The lives of interesting and influential people',
+      'Fascinating facts about different topics such as nature, animals, or space',
+      'Important events of the past that shaped the world we live in today',
+      'A detailed retelling of a crucial period of time in an individual’s life',
+      'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
+    setIsChild(isChild);
+    return (
+      <div>
+        <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={85} />
+        <Button
+          disabled={issDisabled(bookFilters.genre)}
+          startIcon={<ArrowForwardIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child' })}
+        />
+      </div>
+
+    );
+  }
+  if (isChild && count === 6 && sillyLevel[0] == 3) {
+    setIsChild(isChild);
+    return (
+      <div>
+        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
+        <Button
+          startIcon={<ArrowBackIcon />}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+        />
+        <ProgressAndArrows variant="determinate" value={85} />
+        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+          <Button
+            disabled={issDisabled(bookFilters.genre)}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+            sx={{ background: '#F99E16' }}
+          >
+            Your Results
+            <ArrowForwardIcon />
+          </Button>
+        </NavLink>
+
+      </div>
+
+    );
+  }
   if ((isChild && count === 5 && sillyLevel[0] == 5)
   || (isChild && count === 5 && sillyLevel[0] == 3)
   || (isChild && count === 6 && illusion[0] == 2)) {
@@ -282,7 +334,6 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
       'Important events of the past that shaped the world we live in today',
       'A detailed retelling of a crucial period of time in an individual’s life',
       'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
-    // we need to create new component because this doesnt work w genre
     setIsChild(isChild);
     return (
       <div>
