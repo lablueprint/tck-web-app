@@ -9,6 +9,7 @@ import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
+import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
 
 function HandleClickToTop() {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -78,7 +79,7 @@ function ResultsPage({ bookFilters, isChild }) {
   }
   return (
     <div style={{
-      background: '#cbe7ee', paddingTop: '5em',
+      background: '#cbe7ee', padding: isChild ? '5em 0 0em 0' : '2em 0 8em 0',
     }}
     >
       {isChild
@@ -134,7 +135,13 @@ function ResultsPage({ bookFilters, isChild }) {
       </div>
       )}
       {/* here */}
-      <div className="recommended-books-section-wrapper" style={{ background: isChild ? '#ffffff' : '#cbe7ee', height: isChild ? '100vh' : '70vh', marginTop: isChild ? '40vh' : '0' }} ref={myRef}>
+      <div
+        className="recommended-books-section-wrapper"
+        style={{
+          background: isChild ? '#ffffff' : '#cbe7ee', height: isChild ? '100vh' : '70vh', marginTop: isChild ? '40vh' : '0',
+        }}
+        ref={myRef}
+      >
         {isChild
         && (
         <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToTop}>
@@ -146,12 +153,15 @@ function ResultsPage({ bookFilters, isChild }) {
 
         </button>
         )}
-        <div className="recommended-books-section-title-wrapper"><p className="results-text recommended-books-section-text">Here are some books we think would be great for you!</p></div>
+        <div className="recommended-books-section-title-wrapper">
+          {isChild && <p className="results-text recommended-books-section-text">Here are some books we think you would love!</p>}
+        </div>
         <div className="recommended-books-wrapper">
           <div style={{
-            margin: '0 auto', maxWidth: '100%',
+            margin: '0 auto', maxWidth: '100%', background: isChild ? 'default' : '#ffffff', borderRadius: isChild ? '0' : '30px',
           }}
           >
+            {!isChild && <p className="adult-results-text">Here are some books we think you would love!</p>}
             <Carousel
               elementArray={recommendedBooks}
               slidesAtATime={6}
@@ -160,24 +170,11 @@ function ResultsPage({ bookFilters, isChild }) {
               widthPercent={100}
               spaceBetweenEntries={16}
             />
-            {/* {recommendedBooks.length && recommendedBooks.map((record) => (
-              <BookCard
-                id={record.id}
-                image={record.fields.image !==
-                  undefined ? record.fields.image[0].thumbnails.large.url : ''}
-                title={record.fields.title !== undefined ? record.fields.title : 'No Title'}
-                author={record.fields.author !==
-                  undefined ? record.fields.author : ['MISSING CREATOR']}
-                key={record.fields.id}
-
-              />
-            ))} */}
           </div>
-          <div style={{
-            maxHeight: '100%', display: 'flex', justifyContent: 'end', margin: '0 2em 0 0',
-          }}
-          />
+          {/* {!isChild && <img src={AdultCloudImage} style={{ position: 'relative',
+          bottom: '60px' }} alt="clouds enveloping the recommendations" />} */}
         </div>
+        {!isChild && <img src={AdultCloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
       </div>
     </div>
   );
