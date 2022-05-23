@@ -97,7 +97,11 @@ const PAGINATION_SX = {
   },
 
 };
-
+function defaultNoResults() {
+  return (
+    <h1>Sorry, there&apos;s no books here! 😰</h1>
+  );
+}
 function BookList({ books, NoResults }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(18);
@@ -210,7 +214,7 @@ BookList.defaultProps = {
       },
     },
   ],
-  NoResults: <h1>Sorry, there&apos;s no books here! 😰</h1>,
+  NoResults: defaultNoResults,
 };
 
 export default BookList;

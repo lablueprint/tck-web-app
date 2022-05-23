@@ -36,6 +36,8 @@ export default function RecFilter(
           const minGradeIndexRecord = gradeRangeMetadata.indexOf(record.fields.grade_min, 0);
           const maxGradeIndexRecord = gradeRangeMetadata.indexOf(record.fields.grade_max, 0);
 
+          // note: in the future we should add error-checking for bad age/grade input!
+
           // Matching age range gives 2 points
           if ((minAge <= record.fields.age_max) && (maxAge >= record.fields.age_min)) {
             priority += 2;

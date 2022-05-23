@@ -5,10 +5,11 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
+import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
+
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
-import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
-import RecFilter from '../Components/Recommendations/BookRec';
+import RightArrow from '../Assets/Images/right-arrow.svg';
+import LeftArrow from '../Assets/Images/left-arrow.svg';
 
 const Airtable = require('airtable');
 
@@ -16,12 +17,17 @@ const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
   .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
 
 const styles = {
+  readAloud: {
+    overflow: 'auto',
+    width: '75%',
+    margin: 'auto',
+  },
   iframeContainer: {
     position: 'relative',
     overflow: 'hidden',
     width: '100%',
     paddingTop: '56.25%',
-    margin: '0 auto 0 auto',
+    margin: '0 auto 5vh auto',
   },
   iframe: {
     position: 'absolute',
@@ -29,8 +35,8 @@ const styles = {
     left: '0',
     bottom: '0',
     right: '0',
-    width: '75%',
-    height: '75%',
+    width: '100%',
+    height: '100%',
     margin: '0 auto 0 auto',
   },
   carouselContainer: {
@@ -40,6 +46,10 @@ const styles = {
     margin: 'auto',
     boxShadow: '0',
     padding: '2vh 0 2vh 0',
+  },
+  bookContainer: {
+    // background-color: '#FCFCFC',
+    background: 'linear-gradient(180deg, rgba(204, 216, 218, 0) 0%, rgba(204, 216, 218, 0.15) 100%)',
   },
 };
 
@@ -55,7 +65,7 @@ function BookPage() {
       or          if Airtable call in progr4ess (!book && !isLoaded)
   */
 
-  //  Grab collections
+  //  Grab collections for header
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
@@ -129,30 +139,10 @@ function BookPage() {
     await Promise.all(creatorEntries);
   };
 
-  // Gets list of recommended books
-  const getBooksLikeThis = async () => {
-    if (book) {
-      const recList = await RecFilter(
-        book.id,
-        book.fields.age_min,
-        book.fields.age_max,
-        book.fields.grade_min,
-        book.fields.grade_max,
-        book.fields['race/ethnicity'],
-        book.fields.genre,
-        book.fields.book_type,
-      );
-    }
-  };
-
   useEffect(() => {
     pushToStorage();
     getEntries();
   }, [bookId]); // Runs on mount and on change of bookId
-
-  useEffect(() => {
-    getBooksLikeThis();
-  }, [book]);
 
   // This is for when we are WAITING for Airtable response
   // We return here before we try to do any bad data accesses
@@ -208,7 +198,7 @@ function BookPage() {
     ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
     gradeMin = (book.get('grade_min')) ? book.get('grade_min') : -1;
     gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
-    bookType = (book.get('book_type')) ? book.get('book_type') : '';
+    bookType = (book.get('book_type')) ? book.get('book_type') : [];
     datePublished = (book.get('date_published')) ? book.get('date_published') : '';
   }
 
@@ -233,6 +223,7 @@ function BookPage() {
   }
 
   const imageURL = image[0].url;
+
   const isValidUrl = (string) => {
     /* Validate url given by TCK. URL must start with http or https protocol. */
     let url;
@@ -272,34 +263,50 @@ function BookPage() {
   };
 
   return (
-    <Paper elevation={0}>
-      <Paper sx={styles.carouselContainer}>
-        <CollectionsCarousel
-          elementArray={collections}
-          slidesAtATime={6}
-          prevArrow={LeftArrow}
-          nextArrow={RightArrow}
-          widthPercent={100}
-          spaceBetweenEntries={16}
-          swiperHeight={120}
-          cardImageHeightPercent={80}
-          cardImageWidthPercent={80}
-        />
-      </Paper>
-      <BookSynopsis {...synopsisProps} />
-      {(readAloudURL) && (
-        <Box sx={styles.iframeContainer}>
-          <iframe
-            style={styles.iframe}
-            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
+    <>
+      <Paper elevation={0} sx={styles.bookContainer}>
+        <Paper sx={styles.carouselContainer}>
+          <CollectionsCarousel
+            elementArray={collections}
+            slidesAtATime={6}
+            prevArrow={LeftArrow}
+            nextArrow={RightArrow}
+            widthPercent={100}
+            spaceBetweenEntries={16}
+            swiperHeight={120}
+            cardImageHeightPercent={80}
+            cardImageWidthPercent={80}
           />
-        </Box>
-      ) }
-    </Paper>
+        </Paper>
+        <BookSynopsis {...synopsisProps} />
+        {(readAloudURL) && (
+          <Box sx={styles.readAloud}>
+            <Box sx={styles.iframeContainer}>
+              <iframe
+                style={styles.iframe}
+                src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />
+            </Box>
+          </Box>
+        ) }
+      </Paper>
+      {book && (
+        <BooksLikeThis
+          bookId={book.id}
+          minAge={ageMin}
+          maxAge={ageMax}
+          minGrade={gradeMin}
+          maxGrade={gradeMax}
+          raceEthnicity={raceEthnicity}
+          genre={genre}
+          bookType={bookType}
+        />
+      )}
+    </>
   );
 }
 
