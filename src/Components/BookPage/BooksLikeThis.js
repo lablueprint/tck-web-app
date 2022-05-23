@@ -5,6 +5,12 @@ import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import RecFilter from '../Recommendations/BookRec';
 
+const styles = {
+  container: {
+    margin: '5vh 2vw 0 2vw',
+  },
+};
+
 function BooksLikeThis({
   bookId,
   minAge,
@@ -43,7 +49,7 @@ function BooksLikeThis({
   }, [bookId, minAge, maxAge, minGrade, maxGrade, raceEthnicity, genre, bookType]);
 
   return (
-    <div style={{ margin: '5vh 2vw 0 2vw' }}>
+    <div style={styles.container}>
       <Carousel
         elementArray={similarBooks}
         slidesAtATime={7}
