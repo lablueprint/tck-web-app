@@ -245,7 +245,7 @@ function AboutBook({
                     ) : <div style={styles.block} />
                 }
             {
-                  (bookType) ? (
+                  (bookType.length) ? (
                     <div style={styles.block}>
                       <Box sx={styles.bolded}>
                         {bookType}
@@ -312,7 +312,7 @@ AboutBook.defaultProps = {
   gradeMax: '',
   authors: [],
   illustrators: [],
-  bookType: '',
+  bookType: [],
   datePublished: '',
 };
 

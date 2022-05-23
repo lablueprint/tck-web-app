@@ -12,6 +12,7 @@ const styles = {
     display: 'flex',
     margin: '1vh 2vw 1vh 2vw',
     boxShadow: 'none',
+    background: 'none',
     width: '100%',
     '@media (max-width: 960px)': {
       maxWidth: '95vw',
