@@ -1,18 +1,76 @@
-/* eslint-disable react/button-has-type */
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Card, CardActions, CardContent, Button, Grid, Avatar,
 } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import './DictionaryCard.css';
+import LetterA from '../../Assets/Dictionary/LetterA.svg';
+import LetterB from '../../Assets/Dictionary/LetterB.svg';
+import LetterC from '../../Assets/Dictionary/LetterC.svg';
+import LetterD from '../../Assets/Dictionary/LetterD.svg';
+import LetterE from '../../Assets/Dictionary/LetterE.svg';
+import LetterF from '../../Assets/Dictionary/LetterF.svg';
+import LetterG from '../../Assets/Dictionary/LetterG.svg';
+import LetterH from '../../Assets/Dictionary/LetterH.svg';
+import LetterI from '../../Assets/Dictionary/LetterI.svg';
+import LetterJ from '../../Assets/Dictionary/LetterJ.svg';
+import LetterK from '../../Assets/Dictionary/LetterK.svg';
+import LetterL from '../../Assets/Dictionary/LetterL.svg';
+import LetterM from '../../Assets/Dictionary/LetterM.svg';
+import LetterN from '../../Assets/Dictionary/LetterN.svg';
+import LetterO from '../../Assets/Dictionary/LetterO.svg';
+import LetterP from '../../Assets/Dictionary/LetterP.svg';
+import LetterQ from '../../Assets/Dictionary/LetterQ.svg';
+import LetterR from '../../Assets/Dictionary/LetterR.svg';
+import LetterS from '../../Assets/Dictionary/LetterS.svg';
+import LetterT from '../../Assets/Dictionary/LetterT.svg';
+import LetterU from '../../Assets/Dictionary/LetterU.svg';
+import LetterV from '../../Assets/Dictionary/LetterV.svg';
+import LetterW from '../../Assets/Dictionary/LetterW.svg';
+import LetterX from '../../Assets/Dictionary/LetterX.svg';
+import LetterY from '../../Assets/Dictionary/LetterY.svg';
+import LetterZ from '../../Assets/Dictionary/LetterZ.svg';
 
 export default function DictionaryCard({
   word, def, links, phoeneticSpelling,
 }) {
   const [showMore, setShowMore] = useState(false);
+  /* Individualize links */
   const linksArray = links.split('\n');
   if (linksArray.length !== 0) { linksArray.pop(); }
+  /* Map each letter to image */
+  const mapping = {
+    A: LetterA,
+    B: LetterB,
+    C: LetterC,
+    D: LetterD,
+    E: LetterE,
+    F: LetterF,
+    G: LetterG,
+    H: LetterH,
+    I: LetterI,
+    J: LetterJ,
+    K: LetterK,
+    L: LetterL,
+    M: LetterM,
+    N: LetterN,
+    O: LetterO,
+    P: LetterP,
+    Q: LetterQ,
+    R: LetterR,
+    S: LetterS,
+    T: LetterT,
+    U: LetterU,
+    V: LetterV,
+    W: LetterW,
+    X: LetterX,
+    Y: LetterY,
+    Z: LetterZ,
+  };
+  /* Get first letter and make upper case  */
+  const firstLet = (str) => (JSON.stringify(str).substring(9, 10));
+  const displayLet = firstLet({ word }).toUpperCase();
   return (
     <Card sx={{
       borderRadius: 8, margin: 4, boxShadow: 5, marginRight: 20, marginLeft: 20,
@@ -20,7 +78,7 @@ export default function DictionaryCard({
     >
       <CardContent>
         <div className="img">
-          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src="https://s3-alpha-sig.figma.com/img/cdf3/8f12/dd7dc80a699c7b042305b07487abb14a?Expires=1651449600&Signature=G5zsVsD1S2f55Nby1uu~w87yOv71xEx9cVIEgw3Xvn5ekN~9j~FHizLWiY1~NP9ojNWN7nnaqAscFx8~6Y1Km8aZdtnfnUVKfZDgrVY~yzteGQ8XBgqEVs4N-LTx8YJzuzKjPH2Dv0BgQD-axt40s3-JKScphqgm-6v7YFhl1bqsvWUtdgDtvwitalLNqG-e9tqLzTxm57swJqJA6rxmcVRJhe4B-s7~ib0WUcZd~ztQDs2Pl4cN2tI4J-lS~VZON3q-aEGmudube7W9Ox6oCIC1oOikLy1R4cmWhv-o7ZWJ-10vLTONAvaBN5Sg07sygqekuoz~GmU-GxCk1ThKBw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
+          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src={mapping[displayLet]} />
           <div className="term">
             {word}
           </div>
