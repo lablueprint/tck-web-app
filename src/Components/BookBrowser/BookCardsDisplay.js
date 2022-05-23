@@ -38,7 +38,7 @@ function BookCardsDisplay({
     if (!book) return false;
     let title = book.get('title');
     let desc = book.get('description');
-    let identity = book.get('identity');
+    let identity = book.get('identity_description');
 
     // need to error check before using toLowerCase()
     title = (title) ? title.toLowerCase() : '';
