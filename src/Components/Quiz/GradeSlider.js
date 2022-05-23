@@ -66,17 +66,11 @@ const minDistance = 0;
 export default function GradeSlider({ parentCallback, parentCallbackButton }) {
   const [value1, setValue1] = React.useState([-1, 12]);
   const [isDisabledSlider, setIsDisabledSlider] = React.useState();
-  const [min, setMin] = React.useState(-1);
-  const [max, setMax] = React.useState(12);
 
   const handleChange1 = (event, newValue, activeThumb) => {
     setIsDisabledSlider(false);
     parentCallbackButton(isDisabledSlider);
-    setMin(newValue[0]);
-    setMax(newValue[1]);
-    parentCallback(min, max);
-    // console.log(newValue[0]);
-    // console.log(newValue[1]);
+    parentCallback(newValue[0], newValue[1]);
 
     if (!Array.isArray(newValue)) {
       return;
@@ -88,7 +82,6 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
       setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
     }
   };
-
   return (
     <div>
       <Box sx={{ width: 550 }}>

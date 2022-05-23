@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import {
   Card, Grid,
@@ -7,20 +7,12 @@ import GradeSlider from './GradeSlider';
 import ProgressAndArrows from './ProgressAndArrows';
 
 export default function Quiz2Adult({ parentCallback02A, bookFilters, setBookFilters }) {
-  const [minData, setMinData] = useState();
-  const [maxData, setMaxData] = useState();
-  const [isDisabled02A, setisDisabled02A] = useState();
-
   const callback = (min, max) => {
-    setMinData(min);
-    setMaxData(max);
-    setBookFilters({ ...bookFilters, minGrade: minData });
-    setBookFilters({ ...bookFilters, maxGrade: maxData });
+    setBookFilters({ ...bookFilters, minGrade: min, maxGrade: max });
   };
 
   const callbackSlider = (isDisabled) => {
-    setisDisabled02A(isDisabled);
-    parentCallback02A(isDisabled02A);
+    parentCallback02A(isDisabled);
   };
 
   return (

@@ -53,6 +53,7 @@ function ResultsPage({ bookFilters, isChild }) {
           id: element.id,
         })));
         console.log('recList: ', recList);
+        console.log(bookFilters);
       }
     };
     getBooksLikeThis();

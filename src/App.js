@@ -12,10 +12,10 @@ import Quiz1 from './Components/Quiz/Quiz1';
 import ResultsPage from './Components/Quiz/QuizResultsPage';
 
 function App() {
-  const maxGradeVal = Number(localStorage.getItem('maxGrade'));
-  const minGradeVal = Number(localStorage.getItem('minGrade'));
-  const minAgeVal = Number(localStorage.getItem('minAge'));
-  const maxAgeVal = Number(localStorage.getItem('maxAge'));
+  const maxGradeVal = localStorage.getItem('maxGrade') !== undefined ? Number(localStorage.getItem('maxGrade')) : 12;
+  const minGradeVal = localStorage.getItem('minGrade') !== undefined ? Number(localStorage.getItem('minGrade')) : -1;
+  const minAgeVal = localStorage.getItem('minAge') !== undefined ? Number(localStorage.getItem('minAge')) : 0;
+  const maxAgeVal = localStorage.getItem('maxAge') !== undefined ? Number(localStorage.getItem('maxAge')) : 18;
   const bookTypeVal = typeof localStorage.getItem('bookType') === 'string' ? localStorage.getItem('bookType').split(',') : [];
   const genreVal = typeof localStorage.getItem('genres') === 'string' ? localStorage.getItem('genres').split(',') : [];
   const raceVal = typeof localStorage.getItem('race/ethnicity') === 'string' ? localStorage.getItem('race/ethnicity').split(',') : [];
@@ -24,9 +24,9 @@ function App() {
 
   const [bookFilters, setBookFilters] = useState({
     bookId: '',
-    minAge: Number.isInteger(minAgeVal) ? maxGradeVal : 0,
-    maxAge: Number.isInteger(maxAgeVal) ? maxGradeVal : 18,
-    minGrade: Number.isInteger(minGradeVal) ? maxGradeVal : -1,
+    minAge: Number.isInteger(minAgeVal) ? minAgeVal : 0,
+    maxAge: Number.isInteger(maxAgeVal) ? maxAgeVal : 18,
+    minGrade: Number.isInteger(minGradeVal) ? minGradeVal : -1,
     maxGrade: Number.isInteger(maxGradeVal) ? maxGradeVal : 12,
     'race/ethnicity': raceVal,
     genre: genreVal,
@@ -41,8 +41,9 @@ function App() {
     localStorage.setItem('isChild', String(isChild));
   }, [isChild]);
 
+  const currentLocation = useLocation();
   useEffect(() => {
-    if (lastLocation === '/quiz/results' || lastLocation === '/quiz/questions') {
+    if (lastLocation === '/quiz/results' || lastLocation === '/quiz/questions' || currentLocation === '/quiz/questions') {
       localStorage.setItem('maxAge', String(bookFilters.maxAge));
       localStorage.setItem('minAge', String(bookFilters.minAge));
       localStorage.setItem('maxGrade', String(bookFilters.maxGrade));
@@ -71,7 +72,7 @@ function App() {
     }
     localStorage.setItem('lastLocation', location.pathname);
   }, [location]);
-
+  console.log(bookFilters);
   return (
     <div className="App">
       <Header />

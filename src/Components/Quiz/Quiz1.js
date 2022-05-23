@@ -58,7 +58,7 @@ function reducer(state, action) {
 const issDisabled = (anArr) => (anArr.length === 0);
 
 export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
-  console.log(bookFilters.genre);
+  // console.log(bookFilters.genre);
   const initialState = {
     isParent: false,
     isChild: false,
