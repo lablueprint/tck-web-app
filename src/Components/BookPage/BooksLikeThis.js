@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import { Typography } from '@mui/material';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
@@ -8,6 +9,15 @@ import RecFilter from '../Recommendations/BookRec';
 const styles = {
   container: {
     margin: '5vh 2vw 0 2vw',
+  },
+  header: {
+    textAlign: 'start',
+    color: '#2F2F2F',
+    fontFamily: 'Work Sans',
+    fontSize: '18px',
+    paddingLeft: '2vw',
+    marginBottom: 0,
+    fontWeight: 600,
   },
 };
 
@@ -50,6 +60,9 @@ function BooksLikeThis({
 
   return (
     <div style={styles.container}>
+      <Typography style={styles.header}>
+        Books Like This
+      </Typography>
       <Carousel
         elementArray={similarBooks}
         slidesAtATime={7}
