@@ -71,7 +71,6 @@ function CollectionPage() {
           isCollectionPageHeader
           setCollecID={updateCollecID}
           initialID={collecID}
-          style={{ margin: '0 2em' }}
         />
       )
         : <p>An error might have occurred or the content requested is too big in size</p>}
