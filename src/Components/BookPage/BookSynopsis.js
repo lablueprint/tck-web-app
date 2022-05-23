@@ -112,7 +112,7 @@ BookSynopsis.defaultProps = {
   gradeMax: '',
   authors: [],
   illustrators: [],
-  bookType: '',
+  bookType: [],
   datePublished: '',
 };
 
