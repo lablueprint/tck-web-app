@@ -50,7 +50,7 @@ function Home() {
   // filters for the first 14 books sorted by latest publishing date
   const NewReleasesFunction = () => new Promise((resolve, reject) => {
     base('Book').select({
-      sort: [{ field: 'date_added', direction: 'desc' }],
+      sort: [{ field: 'date_published', direction: 'desc' }],
       maxRecords: 14,
       view: 'Grid view',
     }).all().then((records) => {
