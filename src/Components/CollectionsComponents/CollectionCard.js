@@ -41,17 +41,17 @@ export default function Collection({
 
         {isCollectionPageHeader
           ? (
-            <div className="collection-text-wrapper">
+            <div className="card-text-wrapper">
               <p style={{
-                fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '20px', textAlign: 'start', margin: isSlideActive ? '0.65em 0 1em 0' : '1.5em 0 0.5em 0',
+                fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '1.25em', textAlign: 'start', margin: isSlideActive ? '0em 0 0.75em 0' : '0em 0 0.35em 0',
               }}
               >
-                Stories from
+                Stories From
               </p>
               <p
                 className="card-title"
                 style={{
-                  fontSize: '1.55rem',
+                  fontSize: '1.75rem',
                   position: isSlideActive ? 'relative' : 'static',
                   bottom: isSlideActive ? '10px' : '0px',
                 }}
@@ -61,11 +61,12 @@ export default function Collection({
             </div>
           )
           : (
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <p
                 className="card-title"
                 style={{
                   fontSize: '1.05rem',
+                  flex: '0 0 100%',
                 }}
               >
                 {bigLine}

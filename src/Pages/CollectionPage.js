@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
-import PrevArrow from '../Assets/Images/electric-boogaloo-previous-arrow.svg';
-import NextArrow from '../Assets/Images/electric-boogaloo-next-arrow.svg';
+import PrevArrow from '../Assets/Images/left-arrow-author-page.svg';
+import NextArrow from '../Assets/Images/right-arrow-author-page.svg';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -63,8 +63,8 @@ function CollectionPage() {
           widthPercent={100}
           spaceBetweenEntries={40}
           swiperHeight={150}
-          cardImageHeightPercent={90}
-          cardImageWidthPercent={90}
+          cardImageHeightPercent={55}
+          cardImageWidthPercent={55}
           cardFontSize={100}
           centeredSlides
           shouldLoop

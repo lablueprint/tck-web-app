@@ -85,6 +85,11 @@ function CollectionsCarousel({
         onSwiper={setSwiper}
         breakpoints={isCollectionPageHeader ? {
           320: {
+            slidesPerView: 2,
+            spaceBetween: spaceBetweenEntries,
+            slidesPerGroup: 1,
+          },
+          990: {
             slidesPerView: slidesAtATime,
             spaceBetween: spaceBetweenEntries,
             slidesPerGroup: 1,
