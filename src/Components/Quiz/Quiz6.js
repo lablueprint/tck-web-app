@@ -19,7 +19,6 @@ export default function Quiz6({
       });
     }
   }
-  console.log(bookFilters);
   return (
     <div>
       <Box sx={{ padding: 15 }}>

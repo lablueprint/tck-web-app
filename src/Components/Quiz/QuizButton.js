@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 export default function QuizButton({
   buttonCaption, onClick, desiredArray, desiredLabel,
 }) {
-  console.log(desiredArray);
   return (
     <div
       style={{

@@ -72,7 +72,7 @@ function App() {
     }
     localStorage.setItem('lastLocation', location.pathname);
   }, [location]);
-  console.log(bookFilters);
+
   return (
     <div className="App">
       <Header />

@@ -32,7 +32,6 @@ export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
     } else {
       setBookFilters((prevValue) => {
         const index = prevValue['race/ethnicity'].indexOf(name);
-        console.log(index);
         prevValue['race/ethnicity'].splice(index, 1);
         return { ...prevValue, 'race/ethnicity': prevValue['race/ethnicity'] };
       });
@@ -41,7 +40,7 @@ export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
 
   useEffect(getFilters, []);
   return (
-    <div style={{ background: '#E5E5E5', margin: '0', height: '100%' }}>
+    <div>
       <h1>
         {slideCaption}
       </h1>

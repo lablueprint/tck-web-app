@@ -94,44 +94,85 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   if (isParent && count === 2) {
     setIsChild(isChild);
     return (
-      <div>
+      <Card sx={{
+        borderRadius: 5,
+        margin: 4,
+        boxShadow: 5,
+        marginRight: 15,
+        marginLeft: 15,
+        paddingBottom: 5,
+        paddingTop: 15,
+      }}
+      >
         <Quiz2Adult
           parentCallback02A={callback02A}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-        />
-        <Button
-          disabled={isDisabled02A}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            {' '}
+            <ArrowBackIcon />
+            {' '}
+
+          </Button>
+          <ProgressAndArrows
+            progress={17}
+            sx={{ flex: '0 1 60%' }}
+          />
+          <Button
+            disabled={isDisabled02A}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+
+        </div>
+      </Card>
 
     );
   }
   if (isParent && count === 3) {
     setIsChild(isChild);
     return (
-      <div>
+      <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3 bookFilters={bookFilters} slideCaption="Which races/ethnicities do you want to see represented?" setBookFilters={setBookFilters} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={29} />
-        <Button
-          disabled={issDisabled(bookFilters['race/ethnicity'])}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={29} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={issDisabled(bookFilters['race/ethnicity'])}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+
+        </div>
       </div>
 
     );
@@ -142,18 +183,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={80} />
-        <Button
-          disabled={issDisabled(bookFilters.genre)}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={issDisabled(bookFilters.genre)}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
 
     );
@@ -164,18 +217,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz6 bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={80} />
-        <Button
-          disabled={issDisabled(bookFilters.genre)}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={issDisabled(bookFilters.genre)}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
 
     );
@@ -185,23 +250,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz8Adult bookFilters={bookFilters} setBookFilters={setBookFilters} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={85} />
-        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
           <Button
-            disabled={issDisabled(bookFilters.book_type)}
             variant="contained"
-            onClick={() => dispatch({ type: 'parent' })}
-            sx={{ background: '#F99E16' }}
+            onClick={() => dispatch({ type: 'parent back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
           >
-            Your Results
-            <ArrowForwardIcon />
+            <ArrowBackIcon />
+
           </Button>
-        </NavLink>
+          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+            <Button
+              disabled={issDisabled(bookFilters.book_type)}
+              variant="contained"
+              onClick={() => dispatch({ type: 'parent' })}
+              sx={{ background: '#F99E16' }}
+              endIcon={<ArrowForwardIcon />}
+            >
+              Your Results
+            </Button>
+          </NavLink>
+        </div>
       </div>
 
     );
@@ -209,44 +281,81 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   if (isChild && count === 2) {
     setIsChild(isChild);
     return (
-      <div>
+      <Card sx={{
+        borderRadius: 5,
+        margin: 4,
+        boxShadow: 5,
+        marginRight: 15,
+        marginLeft: 15,
+        paddingBottom: 5,
+        paddingTop: 15,
+      }}
+      >
         <Quiz2Kid
           parentCallback02K={callback02K}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <Button
-          disabled={isDisabled02K}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows
+            progress={17}
+            sx={{ flex: '0 1 60%' }}
+          />
+          <Button
+            disabled={isDisabled02K}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
+      </Card>
 
     );
   }
   if (isChild && count === 3) {
     setIsChild(isChild);
     return (
-      <div>
+      <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3 bookFilters={bookFilters} setBookFilters={setBookFilters} slideCaption="Which of these races are you interested in reading about?" />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={29} />
-        <Button
-          disabled={issDisabled(bookFilters['race/ethnicity'])}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={29} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={issDisabled(bookFilters['race/ethnicity'])}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
     );
   }
@@ -257,18 +366,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         <Quiz4Kid
           setSilly={increment}
         />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={41} />
-        <Button
-          disabled={sillyNotSet()}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={41} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={sillyNotSet()}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
 
     );
@@ -338,24 +459,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz6Kid bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={85} />
-        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
           <Button
-            disabled={issDisabled(bookFilters.genre)}
             variant="contained"
-            onClick={() => dispatch({ type: 'child' })}
-            sx={{ background: '#F99E16' }}
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
           >
-            Your Results
-            <ArrowForwardIcon />
-          </Button>
-        </NavLink>
+            <ArrowBackIcon />
 
+          </Button>
+          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+            <Button
+              disabled={issDisabled(bookFilters.genre)}
+              variant="contained"
+              onClick={() => dispatch({ type: 'child' })}
+              sx={{ background: '#F99E16' }}
+              endIcon={<ArrowForwardIcon />}
+            >
+              Your Results
+            </Button>
+          </NavLink>
+        </div>
       </div>
 
     );
@@ -367,36 +494,47 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={85} />
-        {((isChild && count === 6 && illusion[0] == 1)
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          {((isChild && count === 6 && illusion[0] == 1)
         || (isChild && count === 5 && sillyLevel[0] == 1))
-          ? (
-            <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+            ? (
+              <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+                <Button
+                  disabled={issDisabled(bookFilters.genre)}
+                  variant="contained"
+                  onClick={() => dispatch({ type: 'parent' })}
+                  sx={{ background: '#F99E16' }}
+                  endIcon={<ArrowForwardIcon />}
+                >
+                  Your Results
+                </Button>
+              </NavLink>
+            )
+            : (
               <Button
                 disabled={issDisabled(bookFilters.genre)}
                 variant="contained"
                 onClick={() => dispatch({ type: 'parent' })}
-                sx={{ background: '#F99E16' }}
+                sx={{
+                  background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                }}
               >
-                Your Results
                 <ArrowForwardIcon />
-              </Button>
-            </NavLink>
-          )
-          : (
-            <Button
-              disabled={issDisabled(bookFilters.genre)}
-              startIcon={<ArrowForwardIcon />}
-              variant="contained"
-              onClick={() => dispatch({ type: 'parent' })}
-            />
-          )}
 
+              </Button>
+            )}
+        </div>
       </div>
 
     );
@@ -406,20 +544,32 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   || (isChild && count === 5 && sillyLevel[0] == 4)) {
     setIsChild(isChild);
     return (
-      <div>
+      <div style={{ background: '#FAFAFA' }}>
         <Quiz5 setIllusions={changeIllusion} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" progress={65} />
-        <Button
-          disabled={isIllusionDisabled()}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" progress={65} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={isIllusionDisabled()}
+            variant="contained"
+            onClick={() => dispatch({ type: 'child' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
 
     );
@@ -429,18 +579,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-        />
-        <ProgressAndArrows variant="determinate" value={85} />
-        <Button
-          disabled={issDisabled(bookFilters.genre)}
-          startIcon={<ArrowForwardIcon />}
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent' })}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <Button
+            variant="contained"
+            onClick={() => dispatch({ type: 'child back' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowBackIcon />
+
+          </Button>
+          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled={issDisabled(bookFilters.genre)}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+
+          </Button>
+        </div>
       </div>
 
     );
@@ -471,7 +633,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
           </div>
           <div>
             <Box sx={{ flexGrow: 1 }}>
-              <ProgressAndArrows variant="determinate" progress={0} />
+              <ProgressAndArrows variant="determinate" progress={0} sx={{ flex: '0 1 60%' }} />
               <Button
                 startIcon={<ArrowForwardIcon />}
                 variant="contained"
@@ -485,7 +647,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
   }
 
   return (
-    <div style={{ background: '#E5E5E5', height: '100%' }}>
+    <div style={{ background: '#FAFAFA', height: '100%' }}>
       <div>
         <h2 style={{
           fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em',

@@ -16,7 +16,7 @@ export default function Quiz5({ setIllusions }) {
   };
   return (
     <div>
-      <Box sx={{ padding: 15, background: '#FAFAFA' }}>
+      <Box sx={{ padding: 15 }}>
         <h1>
           What do you see in the picture below?
         </h1>

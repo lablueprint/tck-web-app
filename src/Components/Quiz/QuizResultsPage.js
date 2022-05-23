@@ -52,8 +52,6 @@ function ResultsPage({ bookFilters, isChild }) {
           title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
           id: element.id,
         })));
-        console.log('recList: ', recList);
-        console.log(bookFilters);
       }
     };
     getBooksLikeThis();

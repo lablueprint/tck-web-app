@@ -1,10 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import {
-  Card, Grid,
-} from '@mui/material';
+import { Grid } from '@mui/material';
 import GradeSlider from './GradeSlider';
-import ProgressAndArrows from './ProgressAndArrows';
 
 export default function Quiz2Kid({ parentCallback02K, bookFilters, setBookFilters }) {
   const callback = (min, max) => {
@@ -16,28 +13,14 @@ export default function Quiz2Kid({ parentCallback02K, bookFilters, setBookFilter
   };
 
   return (
-    <Card sx={{
-      borderRadius: 5,
-      margin: 4,
-      boxShadow: 5,
-      marginRight: 15,
-      marginLeft: 15,
-      paddingBottom: 5,
-      paddingTop: 15,
-    }}
-    >
-      <div style={{ paddingBottom: 200 }}>
-        <h1>
-          What grade levels are you comfortable reading at?
-        </h1>
-        <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
-          <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
-        </Grid>
-      </div>
-      <ProgressAndArrows
-        progress={17}
-      />
-    </Card>
+    <div style={{ paddingBottom: 200 }}>
+      <h1>
+        What grade levels are you comfortable reading at?
+      </h1>
+      <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
+        <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
+      </Grid>
+    </div>
   );
 }
 Quiz2Kid.defaultProps = {
