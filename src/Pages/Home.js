@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
@@ -159,8 +160,8 @@ function Home() {
           spacing={3}
           alignSelf="center"
         >
-          <Button sx={styles.buttonStack} variant="contained">Take The Quiz</Button>
-          <Button sx={styles.buttonStack} variant="contained">Start Your Search</Button>
+          <Button component={NavLink} to="/quiz" sx={styles.buttonStack} variant="contained">Take The Quiz</Button>
+          <Button component={NavLink} to="/browser" sx={styles.buttonStack} variant="contained">Start Your Search</Button>
         </Stack>
       </div>
       {newReleases && (
