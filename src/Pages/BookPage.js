@@ -295,16 +295,16 @@ function BookPage() {
         ) }
       </Paper>
       {book && (
-      <BooksLikeThis
-        bookId={book.id}
-        minAge={ageMin}
-        maxAge={ageMax}
-        minGrade={gradeMin}
-        maxGrade={gradeMax}
-        raceEthnicity={raceEthnicity}
-        genre={genre}
-        bookType={bookType}
-      />
+        <BooksLikeThis
+          bookId={book.id}
+          minAge={ageMin}
+          maxAge={ageMax}
+          minGrade={gradeMin}
+          maxGrade={gradeMax}
+          raceEthnicity={raceEthnicity}
+          genre={genre}
+          bookType={bookType}
+        />
       )}
     </>
   );
