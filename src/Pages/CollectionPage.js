@@ -47,7 +47,7 @@ function CollectionPage() {
     getCollections();
   }, []);
   return (
-    <div>
+    <div style={{ margin: '0 6em 0 6em' }}>
       <p style={{
         color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '3em 0 2em 8em',
       }}
@@ -57,7 +57,7 @@ function CollectionPage() {
       {collecID !== null && collecID !== 'init' && collections !== null ? (
         <CollectionsCarousel
           elementArray={collections}
-          slidesAtATime={3.25}
+          slidesAtATime={3.5}
           prevArrow={PrevArrow}
           nextArrow={NextArrow}
           widthPercent={100}

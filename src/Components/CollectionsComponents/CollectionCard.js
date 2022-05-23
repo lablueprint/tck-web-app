@@ -19,21 +19,23 @@ export default function Collection({
       style={{ background: color, justifyContent: 'start' }}
     >
 
-      <div className="card-description-wrapper">
-        <p className="card-description">
-          {isSlideActive && 'Currently Viewing'}
-        </p>
-      </div>
+      { isCollectionPageHeader ? (
+        <div className="card-description-wrapper" style={{ background: isSlideActive ? 'rgba(255, 255, 255, 0.25)' : color, marginBottom: bigLine.length > 40 && isCollectionPageHeader ? '0' : '1.5em' }}>
+          <p className="card-description" style={{ color: isSlideActive ? '#FAFAFA' : color }}>
+            Currently Viewing
+          </p>
+        </div>
+      ) : (<div style={{ marginTop: '3em' }} />)}
 
-      <div className="collection-card">
+      <div className="collection-card" style={{ columnGap: isCollectionPageHeader ? '15px' : '3px' }}>
         <div className="collection-image-container">
           <img
             src={image}
             style={{
               maxWidth: `${imageWidthPercent}%`,
               maxHeight: `${imageHeightPercent}%`,
-              position: isSlideActive ? 'relative' : 'static',
-              bottom: isSlideActive ? '10px' : '0px',
+              position: 'relative',
+              bottom: isCollectionPageHeader ? '10px' : '25px',
             }}
             alt="description"
           />
@@ -43,7 +45,7 @@ export default function Collection({
           ? (
             <div className="card-text-wrapper">
               <p style={{
-                fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '1.25em', textAlign: 'start', margin: isSlideActive ? '0em 0 0.75em 0' : '0em 0 0.35em 0',
+                fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '1em', textAlign: 'start', margin: '0em 0 0.75em 0',
               }}
               >
                 Stories From
@@ -51,9 +53,11 @@ export default function Collection({
               <p
                 className="card-title"
                 style={{
-                  fontSize: '1.75rem',
-                  position: isSlideActive ? 'relative' : 'static',
-                  bottom: isSlideActive ? '10px' : '0px',
+                  fontSize: `${1.55 - ((bigLine.length / 22) / 10.0)}em`,
+                  overflowWrap: 'break-word',
+                  position: 'relative',
+                  bottom: '10px',
+                  width: '100%',
                 }}
               >
                 {bigLine}
@@ -61,12 +65,20 @@ export default function Collection({
             </div>
           )
           : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{
+              display: 'flex', justifyContent: 'center', alignItems: 'center', width: '70%', flex: '0 0 70%', marginRight: '15px',
+            }}
+            >
               <p
-                className="card-title"
                 style={{
-                  fontSize: '1.05rem',
-                  flex: '0 0 100%',
+                  fontSize: `${1.3 - ((bigLine.length / 17) / 10.0)}em`,
+                  fontFamily: 'Work Sans',
+                  fontWeight: 'bold',
+                  textAlign: 'left',
+                  overflowWrap: 'break-word',
+                  minWidth: '0',
+                  position: 'relative',
+                  bottom: '25px',
                 }}
               >
                 {bigLine}

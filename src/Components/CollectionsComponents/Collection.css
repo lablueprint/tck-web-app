@@ -7,7 +7,7 @@
 #collection-card-wrapper{
   height: 100%;
   border-radius: 10px;
-  display: flex;
+  display: inline-flex;
   flex-direction:column;
  justify-content: center;
   color: white;
@@ -18,10 +18,11 @@
   display:flex;
   flex-direction: row;
   text-align: center;
-  width:inherit;
+  width:100%;
   justify-content: center;
-  height:100%;
-  column-gap:15px
+  min-height:0;
+  min-width:0;
+
   /* align-items:center; */
 }
 
@@ -31,16 +32,18 @@
   align-items: center;
   justify-content: end;
   height: 100%;
+  min-width:0;
 }
 
 
 .card-text-wrapper{
     display: flex;
-    flex:1 0 75%;
+    flex:0 0 70%;
     flex-direction:column;
     align-items: start;
     justify-content: center;
-    width: 100%;
+    width: 70%;
+    margin-right:2em;
     height: 100%;
 }
 .card-title{
@@ -56,11 +59,10 @@
 .card-description-wrapper{
   display: flex;
   align-self: flex-end;
-  background-color: rgba(255, 255, 255, 0.25);
   border-radius:25px;
   margin-right:15px;
   margin-top:10px;
-  width:40%;
+  width:45%;
 }
 .card-description{
     color:#FAFAFA;
