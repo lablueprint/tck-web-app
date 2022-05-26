@@ -1,13 +1,7 @@
-/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import {
-//   Button,
-// } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 10,

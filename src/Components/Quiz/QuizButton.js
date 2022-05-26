@@ -14,7 +14,6 @@ export default function QuizButton({
       <Checkbox
         sx={{ position: 'relative', bottom: '35px' }}
         onChange={(event) => {
-          // setChecked((prevValue) => !prevValue);
           onClick(desiredLabel, event.target.checked);
         }}
         checked={desiredArray.indexOf(desiredLabel) > -1}
@@ -30,9 +29,7 @@ export default function QuizButton({
 }
 QuizButton.propTypes = {
   buttonCaption: PropTypes.string.isRequired,
-  // setChecked: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   desiredArray: PropTypes.arrayOf(PropTypes.string).isRequired,
   desiredLabel: PropTypes.string.isRequired,
-  // imageSource: PropTypes.string.isRequired,
 };

@@ -33,9 +33,6 @@ export default function StartPage() {
             Take the Quiz
           </button>
         </NavLink>
-        {/* <Button component={Link} to="/quiz/questions" variant="contained">
-          Take the quiz
-        </Button> */}
       </Box>
     </div>
   );

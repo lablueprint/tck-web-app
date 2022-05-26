@@ -650,14 +650,29 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             </Box>
           </div>
           <div>
-            <Box sx={{ flexGrow: 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+              <NavLink to="/quiz">
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch({ type: 'child back' })}
+                  sx={{
+                    background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                  }}
+                >
+                  <ArrowBackIcon />
+                </Button>
+              </NavLink>
               <ProgressAndArrows variant="determinate" progress={0} sx={{ flex: '0 1 60%' }} />
               <Button
-                startIcon={<ArrowForwardIcon />}
                 variant="contained"
                 onClick={() => ((isParent) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }))}
-              />
-            </Box>
+                sx={{
+                  background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                }}
+              >
+                <ArrowForwardIcon />
+              </Button>
+            </div>
           </div>
         </Card>
       </div>
@@ -751,7 +766,30 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
         </Box>
       </div>
       <div>
-        <Box sx={{ flexGrow: 1 }} />
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+          <NavLink to="/quiz">
+            <Button
+              variant="contained"
+              onClick={() => dispatch({ type: 'child back' })}
+              sx={{
+                background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              }}
+            >
+              <ArrowBackIcon />
+            </Button>
+          </NavLink>
+          <ProgressAndArrows variant="determinate" progress={0} sx={{ flex: '0 1 60%' }} />
+          <Button
+            disabled
+            variant="contained"
+            onClick={() => ((isParent) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }))}
+            sx={{
+              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+            }}
+          >
+            <ArrowForwardIcon />
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import './QuizResultsPage.css';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
-// import BookCard from '../bookHub/BookCard';
 import RecFilter from '../Recommendations/BookRec';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
@@ -27,12 +26,6 @@ function ResultsPage({ bookFilters, isChild }) {
       myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  /* function getRecommendedBooks() {
-    base('Book').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setRecommendedBooks(records.filter((element) => sampleBookIDs.indexOf(element.id) > -1));
-      });
-  } */
   setTimeout(HandleClickToBottom, 2000);
   useEffect(() => {
     const getBooksLikeThis = async () => {
@@ -171,8 +164,6 @@ function ResultsPage({ bookFilters, isChild }) {
               spaceBetweenEntries={16}
             />
           </div>
-          {/* {!isChild && <img src={AdultCloudImage} style={{ position: 'relative',
-          bottom: '60px' }} alt="clouds enveloping the recommendations" />} */}
         </div>
         {!isChild && <img src={AdultCloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
       </div>
