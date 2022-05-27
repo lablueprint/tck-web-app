@@ -6,6 +6,8 @@ import {
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { v4 as uuidv4 } from 'uuid';
 import Logo from '../../Assets/Images/TCK SVG Logo.svg';
@@ -99,6 +101,14 @@ function LongMenu() {
 
 function Header() {
   const size = useWindowSize();
+  const tabValue = localStorage.getItem('tabValue');
+  const [value, setValue] = useState(tabValue !== undefined
+    && Number.isInteger(Number(tabValue)) ? Number(tabValue) : 0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    localStorage.setItem('tabValue', String(newValue));
+  };
   return (
     <nav className="header">
       <div className="header-container">
@@ -109,49 +119,168 @@ function Header() {
           <img src={Logo} className="logo" alt="The Conscious Kid logo" />
         </NavLink>
         {
-          size.width > 910 ? (
-            <ul className="nav-menu">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/browser"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Book Search
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/quiz"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Book Finder Quiz
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/collection/init"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Collections
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dictionary"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Terms to Know
-                </NavLink>
-              </li>
-            </ul>
+          size.width > 1000 ? (
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+              color="primary"
+              // selected
+              sx={{
+                '& .MuiTabs-indicator': {
+                  backgroundColor: '#393EBA',
+                },
+              }}
+            >
+              <NavLink
+                to="/"
+                className="nav-link"
+                style={{
+                  display: 'flex', alignItems: 'center', flex: '0 1 5%', padding: '0', width: '100%', justifyContent: 'center',
+                }}
+              >
+                <Tab
+                  label="Home"
+                  value={0}
+                  onChange={handleChange}
+                  sx={{
+                    textTransform: 'none',
+                    fontFamily: 'Work Sans',
+                    fontWeight: value === 0 ? 'bold' : 'normal',
+                    fontSize: '15px',
+                    color: value === 0 ? '#393EBA' : '#3f3f3f',
+                  }}
+                />
+
+              </NavLink>
+              <NavLink
+                to="/browser"
+                className="nav-link"
+                style={{
+                  display: 'flex', alignItems: 'center', flex: '1 0 15%', padding: '0', width: '100%', justifyContent: 'center',
+                }}
+              >
+                <Tab
+                  label="Book Search"
+                  value={1}
+                  onChange={handleChange}
+                  sx={{
+                    textTransform: 'none',
+                    fontFamily: 'Work Sans',
+                    fontWeight: value === 1 ? 'bold' : 'normal',
+                    fontSize: '15px',
+                    color: value === 1 ? '#393EBA' : '#3f3f3f',
+                  }}
+                />
+
+              </NavLink>
+              <NavLink
+                to="/quiz"
+                className="nav-link"
+                style={{
+                  display: 'flex', alignItems: 'center', flex: '1 0 20%', padding: '0', width: '100%', justifyContent: 'center',
+                }}
+              >
+                <Tab
+                  label="Book Finder Quiz"
+                  value={2}
+                  onChange={handleChange}
+                  sx={{
+                    textTransform: 'none',
+                    fontFamily: 'Work Sans',
+                    fontWeight: value === 2 ? 'bold' : 'normal',
+                    fontSize: '15px',
+                    color: value === 2 ? '#393EBA' : '#3f3f3f',
+                  }}
+                />
+
+              </NavLink>
+              <NavLink
+                to="/collection/init"
+                className="nav-link"
+                style={{
+                  display: 'flex', alignItems: 'center', flex: '0 1 5%', padding: '0', width: '100%', justifyContent: 'center',
+                }}
+              >
+                <Tab
+                  label="Collections"
+                  value={3}
+                  onChange={handleChange}
+                  sx={{
+                    textTransform: 'none',
+                    fontFamily: 'Work Sans',
+                    fontWeight: value === 3 ? 'bold' : 'normal',
+                    fontSize: '15px',
+                    color: value === 3 ? '#393EBA' : '#3f3f3f',
+                  }}
+                />
+
+              </NavLink>
+              <NavLink
+                to="/dictionary"
+                className="nav-link"
+                style={{
+                  display: 'flex', alignItems: 'center', flex: '1 0 15%', padding: '0', width: '100%', justifyContent: 'center',
+                }}
+              >
+                <Tab
+                  label="Terms to Know"
+                  value={4}
+                  onChange={handleChange}
+                  sx={{
+                    textTransform: 'none',
+                    fontFamily: 'Work Sans',
+                    fontWeight: value === 4 ? 'bold' : 'normal',
+                    fontSize: '15px',
+                    color: value === 4 ? '#393EBA' : '#3f3f3f',
+                  }}
+                />
+
+              </NavLink>
+            </Tabs>
+
+          // <ul className="nav-menu">
+          //   <li>
+          //     <NavLink
+          //       to="/"
+          //       className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+          //     >
+          //       Home
+          //     </NavLink>
+          //   </li>
+          //   <li>
+          //     <NavLink
+          //       to="/browser"
+          //       className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+          //     >
+          //       Book Search
+          //     </NavLink>
+          //   </li>
+          //   <li>
+          //     <NavLink
+          //       to="/quiz"
+          //       className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+          //     >
+          //       Book Finder Quiz
+          //     </NavLink>
+          //   </li>
+          //   <li>
+          //     <NavLink
+          //       to="/collection/init"
+          //       className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+          //     >
+          //       Collections
+          //     </NavLink>
+          //   </li>
+          //   <li>
+          //     <NavLink
+          //       to="/dictionary"
+          //       className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+          //     >
+          //       Terms to Know
+          //     </NavLink>
+          //   </li>
+          // </ul>
           )
             : (
               <LongMenu />
