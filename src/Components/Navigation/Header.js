@@ -129,6 +129,7 @@ function Header() {
               sx={{
                 '& .MuiTabs-indicator': {
                   backgroundColor: '#393EBA',
+                  height: '3.5px',
                 },
               }}
             >
@@ -149,6 +150,7 @@ function Header() {
                     fontWeight: value === 0 ? 'bold' : 'normal',
                     fontSize: '15px',
                     color: value === 0 ? '#393EBA' : '#3f3f3f',
+                    opacity: 1,
                   }}
                 />
 
@@ -170,6 +172,7 @@ function Header() {
                     fontWeight: value === 1 ? 'bold' : 'normal',
                     fontSize: '15px',
                     color: value === 1 ? '#393EBA' : '#3f3f3f',
+                    opacity: 1,
                   }}
                 />
 
@@ -191,6 +194,7 @@ function Header() {
                     fontWeight: value === 2 ? 'bold' : 'normal',
                     fontSize: '15px',
                     color: value === 2 ? '#393EBA' : '#3f3f3f',
+                    opacity: 1,
                   }}
                 />
 
@@ -212,6 +216,7 @@ function Header() {
                     fontWeight: value === 3 ? 'bold' : 'normal',
                     fontSize: '15px',
                     color: value === 3 ? '#393EBA' : '#3f3f3f',
+                    opacity: 1,
                   }}
                 />
 
@@ -233,6 +238,7 @@ function Header() {
                     fontWeight: value === 4 ? 'bold' : 'normal',
                     fontSize: '15px',
                     color: value === 4 ? '#393EBA' : '#3f3f3f',
+                    opacity: 1,
                   }}
                 />
 
