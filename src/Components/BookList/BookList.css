@@ -1,13 +1,15 @@
 .book-list {
-    align-items: center;
+    /* align-items: center; */
     width: 82vw;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .book-list-menus {
     display: flex;
     flex-direction: row;
     font-family: Work Sans;
+    justify-content: start;
+    column-gap: 1vw;
 }
 
 .book-list-pagination {

@@ -14,7 +14,6 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 
 function BooksInCollection({ authorId }) {
   const [books, setBooks] = useState([]);
-
   function FindPosts() {
     const id = authorId;
     base('Collection').find(id, (err, records) => {
@@ -41,7 +40,7 @@ function BooksInCollection({ authorId }) {
   }, [authorId]);
 
   return (
-    <div>
+    <div style={{ margin: '0' }}>
       <BookList books={books} />
     </div>
   );

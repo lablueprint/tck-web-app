@@ -9,7 +9,7 @@ const styles = {
   button: {
     textTransform: 'none',
     borderRadius: '10px',
-    margin: '2vh 0 1vh 1vw',
+    margin: '2vh 0 1vh 0',
     fontFamily: 'Work Sans',
     fontWeight: '600',
   },

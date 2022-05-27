@@ -3,7 +3,7 @@
     color:#444444;
     font-size: 2.6em;
     font-weight: 750;
-    margin: 1em 0em 0.5em 1em;
+    margin: 1em 0 0.2em 0;/*1em 0em 0.2em 1em;*/
     font-family: 'DM Sans';
     font-weight: bold;
     letter-spacing:-0.02em;
@@ -15,10 +15,10 @@
   text-align: left;
   color: #444444;
   font-size: 1rem;
-  margin: 0em 0em 1em 3em;
+  margin: 0 0 0.5em 0;/*0em 0em 0.5em 3em;*/
   font-family: 'DM Sans';
   font-weight: 'normal';
-  width:80%;
+  width:90%;
 }
 
 

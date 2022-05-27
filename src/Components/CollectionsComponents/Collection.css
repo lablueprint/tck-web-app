@@ -7,23 +7,15 @@
 #collection-card-wrapper{
   height: 100%;
   border-radius: 10px;
-  display: inline-flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction:row;
  justify-content: center;
   color: white;
   text-decoration: none;
-}
-
-.collection-card{
-  display:flex;
-  flex-direction: row;
   text-align: center;
-  width:100%;
-  justify-content: center;
   min-height:0;
   min-width:0;
-
-  /* align-items:center; */
+  align-items: center;
 }
 
 .collection-image-container{

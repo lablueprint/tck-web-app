@@ -53,7 +53,7 @@ export default function BookCard({
     <div
       className="card"
       style={{
-        margin: inCarousel ? '0' : '30px 16px 10px 16px',
+        margin: inCarousel ? '0' : '10px 16px 10px 16px',
       }}
     >
       <Link className="link" to={`/book/${id}`}>

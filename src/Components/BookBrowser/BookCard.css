@@ -11,7 +11,8 @@
     justify-content: center;
     background: none;
     flex-direction: column;
-    max-width: 10vw;
+    width: 160px;
+    min-width:160px;
     
 }
 
@@ -24,15 +25,15 @@
     justify-content:center;
 }
 
-.cover {
+/* .cover {
     grid-row-start: 1;
     height: 227.5px;
     font-size: 12px;
-}
+} */
 
-.content {
+/* .content {
     grid-row-start: 5;
-}
+} */
 
 .image {
     border-radius:10%;

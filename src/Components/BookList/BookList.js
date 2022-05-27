@@ -7,7 +7,7 @@ import {
 
 import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
-
+// import { useWindowSize } from '../Navigation/Header';
 import './BookList.css';
 
 // Sort functions for each sorting mode
@@ -105,6 +105,7 @@ function defaultNoResults() {
 function BookList({ books, NoResults }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(18);
+  // const size = useWindowSize();
 
   // Menu states
   const [sort, setSort] = useState(ALPHA);
@@ -123,7 +124,6 @@ function BookList({ books, NoResults }) {
   const indexOfLastBook = page * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
-
   const count = Math.ceil(books.length / booksPerPage);
 
   const handleSort = (sortBy) => {
@@ -146,10 +146,14 @@ function BookList({ books, NoResults }) {
           options={sortOptions}
           value={sort}
           handleChange={handleSort}
+          style={{
+            fontFamily: 'Work Sans',
+            fontWeight: 'bold',
+          }}
         />
 
         <ListMenu
-          menuText="items per page"
+          menuText="Items Per Page"
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}

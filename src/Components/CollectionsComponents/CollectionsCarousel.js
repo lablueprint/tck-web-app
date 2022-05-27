@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import './CollectionsCarousel.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {
-  Navigation, A11y,
+  Navigation, A11y, EffectCoverflow,
 } from 'swiper';
 import { v4 as uuidv4 } from 'uuid';
 import CollectionCard from './CollectionCard';
@@ -75,72 +75,158 @@ function CollectionsCarousel({
 
         </button>
       </div>
-      <Swiper
-        style={{ zIndex: '0', width: '90%' }}
-        ref={swiperRef}
-        loop={shouldLoop}
-        centeredSlides={centeredSlides}
-        centerInsufficientSlides
-        on="true"
-        onSwiper={setSwiper}
-        breakpoints={isCollectionPageHeader ? {
-          320: {
-            slidesPerView: 2,
-            spaceBetween: spaceBetweenEntries,
-            slidesPerGroup: 1,
-          },
-          990: {
-            slidesPerView: slidesAtATime,
-            spaceBetween: spaceBetweenEntries,
-            slidesPerGroup: 1,
-          },
-        } : {
-          320: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            slidesPerGroup: isCollectionPageHeader ? 1 : 2,
-          },
-          // when window width is >= 480px
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            slidesPerGroup: isCollectionPageHeader ? 1 : 3,
-          },
-          // when window width is >= 640px
-          1024: {
-            slidesPerView: slidesAtATime,
-            spaceBetween: spaceBetweenEntries,
-            slidesPerGroup: slidesAtATime,
-          },
-        }}
-        direction="horizontal"
-        navigation={{
-          prevEl: navigationPrevRef.current,
-          nextEl: navigationNextRef.current,
-        }}
-        onSlideChangeTransitionEnd={isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange}
-        modules={[Navigation, A11y]}
-      >
-        {elementArray.map((element) => {
-          activeSlideIndex += 1;
-          return (
-            <SwiperSlide key={uuidv4()}>
-              <CollectionCard
-                collectionId={element.id}
-                bigLine={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
-                imageHeightPercent={cardImageHeightPercent}
-                imageWidthPercent={cardImageWidthPercent}
-                isCollectionPageHeader={isCollectionPageHeader}
-                isSlideActive={element.id === activeSlideId}
-                color={collectionCardColors[activeSlideIndex
-                      % collectionCardColors.length].backgroundColor}
-                image={collectionCardColors[activeSlideIndex
-                  % collectionCardColors.length].icon}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {isCollectionPageHeader
+        ? (
+          <Swiper
+            style={{ zIndex: '0', width: '90%' }}
+            ref={swiperRef}
+            loop={shouldLoop}
+            centeredSlides={centeredSlides}
+            centerInsufficientSlides
+            on="true"
+            onSwiper={setSwiper}
+            breakpoints={isCollectionPageHeader ? {
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                slidesPerGroup: 1,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: 1,
+              },
+              990: {
+                slidesPerView: slidesAtATime,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: 1,
+              },
+            } : {
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+                slidesPerGroup: isCollectionPageHeader ? 1 : 2,
+              },
+              // when window width is >= 480px
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: isCollectionPageHeader ? 1 : 3,
+              },
+              // when window width is >= 640px
+              1024: {
+                slidesPerView: slidesAtATime,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: slidesAtATime,
+              },
+            }}
+            direction="horizontal"
+            navigation={{
+              prevEl: navigationPrevRef.current,
+              nextEl: navigationNextRef.current,
+            }}
+            coverflowEffect={{
+              rotate: 40,
+              slideShadows: false,
+            }}
+            effect="coverflow"
+            onSlideChangeTransitionEnd={
+              isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange
+            }
+            modules={[Navigation, A11y, EffectCoverflow]}
+          >
+            {elementArray.map((element) => {
+              activeSlideIndex += 1;
+              return (
+                <SwiperSlide key={uuidv4()}>
+                  <CollectionCard
+                    collectionId={element.id}
+                    bigLine={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
+                    imageHeightPercent={cardImageHeightPercent}
+                    imageWidthPercent={cardImageWidthPercent}
+                    isCollectionPageHeader={isCollectionPageHeader}
+                    isSlideActive={element.id === activeSlideId}
+                    color={collectionCardColors[activeSlideIndex
+                     % collectionCardColors.length].backgroundColor}
+                    image={collectionCardColors[activeSlideIndex
+                 % collectionCardColors.length].icon}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )
+        : (
+          <Swiper
+            style={{ zIndex: '0', width: '90%' }}
+            ref={swiperRef}
+            loop={shouldLoop}
+            centeredSlides={centeredSlides}
+            centerInsufficientSlides
+            on="true"
+            onSwiper={setSwiper}
+            breakpoints={isCollectionPageHeader ? {
+              320: {
+                slidesPerView: 2,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: 1,
+              },
+              990: {
+                slidesPerView: slidesAtATime,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: 1,
+              },
+            } : {
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+                slidesPerGroup: isCollectionPageHeader ? 1 : 2,
+              },
+              // when window width is >= 480px
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: isCollectionPageHeader ? 1 : 3,
+              },
+              // when window width is >= 640px
+              1024: {
+                slidesPerView: slidesAtATime,
+                spaceBetween: spaceBetweenEntries,
+                slidesPerGroup: slidesAtATime,
+              },
+            }}
+            direction="horizontal"
+            navigation={{
+              prevEl: navigationPrevRef.current,
+              nextEl: navigationNextRef.current,
+            }}
+            onSlideChangeTransitionEnd={
+              isCollectionPageHeader ? OnSlideChange : defaultOnSlideChange
+            }
+            modules={[Navigation, A11y]}
+          >
+            {elementArray.map((element) => {
+              activeSlideIndex += 1;
+              return (
+                <SwiperSlide key={uuidv4()}>
+                  <CollectionCard
+                    collectionId={element.id}
+                    bigLine={element.fields.name !== undefined ? element.fields.name : 'MISSING TITLE'}
+                    imageHeightPercent={cardImageHeightPercent}
+                    imageWidthPercent={cardImageWidthPercent}
+                    isCollectionPageHeader={isCollectionPageHeader}
+                    isSlideActive={element.id === activeSlideId}
+                    color={collectionCardColors[activeSlideIndex
+                   % collectionCardColors.length].backgroundColor}
+                    image={collectionCardColors[activeSlideIndex
+               % collectionCardColors.length].icon}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )}
+
       <div
         className="carousel-button-next"
       >

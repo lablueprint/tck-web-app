@@ -5,6 +5,7 @@ import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/left-arrow-author-page.svg';
 import NextArrow from '../Assets/Images/right-arrow-author-page.svg';
+import { useWindowSize } from '../Components/Navigation/Header';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -21,6 +22,7 @@ function CollectionPage() {
   const params = useParams();
   const [collecID, setCollecID] = useState(null);
   const [collections, setCollections] = useState(null);
+  const size = useWindowSize();
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
@@ -47,9 +49,9 @@ function CollectionPage() {
     getCollections();
   }, []);
   return (
-    <div style={{ margin: '0 6em 0 6em' }}>
+    <div style={{ margin: size.width > 500 ? '0 6em 0 6em' : '0 1em 0 0' }}>
       <p style={{
-        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '3em 0 2em 8em',
+        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: size.width > 500 ? '3em 0 1em 7em' : '3em 0 1em 10vw',
       }}
       >
         Please select a collection
@@ -57,12 +59,12 @@ function CollectionPage() {
       {collecID !== null && collecID !== 'init' && collections !== null ? (
         <CollectionsCarousel
           elementArray={collections}
-          slidesAtATime={3.5}
+          slidesAtATime={3.15}
           prevArrow={PrevArrow}
           nextArrow={NextArrow}
           widthPercent={100}
-          spaceBetweenEntries={40}
-          swiperHeight={150}
+          spaceBetweenEntries={15}
+          swiperHeight={170}
           cardImageHeightPercent={55}
           cardImageWidthPercent={55}
           cardFontSize={100}
@@ -75,18 +77,21 @@ function CollectionPage() {
       )
         : <p>An error might have occurred or the content requested is too big in size</p>}
 
-      { CollectionDetails !== null && CollectionDetails !== undefined
-        ? (
-          <CollectionInfo
-            name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
-            description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
-            picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
-          />
-        ) : <p>No such collection found!</p> }
-      { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
-        ? (
-          <BooksInCollection authorId={collecID} />
-        ) : <p>No such collection found!</p> }
+      <div style={{ margin: '0 0 0 3em' }}>
+        { CollectionDetails !== null && CollectionDetails !== undefined
+          ? (
+            <CollectionInfo
+              name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
+              description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
+              picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
+            />
+          ) : <p>No such collection found!</p> }
+        { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
+          ? (
+            <BooksInCollection authorId={collecID} />
+          ) : <p>No such collection found!</p> }
+
+      </div>
     </div>
   );
 }

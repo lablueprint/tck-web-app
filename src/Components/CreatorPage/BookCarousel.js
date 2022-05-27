@@ -47,6 +47,12 @@ function Carousel({
         centerInsufficientSlides
         breakpoints={{
           320: {
+            slidesPerView: 1,
+          },
+          420: {
+            slidesPerView: 2,
+          },
+          570: {
             slidesPerView: 3,
             spaceBetween: 20,
           },
