@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MenuIcon from '@mui/icons-material/Menu';
 import { v4 as uuidv4 } from 'uuid';
 import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
@@ -64,7 +64,7 @@ function LongMenu() {
         id="long-button"
         onClick={handleClick}
       >
-        <MoreVertIcon />
+        <MenuIcon sx={{ height: '40px', width: '40px' }} />
       </IconButton>
       <Menu
         id="long-menu"
