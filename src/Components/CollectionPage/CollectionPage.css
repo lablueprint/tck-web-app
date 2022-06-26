@@ -8,30 +8,28 @@
     font-weight: 'bold'
   }
   
-  .collection-paragraph {
-    text-align: left;
-    color: #333333;
-    font-size: 1.2rem;
-    margin: 0em 0em 1em 4em;
-    font-family: 'DM Sans';
-    font-weight: 'normal'
-  }
+.collection-paragraph {
+  text-align: left;
+  color: #333333;
+  font-size: 1.2rem;
+  margin: 0em 0em 1em 4em;
+  font-family: 'DM Sans';
+  font-weight: 'normal'
+}
 
-  
-  .sub-header {
-   
-    font-size: 30px;
-    font-weight: 550;
-   
-  }
 
-  .collection-card-image{
-    width:10%;
-    height:10%;
-    align:center;
-  }
+.sub-header {
+  font-size: 30px;
+  font-weight: 550;
+}
 
-  .collection-page-wrapper{
-    margin: 4em 3em 0em 3em;
-  }
+.collection-card-image{
+  width:10%;
+  height:10%;
+  align:center;
+}
+
+.collection-page-wrapper{
+  margin: 4em 3em 0em 3em;
+}
   

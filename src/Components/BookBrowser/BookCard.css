@@ -11,6 +11,7 @@
     justify-content: center;
     background: none;
     flex-direction: column;
+    max-width: 10vw;
     
 }
 
@@ -37,8 +38,6 @@
     border-radius:10%;
     max-width:100%;
     max-height:100%;
-
-
 }
 
 

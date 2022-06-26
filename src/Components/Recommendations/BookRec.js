@@ -1,4 +1,4 @@
-import gradeList from '../../Constants';
+import { gradeRangeMetadata } from '../../Constants';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -19,6 +19,7 @@ export default function RecFilter(
   maxGrade,
   raceEthnicity,
   genre,
+  bookType,
 ) {
   const filter = () => new Promise((resolve, reject) => {
     const prioMap = new Map();
@@ -30,10 +31,12 @@ export default function RecFilter(
         // do not check with the identical book
         if (bookId !== record.get('id')) {
           let priority = 0;
-          const minGradeIndex = gradeList.indexOf(minGrade, 0);
-          const maxGradeIndex = gradeList.indexOf(maxGrade, 0);
-          const minGradeIndexRecord = gradeList.indexOf(record.fields.grade_min, 0);
-          const maxGradeIndexRecord = gradeList.indexOf(record.fields.grade_max, 0);
+          const minGradeIndex = gradeRangeMetadata.indexOf(minGrade, 0);
+          const maxGradeIndex = gradeRangeMetadata.indexOf(maxGrade, 0);
+          const minGradeIndexRecord = gradeRangeMetadata.indexOf(record.fields.grade_min, 0);
+          const maxGradeIndexRecord = gradeRangeMetadata.indexOf(record.fields.grade_max, 0);
+
+          // note: in the future we should add error-checking for bad age/grade input!
 
           // Matching age range gives 2 points
           if ((minAge <= record.fields.age_max) && (maxAge >= record.fields.age_min)) {
@@ -60,6 +63,13 @@ export default function RecFilter(
               if (record.fields.genre.includes(genre[i])) {
                 priority += 1;
               }
+            }
+          }
+
+          // Matching book_type gives 1 point each
+          if (bookType && record.fields.book_type) {
+            if (bookType === record.fields.book_type) {
+              priority += 1;
             }
           }
 

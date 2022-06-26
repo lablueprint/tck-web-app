@@ -26,10 +26,16 @@ function Footer() {
           Home
         </NavLink>
         <NavLink
-          to="/browse"
+          to="/browser"
           className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
-          Book Browser
+          Book Search
+        </NavLink>
+        <NavLink
+          to="/quiz"
+          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
+        >
+          Book Finder Quiz
         </NavLink>
         <NavLink
           to="/collection/init"
@@ -38,16 +44,10 @@ function Footer() {
           Collections
         </NavLink>
         <NavLink
-          to="/quiz"
-          className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
-        >
-          Book Recommendation Quiz
-        </NavLink>
-        <NavLink
           to="/dictionary"
           className={({ isActive }) => (isActive ? 'menu-options-active follow-us-text-size' : 'menu-options follow-us-text-size')}
         >
-          Racial Literacy Dictionary
+          Terms to Know
         </NavLink>
       </div>
       <div className="resources-wrapper">
