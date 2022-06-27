@@ -25,7 +25,7 @@ export default function Quiz6({
         <h1>
           {title}
         </h1>
-        <h3>You can choose more than one.</h3>
+        <p>You can choose more than one.</p>
 
         {bookFilters.genre !== undefined && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>

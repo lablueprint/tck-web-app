@@ -26,7 +26,20 @@ export default function StartPage() {
         <NavLink to="/quiz/questions">
           <button
             style={{
-              background: '#393EBA', borderRadius: '0.6em', letterSpacing: '0.02em', color: 'white', fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '1.3em', width: '234px', height: '67px', border: 'None',
+              background: '#393EBA',
+              borderRadius: '0.6em',
+              letterSpacing: '0.02em',
+              color: 'white',
+              fontFamily: 'Work Sans',
+              fontWeight: 'bold',
+              fontSize: '1.3em',
+              width: '234px',
+              height: '67px',
+              border: 'None',
+              '&.MuiButtonBase-root:hover': {
+                background: 'white',
+                color: '#393EBA',
+              },
             }}
             type="button"
           >

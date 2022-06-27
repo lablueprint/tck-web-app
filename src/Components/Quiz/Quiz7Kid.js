@@ -23,7 +23,7 @@ export default function Quiz7Kid({ setBookFilters, bookFilters }) {
         <h1>
           Which of the following seem fun to you?
         </h1>
-        <h3>You can choose more than one.</h3>
+        <p>You can choose more than one.</p>
         {bookFilters.genre !== undefined
         && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>

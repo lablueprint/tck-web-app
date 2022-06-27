@@ -24,7 +24,7 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
         <h1>
           Please select your preferred book formats
         </h1>
-        <h3>These will be used to rank your results but availability is not guaranteed!</h3>
+        <p>These will be used to rank your results but availability is not guaranteed!</p>
         {bookFilters.book_type !== undefined
         && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>

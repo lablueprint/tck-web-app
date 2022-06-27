@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import {
@@ -77,15 +77,15 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
     illusion[1](value);
   };
   const isIllusionDisabled = () => (!(illusion[0]));
-  const [isDisabled02A, setIsDisabled02A] = useState(true);
-  const [isDisabled02K, setisDisabled02K] = useState(true);
+  // const [isDisabled02A, setIsDisabled02A] = useState(true);
+  // const [isDisabled02K, setisDisabled02K] = useState(true);
 
-  const callback02A = (isDisabledFromChild) => {
-    setIsDisabled02A(isDisabledFromChild);
-  };
-  const callback02K = (isDisabledFromChild) => {
-    setisDisabled02K(isDisabledFromChild);
-  };
+  // const callback02A = (isDisabledFromChild) => {
+  //   setIsDisabled02A(isDisabledFromChild);
+  // };
+  // const callback02K = (isDisabledFromChild) => {
+  //   setisDisabled02K(isDisabledFromChild);
+  // };
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
@@ -105,7 +105,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
       }}
       >
         <Quiz2Adult
-          parentCallback02A={callback02A}
+          // parentCallback02A={callback02A}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
@@ -114,7 +114,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             {' '}
@@ -127,11 +133,18 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             sx={{ flex: '0 1 60%' }}
           />
           <Button
-            disabled={isDisabled02A}
+            disabled={false}
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -153,7 +166,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -165,7 +185,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -188,7 +215,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -200,7 +234,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -222,7 +263,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -234,7 +282,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -255,7 +310,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -267,7 +329,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               disabled={issDisabled(bookFilters.book_type)}
               variant="contained"
               onClick={() => dispatch({ type: 'parent' })}
-              sx={{ background: '#F99E16' }}
+              sx={{
+                background: '#F99E16',
+                boxShadow: 'none',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#F99E16',
+                },
+              }}
               endIcon={<ArrowForwardIcon />}
             >
               Your Results
@@ -292,7 +360,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
       }}
       >
         <Quiz2Kid
-          parentCallback02K={callback02K}
+          // parentCallback02K={callback02K}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
@@ -301,7 +369,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -312,11 +387,18 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             sx={{ flex: '0 1 60%' }}
           />
           <Button
-            disabled={isDisabled02K}
+            // disabled={isDisabled02K}
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -337,7 +419,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -349,7 +438,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -371,7 +467,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -383,7 +486,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -409,7 +519,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -421,7 +538,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -442,7 +566,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -454,7 +585,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               disabled={issDisabled(bookFilters.genre)}
               variant="contained"
               onClick={() => dispatch({ type: 'child' })}
-              sx={{ background: '#F99E16' }}
+              sx={{
+                background: '#F99E16',
+                boxShadow: 'none',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#F99E16',
+                },
+              }}
               endIcon={<ArrowForwardIcon />}
             >
               Your Results
@@ -482,7 +619,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -494,7 +638,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               disabled={issDisabled(bookFilters.genre)}
               variant="contained"
               onClick={() => dispatch({ type: 'child' })}
-              sx={{ background: '#F99E16' }}
+              sx={{
+                background: '#F99E16',
+                boxShadow: 'none',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#F99E16',
+                },
+              }}
               endIcon={<ArrowForwardIcon />}
             >
               Your Results
@@ -517,7 +667,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -532,7 +689,13 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
                   disabled={issDisabled(bookFilters.genre)}
                   variant="contained"
                   onClick={() => dispatch({ type: 'parent' })}
-                  sx={{ background: '#F99E16' }}
+                  sx={{
+                    background: '#F99E16',
+                    boxShadow: 'none',
+                    '&.MuiButtonBase-root:hover': {
+                      bgcolor: '#F99E16',
+                    },
+                  }}
                   endIcon={<ArrowForwardIcon />}
                 >
                   Your Results
@@ -545,7 +708,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
                 variant="contained"
                 onClick={() => dispatch({ type: 'parent' })}
                 sx={{
-                  background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                  background: '#f79927',
+                  borderRadius: '50%',
+                  width: '60px',
+                  height: '60px',
+                  boxShadow: 'none',
+                  '&.MuiButtonBase-root:hover': {
+                    bgcolor: '#F99E16',
+                  },
                 }}
               >
                 <ArrowForwardIcon />
@@ -569,7 +739,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -581,7 +758,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -602,7 +786,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowBackIcon />
@@ -614,7 +805,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
@@ -639,13 +837,34 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             </h2>
             <Box>
               <Button className="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Parent} style={{ borderRadius: 0 }} />}>
-                <p>Parent</p>
+                <p
+                  className="button-text"
+                  style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+                  }}
+                >
+                  Parent
+                </p>
               </Button>
               <Button className="button" onClick={() => dispatch({ type: 'parent' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Educator} style={{ borderRadius: 0 }} />}>
-                <p>Educator</p>
+                <p
+                  className="button-text"
+                  style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+                  }}
+                >
+                  Educator
+                </p>
               </Button>
               <Button className="button" onClick={() => dispatch({ type: 'child' })} sx={{ m: 7 }} size="large" variant="outlined" startIcon={<Avatar sx={{ width: 100, height: 100 }} src={Child} style={{ borderRadius: 0 }} />}>
-                <p>Kid</p>
+                <p
+                  className="button-text"
+                  style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+                  }}
+                >
+                  Kid
+                </p>
               </Button>
             </Box>
           </div>
@@ -656,7 +875,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
                   variant="contained"
                   onClick={() => dispatch({ type: 'child back' })}
                   sx={{
-                    background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                    background: '#f79927',
+                    borderRadius: '50%',
+                    width: '60px',
+                    height: '60px',
+                    boxShadow: 'none',
+                    '&.MuiButtonBase-root:hover': {
+                      bgcolor: '#F99E16',
+                    },
                   }}
                 >
                   <ArrowBackIcon />
@@ -667,7 +893,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
                 variant="contained"
                 onClick={() => ((isParent) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }))}
                 sx={{
-                  background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                  background: '#f79927',
+                  borderRadius: '50%',
+                  width: '60px',
+                  height: '60px',
+                  boxShadow: 'none',
+                  '&.MuiButtonBase-root:hover': {
+                    bgcolor: '#F99E16',
+                  },
                 }}
               >
                 <ArrowForwardIcon />
@@ -711,7 +944,12 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               />
             )}
           >
-            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>
+            <p
+              className="button-text"
+              style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+              }}
+            >
               Parent
             </p>
           </Button>
@@ -737,7 +975,15 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               />
             )}
           >
-            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>Educator</p>
+            <p
+              className="button-text"
+              style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+              }}
+            >
+              Educator
+
+            </p>
           </Button>
           <Button
             className="button"
@@ -761,7 +1007,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               />
             )}
           >
-            <p className="button-text" style={{ fontFamily: 'DM Sans', fontWeight: 'bold' }}>Kid</p>
+            <p
+              className="button-text"
+              style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
+              }}
+            >
+              Kid
+            </p>
           </Button>
         </Box>
       </div>
@@ -772,7 +1025,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               variant="contained"
               onClick={() => dispatch({ type: 'child back' })}
               sx={{
-                background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+                background: '#f79927',
+                borderRadius: '50%',
+                width: '60px',
+                height: '60px',
+                boxShadow: 'none',
+                '&.MuiButtonBase-root:hover': {
+                  bgcolor: '#F99E16',
+                },
               }}
             >
               <ArrowBackIcon />
@@ -784,7 +1044,14 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
             variant="contained"
             onClick={() => ((isParent) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }))}
             sx={{
-              background: '#f79927', borderRadius: '50%', width: '60px', height: '60px',
+              background: '#f79927',
+              borderRadius: '50%',
+              width: '60px',
+              height: '60px',
+              boxShadow: 'none',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
             }}
           >
             <ArrowForwardIcon />
