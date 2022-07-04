@@ -65,12 +65,12 @@ export default function BookCard({
               alt="missing_book_cover"
             />
           </div>
+          <p className="book-card-text">
+            {title}
+          </p>
 
         </div>
       </Link>
-      <p className="book-card-text">
-        {title}
-      </p>
       <div className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
         By
         {' '}
