@@ -4,3 +4,9 @@
     background-repeat: no-repeat;
     display:flex;
    }
+   .startButton:hover
+   {
+         background-color: #ffffff !important;
+         color: #393EBA !important;
+         border-color: #393EBA !important;
+   }

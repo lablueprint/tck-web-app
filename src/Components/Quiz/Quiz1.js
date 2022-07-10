@@ -332,6 +332,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               sx={{
                 background: '#F99E16',
                 boxShadow: 'none',
+                borderRadius: '100px',
                 '&.MuiButtonBase-root:hover': {
                   bgcolor: '#F99E16',
                 },
@@ -588,6 +589,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               sx={{
                 background: '#F99E16',
                 boxShadow: 'none',
+                borderRadius: '100px',
                 '&.MuiButtonBase-root:hover': {
                   bgcolor: '#F99E16',
                 },
@@ -641,6 +643,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
               sx={{
                 background: '#F99E16',
                 boxShadow: 'none',
+                borderRadius: '100px',
                 '&.MuiButtonBase-root:hover': {
                   bgcolor: '#F99E16',
                 },
@@ -692,6 +695,7 @@ export default function Quiz1({ bookFilters, setBookFilters, setIsChild }) {
                   sx={{
                     background: '#F99E16',
                     boxShadow: 'none',
+                    borderRadius: '100px',
                     '&.MuiButtonBase-root:hover': {
                       bgcolor: '#F99E16',
                     },

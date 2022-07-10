@@ -18,13 +18,14 @@ export default function StartPage() {
           Book Finder Quiz
         </h1>
         <h4 style={{
-          fontFamily: 'Work Sans', color: '#333333', fontSize: '22px', fontWeight: 'normal',
+          fontFamily: 'Work Sans', color: '#333333', fontSize: '22px', fontWeight: 'normal', position: 'relative', bottom: '30px',
         }}
         >
           Do not know what to search for? Try this short quiz to receive personalized book recommendations from The Conscious Kids collection! Take this is you are a kid, parent, or educator looking for a fun read!
         </h4>
         <NavLink to="/quiz/questions">
           <button
+            className="startButton"
             style={{
               background: '#393EBA',
               borderRadius: '0.6em',
@@ -36,10 +37,6 @@ export default function StartPage() {
               width: '234px',
               height: '67px',
               border: 'None',
-              '&.MuiButtonBase-root:hover': {
-                background: 'white',
-                color: '#393EBA',
-              },
             }}
             type="button"
           >
