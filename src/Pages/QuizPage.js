@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Route, Routes, useLocation,
 } from 'react-router-dom';
-import Quiz1 from '../Components/Quiz/Quiz1';
+import Quiz from '../Components/Quiz/Quiz';
 import StartPage from '../Components/Quiz/StartPage';
 import ResultsPage from '../Components/Quiz/QuizResultsPage';
 
@@ -71,7 +71,7 @@ function QuizPage() {
   return (
     <Routes>
       <Route path="" element={<StartPage />} />
-      <Route path="questions" element={<Quiz1 bookFilters={bookFilters} setBookFilters={setBookFilters} setIsChild={setIsChild} />} />
+      <Route path="questions" element={<Quiz bookFilters={bookFilters} setBookFilters={setBookFilters} setIsChild={setIsChild} />} />
       <Route path="results" element={<ResultsPage bookFilters={bookFilters} isChild={isChild} />} />
     </Routes>
   );
