@@ -1,12 +1,15 @@
 import React from 'react';
 import {
-  Box,
+  Box, Button,
 } from '@mui/material';
 import propTypes from 'prop-types';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ProgressAndArrows from './ProgressAndArrows';
 import QuizButton from './QuizButton';
 
 export default function Quiz6({
-  title, buttonCaptions, setBookFilters, bookFilters,
+  title, buttonCaptions, setBookFilters, bookFilters, dispatch, issDisabled,
 }) {
   function HandleClick(name, checked) {
     if (checked) {
@@ -62,6 +65,44 @@ export default function Quiz6({
           </div>
         )}
       </Box>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent back' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowBackIcon />
+
+        </Button>
+        <ProgressAndArrows variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
+        <Button
+          disabled={issDisabled}
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowForwardIcon />
+
+        </Button>
+      </div>
     </div>
   );
 }
@@ -79,4 +120,6 @@ Quiz6.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
+  issDisabled: propTypes.bool.isRequired,
+  dispatch: propTypes.func.isRequired,
 };

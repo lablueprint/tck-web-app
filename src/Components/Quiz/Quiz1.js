@@ -8,21 +8,20 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
-// import Quiz2Adult from './Quiz2Adult';
-// import Quiz3 from './Quiz3';
-// import Quiz4Kid from './Quiz4Kid';
-// import Quiz5 from './Quiz5Kid';
-// import Quiz8Adult from './Quiz8Adult';
-// import Quiz2Kid from './Quiz2Kid';
-// import Quiz6 from './Quiz6';
-// import Quiz7Kid from './Quiz7Kid';
-// import Quiz6Kid from './Quiz6Kid';
 import ProgressAndArrows from './ProgressAndArrows';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';
 
-export default function Quiz1({ dispatch, setDisabled, isParent }) {
+export default function Quiz1({
+  dispatch, setDisabled, isParent, setIsChild,
+}) {
+  const handleToggle = (type, isChild) => {
+    if (isChild) {
+      setIsChild(!isParent);
+    }
+    dispatch(type);
+  };
   return (
     <div style={{ background: '#FAFAFA', height: '100%' }}>
       <div>
@@ -44,7 +43,7 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
               },
               background: '#ffffff',
             }}
-            onClick={() => dispatch({ type: 'parent' })}
+            onClick={() => handleToggle({ type: 'parent' }, false)}
             size="large"
             variant="outlined"
             startIcon={(
@@ -75,7 +74,7 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
               },
               background: '#ffffff',
             }}
-            onClick={() => dispatch({ type: 'parent' })}
+            onClick={() => handleToggle({ type: 'parent' }, false)}
             size="large"
             variant="outlined"
             startIcon={(
@@ -107,7 +106,7 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
                 marginRight: '0',
               },
             }}
-            onClick={() => dispatch({ type: 'child' })}
+            onClick={() => handleToggle({ type: 'child' }, true)}
             size="large"
             variant="outlined"
             startIcon={(
@@ -134,7 +133,7 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
           <NavLink to="/quiz">
             <Button
               variant="contained"
-              onClick={() => dispatch({ type: 'child back' })}
+              onClick={() => handleToggle({ type: 'child back' }, true)}
               sx={{
                 background: '#f79927',
                 borderRadius: '50%',
@@ -153,7 +152,7 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
           <Button
             disabled={setDisabled}
             variant="contained"
-            onClick={() => ((isParent) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }))}
+            onClick={() => ((isParent) ? handleToggle({ type: 'parent' }, false) : handleToggle({ type: 'child' }, true))}
             sx={{
               background: '#f79927',
               borderRadius: '50%',
@@ -174,19 +173,8 @@ export default function Quiz1({ dispatch, setDisabled, isParent }) {
 }
 
 Quiz1.propTypes = {
-  // setBookFilters: propTypes.func.isRequired,
-  // setIsChild: propTypes.func.isRequired,
+  setIsChild: propTypes.func.isRequired,
   dispatch: propTypes.func.isRequired,
   setDisabled: propTypes.bool.isRequired,
   isParent: propTypes.bool.isRequired,
-  // bookFilters: propTypes.shape({
-  //   bookId: propTypes.string.isRequired,
-  //   'race/ethnicity': propTypes.arrayOf(propTypes.string).isRequired,
-  //   minAge: propTypes.number.isRequired,
-  //   maxAge: propTypes.number.isRequired,
-  //   minGrade: propTypes.number.isRequired,
-  //   maxGrade: propTypes.number.isRequired,
-  //   genre: propTypes.arrayOf(propTypes.string).isRequired,
-  //   book_type: propTypes.arrayOf(propTypes.string).isRequired,
-  // }).isRequired,
 };

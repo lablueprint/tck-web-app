@@ -7,9 +7,6 @@ import {
 } from './Pages';
 import { Header, Footer } from './Components/index';
 import './App.css';
-// import StartPage from './Components/Quiz/StartPage';
-// import Quiz1 from './Components/Quiz/Quiz1';
-// import ResultsPage from './Components/Quiz/QuizResultsPage';
 
 function App() {
   return (

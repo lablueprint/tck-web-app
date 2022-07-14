@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import {
+  Button,
+} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ProgressAndArrows from './ProgressAndArrows';
 import QuizButton from './QuizButton';
 
 const Airtable = require('airtable');
@@ -11,7 +17,10 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
+export default function Quiz3({
+  slideCaption, setBookFilters, bookFilters,
+  dispatch, issDisabled, type1,
+}) {
   const [filters, setFilters] = useState([]);
   let filterVar;
 
@@ -54,11 +63,52 @@ export default function Quiz3({ slideCaption, setBookFilters, bookFilters }) {
           />
         ))}
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent back' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowBackIcon />
+
+        </Button>
+        <ProgressAndArrows variant="determinate" progress={29} sx={{ flex: '0 1 60%' }} />
+        <Button
+          disabled={issDisabled}
+          variant="contained"
+          onClick={() => dispatch({ type: type1 })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowForwardIcon />
+
+        </Button>
+
+      </div>
     </div>
   );
 }
 Quiz3.propTypes = {
   slideCaption: propTypes.string.isRequired,
+  issDisabled: propTypes.bool.isRequired,
+  dispatch: propTypes.func.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,
@@ -70,4 +120,5 @@ Quiz3.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
+  type1: propTypes.string.isRequired,
 };

@@ -1,12 +1,15 @@
 import React from 'react';
 import {
-  Box,
+  Box, Button,
 } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 import propTypes from 'prop-types';
+import FormControl from '@mui/material/FormControl';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ProgressAndArrows from './ProgressAndArrows';
 import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.svg';
 import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
@@ -14,7 +17,7 @@ import Silly from '../../Assets/Images/TCK_Mood - Silly.svg';
 import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
 import './QuizGroup.css';
 
-export default function Quiz4Kid({ setSilly }) {
+export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const handleClick = (val) => {
     setSilly(val);
   };
@@ -121,9 +124,49 @@ export default function Quiz4Kid({ setSilly }) {
           </RadioGroup>
         </FormControl>
       </Box>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowBackIcon />
+
+        </Button>
+        <ProgressAndArrows variant="determinate" progress={41} sx={{ flex: '0 1 60%' }} />
+        <Button
+          disabled={sillyNotSet()}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowForwardIcon />
+
+        </Button>
+      </div>
     </div>
   );
 }
 Quiz4Kid.propTypes = {
   setSilly: propTypes.func.isRequired,
+  dispatch: propTypes.func.isRequired,
+  sillyNotSet: propTypes.func.isRequired,
 };

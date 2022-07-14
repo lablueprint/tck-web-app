@@ -5,12 +5,17 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import {
-  Box,
+  Box, Button,
 } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ProgressAndArrows from './ProgressAndArrows';
 import illusion from '../../Assets/Images/illusion.png';
 import './QuizGroup.css';
 
-export default function Quiz5({ setIllusions }) {
+export default function Quiz5({
+  setIllusions, dispatch, isIllusionDisabled,
+}) {
   const handleClick = (val) => {
     setIllusions(val);
   };
@@ -63,6 +68,44 @@ export default function Quiz5({ setIllusions }) {
           </RadioGroup>
         </FormControl>
       </Box>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: 'child back' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowBackIcon />
+
+        </Button>
+        <ProgressAndArrows variant="determinate" progress={65} sx={{ flex: '0 1 60%' }} />
+        <Button
+          disabled={isIllusionDisabled()}
+          variant="contained"
+          onClick={() => dispatch({ type: 'child' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowForwardIcon />
+
+        </Button>
+      </div>
     </div>
   );
 }
@@ -71,4 +114,6 @@ Quiz5.defaultProps = {
 };
 Quiz5.propTypes = {
   setIllusions: propTypes.func,
+  dispatch: propTypes.func.isRequired,
+  isIllusionDisabled: propTypes.func.isRequired,
 };

@@ -1,11 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-  Box,
+  Box, Button,
 } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { NavLink } from 'react-router-dom';
+import ProgressAndArrows from './ProgressAndArrows';
 import QuizButton from './QuizButton';
 
-export default function Quiz8Adult({ bookFilters, setBookFilters }) {
+export default function Quiz8Adult({
+  bookFilters, setBookFilters, dispatch, issDisabled,
+}) {
   function HandleClick(name, checked) {
     if (checked) {
       setBookFilters((prevValue) => (
@@ -39,6 +45,44 @@ export default function Quiz8Adult({ bookFilters, setBookFilters }) {
         </div>
         )}
       </Box>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+        <Button
+          variant="contained"
+          onClick={() => dispatch({ type: 'parent back' })}
+          sx={{
+            background: '#f79927',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            boxShadow: 'none',
+            '&.MuiButtonBase-root:hover': {
+              bgcolor: '#F99E16',
+            },
+          }}
+        >
+          <ArrowBackIcon />
+
+        </Button>
+        <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+        <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+          <Button
+            disabled={issDisabled}
+            variant="contained"
+            onClick={() => dispatch({ type: 'parent' })}
+            sx={{
+              background: '#F99E16',
+              boxShadow: 'none',
+              borderRadius: '100px',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#F99E16',
+              },
+            }}
+            endIcon={<ArrowForwardIcon />}
+          >
+            Your Results
+          </Button>
+        </NavLink>
+      </div>
     </div>
   );
 }
@@ -54,4 +98,6 @@ Quiz8Adult.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
+  dispatch: propTypes.func.isRequired,
+  issDisabled: propTypes.bool.isRequired,
 };
