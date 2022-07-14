@@ -1,0 +1,47 @@
+.button {
+    vertical-align: bottom;
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+    min-width: 100%;
+    height:300px;
+    width:200px;
+    place-items:center;
+}
+
+.buttonText{
+    color: black;
+    text-transform: none;
+    font-size: 18px;
+}
+
+.silly-button{
+    display: flex;
+    flex-direction: column;
+    padding-top:5em;
+    column-gap:3em;
+    align-items:center;
+    width: 228px;
+    height:250px;
+    border: 2.5px solid #D7D7D7;
+    border-radius: 30px;
+    background:#ffffff;
+}
+
+.woman-question{
+    display: flex;
+    flex-direction: column;
+    padding-top:2em;
+    padding-bottom:4em;
+    column-gap:3em;
+    align-items:center;
+    width: 328px;
+    height:50px;
+    border: 2.5px solid #D7D7D7;
+    border-radius: 30px;
+    background:#ffffff;
+}
+/* .Avatar {
+    vertical-align: top;
+
+} */
