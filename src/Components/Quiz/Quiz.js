@@ -1,9 +1,9 @@
 /* eslint-disable eqeqeq */
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import {
-  Button, Card,
+  Button,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -75,7 +75,15 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     illusion[1](value);
   };
   const isIllusionDisabled = () => (!(illusion[0]));
+  const [isDisabled02A, setIsDisabled02A] = useState(true);
+  const [isDisabled02K, setisDisabled02K] = useState(true);
 
+  const callback02A = (isDisabledFromChild) => {
+    setIsDisabled02A(isDisabledFromChild);
+  };
+  const callback02K = (isDisabledFromChild) => {
+    setisDisabled02K(isDisabledFromChild);
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     isParent, isChild, count, goneBack,
@@ -83,22 +91,15 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   if (isParent && count === 2) {
     setIsChild(isChild);
     return (
-      <Card sx={{
-        borderRadius: 5,
-        margin: 4,
-        boxShadow: 5,
-        marginRight: 15,
-        marginLeft: 15,
-        paddingBottom: 5,
-        paddingTop: 15,
-      }}
-      >
+      <div>
         <Quiz2Adult
+          parentCallback02A={callback02A}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
         <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
           <Button
+            disabled={isDisabled02A}
             variant="contained"
             onClick={() => dispatch({ type: 'parent back' })}
             sx={{
@@ -140,7 +141,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           </Button>
 
         </div>
-      </Card>
+      </div>
 
     );
   }
@@ -338,22 +339,15 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   if (isChild && count === 2) {
     setIsChild(isChild);
     return (
-      <Card sx={{
-        borderRadius: 5,
-        margin: 4,
-        boxShadow: 5,
-        marginRight: 15,
-        marginLeft: 15,
-        paddingBottom: 5,
-        paddingTop: 15,
-      }}
-      >
+      <div>
         <Quiz2Kid
+          parentCallback02K={callback02K}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />
         <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
           <Button
+            disabled={isDisabled02K}
             variant="contained"
             onClick={() => dispatch({ type: 'child back' })}
             sx={{
@@ -392,7 +386,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
 
           </Button>
         </div>
-      </Card>
+      </div>
 
     );
   }
