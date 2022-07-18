@@ -33,15 +33,43 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
-            sx={{ display: 'flex', flexDirection: 'row' }}
+            sx={{ /* display: 'flex', */ flexDirection: 'row' /* justifyContent: 'center' */ }}
           >
-            <div className="silly-button">
+            <Button
+              className="silly-button"
+              sx={{
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#ffffff',
+                textTransform: 'none',
+                color: '#444444',
+              }}
+            >
               <img src={VerySilly} height="90" width="90" alt="Very Silly Missing" />
               <FormControlLabel
                 sx={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                control={<Radio value={1} onChange={(e) => handleClick(e.target.value)} />}
+                control={(
+                  <div>
+                    <Radio
+                      sx={{
+                        '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                        {
+                          color: 'white',
+                        },
+                        '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                          color: '#393EBA',
+                        },
+                      }}
+                      value={1}
+                      onChange={(e) => handleClick(e.target.value)}
+                    />
+                  </div>
+
+)}
                 label={(
                   <p style={{
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -51,14 +79,39 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   </p>
                 )}
               />
-            </div>
-            <div className="silly-button">
+            </Button>
+            <Button
+              sx={{
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#ffffff',
+                textTransform: 'none',
+                color: '#444444',
+              }}
+              className="silly-button"
+            >
               <img src={Silly} height="90" width="90" alt="Silly Missing" />
               <FormControlLabel
                 sx={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                control={<Radio value={2} onChange={(e) => handleClick(e.target.value)} />}
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                    {
+                      color: 'white',
+                    },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={2}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
                 label={(
                   <p style={{
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -69,11 +122,36 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 )}
               />
 
-            </div>
-            <div className="silly-button">
+            </Button>
+            <Button
+              sx={{
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#ffffff',
+                textTransform: 'none',
+                color: '#444444',
+              }}
+              className="silly-button"
+            >
               <img src={Neutral} height="90" width="90" alt="Neutral Missing" />
               <FormControlLabel
-                control={<Radio value={3} onChange={(e) => handleClick(e.target.value)} />}
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                    {
+                      color: 'white',
+                    },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={3}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
                 sx={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
@@ -86,14 +164,39 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   </p>
                 )}
               />
-            </div>
-            <div className="silly-button">
+            </Button>
+            <Button
+              sx={{
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#ffffff',
+                textTransform: 'none',
+                color: '#444444',
+              }}
+              className="silly-button"
+            >
               <img src={Serious} height="90" width="90" alt="Serious Missing" />
               <FormControlLabel
                 sx={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                control={<Radio value={4} onChange={(e) => handleClick(e.target.value)} />}
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                    {
+                      color: 'white',
+                    },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={4}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
                 label={(
                   <p style={{
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -103,14 +206,39 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   </p>
                 )}
               />
-            </div>
-            <div className="silly-button">
+            </Button>
+            <Button
+              sx={{
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#ffffff',
+                textTransform: 'none',
+                color: '#444444',
+              }}
+              className="silly-button"
+            >
               <img src={VerySerious} height="90" width="90" alt="Very Serious Missing" />
               <FormControlLabel
                 sx={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                control={<Radio value={5} onChange={(e) => handleClick(e.target.value)} />}
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                    {
+                      color: 'white',
+                    },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={5}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
                 label={(
                   <p style={{
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -120,7 +248,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   </p>
                 )}
               />
-            </div>
+            </Button>
           </RadioGroup>
         </FormControl>
       </Box>

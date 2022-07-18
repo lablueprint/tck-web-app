@@ -100,7 +100,7 @@ function ResultsPage({ bookFilters, isChild }) {
             {' '}
             <span style={{ color: '#20B28F', fontWeight: 'bold' }}>curious</span>
             {' '}
-            -- you have expressed interested in
+            -- you have expressed interest in
             {' '}
             <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
               {raceMessage}

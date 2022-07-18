@@ -36,7 +36,7 @@ export default function StartPage() {
               fontSize: '1.3em',
               width: '234px',
               height: '67px',
-              border: 'None',
+              border: '2.5px solid #D7D7D7',
             }}
             type="button"
           >

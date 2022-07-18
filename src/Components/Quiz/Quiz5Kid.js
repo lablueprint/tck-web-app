@@ -10,8 +10,8 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProgressAndArrows from './ProgressAndArrows';
-import illusion from '../../Assets/Images/illusion.png';
-import './QuizGroup.css';
+import './QuizButton.css';
+import illusion from '../../Assets/Images/IllusionVector.svg';
 
 export default function Quiz5({
   setIllusions, dispatch, isIllusionDisabled,
@@ -22,7 +22,7 @@ export default function Quiz5({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1>
+        <h1 style={{ color: '#444444' }}>
           What do you see in the picture below?
         </h1>
         <div><img src={illusion} alt="Illusion Missing" /></div>
@@ -35,36 +35,98 @@ export default function Quiz5({
               display: 'flex', flexDirection: 'row', columnGap: '4em', marginTop: '3em',
             }}
           >
-            <FormControlLabel
-              control={<Radio value={1} onChange={(e) => handleClick(e.target.value)} />}
-              className="woman-question"
-              sx={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
+            <Button
+              className="QuizButton"
+              style={{
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#ffffff',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
               }}
-              label={(
-                <p style={{
-                  fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+            >
+              <FormControlLabel
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                  {
+                    color: 'white',
+                  },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={1}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
+                sx={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                >
-                  A younger person
-                </p>
+                label={(
+                  <p style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  }}
+                  >
+                    A younger person
+                  </p>
                 )}
-            />
-            <FormControlLabel
-              control={<Radio value={2} onChange={(e) => handleClick(e.target.value)} />}
-              className="woman-question"
-              sx={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
+              />
+            </Button>
+            <Button
+              className="QuizButton"
+              style={{
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#ffffff',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
               }}
-              label={(
-                <p style={{
-                  fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+            >
+              <FormControlLabel
+                control={(
+                  <Radio
+                    sx={{
+                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
+                  {
+                    color: 'white',
+                  },
+                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
+                        color: '#393EBA',
+                      },
+                    }}
+                    value={2}
+                    onChange={(e) => handleClick(e.target.value)}
+                  />
+)}
+                sx={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
-                >
-                  An older person
-                </p>
+                label={(
+                  <p style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  }}
+                  >
+                    An older person
+                  </p>
                 )}
-            />
+              />
+            </Button>
           </RadioGroup>
         </FormControl>
       </Box>

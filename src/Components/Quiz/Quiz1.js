@@ -12,6 +12,7 @@ import ProgressAndArrows from './ProgressAndArrows';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';
+// import './QuizButton.css';
 
 export default function Quiz1({
   dispatch, setDisabled, isParent, setIsChild,
@@ -35,13 +36,18 @@ export default function Quiz1({
           <Button
             className="button"
             sx={{
-              border: '2px solid #d7d7d7',
+              border: '2.5px solid #D7D7D7',
               borderRadius: '21px',
               m: 7,
               '& .MuiButton-startIcon': {
                 marginRight: '0',
               },
               background: '#ffffff',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#EAF3FE',
+                color: '#393EBA',
+                borderColor: '#393EBA',
+              },
             }}
             onClick={() => handleToggle({ type: 'parent' }, false)}
             size="large"
@@ -66,13 +72,18 @@ export default function Quiz1({
           <Button
             className="button"
             sx={{
-              border: '2px solid #d7d7d7',
+              border: '2.5px solid #D7D7D7',
               borderRadius: '21px',
               m: 7,
               '& .MuiButton-startIcon': {
                 marginRight: '0',
               },
               background: '#ffffff',
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#EAF3FE',
+                color: '#393EBA',
+                borderColor: '#393EBA',
+              },
             }}
             onClick={() => handleToggle({ type: 'parent' }, false)}
             size="large"
@@ -98,12 +109,17 @@ export default function Quiz1({
           <Button
             className="button"
             sx={{
-              border: '2px solid #d7d7d7',
+              border: '2.5px solid #D7D7D7',
               borderRadius: '21px',
               m: 7,
               background: '#ffffff',
               '& .MuiButton-startIcon': {
                 marginRight: '0',
+              },
+              '&.MuiButtonBase-root:hover': {
+                bgcolor: '#EAF3FE',
+                color: '#393EBA',
+                borderColor: '#393EBA',
               },
             }}
             onClick={() => handleToggle({ type: 'child' }, true)}
