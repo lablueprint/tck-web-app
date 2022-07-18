@@ -27,10 +27,10 @@ export default function Quiz7Kid({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1>
+        <h1 style={{ color: '#444444' }}>
           Which of the following seem fun to you?
         </h1>
-        <p>You can choose more than one.</p>
+        <p style={{ color: '#444444' }}>You can choose more than one.</p>
         {bookFilters.genre !== undefined
         && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>

@@ -27,10 +27,10 @@ export default function Quiz8Adult({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1>
+        <h1 style={{ color: '#444444' }}>
           Please select your preferred book formats
         </h1>
-        <p>These will be used to rank your results but availability is not guaranteed!</p>
+        <p style={{ color: '#444444' }}>These will be used to rank your results but availability is not guaranteed!</p>
         {bookFilters.book_type !== undefined
         && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>

@@ -50,7 +50,7 @@ export default function Quiz3({
   useEffect(getFilters, []);
   return (
     <div>
-      <h1>
+      <h1 style={{ color: '#444444' }}>
         {slideCaption}
       </h1>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', margin: '0 12em 0 12em' }}>

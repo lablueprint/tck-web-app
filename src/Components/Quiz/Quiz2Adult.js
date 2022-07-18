@@ -22,7 +22,7 @@ export default function Quiz2Adult({
 
   return (
     <div style={{ paddingBottom: 200 }}>
-      <h1>
+      <h1 style={{ color: '#444444' }}>
         What grade levels are you looking for?
       </h1>
       <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>

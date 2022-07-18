@@ -25,7 +25,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   return (
     <div style={{ background: '#FCFCFC' }}>
       <Box sx={{ padding: 15 }}>
-        <h1>
+        <h1 style={{ color: '#444444' }}>
           Which of the following best describes you?
         </h1>
         <FormControl>
