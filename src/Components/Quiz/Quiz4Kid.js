@@ -26,7 +26,6 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const [neutralColor, setNeutralColor] = useState(false);
   const [seriousColor, setSeriousColor] = useState(false);
   const [verySeriousColor, setVerySeriousColor] = useState(false);
-
   return (
     <div style={{ background: '#FCFCFC' }}>
       <Box sx={{ padding: 15 }}>
@@ -50,19 +49,24 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
-                backgroundColor: '#FFFFFF',
-              } : {
-                minHeight: 392,
-                minWidth: 218,
-                border: '2px solid #d7d7d7',
-                borderRadius: '21px',
-                background: '#393EBA',
-                textTransform: 'none',
-                color: '#444444',
-                backgroundColor: '#FFFFFF',
-              }}
+                backgroundColor: '#393EBA',
+              }
+                : {
+                  minHeight: 392,
+                  minWidth: 218,
+                  border: '2px solid #d7d7d7',
+                  borderRadius: '21px',
+                  background: '#ffffff',
+                  textTransform: 'none',
+                  color: '#444444',
+                  backgroundcolor: '#FFFFFF',
+                }}
               onClick={() => {
-                setVerySillyColor(true);
+                setVerySeriousColor(false);
+                setSillyColor(false);
+                setNeutralColor(false);
+                setSeriousColor(false);
+                setVerySillyColor(!verySillyColor);
               }}
             >
               <img src={VerySilly} height="90" width="90" alt="Very Silly Missing" />
@@ -76,7 +80,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                       sx={{
                         '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                         {
-                          color: 'white',
+                          color: verySillyColor ? '#393EBA' : 'white',
                         },
                         '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                           color: '#393EBA',
@@ -107,19 +111,25 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
-                backgroundColor: '#FFFFFF',
-              } : {
-                minHeight: 392,
-                minWidth: 218,
-                border: '2px solid #d7d7d7',
-                borderRadius: '21px',
-                background: '#393EBA',
-                textTransform: 'none',
-                color: '#444444',
-                backgroundColor: '#FFFFFF',
-              }}
+                backgroundColor: '#393EBA',
+              }
+                : {
+                  minHeight: 392,
+                  minWidth: 218,
+                  border: '2px solid #d7d7d7',
+                  borderRadius: '21px',
+                  background: '#ffffff',
+                  textTransform: 'none',
+                  color: '#444444',
+                  backgroundcolor: '#FFFFFF',
+                }}
+              className="silly-button"
               onClick={() => {
-                setSillyColor(true);
+                setVerySillyColor(false);
+                setVerySeriousColor(false);
+                setNeutralColor(false);
+                setSeriousColor(false);
+                setSillyColor(!sillyColor);
               }}
             >
               <img src={Silly} height="90" width="90" alt="Silly Missing" />
@@ -132,7 +142,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
-                      color: 'white',
+                      color: sillyColor ? '#393EBA' : 'white',
                     },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
@@ -162,19 +172,25 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
-                backgroundColor: '#FFFFFF',
-              } : {
-                minHeight: 392,
-                minWidth: 218,
-                border: '2px solid #d7d7d7',
-                borderRadius: '21px',
-                background: '#393EBA',
-                textTransform: 'none',
-                color: '#444444',
-                backgroundColor: '#FFFFFF',
-              }}
+                backgroundColor: '#393EBA',
+              }
+                : {
+                  minHeight: 392,
+                  minWidth: 218,
+                  border: '2px solid #d7d7d7',
+                  borderRadius: '21px',
+                  background: '#ffffff',
+                  textTransform: 'none',
+                  color: '#444444',
+                  backgroundcolor: '#FFFFFF',
+                }}
+              className="silly-button"
               onClick={() => {
-                setNeutralColor(true);
+                setVerySillyColor(false);
+                setSillyColor(false);
+                setSeriousColor(false);
+                setVerySeriousColor(false);
+                setNeutralColor(!neutralColor);
               }}
             >
               <img src={Neutral} height="90" width="90" alt="Neutral Missing" />
@@ -187,7 +203,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                       color: 'white',
                     },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
-                        color: '#393EBA',
+                        color: neutralColor ? '#393EBA' : 'white',
                       },
                     }}
                     value={3}
@@ -216,19 +232,25 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
-                backgroundColor: '#FFFFFF',
-              } : {
-                minHeight: 392,
-                minWidth: 218,
-                border: '2px solid #d7d7d7',
-                borderRadius: '21px',
-                background: '#393EBA',
-                textTransform: 'none',
-                color: '#444444',
-                backgroundColor: '#FFFFFF',
-              }}
+                backgroundColor: '#393EBA',
+              }
+                : {
+                  minHeight: 392,
+                  minWidth: 218,
+                  border: '2px solid #d7d7d7',
+                  borderRadius: '21px',
+                  background: '#ffffff',
+                  textTransform: 'none',
+                  color: '#444444',
+                  backgroundcolor: '#FFFFFF',
+                }}
+              className="silly-button"
               onClick={() => {
-                setSeriousColor(true);
+                setVerySillyColor(false);
+                setSillyColor(false);
+                setNeutralColor(false);
+                setVerySeriousColor(false);
+                setSeriousColor(!seriousColor);
               }}
             >
               <img src={Serious} height="90" width="90" alt="Serious Missing" />
@@ -241,7 +263,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
-                      color: 'white',
+                      color: seriousColor ? '#393EBA' : 'white',
                     },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
@@ -270,19 +292,25 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
-                backgroundColor: '#FFFFFF',
-              } : {
-                minHeight: 392,
-                minWidth: 218,
-                border: '2px solid #d7d7d7',
-                borderRadius: '21px',
-                background: '#393EBA',
-                textTransform: 'none',
-                color: '#444444',
-                backgroundColor: '#FFFFFF',
-              }}
+                backgroundColor: '#393EBA',
+              }
+                : {
+                  minHeight: 392,
+                  minWidth: 218,
+                  border: '2px solid #d7d7d7',
+                  borderRadius: '21px',
+                  background: '#ffffff',
+                  textTransform: 'none',
+                  color: '#444444',
+                  backgroundcolor: '#FFFFFF',
+                }}
+              className="silly-button"
               onClick={() => {
-                setVerySeriousColor(true);
+                setVerySillyColor(false);
+                setSillyColor(false);
+                setNeutralColor(false);
+                setSeriousColor(false);
+                setVerySeriousColor(!verySeriousColor);
               }}
             >
               <img src={VerySerious} height="90" width="90" alt="Very Serious Missing" />
@@ -295,7 +323,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
-                      color: 'white',
+                      color: verySeriousColor ? '#393EBA' : 'white',
                     },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',

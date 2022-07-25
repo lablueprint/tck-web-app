@@ -147,7 +147,7 @@ function ResultsPage({ bookFilters, isChild }) {
         </button>
         )}
         <div className="recommended-books-section-title-wrapper">
-          {isChild && <p className="results-text recommended-books-section-text">Here are some books we think you would love!</p>}
+          {isChild && <h2 className="results-text recommended-books-section-text">Here are some books we think you would love!</h2>}
         </div>
         <div className="recommended-books-wrapper">
           <div style={{
