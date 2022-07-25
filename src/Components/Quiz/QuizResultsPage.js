@@ -9,6 +9,7 @@ import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
 import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
+// import BookList from '../BookList/BookList';
 
 function HandleClickToTop() {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
@@ -60,15 +61,15 @@ function ResultsPage({ bookFilters, isChild }) {
   }
 
   if (bookFilters['race/ethnicity'].length > 1) {
-    raceMessage = `${bookFilters['race/ethnicity'].slice(0, -1).join(', ')} and ${bookFilters['race/ethnicity'].slice(-1)} cultures.`;
+    raceMessage = `${bookFilters['race/ethnicity'].slice(0, -1).join(', ')} and ${bookFilters['race/ethnicity'].slice(-1)}`;
   } else {
-    raceMessage = `${bookFilters['race/ethnicity'].slice(-1)} culture.`;
+    raceMessage = `${bookFilters['race/ethnicity'].slice(-1)}`;
   }
 
   if (bookFilters.genre.length > 1) {
-    genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)} genres `;
+    genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)}`;
   } else {
-    genreMessage = `${bookFilters.genre.slice(-1)} genre `;
+    genreMessage = `${bookFilters.genre.slice(-1)}`;
   }
   return (
     <div style={{
@@ -105,6 +106,8 @@ function ResultsPage({ bookFilters, isChild }) {
             <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
               {raceMessage}
             </span>
+            {' '}
+            {(bookFilters['race/ethnicity'].length > 1) ? ' cultures.' : ' culture.'}
           </p>
           <p className="results-text fade-in-animation-delay-6s">
             We think you would enjoy the
@@ -112,6 +115,7 @@ function ResultsPage({ bookFilters, isChild }) {
             <span style={{ color: '#393EBA', fontWeight: 'bold' }}>
               {genreMessage}
             </span>
+            {(bookFilters.genre.length > 1) ? ' genres ' : ' genre '}
             based on your answers.
           </p>
         </div>
@@ -155,6 +159,7 @@ function ResultsPage({ bookFilters, isChild }) {
           }}
           >
             {!isChild && <p className="adult-results-text">Here are some books we think you would love!</p>}
+            {/* <BookList books={recommendedBooks} /> */}
             <Carousel
               elementArray={recommendedBooks}
               slidesAtATime={6}
