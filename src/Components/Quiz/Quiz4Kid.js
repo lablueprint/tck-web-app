@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box, Button,
 } from '@mui/material';
@@ -21,6 +21,11 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const handleClick = (val) => {
     setSilly(val);
   };
+  const [verySillyColor, setVerySillyColor] = useState(false);
+  const [sillyColor, setSillyColor] = useState(false);
+  const [neutralColor, setNeutralColor] = useState(false);
+  const [seriousColor, setSeriousColor] = useState(false);
+  const [verySeriousColor, setVerySeriousColor] = useState(false);
 
   return (
     <div style={{ background: '#FCFCFC' }}>
@@ -37,7 +42,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
           >
             <Button
               className="silly-button"
-              sx={{
+              sx={verySillyColor ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -45,6 +50,19 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
+                backgroundColor: '#FFFFFF',
+              } : {
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#393EBA',
+                textTransform: 'none',
+                color: '#444444',
+                backgroundColor: '#FFFFFF',
+              }}
+              onClick={() => {
+                setVerySillyColor(true);
               }}
             >
               <img src={VerySilly} height="90" width="90" alt="Very Silly Missing" />
@@ -81,7 +99,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
               />
             </Button>
             <Button
-              sx={{
+              sx={sillyColor ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -89,8 +107,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
+                backgroundColor: '#FFFFFF',
+              } : {
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#393EBA',
+                textTransform: 'none',
+                color: '#444444',
+                backgroundColor: '#FFFFFF',
               }}
-              className="silly-button"
+              onClick={() => {
+                setSillyColor(true);
+              }}
             >
               <img src={Silly} height="90" width="90" alt="Silly Missing" />
               <FormControlLabel
@@ -124,7 +154,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
 
             </Button>
             <Button
-              sx={{
+              sx={neutralColor ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -132,8 +162,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
+                backgroundColor: '#FFFFFF',
+              } : {
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#393EBA',
+                textTransform: 'none',
+                color: '#444444',
+                backgroundColor: '#FFFFFF',
               }}
-              className="silly-button"
+              onClick={() => {
+                setNeutralColor(true);
+              }}
             >
               <img src={Neutral} height="90" width="90" alt="Neutral Missing" />
               <FormControlLabel
@@ -166,7 +208,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
               />
             </Button>
             <Button
-              sx={{
+              sx={seriousColor ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -174,8 +216,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
+                backgroundColor: '#FFFFFF',
+              } : {
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#393EBA',
+                textTransform: 'none',
+                color: '#444444',
+                backgroundColor: '#FFFFFF',
               }}
-              className="silly-button"
+              onClick={() => {
+                setSeriousColor(true);
+              }}
             >
               <img src={Serious} height="90" width="90" alt="Serious Missing" />
               <FormControlLabel
@@ -208,7 +262,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
               />
             </Button>
             <Button
-              sx={{
+              sx={verySeriousColor ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -216,8 +270,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 background: '#ffffff',
                 textTransform: 'none',
                 color: '#444444',
+                backgroundColor: '#FFFFFF',
+              } : {
+                minHeight: 392,
+                minWidth: 218,
+                border: '2px solid #d7d7d7',
+                borderRadius: '21px',
+                background: '#393EBA',
+                textTransform: 'none',
+                color: '#444444',
+                backgroundColor: '#FFFFFF',
               }}
-              className="silly-button"
+              onClick={() => {
+                setVerySeriousColor(true);
+              }}
             >
               <img src={VerySerious} height="90" width="90" alt="Very Serious Missing" />
               <FormControlLabel

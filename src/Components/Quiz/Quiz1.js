@@ -27,7 +27,7 @@ export default function Quiz1({
     <div style={{ background: '#FAFAFA', height: '100%' }}>
       <div>
         <h2 style={{
-          fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em',
+          fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em', color: '#444444',
         }}
         >
           Are you a parent, educator, or kid?

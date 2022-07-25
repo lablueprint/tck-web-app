@@ -4,17 +4,42 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 
-const CustomQuizSlider = styled(Slider)({
-  color: '#3477DE',
-  height: 8,
+export const CustomRangeSlider = styled(Slider)({
+  '& .MuiSlider-rail': {
+    height: '12px',
+    border: '2px solid #393EBA',
+    background: 'white',
+  },
   '& .MuiSlider-track': {
-    border: 'none',
+    height: '18px',
+    background: '#393EBA',
+    color: '#393EBA',
+  },
+  '& .MuiSlider-markLabel': {
+    fontSize: 24,
+    top: '45px',
+    color: '#444444',
+  },
+  '& .MuiSlider-valueLabel': {
+    fontSize: 24,
+    fontWeight: 'normal',
+    fontFamily: 'DM Sans',
+    top: 100,
+    color: '#444444',
+    backgroundColor: 'unset',
+    '&:before': {
+      display: 'none',
+    },
+    '& *': {
+      background: 'transparent',
+      color: '#444444',
+    },
   },
   '& .MuiSlider-thumb': {
-    height: 32,
-    width: 32,
-    backgroundColor: '#3477DE',
-    border: '2px solid currentColor',
+    height: 60,
+    width: 60,
+    backgroundColor: '#393EBA',
+    border: '2px solid #393EBA',
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
@@ -22,41 +47,22 @@ const CustomQuizSlider = styled(Slider)({
       display: 'none',
     },
   },
-  '& .MuiSlider-valueLabel': {
-    lineHeight: 1.2,
-    fontSize: 18,
-    background: 'unset',
-    padding: 0,
-    width: 55,
-    height: 55,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: '#3477DE',
-    transformOrigin: 'bottom left',
-    transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
-    '&:before': { display: 'none' },
-    '&.MuiSlider-valueLabelOpen': {
-      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
-    },
-    '& > *': {
-      transform: 'rotate(45deg)',
-    },
+  '& .MuiSlider-mark': {
+    background: '#444444',
+    width: '6px',
+    height: '6px',
   },
 });
 
-const marks = [
-  {
-    value: -1,
-    label: 'Pre-K',
-  },
-  {
-    value: 12,
-    label: '12',
-  },
-];
+const units = ['Pre-K', 'K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+
+const marks = units.map((element, index) => {
+  if (index === 0) { return { value: index - 1, label: 'Pre-K' }; }
+  if (index === units.length - 1) { return { value: index - 1, label: `${units[index]}` }; }
+  return { value: index - 1 };
+});
 
 function valueLabelFormat(value) {
-  const units = ['Pre-K', 'K', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
-
   return `${units[value + 1]}`;
 }
 
@@ -84,18 +90,23 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
   return (
     <div>
       <Box sx={{ width: 550 }}>
-        <CustomQuizSlider
-          label={() => 'Minimum distance'}
-          aria-label="Custom marks"
+        <CustomRangeSlider
+          name="Grade"
+          aria-label="Grade"
           marks={marks}
           value={value1}
           onChange={handleChange1}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="on"
           getAriaValueText={valueLabelFormat}
-          valueLabelFormat={valueLabelFormat}
+          valueLabelFormat={(value) => {
+            if (value === -1 || value === units.length - 2) { return ''; }
+            if (value === 0) { return 'K'; }
+            return `${units[value + 1]}`;
+          }}
           disableSwap
           min={-1}
-          max={12}
+          max={units.length - 2}
+          label={() => 'Minimum distance'}
         />
       </Box>
     </div>

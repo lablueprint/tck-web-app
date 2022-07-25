@@ -8,11 +8,18 @@ export default function QuizButton({
   buttonCaption, onClick, desiredArray, desiredLabel,
 }) {
   const [checked, setChecked] = useState(false);
-
+  // const [iconOneColor, setIconOneColor] = useState('white');
+  // const [iconTwoColor, setIconTwoColor] = useState('white');
+  const [clicked, setClicked] = useState(false);
+  // const changeColor = () => {
+  //   setIconOneColor('#393EBA');
+  //   // setIconTwoColor('#FFFFFF');
+  // };
   return (
     <Button
       class="QuizButton"
-      style={{
+      disableRipple
+      style={clicked ? {
         padding: '2em 0.5em 2em 0.5em',
         margin: '1em auto 1em auto',
         width: '300px',
@@ -21,9 +28,24 @@ export default function QuizButton({
         border: '2.5px solid #D7D7D7',
         background: '#ffffff',
         display: 'flex',
+        backgroundColor: '#393EBA',
+        color: '#393EBA',
+      } : {
+        padding: '2em 0.5em 2em 0.5em',
+        margin: '1em auto 1em auto',
+        width: '300px',
+        height: '100.59px',
+        borderRadius: '30px',
+        border: '2.5px solid #D7D7D7',
+        background: '#ffffff',
+        display: 'flex',
+        backgroundColor: 'white',
+        color: '#FFFFFF',
       }}
       onClick={() => {
         setChecked((old) => !old);
+        setClicked(true);
+        // changeColor();
       }}
     >
       <Checkbox
