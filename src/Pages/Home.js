@@ -132,17 +132,19 @@ function Home() {
 
   return (
     <div>
-      <CollectionsCarousel
-        elementArray={collections}
-        slidesAtATime={6}
-        prevArrow={LeftArrow}
-        nextArrow={RightArrow}
-        widthPercent={100}
-        spaceBetweenEntries={16}
-        swiperHeight={120}
-        cardImageHeightPercent={80}
-        cardImageWidthPercent={80}
-      />
+      <div className="home-screen-carousel">
+        <CollectionsCarousel
+          elementArray={collections}
+          slidesAtATime={6}
+          prevArrow={LeftArrow}
+          nextArrow={RightArrow}
+          widthPercent={100}
+          spaceBetweenEntries={16}
+          swiperHeight={120}
+          cardImageHeightPercent={80}
+          cardImageWidthPercent={80}
+        />
+      </div>
       <div className="home-screen-background">
         <div className="hero-text">
           Discover books by and about
@@ -166,7 +168,7 @@ function Home() {
       </div>
       {newReleases && (
         <>
-          <h2 className="headings">New Releases</h2>
+          <h3 className="headings">New Releases</h3>
           <Carousel
             elementArray={newReleases}
             slidesAtATime={7}
@@ -190,6 +192,20 @@ function Home() {
           />
         </>
       )) */}
+      <h2 className="about-section-header">About The Conscious Kid</h2>
+      <div className="about-section">
+        <div className="about-section-text">
+          <p className="about-section-p-text">
+            The Conscious Kid is an education, research and policy organization that
+            supports families and educators in taking action to disrupt racism, inequity and bias.
+            The Conscious Kid works to encourage healthy racial identity development in kids ages
+            0-18 by increasing access to books with representation and educational resources.
+            (replace w/their info)
+          </p>
+        </div>
+        <div className="about-section-slideshow" />
+      </div>
+
     </div>
   );
 }
