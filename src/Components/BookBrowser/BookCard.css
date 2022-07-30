@@ -8,11 +8,10 @@
 .card {
     margin: 30px 16px 10px 16px;
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
     background: none;
     flex-direction: column;
-    max-width: 10vw;
-    
+    max-width: 14vw;
 }
 
 .card-action-area {
@@ -48,7 +47,6 @@
     justify-content: center;
     align-items:center;
     margin-bottom:20px;
-  
 }
 
 .link {
