@@ -5,7 +5,7 @@ import {
 import propTypes from 'prop-types';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
 
 export default function Quiz6({
@@ -83,7 +83,7 @@ export default function Quiz6({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressAndArrows variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
         <Button
           disabled={issDisabled}
           variant="contained"

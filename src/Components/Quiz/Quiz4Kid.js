@@ -9,7 +9,7 @@ import propTypes from 'prop-types';
 import FormControl from '@mui/material/FormControl';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.svg';
 import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
@@ -364,7 +364,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
           <ArrowBackIcon />
 
         </Button>
-        <ProgressAndArrows variant="determinate" progress={41} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={41} sx={{ flex: '0 1 60%' }} />
         <Button
           disabled={sillyNotSet()}
           variant="contained"

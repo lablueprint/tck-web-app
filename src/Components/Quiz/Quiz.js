@@ -17,7 +17,7 @@ import Quiz2Kid from './Quiz2Kid';
 import Quiz6 from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
 import Quiz6Kid from './Quiz6Kid';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import Quiz1 from './Quiz1';
 
 function reducer(state, action) {
@@ -255,7 +255,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           >
             <ArrowBackIcon />
           </Button>
-          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
           {((isChild && count === 6 && illusion[0] == 1)
         || (isChild && count === 5 && sillyLevel[0] == 1))
             ? (

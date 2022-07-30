@@ -8,7 +8,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';
@@ -164,7 +164,7 @@ export default function Quiz1({
               <ArrowBackIcon />
             </Button>
           </NavLink>
-          <ProgressAndArrows variant="determinate" progress={0} sx={{ flex: '0 1 60%' }} />
+          <ProgressBar variant="determinate" progress={0} sx={{ flex: '0 1 60%' }} />
           <Button
             disabled={setDisabled}
             variant="contained"

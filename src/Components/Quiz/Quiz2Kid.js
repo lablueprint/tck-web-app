@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Grid, Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import GradeSlider from './GradeSlider';
 
 export default function Quiz2Kid({
@@ -19,16 +19,16 @@ export default function Quiz2Kid({
   };
 
   return (
-    <div style={{ paddingBottom: 200 }}>
+    <div style={{ padding: 50 }}>
       <h1 style={{ color: '#444444' }}>
         What grade levels are you comfortable reading at?
       </h1>
-      <Grid container justifyContent="center" sx={{ paddingTop: 10 }}>
+      <Grid container justifyContent="center" sx={{ paddingTop: 15 }}>
         <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
       </Grid>
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '13em 0 0 0' }}>
         <Button
-          disabled={isDisabled02K}
+          disabled={false}
           variant="contained"
           onClick={() => dispatch({ type: 'child back' })}
           sx={{
@@ -45,11 +45,12 @@ export default function Quiz2Kid({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressAndArrows
+        <ProgressBar
           progress={17}
           sx={{ flex: '0 1 60%' }}
         />
         <Button
+          disabled={isDisabled02K}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
           sx={{

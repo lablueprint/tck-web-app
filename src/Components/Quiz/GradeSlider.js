@@ -36,8 +36,8 @@ export const CustomRangeSlider = styled(Slider)({
     },
   },
   '& .MuiSlider-thumb': {
-    height: 60,
-    width: 60,
+    height: 55,
+    width: 55,
     backgroundColor: '#393EBA',
     border: '2px solid #393EBA',
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {

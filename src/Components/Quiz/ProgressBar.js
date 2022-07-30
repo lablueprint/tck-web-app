@@ -16,7 +16,7 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
   },
 }));
 
-export default function ProgressAndArrows({ progress }) {
+export default function ProgressBar({ progress }) {
   return (
     <div
       style={{
@@ -28,6 +28,6 @@ export default function ProgressAndArrows({ progress }) {
   );
 }
 
-ProgressAndArrows.propTypes = {
+ProgressBar.propTypes = {
   progress: PropTypes.number.isRequired,
 };

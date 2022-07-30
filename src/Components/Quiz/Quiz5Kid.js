@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import './QuizButton.css';
 import illusion from '../../Assets/Images/IllusionVector.svg';
 
@@ -148,7 +148,7 @@ export default function Quiz5({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressAndArrows variant="determinate" progress={65} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={65} sx={{ flex: '0 1 60%' }} />
         <Button
           disabled={isIllusionDisabled()}
           variant="contained"

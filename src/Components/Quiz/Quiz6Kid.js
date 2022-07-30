@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
-import ProgressAndArrows from './ProgressAndArrows';
+import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
 
 export default function Quiz6Kid({
@@ -61,7 +61,7 @@ export default function Quiz6Kid({
             <ArrowBackIcon />
 
           </Button>
-          <ProgressAndArrows variant="determinate" value={85} />
+          <ProgressBar variant="determinate" value={85} />
           <Button
             disabled={issDisabled}
             variant="contained"
@@ -99,7 +99,7 @@ export default function Quiz6Kid({
           >
             <ArrowBackIcon />
           </Button>
-          <ProgressAndArrows variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
           <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
             <Button
               disabled={issDisabled}
