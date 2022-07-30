@@ -47,6 +47,7 @@ const styles = {
     fontWeight: '700',
     lineHeight: '1.8em',
     fontSize: '1.05em',
+    fontFamily: 'DM Sans',
   },
 };
 
