@@ -9,7 +9,6 @@ import { CallMade as Away } from '@mui/icons-material';
 const styles = {
   sideCardContainer: {
     margin: 'auto 1vw auto 1vw',
-    minWidth: '18vw',
   },
   sideCard: {
     borderRadius: '1.31em',
@@ -17,6 +16,11 @@ const styles = {
     background: '#FDFDFD',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
+    minWidth: '18vw',
+    width: 'min-content',
+    '@media (max-width: 1440px)': {
+      minWidth: '22vw',
+    },
     '@media (max-width: 960px)': {
       width: '85%',
       margin: 'auto',
@@ -35,6 +39,10 @@ const styles = {
     textAlign: 'left',
     fontSize: '0.85em',
     margin: '2vh auto 2vh auto',
+    maxWidth: '18vw',
+    '@media (max-width: 1440px)': {
+      maxWidth: '22vw',
+    },
   },
   creator: {
     display: 'inline',
@@ -53,15 +61,15 @@ const styles = {
   blockContainer: {
     margin: '1vh auto',
     border: '1vh 1vw 1vh 1vh',
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: '4vh',
-    flexWrap: 'wrap',
-    justifyContent: 'start',
     '& ::after': {
       content: '',
       flex: 'auto',
     },
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '4vh',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
   },
   block: {
     fontFamily: 'DM Sans',
@@ -69,7 +77,6 @@ const styles = {
     textAlign: 'left',
     order: '1',
     flexGrow: '0',
-    margin: 'auto',
   },
   sub: {
     lineHeight: '1.5em',
@@ -82,6 +89,10 @@ const styles = {
     color: '#3477DE',
     background: 'rgba(52, 119, 222, 0.06)',
     textTransform: 'none',
+    borderRadius: '10px',
+    paddingTop: '1vh',
+    paddingBottom: '1vh',
+    padding: '1vh 2vw 1vh 2w',
     '&:hover': {
       color: '#FFFFFF',
       background: '#3477DE',
@@ -195,6 +206,7 @@ function AboutBook({
   const authorLinks = authors.map((author, i) => {
     // Add comment to links unless it is the last
     const link = (i !== authors.length - 1) ? `${author.name}, ` : author.name;
+    console.log(author);
     return (
       <span key={author.id}>
         <Link style={styles.link} to={`/creator/${author.id}`}>
