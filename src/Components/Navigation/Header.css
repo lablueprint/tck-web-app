@@ -1,5 +1,5 @@
 .header {
-    position: sticky; 
+    position: fixed; 
     top: 0;
     background: white;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 4;
+    z-index: 5;
 }
 
 .header-container {
@@ -38,6 +38,7 @@
     font-family:'Work Sans';
     display:flex;
     place-items:center;
+    white-space: nowrap;
 }
 
 .nav-link-active {
@@ -50,6 +51,7 @@
     font-family:'Work Sans';
     display:flex;
     place-items:center;
+    white-space: nowrap;
 }
 
 .logo {
@@ -60,4 +62,12 @@
     flex-shrink:0;
     margin:0;
     width:210px;
+}
+
+.menu-icon {
+    color: #393EBA;
+}
+
+.drawer {
+    z-index: 4;
 }

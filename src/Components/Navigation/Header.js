@@ -3,10 +3,10 @@ import './Header.css';
 import {
   NavLink,
 } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {
+  IconButton, MenuItem, Drawer, Box, CssBaseline,
+} from '@mui/material';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { v4 as uuidv4 } from 'uuid';
 import Logo from '../../Assets/Images/TCK SVG Logo.svg';
 
@@ -17,8 +17,6 @@ const options = [
   { name: 'Collections', nav: '/collection/init' },
   { name: 'Terms to Know', nav: '/dictionary' },
 ];
-
-const ITEM_HEIGHT = 48;
 
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
@@ -45,121 +43,104 @@ function useWindowSize() {
   return windowSize;
 }
 
-function LongMenu() {
+function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [active, setActive] = useState(false);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+
+  const handleClick = () => {
+    setAnchorEl(!open);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  return (
-    <div>
-      <IconButton
-        id="long-button"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id="long-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: '30ch',
-          },
-        }}
-      >
-        {options.map((option) => (
-          <NavLink
-            to={option.nav}
-            className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-            isActive={(match) => {
-              if (match) {
-                setActive(true);
-              }
-            }}
-            key={uuidv4()}
-          >
-            <MenuItem key={option.name} selected={active} onClick={handleClose}>
-              {option.name}
-            </MenuItem>
-          </NavLink>
-        ))}
-      </Menu>
-    </div>
-  );
-}
+  const handleDrawerToggle = () => {
+    setAnchorEl(!open);
+  };
 
-function Header() {
+  const drawer = (
+    <Box
+      role="presentation"
+      onClick={handleDrawerToggle}
+      sx={{
+        width: { xs: '100%', sm: 250 },
+      }}
+    >
+      {options.map((option) => (
+        <NavLink
+          to={option.nav}
+          isActive={(match) => {
+            if (match) {
+              setActive(true);
+            }
+          }}
+          key={uuidv4()}
+        >
+          <MenuItem key={option.name} selected={active} onClick={handleClose}>
+            {option.name}
+          </MenuItem>
+        </NavLink>
+      ))}
+    </Box>
+  );
+
   const size = useWindowSize();
   return (
-    <nav className="header">
-      <div className="header-container">
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? 'nav-link-active logo-img-container' : 'nav-link logo-img-container')}
-        >
-          <img src={Logo} className="logo" alt="The Conscious Kid logo" />
-        </NavLink>
-        {
-          size.width > 910 ? (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <nav className="header">
+        <div className="header-container">
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'nav-link-active logo-img-container' : 'nav-link logo-img-container')}
+          >
+            <img src={Logo} className="logo" alt="The Conscious Kid logo" />
+          </NavLink>
+          { size.width > 910 ? (
             <ul className="nav-menu">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/browser"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Book Search
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/quiz"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Book Finder Quiz
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/collection/init"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Collections
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/dictionary"
-                  className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
-                >
-                  Terms to Know
-                </NavLink>
-              </li>
+              {options.map((option) => (
+                <li>
+                  <NavLink
+                    to={option.nav}
+                    className={({ isActive }) => (isActive ? 'nav-link-active' : 'nav-link')}
+                    key={uuidv4()}
+                  >
+                    {option.name}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
-          )
-            : (
-              <LongMenu />
-            )
-        }
-
+          ) : (
+            <IconButton
+              id="long-button"
+              onClick={handleClick}
+            >
+              <MenuRoundedIcon
+                className="menu-icon"
+                fontSize="large"
+              />
+            </IconButton>
+          )}
+        </div>
+      </nav>
+      <div>
+        <Drawer
+          id="long-menu"
+          anchor="right"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          variant="persistent"
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+        >
+          {drawer}
+        </Drawer>
       </div>
-    </nav>
+    </Box>
   );
 }
 
