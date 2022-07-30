@@ -10,14 +10,18 @@ import EducatorLink from './EducatorLink';
 const styles = {
   sideCardContainer: {
     margin: 'auto 1vw auto 1vw',
-    minWidth: '18vw',
   },
   sideCard: {
+    minWidth: '18vw',
+    width: 'min-content',
     borderRadius: '1.31em',
     marginBottom: '4vh',
     background: '#FDFDFD',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
+    '@media (max-width: 1440px)': {
+      minWidth: '22vw',
+    },
     '@media (max-width: 960px)': {
       width: '85%',
       margin: 'auto',
@@ -43,7 +47,6 @@ const styles = {
     fontWeight: '700',
     lineHeight: '1.8em',
     fontSize: '1.05em',
-    display: 'block',
   },
 };
 
@@ -55,7 +58,8 @@ function AdditionalResources({ readAloudURL, educatorURLs }) {
       key={uuidv4()}
     />
   ));
-  return (
+  const hydrated = readAloudURL || educatorURLs.length !== 0;
+  return hydrated && (
     <Card sx={styles.sideCard}>
       <CardContent>
         <Box sx={styles.sideCardContainer}>
