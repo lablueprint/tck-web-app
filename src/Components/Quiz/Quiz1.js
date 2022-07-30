@@ -12,7 +12,6 @@ import ProgressBar from './ProgressBar';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';
-// import './QuizButton.css';
 
 export default function Quiz1({
   dispatch, setDisabled, isParent, setIsChild,
@@ -27,7 +26,7 @@ export default function Quiz1({
     <div style={{ background: '#FAFAFA', height: '100%' }}>
       <div>
         <h2 style={{
-          fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em', color: '#444444',
+          marginTop: '150px', fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em', color: '#444444',
         }}
         >
           Are you a parent, educator, or kid?
@@ -112,10 +111,10 @@ export default function Quiz1({
               border: '2.5px solid #D7D7D7',
               borderRadius: '21px',
               m: 7,
-              background: '#ffffff',
               '& .MuiButton-startIcon': {
                 marginRight: '0',
               },
+              background: '#ffffff',
               '&.MuiButtonBase-root:hover': {
                 bgcolor: '#EAF3FE',
                 color: '#393EBA',

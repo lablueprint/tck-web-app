@@ -104,6 +104,8 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isParent && count === 3) {
     setIsChild(isChild);
+    console.log(`ischild: ${isChild}`);
+    console.log(`count: ${count}`);
     return (
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
@@ -111,7 +113,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           slideCaption="Which races/ethnicities do you want to see represented?"
           setBookFilters={setBookFilters}
           dispatch={dispatch}
-          issDisabled={issDisabled(bookFilters['race/ethnicity'])}
           type1="parent"
         />
       </div>
@@ -164,6 +165,8 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isChild && count === 3) {
     setIsChild(isChild);
+    console.log(`ischild: ${isChild}`);
+    console.log(`count: ${count}`);
     return (
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
@@ -171,7 +174,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           setBookFilters={setBookFilters}
           slideCaption="Which of these races are you interested in reading about?"
           dispatch={dispatch}
-          issDisabled={issDisabled(bookFilters['race/ethnicity'])}
           type1="child"
         />
       </div>
@@ -274,7 +276,12 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
                   }}
                   endIcon={<ArrowForwardIcon />}
                 >
-                  Your Results
+                  <p style={{
+                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto', textTransform: 'none',
+                  }}
+                  >
+                    Your Results
+                  </p>
                 </Button>
               </NavLink>
             )

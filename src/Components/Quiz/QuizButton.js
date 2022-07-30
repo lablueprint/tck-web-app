@@ -44,21 +44,21 @@ export default function QuizButton({
       }}
       onClick={() => {
         setChecked((old) => !old);
-        setClicked(true);
+        setClicked(!clicked);
         // changeColor();
       }}
     >
       <Checkbox
-        style={{
-          color: '#393EBA',
-        }}
+        style={clicked ? { color: '#393EBA' } : { color: '#444444' }}
         sx={{ position: 'relative', bottom: '15px' }}
         onChange={(event) => {
           onClick(desiredLabel, event.target.checked);
         }}
-        checked={desiredArray.indexOf(desiredLabel) > -1 || checked}
+        checked={desiredArray.indexOf(desiredLabel) > -1 || checked || clicked}
       />
-      <p style={{
+      <p style={clicked ? {
+        textTransform: 'none', color: '#FFFFFF', fontFamily: 'DM Sans', fontWeight: 'bold', flex: '0 0 75%', justifyContent: 'center',
+      } : {
         textTransform: 'none', color: '#444444', fontFamily: 'DM Sans', fontWeight: 'bold', flex: '0 0 75%', justifyContent: 'center',
       }}
       >

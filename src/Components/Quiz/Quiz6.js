@@ -25,7 +25,7 @@ export default function Quiz6({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
           {title}
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>

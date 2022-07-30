@@ -28,6 +28,7 @@
     border: 2.5px solid #D7D7D7;
     border-radius: 30px;
     background:#ffffff;
+    justify-content: center;
 }
 .silly-button:hover
 {
@@ -35,11 +36,6 @@
       color: #393EBA !important;
       border-color: #393EBA !important;
 }
-/* doesnt work yet.silly-button:focus
-{
-    background-color: #393EBA !important;
-    color: #EAF3FE !important; 
-} */
 .woman-question{
     display: flex;
     flex-direction: column;

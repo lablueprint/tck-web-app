@@ -16,6 +16,7 @@ export const CustomRangeSlider = styled(Slider)({
     color: '#393EBA',
   },
   '& .MuiSlider-markLabel': {
+    fontFamily: 'DM Sans',
     fontSize: 24,
     top: '45px',
     color: '#444444',
@@ -107,6 +108,7 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
           min={-1}
           max={units.length - 2}
           label={() => 'Minimum distance'}
+
         />
       </Box>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -16,13 +16,16 @@ import illusion from '../../Assets/Images/IllusionVector.svg';
 export default function Quiz5({
   setIllusions, dispatch, isIllusionDisabled,
 }) {
+  const [valueSelected, setValueSelected] = useState(0);
+  const [younger, setYounger] = useState(false);
+  const [older, setOlder] = useState(false);
   const handleClick = (val) => {
     setIllusions(val);
   };
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
           What do you see in the picture below?
         </h1>
         <div><img src={illusion} alt="Illusion Missing" /></div>
@@ -37,7 +40,22 @@ export default function Quiz5({
           >
             <Button
               className="QuizButton"
-              style={{
+              style={younger ? {
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#393EBA',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
+              } : {
                 color: '#444444',
                 padding: '2em 0.5em 2em 0.5em',
                 margin: '1em auto 1em auto',
@@ -53,15 +71,21 @@ export default function Quiz5({
                   color: 'white',
                 },
               }}
+              onClick={() => {
+                setValueSelected(1);
+                setYounger(!younger);
+                setOlder(false);
+              }}
             >
               <FormControlLabel
                 control={(
                   <Radio
+                    checked={valueSelected === 1}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
-                  {
-                    color: 'white',
-                  },
+                      {
+                        color: younger ? '#393EBA' : 'white',
+                      },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
                       },
@@ -74,8 +98,10 @@ export default function Quiz5({
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
                 label={(
-                  <p style={{
-                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  <p style={younger ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
+                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
                     A younger person
@@ -85,7 +111,22 @@ export default function Quiz5({
             </Button>
             <Button
               className="QuizButton"
-              style={{
+              style={older ? {
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#393EBA',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
+              } : {
                 color: '#444444',
                 padding: '2em 0.5em 2em 0.5em',
                 margin: '1em auto 1em auto',
@@ -96,16 +137,26 @@ export default function Quiz5({
                 display: 'flex',
                 border: '2px solid #d7d7d7',
                 textTransform: 'none',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
+              }}
+              onClick={() => {
+                setValueSelected(2);
+                setOlder(!younger);
+                setYounger(false);
               }}
             >
               <FormControlLabel
                 control={(
                   <Radio
+                    checked={valueSelected === 2}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
-                  {
-                    color: 'white',
-                  },
+                      {
+                        color: older ? '#393EBA' : 'white',
+                      },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
                       },
@@ -118,8 +169,10 @@ export default function Quiz5({
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
                 label={(
-                  <p style={{
-                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  <p style={older ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
+                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
                     An older person

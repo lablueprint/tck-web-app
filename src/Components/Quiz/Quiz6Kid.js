@@ -26,7 +26,7 @@ export default function Quiz6Kid({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
           {title}
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
@@ -115,7 +115,14 @@ export default function Quiz6Kid({
               }}
               endIcon={<ArrowForwardIcon />}
             >
-              Your Results
+              <p style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto', textTransform: 'none',
+              }}
+              >
+                Your Results
+              </p>
+              {' '}
+
             </Button>
           </NavLink>
         </div>

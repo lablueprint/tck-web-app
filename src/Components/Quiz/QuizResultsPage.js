@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
 import './QuizResultsPage.css';
+import {
+  Button, Box,
+} from '@mui/material';
+import { NavLink } from 'react-router-dom';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
 import RecFilter from '../Recommendations/BookRec';
@@ -9,8 +13,9 @@ import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
 import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
-// import BookList from '../BookList/BookList';
+import './QuizButton.css';
 
+// import BookList from '../BookList/BookList';
 function HandleClickToTop() {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 }
@@ -170,6 +175,76 @@ function ResultsPage({ bookFilters, isChild }) {
             />
           </div>
         </div>
+        <Box
+          component="span"
+          m={1}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <NavLink style={{ textDecoration: 'none' }} to="/quiz">
+            <Button
+              className="QuizButton"
+              style={{
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#ffffff',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
+                marginRight: '50px',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
+              }}
+            >
+              <p style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+              }}
+              >
+                {' '}
+                Re-take quiz
+
+              </p>
+
+            </Button>
+          </NavLink>
+          <NavLink style={{ textDecoration: 'none' }} to="/browser">
+            <Button
+              className="QuizButton"
+              style={{
+                color: '#444444',
+                padding: '2em 0.5em 2em 0.5em',
+                margin: '1em auto 1em auto',
+                width: '300px',
+                height: '80.59px',
+                borderRadius: '30px',
+                background: '#ffffff',
+                display: 'flex',
+                border: '2px solid #d7d7d7',
+                textTransform: 'none',
+                '&:hover': {
+                  bgcolor: '#393EBA',
+                  color: 'white',
+                },
+              }}
+            >
+              <p style={{
+                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+              }}
+              >
+                Search for Books
+              </p>
+            </Button>
+          </NavLink>
+
+        </Box>
+
         {!isChild && <img src={AdultCloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
       </div>
     </div>

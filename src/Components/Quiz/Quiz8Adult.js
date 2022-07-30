@@ -27,7 +27,7 @@ export default function Quiz8Adult({
   return (
     <div>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
           Please select your preferred book formats
         </h1>
         <p style={{ color: '#444444' }}>These will be used to rank your results but availability is not guaranteed!</p>
@@ -79,7 +79,14 @@ export default function Quiz8Adult({
             }}
             endIcon={<ArrowForwardIcon />}
           >
-            Your Results
+            <p style={{
+              fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto', textTransform: 'none',
+            }}
+            >
+              Your Results
+            </p>
+            {' '}
+
           </Button>
         </NavLink>
       </div>

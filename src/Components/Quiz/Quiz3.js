@@ -19,7 +19,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 export default function Quiz3({
   slideCaption, setBookFilters, bookFilters,
-  dispatch, issDisabled, type1,
+  dispatch, type1,
 }) {
   const [filters, setFilters] = useState([]);
   let filterVar;
@@ -50,7 +50,7 @@ export default function Quiz3({
   useEffect(getFilters, []);
   return (
     <div>
-      <h1 style={{ color: '#444444' }}>
+      <h1 style={{ fontFamily: 'DM Sans', color: '#444444', marginTop: '150px' }}>
         {slideCaption}
       </h1>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', margin: '0 12em 0 12em' }}>
@@ -83,7 +83,7 @@ export default function Quiz3({
         </Button>
         <ProgressBar variant="determinate" progress={29} sx={{ flex: '0 1 60%' }} />
         <Button
-          disabled={issDisabled}
+          disabled={false}
           variant="contained"
           onClick={() => dispatch({ type: type1 })}
           sx={{
@@ -107,7 +107,6 @@ export default function Quiz3({
 }
 Quiz3.propTypes = {
   slideCaption: propTypes.string.isRequired,
-  issDisabled: propTypes.bool.isRequired,
   dispatch: propTypes.func.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({

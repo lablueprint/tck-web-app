@@ -26,18 +26,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const [neutralColor, setNeutralColor] = useState(false);
   const [seriousColor, setSeriousColor] = useState(false);
   const [verySeriousColor, setVerySeriousColor] = useState(false);
+  const [valueSelected, setValueSelected] = useState(0);
   return (
     <div style={{ background: '#FCFCFC' }}>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginBottom: '20px', color: '#444444' }}>
           Which of the following best describes you?
         </h1>
-        <FormControl>
+        <FormControl style={{ marginTop: '50px' }}>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
             sx={{ /* display: 'flex', */ flexDirection: 'row' /* justifyContent: 'center' */ }}
+            // valueSelected={valueSelected}
           >
             <Button
               className="silly-button"
@@ -50,6 +52,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 textTransform: 'none',
                 color: '#444444',
                 backgroundColor: '#393EBA',
+                marginRight: '30px',
               }
                 : {
                   minHeight: 392,
@@ -60,6 +63,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   textTransform: 'none',
                   color: '#444444',
                   backgroundcolor: '#FFFFFF',
+                  marginRight: '30px',
                 }}
               onClick={() => {
                 setVerySeriousColor(false);
@@ -67,6 +71,8 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 setNeutralColor(false);
                 setSeriousColor(false);
                 setVerySillyColor(!verySillyColor);
+                setValueSelected(1);
+                handleClick(1);
               }}
             >
               <img src={VerySilly} height="90" width="90" alt="Very Silly Missing" />
@@ -77,6 +83,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 control={(
                   <div>
                     <Radio
+                      checked={valueSelected === 1}
                       sx={{
                         '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                         {
@@ -93,7 +100,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
 
 )}
                 label={(
-                  <p style={{
+                  <p style={verySillyColor ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
@@ -112,6 +121,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 textTransform: 'none',
                 color: '#444444',
                 backgroundColor: '#393EBA',
+                marginRight: '30px',
               }
                 : {
                   minHeight: 392,
@@ -122,6 +132,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   textTransform: 'none',
                   color: '#444444',
                   backgroundcolor: '#FFFFFF',
+                  marginRight: '30px',
                 }}
               className="silly-button"
               onClick={() => {
@@ -130,6 +141,8 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 setNeutralColor(false);
                 setSeriousColor(false);
                 setSillyColor(!sillyColor);
+                setValueSelected(2);
+                handleClick(2);
               }}
             >
               <img src={Silly} height="90" width="90" alt="Silly Missing" />
@@ -139,6 +152,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 }}
                 control={(
                   <Radio
+                    checked={valueSelected === 2}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
@@ -153,7 +167,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   />
 )}
                 label={(
-                  <p style={{
+                  <p style={sillyColor ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
@@ -173,6 +189,8 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 textTransform: 'none',
                 color: '#444444',
                 backgroundColor: '#393EBA',
+                marginLeft: '30px',
+
               }
                 : {
                   minHeight: 392,
@@ -191,12 +209,15 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 setSeriousColor(false);
                 setVerySeriousColor(false);
                 setNeutralColor(!neutralColor);
+                setValueSelected(3);
+                handleClick(3);
               }}
             >
               <img src={Neutral} height="90" width="90" alt="Neutral Missing" />
               <FormControlLabel
                 control={(
                   <Radio
+                    checked={valueSelected === 3}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
@@ -214,7 +235,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
                 label={(
-                  <p style={{
+                  <p style={neutralColor ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
@@ -233,6 +256,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 textTransform: 'none',
                 color: '#444444',
                 backgroundColor: '#393EBA',
+                marginLeft: '30px',
               }
                 : {
                   minHeight: 392,
@@ -243,6 +267,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   textTransform: 'none',
                   color: '#444444',
                   backgroundcolor: '#FFFFFF',
+                  marginLeft: '30px',
                 }}
               className="silly-button"
               onClick={() => {
@@ -251,6 +276,8 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 setNeutralColor(false);
                 setVerySeriousColor(false);
                 setSeriousColor(!seriousColor);
+                setValueSelected(4);
+                handleClick(4);
               }}
             >
               <img src={Serious} height="90" width="90" alt="Serious Missing" />
@@ -260,6 +287,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 }}
                 control={(
                   <Radio
+                    checked={valueSelected === 4}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
@@ -274,7 +302,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   />
 )}
                 label={(
-                  <p style={{
+                  <p style={seriousColor ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
@@ -293,6 +323,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 textTransform: 'none',
                 color: '#444444',
                 backgroundColor: '#393EBA',
+                marginLeft: '30px',
               }
                 : {
                   minHeight: 392,
@@ -303,6 +334,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   textTransform: 'none',
                   color: '#444444',
                   backgroundcolor: '#FFFFFF',
+                  marginLeft: '30px',
                 }}
               className="silly-button"
               onClick={() => {
@@ -311,6 +343,8 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 setNeutralColor(false);
                 setSeriousColor(false);
                 setVerySeriousColor(!verySeriousColor);
+                setValueSelected(5);
+                handleClick(5);
               }}
             >
               <img src={VerySerious} height="90" width="90" alt="Very Serious Missing" />
@@ -320,6 +354,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 }}
                 control={(
                   <Radio
+                    checked={valueSelected === 5}
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                     {
@@ -334,7 +369,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   />
 )}
                 label={(
-                  <p style={{
+                  <p style={verySeriousColor ? {
+                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
+                  } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   }}
                   >
