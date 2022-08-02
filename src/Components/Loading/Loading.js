@@ -1,10 +1,10 @@
 import React from 'react';
-import Kid1 from '../Assets/Images/Boy.svg';
-import Star1 from '../Assets/Images/Yellow Star.svg';
-import Kid2 from '../Assets/Images/Girl 1.svg';
-import Star2 from '../Assets/Images/Pink Star.svg';
-import Kid3 from '../Assets/Images/Girl 2.svg';
-import Star3 from '../Assets/Images/Orange Star.svg';
+import Kid1 from '../../Assets/Images/Boy.svg';
+import Star1 from '../../Assets/Images/Yellow Star.svg';
+import Kid2 from '../../Assets/Images/Girl 1.svg';
+import Star2 from '../../Assets/Images/Pink Star.svg';
+import Kid3 from '../../Assets/Images/Girl 2.svg';
+import Star3 from '../../Assets/Images/Orange Star.svg';
 import './Loading.css';
 
 function Loading() {
