@@ -206,7 +206,6 @@ function AboutBook({
   const authorLinks = authors.map((author, i) => {
     // Add comment to links unless it is the last
     const link = (i !== authors.length - 1) ? `${author.name}, ` : author.name;
-    console.log(author);
     return (
       <span key={author.id}>
         <Link style={styles.link} to={`/creator/${author.id}`}>
