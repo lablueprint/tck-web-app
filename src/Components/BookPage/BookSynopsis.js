@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Box,
@@ -28,8 +29,18 @@ function BookSynopsis({
   genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
   illustrators, bookType, datePublished,
 }) {
-  return (
-    <Box sx={styles.synopsis}>
+  const [matches, setMatches] = useState(
+    window.matchMedia('(min-width: 768px)').matches,
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia('(min-width: 768px)')
+      .addEventListener('change', (e) => setMatches(e.matches));
+  }, []);
+
+  const desktop = (
+    <>
       <BookCover
         title={title}
         imageURL={imageURL}
@@ -43,6 +54,30 @@ function BookSynopsis({
         title={title}
         desc={desc}
       />
+    </>
+  );
+
+  const mobile = (
+    <>
+      <BookDesc
+        title={title}
+        desc={desc}
+      />
+      <BookCover
+        title={title}
+        imageURL={imageURL}
+        identityTags={identityTags}
+        raceEthnicity={raceEthnicity}
+        genre={genre}
+        themesLessons={themesLessons}
+        religion={religion}
+      />
+    </>
+  );
+
+  return (
+    <Box sx={styles.synopsis}>
+      {desktop}
       <div>
         <AboutBook
           authors={authors}
