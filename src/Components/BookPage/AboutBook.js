@@ -17,13 +17,15 @@ const styles = {
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
     minWidth: '18vw',
-    width: 'min-content',
+    // width: 'min-content',
     '@media (max-width: 1440px)': {
       minWidth: '22vw',
     },
     '@media (max-width: 960px)': {
       width: '85%',
       margin: 'auto',
+    },
+    '@media (max-width: 768px)': {
     },
   },
   sideCardTitle: {
@@ -39,10 +41,14 @@ const styles = {
     textAlign: 'left',
     fontSize: '0.85em',
     margin: '2vh auto 2vh auto',
-    maxWidth: '18vw',
+    // maxWidth: '18vw',
     '@media (max-width: 1440px)': {
       maxWidth: '22vw',
     },
+    '@media (max-width: 768px)': {
+      maxWidth: '100%',
+    },
+    outline: '2px dotted red',
   },
   creator: {
     display: 'inline',
