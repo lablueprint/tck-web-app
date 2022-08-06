@@ -207,7 +207,7 @@ function BookPage() {
     // and format into neater object
     authors = author.map((x) => ({
       name: (x.get('name')) ? x.get('name') : authorName,
-      id: (x.get('id')) ? x.get('id') : authorID,
+      id: (x.id) ? x.id : authorID,
     }));
   }
 
@@ -217,7 +217,7 @@ function BookPage() {
     // and format into neater object
     illustrators = illustrator.map((x) => ({
       name: (x.get('name')) ? x.get('name') : illustratorName,
-      id: (x.get('id')) ? x.get('id') : illustratorID,
+      id: (x.id) ? x.id : illustratorID,
     }));
   }
 
