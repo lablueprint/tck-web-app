@@ -37,7 +37,7 @@ const styles = {
   text: {
     fontFamily: 'DM Sans',
     marginTop: '2vh',
-    lineHeight: '1.3em',
+    lineHeight: '150%',
     color: '#4C4C4C',
     fontWeight: '400',
   },
