@@ -11,11 +11,15 @@ const styles = {
   bookCover: {
     maxWidth: '20vw',
     filter: 'drop-shadow(4px 4px 50px rgba(0, 0, 0, 0.25))',
+
     marginRight: '2vw',
     '@media (max-width: 960px)': {
-      maxWidth: '90vw',
+      maxWidth: '75vw',
       margin: 'auto',
+      filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25))',
+      borderRadius: '16px',
     },
+
   },
   topDownContainer: {
     display: 'block',
