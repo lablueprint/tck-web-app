@@ -44,7 +44,7 @@ const styles = {
   linkUI: {
     textDecoration: 'none',
     color: '#3477DE',
-    fontWeight: '700',
+    fontWeight: '400',
     lineHeight: '1.8em',
     fontSize: '1.05em',
     fontFamily: 'DM Sans',
