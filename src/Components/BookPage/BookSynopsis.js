@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
@@ -29,16 +28,22 @@ function BookSynopsis({
   genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
   illustrators, bookType, datePublished,
 }) {
-  const [matches, setMatches] = useState(
-    window.matchMedia('(min-width: 768px)').matches,
+  const [width, setWidth] = useState(
+    window.innerWidth,
   );
 
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
   useEffect(() => {
-    window
-      .matchMedia('(min-width: 768px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
   }, []);
 
+  const isMobile = width <= 768;
   const desktop = (
     <>
       <BookCover
@@ -61,7 +66,7 @@ function BookSynopsis({
     <>
       <BookDesc
         title={title}
-        desc={desc}
+        isMobile
       />
       <BookCover
         title={title}
@@ -72,12 +77,17 @@ function BookSynopsis({
         themesLessons={themesLessons}
         religion={religion}
       />
+      <BookDesc
+        desc={desc}
+        isMobile
+      />
+
     </>
   );
 
   return (
     <Box sx={styles.synopsis}>
-      {desktop}
+      { (isMobile) ? mobile : desktop}
       <div>
         <AboutBook
           authors={authors}
