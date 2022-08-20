@@ -12,6 +12,7 @@ import ProgressBar from './ProgressBar';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';
+import AvatarButton from './AvatarButton';
 
 export default function Quiz1({
   dispatch, setDisabled, isParent, setIsChild,
@@ -31,116 +32,48 @@ export default function Quiz1({
         >
           Are you a parent, educator, or kid?
         </h2>
-        <Box sx={{ paddingBottom: '4em' }}>
-          <Button
-            className="button"
-            sx={{
-              border: '2.5px solid #D7D7D7',
-              borderRadius: '21px',
-              m: 7,
-              '& .MuiButton-startIcon': {
-                marginRight: '0',
-              },
-              background: '#ffffff',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#EAF3FE',
-                color: '#393EBA',
-                borderColor: '#393EBA',
-              },
-            }}
-            onClick={() => handleToggle({ type: 'parent' }, false)}
-            size="large"
-            variant="outlined"
-            startIcon={(
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          flexWrap: 'wrap',
+          margin: '6rem 1rem 2rem',
+        }}
+        >
+          <AvatarButton
+            caption="parent"
+            handleToggle={() => handleToggle({ type: 'parent' }, false)}
+            icon={(
               <Avatar
                 sx={{ width: 100, height: 100 }}
                 src={Parent}
                 style={{ borderRadius: 0 }}
+                alt="parent"
               />
             )}
-          >
-            <p
-              className="button-text"
-              style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
-              }}
-            >
-              Parent
-            </p>
-          </Button>
-          <Button
-            className="button"
-            sx={{
-              border: '2.5px solid #D7D7D7',
-              borderRadius: '21px',
-              m: 7,
-              '& .MuiButton-startIcon': {
-                marginRight: '0',
-              },
-              background: '#ffffff',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#EAF3FE',
-                color: '#393EBA',
-                borderColor: '#393EBA',
-              },
-            }}
-            onClick={() => handleToggle({ type: 'parent' }, false)}
-            size="large"
-            variant="outlined"
-            startIcon={(
+          />
+          <AvatarButton
+            caption="educator"
+            handleToggle={() => handleToggle({ type: 'parent' }, false)}
+            icon={(
               <Avatar
                 sx={{ width: 100, height: 100 }}
                 src={Educator}
                 style={{ borderRadius: 0 }}
               />
             )}
-          >
-            <p
-              className="button-text"
-              style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
-              }}
-            >
-              Educator
-
-            </p>
-          </Button>
-          <Button
-            className="button"
-            sx={{
-              border: '2.5px solid #D7D7D7',
-              borderRadius: '21px',
-              m: 7,
-              '& .MuiButton-startIcon': {
-                marginRight: '0',
-              },
-              background: '#ffffff',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#EAF3FE',
-                color: '#393EBA',
-                borderColor: '#393EBA',
-              },
-            }}
-            onClick={() => handleToggle({ type: 'child' }, true)}
-            size="large"
-            variant="outlined"
-            startIcon={(
+          />
+          <AvatarButton
+            caption="kid"
+            handleToggle={() => handleToggle({ type: 'child' }, true)}
+            icon={(
               <Avatar
                 sx={{ width: 100, height: 100 }}
                 src={Child}
                 style={{ borderRadius: 0 }}
               />
             )}
-          >
-            <p
-              className="button-text"
-              style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', color: '#000000', textTransform: 'capitalize',
-              }}
-            >
-              Kid
-            </p>
-          </Button>
+          />
         </Box>
       </div>
       <div>

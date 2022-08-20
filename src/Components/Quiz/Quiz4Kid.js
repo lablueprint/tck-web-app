@@ -27,6 +27,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const [seriousColor, setSeriousColor] = useState(false);
   const [verySeriousColor, setVerySeriousColor] = useState(false);
   const [valueSelected, setValueSelected] = useState(0);
+
   return (
     <div style={{ background: '#FCFCFC' }}>
       <Box sx={{ padding: 15 }}>
