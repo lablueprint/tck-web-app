@@ -21,11 +21,6 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const handleClick = (val) => {
     setSilly(val);
   };
-  const [verySillyColor, setVerySillyColor] = useState(false);
-  const [sillyColor, setSillyColor] = useState(false);
-  const [neutralColor, setNeutralColor] = useState(false);
-  const [seriousColor, setSeriousColor] = useState(false);
-  const [verySeriousColor, setVerySeriousColor] = useState(false);
   const [valueSelected, setValueSelected] = useState(0);
 
   return (
@@ -44,7 +39,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
           >
             <Button
               className="silly-button"
-              sx={verySillyColor ? {
+              sx={valueSelected === 1 ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -67,11 +62,6 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                   marginRight: '30px',
                 }}
               onClick={() => {
-                setVerySeriousColor(false);
-                setSillyColor(false);
-                setNeutralColor(false);
-                setSeriousColor(false);
-                setVerySillyColor(!verySillyColor);
                 setValueSelected(1);
                 handleClick(1);
               }}
@@ -88,7 +78,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                       sx={{
                         '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                         {
-                          color: verySillyColor ? '#393EBA' : 'white',
+                          color: valueSelected === 1 ? '#393EBA' : 'white',
                         },
                         '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                           color: '#393EBA',
@@ -99,9 +89,9 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                     />
                   </div>
 
-)}
+                )}
                 label={(
-                  <p style={verySillyColor ? {
+                  <p style={valueSelected === 1 ? {
                     fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
                   } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -113,7 +103,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
               />
             </Button>
             <Button
-              sx={sillyColor ? {
+              sx={valueSelected === 2 ? {
                 minHeight: 392,
                 minWidth: 218,
                 border: '2px solid #d7d7d7',
@@ -137,11 +127,6 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
                 }}
               className="silly-button"
               onClick={() => {
-                setVerySillyColor(false);
-                setVerySeriousColor(false);
-                setNeutralColor(false);
-                setSeriousColor(false);
-                setSillyColor(!sillyColor);
                 setValueSelected(2);
                 handleClick(2);
               }}
