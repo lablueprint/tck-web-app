@@ -3,23 +3,18 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 28.15px;
-    padding: 35px;
-    padding-bottom: 25px;
-    display: flex;
-    flex-direction: row;
+    padding-top: 30px;
+    padding-left: 40px;
 }
 
 .phonetic-spelling {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 18px;
-    line-height: 23.44px;
-    line-height: 100%;
+    font-style: italic;
     letter-spacing: 0.5px;
-    padding-top: 32px;
-    padding-left: 40px;
-    display: flex;
-    flex-direction: row;
+    padding-top: 5px;
+    padding-left: 22px;
 }
 
 .body {
@@ -27,22 +22,31 @@
     font-family: 'DM Sans';
     font-weight: 400;
     line-height: 32.13px;
-    padding-right: 13%;
-    padding-left: 13%;
-    padding-top: 1%;
+    padding-right: 10%;
+    padding-left: 15%;
+    padding-top: 1.5%;
     padding-bottom: 1%;
     text-align: left;
 }
 
 .more-resources {
     font-family: 'DM Sans';
-    font-size: 22px;
+    font-size: 18px;
     padding-top: 3%;
-    padding-bottom: 15%;
-    padding-left: 48px;
+    padding-bottom: 25%;
+    padding-left: 70px;
+    font-weight: 700;
 }
 
 .img {
     display: flex;
     flex-direction: row;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+}
+
+.wrapTermAndPhoneticSpelling {
+    display:inline-block;
+    padding:0px;
+    margin:0px;
 }

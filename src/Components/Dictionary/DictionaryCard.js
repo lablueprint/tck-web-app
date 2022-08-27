@@ -73,19 +73,21 @@ export default function DictionaryCard({
   const displayLet = firstLet({ word }).toUpperCase();
   return (
     <Card sx={{
-      borderRadius: 8, margin: 4, boxShadow: 5, marginRight: 20, marginLeft: 20,
+      borderRadius: 8, margin: 4, boxShadow: 2, marginRight: 20, marginLeft: 20,
     }}
     >
       <CardContent>
         <div className="img">
-          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src={mapping[displayLet]} />
-          <div className="term">
-            {word}
-          </div>
-          <div className="phonetic-spelling">
-            [
-            {phoeneticSpelling}
-            ]
+          <Avatar sx={{ height: '110px', width: '110px' }} alt="Dictionary Image" src={mapping[displayLet]} />
+          <div className="wrapTermAndPhoneticSpelling">
+            <div className="term">
+              {word}
+            </div>
+            <div className="phonetic-spelling">
+              [
+              {phoeneticSpelling}
+              ]
+            </div>
           </div>
         </div>
         <div className="body">
@@ -93,7 +95,7 @@ export default function DictionaryCard({
             : (
               <div>
                 {showMore ? def : `${def.substring(0, 250)}`}
-                <Button style={{ textTransform: 'none', color: '#607AAD' }} onClick={() => setShowMore(!showMore)}>
+                <Button style={{ textTransform: 'none', color: '#3477DE' }} onClick={() => setShowMore(!showMore)}>
                   {showMore ? 'See less' : 'See more'}
                 </Button>
               </div>
@@ -111,13 +113,13 @@ export default function DictionaryCard({
                 }}
               >
                 <div className="more-resources">
-                  More Resources:
+                  Resources:
                 </div>
                 <div>
                   {linksArray.filter((v) => Object.keys(v).length).map((url) => (
                     <Button
                       key={uuidv4()}
-                      style={{ textTransform: 'none', color: '#607AAD', fontSize: '15px' }}
+                      style={{ textTransform: 'none', color: '#3477DE', fontSize: '15px' }}
                       href={url}
                     >
                       {url}

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import DictionaryCard from '../Components/Dictionary/DictionaryCard';
 import './PagesTemp.css';
@@ -28,8 +29,20 @@ function Dictionary() {
 
   return (
     <>
+      <div className="tagline">
+        TERMS TO KNOW:
+      </div>
       <div className="title">
-        Racial Literacy Terms: Key Terms
+        Racial Literacy Dictionary
+      </div>
+      <div className="subtitle">
+        Racial literacy is the knowledge, skills, advocacy and awareness needed to understand race and disrupt racism on a personal and systemic level. Racial literacy also provides tools to counter, cope and understand the role racism and white supremacy have in the larger society.
+      </div>
+      <div className="subtitle">
+        Why is racial literacy important? Absence of a shared language can add to dysfunction, misrepresentation and lack of clarity surrounding racial equity.  Clearly defined terminology provides a shared language, and opportunities for solidarity, when engaging in open and honest conversation about issues of race and identity.
+      </div>
+      <div className="subtitle">
+        We’ve outlined a list of some key terms to know!
       </div>
       {definitions.map((wordInfo) => (
         <DictionaryCard
