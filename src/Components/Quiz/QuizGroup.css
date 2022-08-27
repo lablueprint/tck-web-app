@@ -50,6 +50,17 @@
     background:#ffffff;
 }
 
+.gradeSlider
+{
+   width: 550px;
+}
+
+@media screen and (max-width: 768px) {
+   .gradeSlider {
+      width: 400px;
+   }
+ }
+
 /* .Avatar {
     vertical-align: top;
 

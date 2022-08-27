@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
+import './QuizGroup.css';
 
 export const CustomRangeSlider = styled(Slider)({
   '& .MuiSlider-rail': {
@@ -18,11 +19,17 @@ export const CustomRangeSlider = styled(Slider)({
   '& .MuiSlider-markLabel': {
     fontFamily: 'DM Sans',
     fontSize: 24,
+    '@media (max-width: 768px)': {
+      fontSize: 18,
+    },
     top: '45px',
     color: '#444444',
   },
   '& .MuiSlider-valueLabel': {
     fontSize: 24,
+    '@media (max-width: 768px)': {
+      fontSize: 18,
+    },
     fontWeight: 'normal',
     fontFamily: 'DM Sans',
     top: 100,
@@ -39,6 +46,10 @@ export const CustomRangeSlider = styled(Slider)({
   '& .MuiSlider-thumb': {
     height: 55,
     width: 55,
+    '@media (max-width: 768px)': {
+      width: 40,
+      height: 40,
+    },
     backgroundColor: '#393EBA',
     border: '2px solid #393EBA',
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
@@ -90,7 +101,7 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
   };
   return (
     <div>
-      <Box sx={{ width: 550 }}>
+      <Box className="gradeSlider">
         <CustomRangeSlider
           name="Grade"
           aria-label="Grade"
