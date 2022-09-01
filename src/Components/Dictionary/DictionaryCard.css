@@ -4,7 +4,6 @@
     font-size: 24px;
     line-height: 28.15px;
     padding-top: 30px;
-    padding-left: 40px;
 }
 
 .phonetic-spelling {
@@ -14,7 +13,6 @@
     font-style: italic;
     letter-spacing: 0.5px;
     padding-top: 5px;
-    padding-left: 22px;
 }
 
 .body {
@@ -32,10 +30,9 @@
 .more-resources {
     font-family: 'DM Sans';
     font-size: 18px;
+    font-weight: 700;
     padding-top: 3%;
     padding-bottom: 25%;
-    padding-left: 70px;
-    font-weight: 700;
 }
 
 .img {
@@ -49,4 +46,24 @@
     display:inline-block;
     padding:0px;
     margin:0px;
+    padding-left: 40px;
 }
+
+@media screen and (max-width: 960px) {
+    .term {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+    .phonetic-spelling {
+        font-size: 15px;
+    }
+    .wrapTermAndPhoneticSpelling {
+        padding-left: 20px;
+    }
+    .more-resources {
+        font-size: 16px;
+    }
+    .body {
+        font-size: 16px;
+    }
+  }

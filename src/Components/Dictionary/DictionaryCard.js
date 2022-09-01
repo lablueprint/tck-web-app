@@ -73,12 +73,36 @@ export default function DictionaryCard({
   const displayLet = firstLet({ word }).toUpperCase();
   return (
     <Card sx={{
-      borderRadius: 8, margin: 4, boxShadow: 2, marginRight: 20, marginLeft: 20,
+      borderRadius: 8,
+      margin: 4,
+      boxShadow: 2,
+      marginRight: 20,
+      marginLeft: 20,
+      '@media screen and (max-width: 960px)': {
+        marginRight: 10,
+        marginLeft: 10,
+      },
+      '@media screen and (max-width: 768px)': {
+        marginRight: 5,
+        marginLeft: 5,
+      },
+      // width: 1262,
     }}
     >
       <CardContent>
         <div className="img">
-          <Avatar sx={{ height: '110px', width: '110px' }} alt="Dictionary Image" src={mapping[displayLet]} />
+          <Avatar
+            sx={{
+              height: '110px',
+              width: '110px',
+              '@media screen and (max-width: 960px)': {
+                height: '75px',
+                width: '75px',
+              },
+            }}
+            alt="Dictionary Image"
+            src={mapping[displayLet]}
+          />
           <div className="wrapTermAndPhoneticSpelling">
             <div className="term">
               {word}
@@ -103,11 +127,10 @@ export default function DictionaryCard({
         </div>
       </CardContent>
       <div style={{ padding: 10 }}>
-        <CardActions style={{ justifyContent: 'left', marginLeft: 75 }}>
+        <CardActions style={{ justifyContent: 'left', marginLeft: '15%' }}>
           <div>
             { linksArray.length !== 0 ? (
               <Grid
-                style={{ paddingLeft: 15 }}
                 sx={{
                   display: 'grid', gridTemplateColumns: 'repeat(4, auto)', rowGap: 2, columnGap: 2,
                 }}

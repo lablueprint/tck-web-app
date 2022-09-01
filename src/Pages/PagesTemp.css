@@ -34,3 +34,12 @@
     padding-right: 6%;
     padding-bottom: 2%;
 }
+
+@media screen and (max-width: 960px) {
+    .title {
+        font-size: 26px;
+    }
+    .tagline {
+        font-size: 16px;
+    }
+}
