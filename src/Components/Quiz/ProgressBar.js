@@ -14,6 +14,9 @@ const BorderLinearProgress = styled(LinearProgress)(() => ({
     borderRadius: 5,
     backgroundColor: '#F79927',
   },
+  '@media (max-width: 1024px)': {
+    width: 300,
+  },
 }));
 
 export default function ProgressBar({ progress }) {

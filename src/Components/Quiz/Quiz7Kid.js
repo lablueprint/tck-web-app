@@ -8,11 +8,14 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
+import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz7Kid({
   setBookFilters, bookFilters,
   includeNav, dispatch, issDisabled,
 }) {
+  console.log(`includeNav${includeNav}`);
+  const size = useWindowSize();
   function HandleClick(name, checked) {
     if (checked) {
       setBookFilters((prevValue) => ({ ...prevValue, genre: prevValue.genre.concat(name) }));
@@ -33,7 +36,7 @@ export default function Quiz7Kid({
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
         {bookFilters.genre !== undefined
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Adventure" buttonCaption="Going on a journey to a new place with your friends" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Scary/Horror" buttonCaption="Suspenseful events iwth plot twists that may shock you" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Sci-fi" buttonCaption="Going to outer space and exploring different planets" onClick={(name, checked) => HandleClick(name, checked)} />

@@ -8,13 +8,7 @@ export default function QuizButton({
   buttonCaption, onClick, desiredArray, desiredLabel,
 }) {
   const [checked, setChecked] = useState(false);
-  // const [iconOneColor, setIconOneColor] = useState('white');
-  // const [iconTwoColor, setIconTwoColor] = useState('white');
   const [clicked, setClicked] = useState(false);
-  // const changeColor = () => {
-  //   setIconOneColor('#393EBA');
-  //   // setIconTwoColor('#FFFFFF');
-  // };
   return (
     <Button
       class="QuizButton"
@@ -30,6 +24,17 @@ export default function QuizButton({
         display: 'flex',
         backgroundColor: '#393EBA',
         color: '#393EBA',
+        '@media (max-width: 1295px)': {
+          maxWidth: '100px',
+          flexDirection: 'row',
+          padding: '1rem 5rem',
+          justifyContent: 'space-between',
+          fontSize: '1.5rem',
+          margin: '1rem 0',
+          height: '9rem',
+          borderRadius: '30',
+          width: '95%',
+        },
       } : {
         padding: '2em 0.5em 2em 0.5em',
         margin: '1em auto 1em auto',
@@ -41,6 +46,17 @@ export default function QuizButton({
         display: 'flex',
         backgroundColor: 'white',
         color: '#FFFFFF',
+        '@media (max-width: 1295px)': {
+          flexDirection: 'row',
+          padding: '1rem 5rem',
+          justifyContent: 'space-between',
+          fontSize: '1.5rem',
+          margin: '1rem 0',
+          height: '9rem',
+          borderRadius: '30',
+          width: '95%',
+          maxWidth: '100px',
+        },
       }}
       onClick={() => {
         setChecked((old) => !old);

@@ -1,11 +1,91 @@
-.Start {
-    background-image: url( ../../Assets/Images/QuizBackground.svg);
-    background-position: top;
-    background-repeat: no-repeat;
-    display:flex;
+   @media only screen and (min-width: 1025px) {
+      .Start {
+         background-image: url(../../Assets/Images/QuizBackground.svg);
+         background-position: top;
+         background-repeat: no-repeat;
+         display: flex;
+         align-items: stretch;
+      }
+      .Conscious {
+         color: #393EBA;
+         font-size: 40px;
+         margin-bottom: 0;
+      }
+      .BookFinder {
+         color:#333333;
+         font-size: 64px;
+         font-family: Work Sans;
+         letter-spacing: -0.04em;
+         margin-top: 0;
+      }
+      .Search {
+         font-family: Work Sans;
+         color: #333333;
+         font-size: 22px;
+         font-weight: normal; 
+         position: relative; 
+         bottom: 30px;
+      }
+      .startButton {
+            background: #393EBA;
+            border-radius: 0.6em;
+            letter-spacing: 0.02em;
+            color: white;
+            font-family: Work Sans;
+            font-weight: bold;
+            font-size: 1.3em;
+            width: 234px;
+            height: 67px;
+            border: 2.5px solid #393EBA;
+      }
+}
+@media only screen and (max-width: 1025px) {
+   .Start {
+      background-image: url(../../Assets/Images/MobileQuiz.svg);
+      background-position: top;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: stretch;
    }
-   .startButton:hover
-   {
+   .Conscious {
+      color: #393EBA;
+      font-size: 26px;
+      position: relative;
+      bottom: 25%;
+   }
+   .BookFinder {
+      color:#333333;
+      font-size: 50px;
+      font-family: Work Sans;
+      letter-spacing: -0.04em;
+      margin-top: 0;
+      position: relative;
+      bottom: 30%;
+   }
+   .Search {
+      font-family: Work Sans;
+      color: #333333;
+      font-size: 14px;
+      font-weight: normal; 
+      position: relative; 
+      bottom: 38%;
+   }
+   .startButton {
+      background: #393EBA;
+      border-radius: 0.6em;
+      letter-spacing: 0.02em;
+      color: white;
+      font-family: Work Sans;
+      font-weight: bold;
+      font-size: 1.3em;
+      width: 234px;
+      height: 67px;
+      border: 2.5px solid #393EBA;
+      position: relative;
+      bottom: 30%;
+   }
+}
+   .startButton:hover {
       background-color: #EAF3FE !important;
       color: #393EBA !important;
       border-color: #393EBA !important;

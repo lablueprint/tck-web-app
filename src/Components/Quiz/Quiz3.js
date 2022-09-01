@@ -7,6 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
+import { useWindowSize } from '../Navigation/Header';
 
 const Airtable = require('airtable');
 
@@ -21,6 +22,7 @@ export default function Quiz3({
   slideCaption, setBookFilters, bookFilters,
   dispatch, type1,
 }) {
+  const size = useWindowSize();
   const [filters, setFilters] = useState([]);
   let filterVar;
 
@@ -53,7 +55,7 @@ export default function Quiz3({
       <h1 style={{ fontFamily: 'DM Sans', color: '#444444', marginTop: '150px' }}>
         {slideCaption}
       </h1>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', margin: '0 12em 0 12em' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
         {filters.map((option) => (
           <QuizButton
             desiredLabel={option}
@@ -63,6 +65,7 @@ export default function Quiz3({
           />
         ))}
       </div>
+
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
         <Button
           variant="contained"

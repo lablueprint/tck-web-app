@@ -8,10 +8,13 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
+import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz8Adult({
   bookFilters, setBookFilters, dispatch, issDisabled,
 }) {
+  const size = useWindowSize();
+
   function HandleClick(name, checked) {
     if (checked) {
       setBookFilters((prevValue) => (
@@ -33,7 +36,7 @@ export default function Quiz8Adult({
         <p style={{ color: '#444444' }}>These will be used to rank your results but availability is not guaranteed!</p>
         {bookFilters.book_type !== undefined
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Picture Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Chapter Book" buttonCaption="Chapter Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Middle Grade Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />

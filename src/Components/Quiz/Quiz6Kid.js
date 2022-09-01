@@ -8,10 +8,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
+import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz6Kid({
   title, buttonCaptions, setBookFilters, bookFilters, issDisabled, dispatch, includeButtons,
 }) {
+  const size = useWindowSize();
   function HandleClick(name, checked) {
     if (checked) {
       setBookFilters((prevValue) => ({ ...prevValue, genre: prevValue.genre.concat(name) }));
@@ -32,7 +34,7 @@ export default function Quiz6Kid({
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
         {bookFilters.genre !== undefined
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton buttonCaption={buttonCaptions[0]} desiredLabel="Autobiography" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton buttonCaption={buttonCaptions[1]} desiredLabel="Non-fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton buttonCaption={buttonCaptions[2]} desiredLabel="Historical fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
@@ -104,7 +106,7 @@ export default function Quiz6Kid({
             <Button
               disabled={issDisabled}
               variant="contained"
-              onClick={() => dispatch({ type: 'child' })}
+              onClick={() => dispatch({ type: 'parent' })}
               sx={{
                 background: '#F99E16',
                 boxShadow: 'none',

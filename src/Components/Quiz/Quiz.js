@@ -2,12 +2,6 @@
 import React, { useReducer, useState } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
-import {
-  Button,
-} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { NavLink } from 'react-router-dom';
 import Quiz2Adult from './Quiz2Adult';
 import Quiz3 from './Quiz3';
 import Quiz4Kid from './Quiz4Kid';
@@ -17,7 +11,6 @@ import Quiz2Kid from './Quiz2Kid';
 import Quiz6 from './Quiz6';
 import Quiz7Kid from './Quiz7Kid';
 import Quiz6Kid from './Quiz6Kid';
-import ProgressBar from './ProgressBar';
 import Quiz1 from './Quiz1';
 
 function reducer(state, action) {
@@ -62,21 +55,15 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     count: 1,
     goneBack: false,
   };
-
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
     sillyLevel[1](value);
   };
   const sillyNotSet = () => (!(sillyLevel[0]));
-  const illusion = React.useState(0);
-  const changeIllusion = (value) => {
-    illusion[0] = value;
-    illusion[1](value);
-  };
-  const isIllusionDisabled = () => (!(illusion[0]));
-  const [isDisabled02A, setIsDisabled02A] = useState(true);
-  const [isDisabled02K, setisDisabled02K] = useState(true);
+  const [illusion, setIllusion] = useState(0);
+  const [isDisabled02A, setIsDisabled02A] = useState(false);
+  const [isDisabled02K, setisDisabled02K] = useState(false);
   const callback02A = (isDisabledFromChild) => {
     setIsDisabled02A(isDisabledFromChild);
   };
@@ -87,7 +74,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   const {
     isParent, isChild, count, goneBack,
   } = state;
-
   if (isParent && count === 2) {
     setIsChild(isChild);
     return (
@@ -104,8 +90,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isParent && count === 3) {
     setIsChild(isChild);
-    console.log(`ischild: ${isChild}`);
-    console.log(`count: ${count}`);
     return (
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
@@ -165,8 +149,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isChild && count === 3) {
     setIsChild(isChild);
-    console.log(`ischild: ${isChild}`);
-    console.log(`count: ${count}`);
     return (
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
@@ -220,7 +202,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if ((isChild && count === 5 && sillyLevel[0] == 5)
   || (isChild && count === 5 && sillyLevel[0] == 3)
-  || (isChild && count === 6 && illusion[0] == 2)) {
+  || (isChild && count === 6 && illusion == 2)) {
     const childButtonCaptions = ['The lives of interesting and influential people',
       'Fascinating facts about different topics such as nature, animals, or space',
       'Important events of the past that shaped the world we live in today',
@@ -235,76 +217,11 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if ((isChild && count === 5 && sillyLevel[0] == 1)
     || (isChild && count === 6 && sillyLevel[0] == 3)
-    || (isChild && count === 6 && illusion[0] == 1)) {
+    || (isChild && count === 6 && illusion == 1)) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz7Kid bookFilters={bookFilters} setBookFilters={setBookFilters} />
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
-          <Button
-            variant="contained"
-            onClick={() => dispatch({ type: 'child back' })}
-            sx={{
-              background: '#f79927',
-              borderRadius: '50%',
-              width: '60px',
-              height: '60px',
-              boxShadow: 'none',
-              '&.MuiButtonBase-root:hover': {
-                bgcolor: '#F99E16',
-              },
-            }}
-          >
-            <ArrowBackIcon />
-          </Button>
-          <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
-          {((isChild && count === 6 && illusion[0] == 1)
-        || (isChild && count === 5 && sillyLevel[0] == 1))
-            ? (
-              <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
-                <Button
-                  disabled={issDisabled(bookFilters.genre)}
-                  variant="contained"
-                  onClick={() => dispatch({ type: 'parent' })}
-                  sx={{
-                    background: '#F99E16',
-                    boxShadow: 'none',
-                    borderRadius: '100px',
-                    '&.MuiButtonBase-root:hover': {
-                      bgcolor: '#F99E16',
-                    },
-                  }}
-                  endIcon={<ArrowForwardIcon />}
-                >
-                  <p style={{
-                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto', textTransform: 'none',
-                  }}
-                  >
-                    Your Results
-                  </p>
-                </Button>
-              </NavLink>
-            )
-            : (
-              <Button
-                disabled={issDisabled(bookFilters.genre)}
-                variant="contained"
-                onClick={() => dispatch({ type: 'parent' })}
-                sx={{
-                  background: '#f79927',
-                  borderRadius: '50%',
-                  width: '60px',
-                  height: '60px',
-                  boxShadow: 'none',
-                  '&.MuiButtonBase-root:hover': {
-                    bgcolor: '#F99E16',
-                  },
-                }}
-              >
-                <ArrowForwardIcon />
-              </Button>
-            )}
-        </div>
+        <Quiz7Kid dispatch={dispatch} includeNav="false" bookFilters={bookFilters} setBookFilters={setBookFilters} />
       </div>
     );
   }
@@ -316,8 +233,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       <div style={{ background: '#FAFAFA' }}>
         <Quiz5
           dispatch={dispatch}
-          setIllusions={changeIllusion}
-          isIllusionDisabled={isIllusionDisabled}
+          setIllusions={setIllusion}
         />
       </div>
     );
@@ -327,6 +243,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     return (
       <div>
         <Quiz7Kid
+          includeNav
           dispatch={dispatch}
           issDisabled={issDisabled(bookFilters.genre)}
           bookFilters={bookFilters}

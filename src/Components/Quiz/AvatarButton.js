@@ -19,7 +19,7 @@ export default function AvatarButton({
         background: '#ffffff',
         fontFamily: 'DM Sans',
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#444444',
         textTransform: 'capitalize',
 
         '&.MuiButtonBase-root:hover': {

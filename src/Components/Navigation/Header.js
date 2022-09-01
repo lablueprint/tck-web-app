@@ -20,7 +20,7 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-function useWindowSize() {
+export function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   const [windowSize, setWindowSize] = useState({
     width: undefined,

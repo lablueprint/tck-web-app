@@ -14,12 +14,12 @@ import './QuizButton.css';
 import illusion from '../../Assets/Images/IllusionVector.svg';
 
 export default function Quiz5({
-  setIllusions, dispatch, isIllusionDisabled,
+  setIllusions, dispatch,
 }) {
   const [valueSelected, setValueSelected] = useState(0);
-  const [younger, setYounger] = useState(false);
-  const [older, setOlder] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const handleClick = (val) => {
+    setDisabled(false);
     setIllusions(val);
   };
   return (
@@ -40,7 +40,7 @@ export default function Quiz5({
           >
             <Button
               className="QuizButton"
-              style={younger ? {
+              style={valueSelected === 1 ? {
                 color: '#444444',
                 padding: '2em 0.5em 2em 0.5em',
                 margin: '1em auto 1em auto',
@@ -72,9 +72,9 @@ export default function Quiz5({
                 },
               }}
               onClick={() => {
+                setIllusions(1);
                 setValueSelected(1);
-                setYounger(!younger);
-                setOlder(false);
+                setDisabled(false);
               }}
             >
               <FormControlLabel
@@ -84,7 +84,7 @@ export default function Quiz5({
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                       {
-                        color: younger ? '#393EBA' : 'white',
+                        color: valueSelected === 1 ? '#393EBA' : 'white',
                       },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
@@ -98,7 +98,7 @@ export default function Quiz5({
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
                 label={(
-                  <p style={younger ? {
+                  <p style={valueSelected === 1 ? {
                     fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
                   } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -111,7 +111,7 @@ export default function Quiz5({
             </Button>
             <Button
               className="QuizButton"
-              style={older ? {
+              style={valueSelected === 2 ? {
                 color: '#444444',
                 padding: '2em 0.5em 2em 0.5em',
                 margin: '1em auto 1em auto',
@@ -143,9 +143,9 @@ export default function Quiz5({
                 },
               }}
               onClick={() => {
+                setIllusions(2);
                 setValueSelected(2);
-                setOlder(!younger);
-                setYounger(false);
+                setDisabled(false);
               }}
             >
               <FormControlLabel
@@ -155,7 +155,7 @@ export default function Quiz5({
                     sx={{
                       '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
                       {
-                        color: older ? '#393EBA' : 'white',
+                        color: valueSelected === 2 ? '#393EBA' : 'white',
                       },
                       '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
                         color: '#393EBA',
@@ -169,7 +169,7 @@ export default function Quiz5({
                   display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
                 }}
                 label={(
-                  <p style={older ? {
+                  <p style={valueSelected === 2 ? {
                     fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
                   } : {
                     fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
@@ -203,7 +203,7 @@ export default function Quiz5({
         </Button>
         <ProgressBar variant="determinate" progress={65} sx={{ flex: '0 1 60%' }} />
         <Button
-          disabled={isIllusionDisabled()}
+          disabled={disabled}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
           sx={{
@@ -230,5 +230,4 @@ Quiz5.defaultProps = {
 Quiz5.propTypes = {
   setIllusions: propTypes.func,
   dispatch: propTypes.func.isRequired,
-  isIllusionDisabled: propTypes.func.isRequired,
 };

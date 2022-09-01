@@ -7,10 +7,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
+import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz6({
   title, buttonCaptions, setBookFilters, bookFilters, dispatch, issDisabled,
 }) {
+  const size = useWindowSize();
   function HandleClick(name, checked) {
     if (checked) {
       setBookFilters((prevValue) => ({ ...prevValue, genre: prevValue.genre.concat(name) }));
@@ -31,7 +33,7 @@ export default function Quiz6({
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
 
         {bookFilters.genre !== undefined && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
             <QuizButton
               desiredLabel={buttonCaptions[0]}
               buttonCaption={buttonCaptions[0]}
