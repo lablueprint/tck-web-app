@@ -67,7 +67,7 @@ export default function Quiz7Kid({
           <ProgressBar variant="determinate" value={85} />
           <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
             <Button
-              disabled={issDisabled}
+              disabled={false}
               variant="contained"
               onClick={() => dispatch({ type: 'child' })}
               sx={{

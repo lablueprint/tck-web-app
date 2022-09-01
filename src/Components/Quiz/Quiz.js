@@ -182,7 +182,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz6Kid includeButtons issDisabled={issDisabled(bookFilters.genre)} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid includeButtons issDisabled={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
       </div>
     );
   }
@@ -211,7 +211,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz6Kid includeButtons={false} issDisabled={issDisabled(bookFilters.genre)} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid includeButtons={false} issDisabled={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
       </div>
     );
   }
