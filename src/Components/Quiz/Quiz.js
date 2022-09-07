@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import Quiz2Adult from './Quiz2Adult';
@@ -55,22 +55,34 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     count: 1,
     goneBack: false,
   };
+  useEffect(() => {
+
+  }, [bookFilters]);
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
     sillyLevel[1](value);
   };
   const sillyNotSet = () => (!(sillyLevel[0]));
+
   const [illusion, setIllusion] = useState(0);
+
   const [isDisabled02A, setIsDisabled02A] = useState(false);
+
   const [isDisabled02K, setisDisabled02K] = useState(false);
+
   const callback02A = (isDisabledFromChild) => {
-    setIsDisabled02A(isDisabledFromChild);
+    if (isDisabled02A != isDisabledFromChild) {
+      setIsDisabled02A(isDisabledFromChild);
+    }
   };
   const callback02K = (isDisabledFromChild) => {
-    setisDisabled02K(isDisabledFromChild);
+    if (isDisabled02K != isDisabledFromChild) {
+      setisDisabled02K(isDisabledFromChild);
+    }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const {
     isParent, isChild, count, goneBack,
   } = state;
@@ -80,7 +92,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       <div>
         <Quiz2Adult
           dispatch={dispatch}
-          isDisabled02A={isDisabled02A}
           parentCallback02A={callback02A}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
@@ -94,7 +105,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
           bookFilters={bookFilters}
-          slideCaption="Which races/ethnicities do you want to see represented?"
+          slideCaption="Which race(s)/ethnicities do you want to see represented?"
           setBookFilters={setBookFilters}
           dispatch={dispatch}
           type1="parent"
@@ -104,19 +115,19 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
   if (isParent && count === 4) {
     setIsChild(isChild);
-    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery'];
+    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry'];
     return (
       <div>
-        <Quiz6 dispatch={dispatch} issDisabled={issDisabled(bookFilters.genre)} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
       </div>
     );
   }
   if (isParent && count === 5) {
     setIsChild(isChild);
-    const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism'];
+    const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
     return (
       <div>
-        <Quiz6 dispatch={dispatch} issDisabled={issDisabled(bookFilters.genre)} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
       </div>
     );
   }
@@ -142,7 +153,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
           dispatch={dispatch}
-          isDisabled02K={isDisabled02K}
         />
       </div>
     );
@@ -182,7 +192,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz6Kid includeButtons issDisabled={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid includeButtons dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
       </div>
     );
   }
@@ -211,7 +221,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz6Kid includeButtons={false} issDisabled={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid includeButtons={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
       </div>
     );
   }

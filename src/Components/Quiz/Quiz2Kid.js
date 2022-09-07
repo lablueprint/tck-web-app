@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar';
 import GradeSlider from './GradeSlider';
 
 export default function Quiz2Kid({
-  isDisabled02K, dispatch,
+  dispatch,
   parentCallback02K, bookFilters, setBookFilters,
 }) {
   const callback = (min, max) => {
@@ -53,7 +53,7 @@ export default function Quiz2Kid({
           sx={{ flex: '0 1 60%' }}
         />
         <Button
-          disabled={isDisabled02K}
+          disabled={false}
           variant="contained"
           onClick={() => dispatch({ type: 'child' })}
           sx={{
@@ -88,7 +88,7 @@ Quiz2Kid.defaultProps = {
   }),
 };
 Quiz2Kid.propTypes = {
-  parentCallback02K: propTypes.isRequired,
+  parentCallback02K: propTypes.func.isRequired,
   setBookFilters: propTypes.func,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,
@@ -101,5 +101,5 @@ Quiz2Kid.propTypes = {
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }),
   dispatch: propTypes.func.isRequired,
-  isDisabled02K: propTypes.bool.isRequired,
+  // isDisabled02K: propTypes.bool.isRequired,
 };

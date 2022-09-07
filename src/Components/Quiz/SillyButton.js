@@ -12,7 +12,7 @@ export default function SillyButton({
 }) {
   return (
     <Button
-      classname="silly-button"
+      className="silly-button"
       sx={valueSelected === value ? {
         maxWidth: 218,
         display: 'flex',

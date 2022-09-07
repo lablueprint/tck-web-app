@@ -104,7 +104,7 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
       <Box className="gradeSlider">
         <CustomRangeSlider
           name="Grade"
-          aria-label="Grade"
+          getAriaLabel={() => 'Grade'}
           marks={marks}
           value={value1}
           onChange={handleChange1}
@@ -118,7 +118,7 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
           disableSwap
           min={-1}
           max={units.length - 2}
-          label={() => 'Minimum distance'}
+          label="Minimum distance"
 
         />
       </Box>
@@ -127,6 +127,6 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
 }
 
 GradeSlider.propTypes = {
-  parentCallbackButton: propTypes.isRequired,
-  parentCallback: propTypes.isRequired,
+  parentCallbackButton: propTypes.func.isRequired,
+  parentCallback: propTypes.func.isRequired,
 };

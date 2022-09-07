@@ -14,7 +14,6 @@ export default function Quiz7Kid({
   setBookFilters, bookFilters,
   includeNav, dispatch, issDisabled,
 }) {
-  console.log(`includeNav${includeNav}`);
   const size = useWindowSize();
   function HandleClick(name, checked) {
     if (checked) {
@@ -29,7 +28,7 @@ export default function Quiz7Kid({
   }
   return (
     <div>
-      <Box sx={{ padding: 15 }}>
+      <Box sx={{ position: 'relative', bottom: '100px' }}>
         <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
           Which of the following seem fun to you?
         </h1>
@@ -64,7 +63,7 @@ export default function Quiz7Kid({
           >
             <ArrowBackIcon />
           </Button>
-          <ProgressBar variant="determinate" value={85} />
+          <ProgressBar variant="determinate" progress={85} />
           <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
             <Button
               disabled={false}
@@ -110,7 +109,7 @@ export default function Quiz7Kid({
           >
             <ArrowBackIcon />
           </Button>
-          <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <ProgressBar variant="determinate" progress={85} sx={{ flex: '0 1 60%' }} />
           <Button
             disabled={issDisabled}
             variant="contained"

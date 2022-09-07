@@ -11,7 +11,7 @@ import QuizButton from './QuizButton';
 import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz6Kid({
-  title, buttonCaptions, setBookFilters, bookFilters, issDisabled, dispatch, includeButtons,
+  title, buttonCaptions, setBookFilters, bookFilters, dispatch, includeButtons,
 }) {
   const size = useWindowSize();
   function HandleClick(name, checked) {
@@ -27,7 +27,7 @@ export default function Quiz6Kid({
   }
   return (
     <div>
-      <Box sx={{ padding: 15 }}>
+      <Box sx={{ position: 'relative', bottom: '100o' }}>
         <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
           {title}
         </h1>
@@ -63,9 +63,9 @@ export default function Quiz6Kid({
             <ArrowBackIcon />
 
           </Button>
-          <ProgressBar variant="determinate" value={85} />
+          <ProgressBar variant="determinate" progress={85} />
           <Button
-            disabled={issDisabled}
+            disabled={false}
             variant="contained"
             onClick={() => dispatch({ type: 'child' })}
             sx={{
@@ -101,10 +101,10 @@ export default function Quiz6Kid({
           >
             <ArrowBackIcon />
           </Button>
-          <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+          <ProgressBar variant="determinate" progress={85} sx={{ flex: '0 1 60%' }} />
           <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
             <Button
-              disabled={issDisabled}
+              disabled={false}
               variant="contained"
               onClick={() => dispatch({ type: 'parent' })}
               sx={{
@@ -146,7 +146,6 @@ Quiz6Kid.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
-  issDisabled: propTypes.bool.isRequired,
   dispatch: propTypes.func.isRequired,
   includeButtons: propTypes.bool.isRequired,
 };

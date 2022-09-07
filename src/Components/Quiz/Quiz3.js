@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import {
-  Button,
+  Button, Box,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -52,20 +52,26 @@ export default function Quiz3({
   useEffect(getFilters, []);
   return (
     <div>
-      <h1 style={{ fontFamily: 'DM Sans', color: '#444444', marginTop: '150px' }}>
-        {slideCaption}
-      </h1>
-      <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
-        {filters.map((option) => (
-          <QuizButton
-            desiredLabel={option}
-            buttonCaption={option}
-            onClick={(name, checked) => HandleClick(name, checked)}
-            desiredArray={bookFilters['race/ethnicity']}
-          />
-        ))}
-      </div>
+      <Box>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
+          {slideCaption}
+        </h1>
+        <p style={{ color: '#444444' }}>You can choose more than one.</p>
 
+        {bookFilters.genre !== undefined && (
+          <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+            {filters.map((option) => (
+              <QuizButton
+                desiredLabel={option}
+                buttonCaption={option}
+                key={option}
+                onClick={(name, checked) => HandleClick(name, checked)}
+                desiredArray={bookFilters['race/ethnicity']}
+              />
+            ))}
+          </div>
+        )}
+      </Box>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
         <Button
           variant="contained"

@@ -34,7 +34,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
       <Box sx={{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         flexWrap: 'wrap',
         margin: '6rem 1rem 2rem',
       }}

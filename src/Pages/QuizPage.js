@@ -16,7 +16,6 @@ function QuizPage() {
   const raceVal = typeof localStorage.getItem('race/ethnicity') === 'string' ? localStorage.getItem('race/ethnicity').split(',') : [];
   const location = useLocation();
   const lastLocation = typeof localStorage.getItem('lastLocation') === 'string' ? localStorage.getItem('lastLocation') : '';
-
   const [bookFilters, setBookFilters] = useState({
     bookId: '',
     minAge: Number.isInteger(minAgeVal) ? minAgeVal : 0,
@@ -27,7 +26,9 @@ function QuizPage() {
     genre: genreVal,
     book_type: bookTypeVal,
   });
+  useEffect(() => {
 
+  }, [bookFilters]);
   const storedValueAsNumber = localStorage.getItem('isChild') === 'true' ? 1 : 0;
 
   const [isChild, setIsChild] = useState(storedValueAsNumber === 1);

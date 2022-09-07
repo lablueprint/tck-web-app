@@ -23,9 +23,9 @@ export default function Quiz5({
     setIllusions(val);
   };
   return (
-    <div>
+    <div style={{ position: 'relative', bottom: '100px' }}>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', color: '#444444' }}>
           What do you see in the picture below?
         </h1>
         <div><img src={illusion} alt="Illusion Missing" /></div>

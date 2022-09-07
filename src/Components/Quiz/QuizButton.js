@@ -11,7 +11,7 @@ export default function QuizButton({
   const [clicked, setClicked] = useState(false);
   return (
     <Button
-      class="QuizButton"
+      className="QuizButton"
       disableRipple
       style={clicked ? {
         padding: '2em 0.5em 2em 0.5em',
@@ -24,7 +24,7 @@ export default function QuizButton({
         display: 'flex',
         backgroundColor: '#393EBA',
         color: '#393EBA',
-        '@media (max-width: 1295px)': {
+        '@media (maxWidth: 1295px)': {
           maxWidth: '100px',
           flexDirection: 'row',
           padding: '1rem 5rem',
@@ -46,7 +46,7 @@ export default function QuizButton({
         display: 'flex',
         backgroundColor: 'white',
         color: '#FFFFFF',
-        '@media (max-width: 1295px)': {
+        '@media (maxWidth: 1295px)': {
           flexDirection: 'row',
           padding: '1rem 5rem',
           justifyContent: 'space-between',
@@ -61,7 +61,6 @@ export default function QuizButton({
       onClick={() => {
         setChecked((old) => !old);
         setClicked(!clicked);
-        // changeColor();
       }}
     >
       <Checkbox

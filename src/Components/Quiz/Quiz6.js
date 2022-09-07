@@ -10,7 +10,7 @@ import QuizButton from './QuizButton';
 import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz6({
-  title, buttonCaptions, setBookFilters, bookFilters, dispatch, issDisabled,
+  title, buttonCaptions, setBookFilters, bookFilters, dispatch,
 }) {
   const size = useWindowSize();
   function HandleClick(name, checked) {
@@ -34,36 +34,15 @@ export default function Quiz6({
 
         {bookFilters.genre !== undefined && (
           <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
-            <QuizButton
-              desiredLabel={buttonCaptions[0]}
-              buttonCaption={buttonCaptions[0]}
-              desiredArray={bookFilters.genre}
-              onClick={(name, checked) => HandleClick(name, checked)}
-            />
-            <QuizButton
-              desiredLabel={buttonCaptions[1]}
-              buttonCaption={buttonCaptions[1]}
-              desiredArray={bookFilters.genre}
-              onClick={(name, checked) => HandleClick(name, checked)}
-            />
-            <QuizButton
-              desiredLabel={buttonCaptions[2]}
-              buttonCaption={buttonCaptions[2]}
-              desiredArray={bookFilters.genre}
-              onClick={(name, checked) => HandleClick(name, checked)}
-            />
-            <QuizButton
-              desiredLabel={buttonCaptions[3]}
-              buttonCaption={buttonCaptions[3]}
-              desiredArray={bookFilters.genre}
-              onClick={(name, checked) => HandleClick(name, checked)}
-            />
-            <QuizButton
-              desiredLabel={buttonCaptions[4]}
-              buttonCaption={buttonCaptions[4]}
-              desiredArray={bookFilters.genre}
-              onClick={(name, checked) => HandleClick(name, checked)}
-            />
+            {buttonCaptions.map((option) => (
+              <QuizButton
+                desiredLabel={option}
+                buttonCaption={option}
+                desiredArray={bookFilters.genre}
+                key={option}
+                onClick={(name, checked) => HandleClick(name, checked)}
+              />
+            ))}
           </div>
         )}
       </Box>
@@ -87,7 +66,7 @@ export default function Quiz6({
         </Button>
         <ProgressBar variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
         <Button
-          disabled={issDisabled}
+          disabled={false}
           variant="contained"
           onClick={() => dispatch({ type: 'parent' })}
           sx={{
@@ -122,6 +101,5 @@ Quiz6.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
-  issDisabled: propTypes.bool.isRequired,
   dispatch: propTypes.func.isRequired,
 };

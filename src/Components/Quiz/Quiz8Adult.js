@@ -39,12 +39,13 @@ export default function Quiz8Adult({
         <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Picture Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Chapter Book" buttonCaption="Chapter Book" onClick={(name, checked) => HandleClick(name, checked)} />
-          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Middle Grade Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />
-          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Middle Grade" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Early Reader Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Middle Grade Book" buttonCaption="Middle Grade Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="YA Book" buttonCaption="YA Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Series" buttonCaption="Series" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Anthology" buttonCaption="Anthology" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Board Book" buttonCaption="Board Book" onClick={(name, checked) => HandleClick(name, checked)} />
+          <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Graphic Novel" buttonCaption="Graphic Novel" onClick={(name, checked) => HandleClick(name, checked)} />
         </div>
         )}
       </Box>
@@ -66,7 +67,7 @@ export default function Quiz8Adult({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressBar variant="determinate" value={85} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={85} sx={{ flex: '0 1 60%' }} />
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
             disabled={issDisabled}
