@@ -8,7 +8,7 @@ import Carousel from './BookCarousel';
 
 const styles = {
   root: {
-    width: '100vw',
+    width: '45%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -77,6 +77,8 @@ function CreatedWorksCard({ authorId }) {
       }
       const bookid = records.fields.authored;
       const illustratedId = records.fields.illustrated;
+      console.log(records.fields);
+
       if (bookid.length) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
@@ -115,7 +117,7 @@ function CreatedWorksCard({ authorId }) {
   }
 
   useEffect(FindWorks, []);
-
+  console.log(illustratedWorks);
   return (
     <Box style={styles.root}>
       {authoredWorks.length && <Typography sx={styles.titleText}> Authored </Typography>}
