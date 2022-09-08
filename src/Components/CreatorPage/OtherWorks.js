@@ -56,19 +56,6 @@ function CreatedWorksCard({ authorId }) {
     window.innerWidth,
   );
 
-  const handleWindowSizeChange = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-    return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
-    };
-  }, []);
-
-  const isMobile = width <= 768;
-
   function FindWorks() {
     const id = authorId;
     base('Creator').find(id, (err, records) => {
@@ -77,7 +64,6 @@ function CreatedWorksCard({ authorId }) {
       }
       const bookid = records.fields.authored;
       const illustratedId = records.fields.illustrated;
-      console.log(records.fields);
 
       if (bookid.length) {
         bookid.forEach((element) => {
@@ -115,9 +101,20 @@ function CreatedWorksCard({ authorId }) {
       }
     });
   }
-
   useEffect(FindWorks, []);
-  console.log(illustratedWorks);
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
   return (
     <Box style={styles.root}>
       {authoredWorks.length && <Typography sx={styles.titleText}> Authored </Typography>}
