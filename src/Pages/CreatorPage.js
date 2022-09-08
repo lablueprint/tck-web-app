@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
+import { Card, Box, CircularProgress } from '@mui/material';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
 
@@ -8,6 +9,9 @@ const styles = {
   root: {
     display: 'flex',
     justifyContent: 'center',
+    '@media (max-width: 960px)': {
+      flexDirection: 'column',
+    },
   },
   loadingBox: {
     width: '40%',
@@ -46,7 +50,7 @@ function CreatorPage() {
   }, []);
 
   return (
-    <div style={styles.root}>
+    <Card sx={styles.root}>
       {loading && (
         <Box sx={styles.loadingBox}>
           <CircularProgress />
@@ -64,7 +68,7 @@ function CreatorPage() {
         <p>No such author found!</p>
       )}
       <CreatedWorksCard authorId={authId} />
-    </div>
+    </Card>
   );
 }
 

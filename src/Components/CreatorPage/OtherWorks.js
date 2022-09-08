@@ -8,19 +8,23 @@ import Carousel from './BookCarousel';
 
 const styles = {
   root: {
-    width: '45%',
+    width: '100vw',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: 75,
     paddingRight: 50,
+    '@media (max-width: 960px)': {
+      width: '100vw',
+      padding: 0,
+    },
   },
   titleText: {
     alignSelf: 'flex-start',
     fontFamily: 'Work Sans',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: '20px',
+    fontSize: '24px',
     lineHeight: '28px',
     textAlign: 'center',
     color: '#444444',
@@ -48,6 +52,22 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig
 function CreatedWorksCard({ authorId }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);
   const [illustratedWorks, setillustratedWorks] = useState([]);
+  const [width, setWidth] = useState(
+    window.innerWidth,
+  );
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
 
   function FindWorks() {
     const id = authorId;
@@ -98,26 +118,29 @@ function CreatedWorksCard({ authorId }) {
 
   return (
     <Box style={styles.root}>
-      <Typography sx={styles.titleText}>Featured Books</Typography>
-      {authoredWorks.length && <Typography sx={styles.creatorText}> Authored </Typography>}
+      {authoredWorks.length && <Typography sx={styles.titleText}> Authored </Typography>}
+      {authoredWorks.length && (
       <Carousel
         elementArray={authoredWorks}
-        slidesAtATime={3}
+        slidesAtATime={isMobile ? 1 : 3}
         prevArrow={LeftArrowAuthorPage}
         nextArrow={RightArrowAuthorPage}
         widthPercent={100}
         spaceBetweenEntries={16}
       />
-      {illustratedWorks.length && <Typography sx={styles.creatorText}> Illustrated </Typography>}
+      )}
+
+      {illustratedWorks.length && <Typography sx={styles.titleText}> Illustrated </Typography>}
+      {illustratedWorks.length && (
       <Carousel
         elementArray={illustratedWorks}
-        slidesAtATime={3}
+        slidesAtATime={isMobile ? 1 : 3}
         prevArrow={LeftArrowAuthorPage}
         nextArrow={RightArrowAuthorPage}
         widthPercent={100}
         spaceBetweenEntries={16}
       />
-
+      )}
     </Box>
   );
 }
