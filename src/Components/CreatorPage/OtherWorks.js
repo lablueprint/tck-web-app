@@ -14,10 +14,13 @@ const styles = {
     alignItems: 'center',
     paddingTop: 75,
     paddingRight: 50,
-    '@media (max-width: 960px)': {
-      width: '100vw',
-      padding: 0,
-    },
+  },
+  mobileRoot: {
+    width: '100vw',
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   titleText: {
     alignSelf: 'flex-start',
@@ -29,6 +32,9 @@ const styles = {
     textAlign: 'center',
     color: '#444444',
     paddingBottom: 2,
+    '@media (max-width: 960px)': {
+      padding: 2,
+    },
   },
   creatorText: {
     alignSelf: 'flex-start',
@@ -116,7 +122,7 @@ function CreatedWorksCard({ authorId }) {
   const isMobile = width <= 768;
 
   return (
-    <Box style={styles.root}>
+    <Box style={isMobile ? styles.mobileRoot : styles.root}>
       {authoredWorks.length && <Typography sx={styles.titleText}> Authored </Typography>}
       {authoredWorks.length && (
       <Carousel
@@ -128,8 +134,8 @@ function CreatedWorksCard({ authorId }) {
         spaceBetweenEntries={16}
       />
       )}
-
-      {illustratedWorks.length && <Typography sx={styles.titleText}> Illustrated </Typography>}
+      {(illustratedWorks.length !== 0)
+      && <Typography sx={styles.titleText}> Illustrated </Typography>}
       {illustratedWorks.length && (
       <Carousel
         elementArray={illustratedWorks}

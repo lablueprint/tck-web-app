@@ -45,8 +45,8 @@ const styles = {
   topTextBox: {
     display: 'flex',
     justifyContent: 'left',
-    paddingBottom: 1,
-    paddingTop: 1.5,
+    paddingBottom: 1.5,
+    paddingTop: 2,
     '@media (max-width: 960px)': {
       display: 'block',
       textAlign: 'left',
