@@ -1,7 +1,8 @@
 .book-list {
     /* align-items: center; */
     width: 82vw;
-    /* margin: auto; */
+    margin: auto;
+    border: '2px solid green';
 }
 
 .book-list-menus {
@@ -16,4 +17,11 @@
     display: flex;
     justify-content: center;
     font-family: Work Sans;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    border: '2px solid red';
 }

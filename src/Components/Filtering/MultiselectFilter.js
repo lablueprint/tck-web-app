@@ -23,7 +23,7 @@ const styles = {
 export default function MultiselectFilter({
   filterOptions, input, setInput, filterLabel, filterName,
 }) {
-  const result = filterOptions ? filterOptions.split(',') : null;
+  const result = filterOptions ? filterOptions.split(',').map((element) => element.trim()) : null;
   const handleToggle = (val, label) => {
     setInput({ ...input, [label]: val });
   };

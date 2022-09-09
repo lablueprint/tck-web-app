@@ -65,7 +65,6 @@ export default function BookCard({
               alt="missing_book_cover"
             />
           </div>
-
           <p className="book-card-text">
             {title}
           </p>
