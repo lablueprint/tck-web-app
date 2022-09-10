@@ -74,18 +74,29 @@ export default function BookCard({
       <div className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
         By
         {' '}
-        {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element) => (
-          <Link key={element.id} className="link" to={`/creator/${element.id}`}>
-            {element.fields.name}
-            <br />
-          </Link>
-        ))
+        {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element, index) => {
+          if (index < 2) {
+            return (
+              <Link key={element.id} className="link" to={`/creator/${element.id}`}>
+                {element.fields.name}
+                <br />
+              </Link>
+            );
+          }
+          if (index === 2) {
+            return ('and more');
+          }
+
+          return (<div />);
+        })
+
           : (
             <div className="link">
               Unknown
               <br />
             </div>
-          ))}
+          )
+        )}
       </div>
 
     </div>

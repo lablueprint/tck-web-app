@@ -169,11 +169,12 @@ function Home() {
           <h2 className="headings">New Releases</h2>
           <Carousel
             elementArray={newReleases}
-            slidesAtATime={7}
+            slidesAtATime={6}
             prevArrow={LeftArrow}
             nextArrow={RightArrow}
             widthPercent={100}
             spaceBetweenEntries={16}
+            tightSlideWidth
           />
         </>
       )}

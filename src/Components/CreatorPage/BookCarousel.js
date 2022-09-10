@@ -44,25 +44,30 @@ function Carousel({
           height: '400px',
         }}
         on="true"
-        centerInsufficientSlides
+        // centeredSlides
         breakpoints={{
           320: {
             slidesPerView: 1,
           },
-          420: {
+          468: {
             slidesPerView: 2,
+            spaceBetween: 20,
           },
-          570: {
+          650: {
             slidesPerView: 3,
             spaceBetween: 20,
           },
           // when window width is >= 480px
-          768: {
+          840: {
             slidesPerView: 4,
-            spaceBetween: 30,
+            spaceBetween: 20,
+          },
+          1000: {
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
           // when window width is >= 640px
-          1024: {
+          1150: {
             slidesPerView: slidesAtATime,
             spaceBetween: spaceBetweenEntries,
           },

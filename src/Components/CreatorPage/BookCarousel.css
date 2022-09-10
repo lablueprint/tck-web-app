@@ -17,10 +17,11 @@
 
 .book-carousel-button-prev{
     display: flex;
-    justify-content: end;
-    flex-grow: 1;
-    align-items: center;
-    margin-right: 46;
+
+    /* justify-content: end; */
+    flex-grow: 0;
+    place-items: center;
+    margin-right: 10px;
 }
 
 .book-carousel-button-prev button{
@@ -34,10 +35,10 @@
 
 .book-carousel-button-next{
     display: flex;
-    justify-content: start;
-    flex-grow: 1;
-    align-items: center;
-    margin-left: 46px,
+    /* justify-content: start; */
+    flex-grow: 0;
+    place-items: center;
+    margin-left: 10px;
 }
 
 .book-carousel-button-next button{
@@ -45,11 +46,12 @@
     borderRadius: 9999px;
     background: none;
     color: #D0D0D0;
-    marginLeft: 10%,
+    /* marginLeft: 10%, */
 }
 
 .book-carousel-wrapper{
     display: flex;
     flex-direction: row;
-    height: 350px,
+    height: 200px;
+    margin: 3em 0 10em 0;
 }

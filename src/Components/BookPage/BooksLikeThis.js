@@ -65,7 +65,7 @@ function BooksLikeThis({
       </Typography>
       <Carousel
         elementArray={similarBooks}
-        slidesAtATime={7}
+        slidesAtATime={6}
         prevArrow={LeftArrow}
         nextArrow={RightArrow}
         widthPercent={100}
