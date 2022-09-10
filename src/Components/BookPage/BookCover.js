@@ -23,6 +23,7 @@ const styles = {
   },
   topDownContainer: {
     display: 'block',
+    alignSelf: 'start',
     margin: 'auto 1vw auto 1vw',
   },
 };
