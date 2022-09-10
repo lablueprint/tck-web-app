@@ -20,7 +20,7 @@ const styles = {
     overflowWrap: 'break-words',
     margin: 'auto',
     textAlign: 'left',
-    '@media (min-width: 768px)': {
+    '@media (min-width: 960px)': {
       marginBottom: '12vh',
     },
     '@media (max-width: 960px)': {

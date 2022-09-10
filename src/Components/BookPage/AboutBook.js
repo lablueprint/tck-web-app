@@ -43,7 +43,7 @@ const styles = {
     '@media (max-width: 1440px)': {
       maxWidth: '22vw',
     },
-    '@media (max-width: 768px)': {
+    '@media (max-width: 960px)': {
       maxWidth: '100%',
     },
   },
