@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Box, CircularProgress } from '@mui/material';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
-import CreatedWorksCard from '../Components/CreatorPage/OtherWorks';
+import CreatedWorksCard from '../Components/CreatorPage/CreatedWorksCard';
 
 const styles = {
   root: {
@@ -31,14 +31,24 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 function CreatorPage() {
   const [creatorDetails, setCreatorDetails] = useState();
   const [loading, setLoading] = useState(true);
+  const [creatorRole, setCreatorRole] = useState();
   const params = useParams();
-  const authId = params.id;
+  const creatorId = params.id;
 
   const getCreatorDetails = () => {
     base('Creator').find(
-      authId,
+      creatorId,
       (err, record) => {
+        console.error(err);
         setCreatorDetails(record);
+        if (record.fields.authored !== undefined) {
+          if (record.fields.illustrated !== undefined) {
+            setCreatorRole('Author, Illustrator');
+          }
+          setCreatorRole('Author');
+        } else if (record.fields.illustrated !== undefined) {
+          setCreatorRole('Illustrator');
+        }
         setLoading(false);
       },
     );
@@ -46,7 +56,7 @@ function CreatorPage() {
 
   useEffect(() => {
     getCreatorDetails();
-  }, []);
+  }, [creatorId]);
 
   return (
     <Card sx={styles.root}>
@@ -56,17 +66,23 @@ function CreatorPage() {
         </Box>
       )}
       {creatorDetails !== undefined && !loading && (
-        <CreatorInfoCard
-          creatorName={creatorDetails.fields.name ? creatorDetails.fields.name : 'Anonymous'}
-          creatorBio={creatorDetails.fields.bio ? creatorDetails.fields.bio : ''}
-          creatorWebsite={creatorDetails.fields.personal_site ? creatorDetails.fields.personal_site : ''}
-          creatorImage={creatorDetails.fields.image ? creatorDetails.fields.image[0].url : ''}
-        />
+        <>
+          <CreatorInfoCard
+            creatorName={creatorDetails.fields.name ? creatorDetails.fields.name : 'Anonymous'}
+            creatorBio={creatorDetails.fields.bio ? creatorDetails.fields.bio : ''}
+            creatorWebsite={creatorDetails.fields.personal_site ? creatorDetails.fields.personal_site : ''}
+            creatorImage={creatorDetails.fields.image ? creatorDetails.fields.image[0].url : ''}
+            creatorRole={creatorRole}
+          />
+          <CreatedWorksCard
+            authoredBookIds={creatorDetails.fields.authored}
+            illustratedBookIds={creatorDetails.fields.illustrated}
+          />
+        </>
       )}
       {creatorDetails === undefined && !loading && (
         <p>No such author found!</p>
       )}
-      <CreatedWorksCard authorId={authId} />
     </Card>
   );
 }

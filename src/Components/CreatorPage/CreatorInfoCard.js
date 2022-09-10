@@ -161,7 +161,7 @@ const styles = {
 };
 
 export default function CreatorInfoCard({
-  creatorName, creatorBio, creatorWebsite, creatorImage,
+  creatorName, creatorBio, creatorWebsite, creatorImage, creatorRole,
 }) {
   const [seeMore, setSeeMore] = useState(true);
   const toggleSeeSetMore = () => setSeeMore(!seeMore);
@@ -208,7 +208,9 @@ export default function CreatorInfoCard({
             {
               !(isMobile) && <Typography sx={styles.mediumText}> &nbsp;|&nbsp; </Typography>
             }
-            <Typography sx={styles.mediumText}> Author </Typography>
+            <Typography sx={styles.mediumText}>
+              {creatorRole}
+            </Typography>
           </Box>
           <Box sx={styles.leftBox}>
             {creatorBio.length < 250
@@ -257,5 +259,6 @@ CreatorInfoCard.propTypes = {
   creatorName: PropTypes.string.isRequired,
   creatorBio: PropTypes.string.isRequired,
   creatorWebsite: PropTypes.string.isRequired,
-  creatorImage: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  creatorImage: PropTypes.string.isRequired,
+  creatorRole: PropTypes.string.isRequired,
 };
