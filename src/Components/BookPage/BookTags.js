@@ -5,6 +5,9 @@ import {
 } from '@mui/material';
 
 const styles = {
+  root: {
+    alignSelf: 'start',
+  },
   tagHeader: {
     textAlign: 'left',
     fontFamily: 'Work Sans',
@@ -85,7 +88,7 @@ function BookTags({
 }) {
   const tags = createTags(identityTags, raceEthnicity, genre, themesLessons, religion);
   return (
-    <div>
+    <div style={styles.root}>
       <Typography sx={styles.tagHeader}>Tags</Typography>
       <Box sx={styles.tagContainer}>
         {tags}

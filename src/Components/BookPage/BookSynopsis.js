@@ -43,7 +43,7 @@ function BookSynopsis({
     };
   }, []);
 
-  const isMobile = width <= 768;
+  const isMobile = width <= 960;
   const desktop = (
     <>
       <BookCover
@@ -54,6 +54,7 @@ function BookSynopsis({
         genre={genre}
         themesLessons={themesLessons}
         religion={religion}
+        isMobile={isMobile}
       />
       <BookDesc
         title={title}
@@ -76,6 +77,7 @@ function BookSynopsis({
         genre={genre}
         themesLessons={themesLessons}
         religion={religion}
+        isMobile={isMobile}
       />
       <BookDesc
         desc={desc}
