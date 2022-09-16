@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import {
   Box, Button,
@@ -16,11 +13,11 @@ import illusion from '../../Assets/Images/IllusionVector.svg';
 export default function Quiz5({
   setIllusions, dispatch,
 }) {
-  const [valueSelected, setValueSelected] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const handleClick = (val) => {
     setDisabled(false);
     setIllusions(val);
+    dispatch({ type: 'child' });
   };
   return (
     <div style={{ position: 'relative', bottom: '100px' }}>
@@ -30,157 +27,64 @@ export default function Quiz5({
         </h1>
         <div><img src={illusion} alt="Illusion Missing" /></div>
         <FormControl>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group"
-            sx={{
-              display: 'flex', flexDirection: 'row', columnGap: '4em', marginTop: '3em',
+          <Button
+            className="QuizButton"
+            style={{
+              color: '#444444',
+              padding: '2em 0.5em 2em 0.5em',
+              margin: '1em auto 1em auto',
+              width: '300px',
+              height: '80.59px',
+              borderRadius: '30px',
+              background: '#393EBA',
+              display: 'flex',
+              border: '2px solid #d7d7d7',
+              textTransform: 'none',
+              '&:hover': {
+                bgcolor: '#393EBA',
+                color: 'white',
+              },
+            }}
+            onClick={() => {
+              handleClick(2);
             }}
           >
-            <Button
-              className="QuizButton"
-              style={valueSelected === 1 ? {
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#393EBA',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              } : {
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#ffffff',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              }}
-              onClick={() => {
-                setIllusions(1);
-                setValueSelected(1);
-                setDisabled(false);
-              }}
+            <p style={{
+              fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
+            }}
             >
-              <FormControlLabel
-                control={(
-                  <Radio
-                    checked={valueSelected === 1}
-                    sx={{
-                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
-                      {
-                        color: valueSelected === 1 ? '#393EBA' : 'white',
-                      },
-                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
-                        color: '#393EBA',
-                      },
-                    }}
-                    value={1}
-                    onChange={(e) => handleClick(e.target.value)}
-                  />
-)}
-                sx={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
-                }}
-                label={(
-                  <p style={valueSelected === 1 ? {
-                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
-                  } : {
-                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
-                  }}
-                  >
-                    A younger person
-                  </p>
-                )}
-              />
-            </Button>
-            <Button
-              className="QuizButton"
-              style={valueSelected === 2 ? {
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#393EBA',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              } : {
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#ffffff',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              }}
-              onClick={() => {
-                setIllusions(2);
-                setValueSelected(2);
-                setDisabled(false);
-              }}
+              A younger person
+            </p>
+          </Button>
+          <Button
+            className="QuizButton"
+            style={{
+              color: '#444444',
+              padding: '2em 0.5em 2em 0.5em',
+              margin: '1em auto 1em auto',
+              width: '300px',
+              height: '80.59px',
+              borderRadius: '30px',
+              background: '#393EBA',
+              display: 'flex',
+              border: '2px solid #d7d7d7',
+              textTransform: 'none',
+              '&:hover': {
+                bgcolor: '#393EBA',
+                color: 'white',
+              },
+            }}
+            onClick={() => {
+              handleClick(2);
+            }}
+          >
+            <p style={{
+              fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
+            }}
             >
-              <FormControlLabel
-                control={(
-                  <Radio
-                    checked={valueSelected === 2}
-                    sx={{
-                      '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)':
-                      {
-                        color: valueSelected === 2 ? '#393EBA' : 'white',
-                      },
-                      '& .MuiSvgIcon-root + .MuiSvgIcon-root': {
-                        color: '#393EBA',
-                      },
-                    }}
-                    value={2}
-                    onChange={(e) => handleClick(e.target.value)}
-                  />
-)}
-                sx={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0',
-                }}
-                label={(
-                  <p style={valueSelected === 2 ? {
-                    fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
-                  } : {
-                    fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
-                  }}
-                  >
-                    An older person
-                  </p>
-                )}
-              />
-            </Button>
-          </RadioGroup>
+              An older person
+            </p>
+          </Button>
         </FormControl>
       </Box>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>

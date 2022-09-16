@@ -118,7 +118,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry'];
     return (
       <div>
-        <Quiz6 dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 progress={70} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
       </div>
     );
   }
@@ -127,7 +127,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
     return (
       <div>
-        <Quiz6 dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6 progress={85} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
       </div>
     );
   }
@@ -137,7 +137,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       <div>
         <Quiz8Adult
           dispatch={dispatch}
-          issDisabled={issDisabled(bookFilters.book_type)}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
         />

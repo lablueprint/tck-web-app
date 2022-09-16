@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Box, Button,
+  Box, Button, Avatar,
 } from '@mui/material';
-import RadioGroup from '@mui/material/RadioGroup';
+// import RadioGroup from '@mui/material/RadioGroup';
 import propTypes from 'prop-types';
-import FormControl from '@mui/material/FormControl';
+// import FormControl from '@mui/material/FormControl';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProgressBar from './ProgressBar';
@@ -13,14 +13,16 @@ import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
 import Silly from '../../Assets/Images/TCK_Mood - Silly.svg';
 import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
-import SillyButton from './SillyButton';
+// import SillyButton from './SillyButton';
 import './QuizGroup.css';
 import { useWindowSize } from '../Navigation/Header';
+import AvatarButton from './AvatarButton';
 
 export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
-  const [valueSelected, setValueSelected] = useState(0);
+  // const [valueSelected, setValueSelected] = useState(0);
   const handleClick = (val) => {
     setSilly(val);
+    dispatch({ type: 'child' });
   };
   const size = useWindowSize();
   return (
@@ -39,23 +41,107 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
         margin: '6rem 1rem 2rem',
       }}
       >
-        <FormControl style={{
-          marginTop: size.width > 1024 ? '50px' : '0px', marginBottom: size.width > 1024 ? '0px' : '50px', position: 'relative', bottom: '4rem',
+        {/* <FormControl style={{
+          marginTop: size.width > 1024 ? '50px' : '0px',
+          marginBottom: size.width > 1024 ? '0px' : '50px', position: 'relative', bottom: '4rem',
         }}
-        >
-          <RadioGroup
+        > */}
+        <AvatarButton
+          caption="I am almost
+            always serious"
+          handleToggle={() => handleClick(1)}
+          icon={(
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              src={VerySerious}
+              style={{ borderRadius: 0 }}
+              alt="Very Serious"
+            />
+            )}
+        />
+        <AvatarButton
+          caption="I am usually
+            serious, but I can be silly sometimes"
+          handleToggle={() => handleClick(2)}
+          icon={(
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              src={Serious}
+              style={{ borderRadius: 0 }}
+              alt="Serious"
+            />
+            )}
+        />
+        <AvatarButton
+          caption="I can be
+            either silly or serious"
+          handleToggle={() => handleClick(3)}
+          icon={(
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              src={Neutral}
+              style={{ borderRadius: 0 }}
+              alt="Neutral"
+            />
+            )}
+        />
+        <AvatarButton
+          caption="I am
+            usually silly, but I can be serious if I need to be"
+            // handleToggle={handleClick(4)}
+          handleToggle={() => handleClick(4)}
+          icon={(
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              src={Silly}
+              style={{ borderRadius: 0 }}
+              alt="Silly"
+            />
+            )}
+        />
+        <AvatarButton
+          caption="I am
+            almost always silly"
+          handleToggle={() => handleClick(5)}
+          icon={(
+            <Avatar
+              sx={{ width: 100, height: 100 }}
+              src={VerySilly}
+              style={{ borderRadius: 0 }}
+              alt="Very Silly"
+            />
+            )}
+        />
+        {/* <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"
             name="radio-buttons-group"
             sx={{ flexDirection: 'row', justifyContent: 'center' }}
           >
-            <SillyButton handleClick={() => handleClick(1)} value={1} valueSelected={valueSelected} setValueSelected={setValueSelected} caption="I am almost always silly" image={VerySilly} alt="Very Silly Missing" />
-            <SillyButton handleClick={() => handleClick(2)} value={2} valueSelected={valueSelected} setValueSelected={setValueSelected} caption="I am usually silly, but I can be serious if I need to be" image={Silly} alt="Silly Missing" />
-            <SillyButton handleClick={() => handleClick(3)} value={3} valueSelected={valueSelected} setValueSelected={setValueSelected} caption="I can be either silly or serious" image={Neutral} alt="Neutral Missing" />
-            <SillyButton handleClick={() => handleClick(4)} value={4} valueSelected={valueSelected} setValueSelected={setValueSelected} caption="I am usually serious, but I can be silly sometimes" image={Serious} alt="Serious Missing" />
-            <SillyButton handleClick={() => handleClick(5)} value={5} valueSelected={valueSelected} setValueSelected={setValueSelected} caption="I am almost always serious" image={VerySerious} alt="Very Serious Missing" />
-          </RadioGroup>
-        </FormControl>
+            <SillyButton handleClick={() =>
+              handleClick(1)} value={1} valueSelected={valueSelected}
+              setValueSelected={setValueSelected} caption="I am
+              almost always silly" image={VerySilly} alt="Very Silly Missing" />
+            <SillyButton handleClick={() =>
+              handleClick(2)} value={2} valueSelected={valueSelected}
+              setValueSelected={setValueSelected} caption="I am
+              usually silly, but I can be serious if I need to be"
+              image={Silly} alt="Silly Missing" />
+            <SillyButton handleClick={() =>
+              handleClick(3)} value={3} valueSelected={valueSelected}
+
+              setValueSelected={setValueSelected} caption="I can be
+               either silly or serious" image={Neutral} alt="Neutral Missing" />
+            <SillyButton handleClick={() =>
+              handleClick(4)} value={4} valueSelected={valueSelected}
+              setValueSelected={setValueSelected} caption="I am usually
+               serious, but I can be silly sometimes" image={Serious} alt="Serious Missing" />
+            <SillyButton handleClick={() =>
+              handleClick(5)} value={5} valueSelected={valueSelected}
+               setValueSelected={setValueSelected} caption="I am almost
+               always serious" image={VerySerious} alt="Very Serious Missing" />
+          </RadioGroup> */}
+        {/* </FormControl> */}
       </Box>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
         <Button

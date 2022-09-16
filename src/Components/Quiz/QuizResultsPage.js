@@ -207,7 +207,6 @@ function ResultsPage({ bookFilters, isChild }) {
                 fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
               }}
               >
-                {' '}
                 Re-take quiz
 
               </p>

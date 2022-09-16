@@ -11,7 +11,7 @@ import QuizButton from './QuizButton';
 import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz8Adult({
-  bookFilters, setBookFilters, dispatch, issDisabled,
+  bookFilters, setBookFilters, dispatch,
 }) {
   const size = useWindowSize();
 
@@ -67,10 +67,10 @@ export default function Quiz8Adult({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressBar variant="determinate" progress={85} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={95} sx={{ flex: '0 1 60%' }} />
         <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
           <Button
-            disabled={issDisabled}
+            disabled={false}
             variant="contained"
             onClick={() => dispatch({ type: 'parent' })}
             sx={{
@@ -110,5 +110,4 @@ Quiz8Adult.propTypes = {
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
   dispatch: propTypes.func.isRequired,
-  issDisabled: propTypes.bool.isRequired,
 };

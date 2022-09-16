@@ -10,7 +10,7 @@ import QuizButton from './QuizButton';
 import { useWindowSize } from '../Navigation/Header';
 
 export default function Quiz6({
-  title, buttonCaptions, setBookFilters, bookFilters, dispatch,
+  title, buttonCaptions, setBookFilters, bookFilters, dispatch, progress,
 }) {
   const size = useWindowSize();
   function HandleClick(name, checked) {
@@ -64,7 +64,7 @@ export default function Quiz6({
           <ArrowBackIcon />
 
         </Button>
-        <ProgressBar variant="determinate" progress={80} sx={{ flex: '0 1 60%' }} />
+        <ProgressBar variant="determinate" progress={progress} sx={{ flex: '0 1 60%' }} />
         <Button
           disabled={false}
           variant="contained"
@@ -102,4 +102,5 @@ Quiz6.propTypes = {
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
   dispatch: propTypes.func.isRequired,
+  progress: propTypes.number.isRequired,
 };
