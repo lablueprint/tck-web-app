@@ -47,7 +47,7 @@ function Carousel({
         centerInsufficientSlides
         breakpoints={{
           320: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
           },
           // when window width is >= 480px
