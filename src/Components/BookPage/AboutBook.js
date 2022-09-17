@@ -21,8 +21,8 @@ const styles = {
       minWidth: '22vw',
     },
     '@media (max-width: 960px)': {
-      width: '85%',
-      margin: 'auto',
+      width: '95%',
+      margin: 'auto 2vw',
       marginBottom: '2vh',
     },
 
