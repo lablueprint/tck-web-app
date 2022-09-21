@@ -16,7 +16,7 @@ export default function QuizButton({
       style={clicked ? {
         padding: '2em 0.5em 2em 0.5em',
         margin: '1em auto 1em auto',
-        width: '300px',
+        width: '250px',
         height: '100.59px',
         borderRadius: '30px',
         border: '2.5px solid #D7D7D7',
@@ -38,7 +38,7 @@ export default function QuizButton({
       } : {
         padding: '2em 0.5em 2em 0.5em',
         margin: '1em auto 1em auto',
-        width: '300px',
+        width: '250px',
         height: '100.59px',
         borderRadius: '30px',
         border: '2.5px solid #D7D7D7',
@@ -65,7 +65,7 @@ export default function QuizButton({
     >
       <Checkbox
         style={clicked ? { color: '#393EBA' } : { color: '#444444' }}
-        sx={{ position: 'relative', bottom: '15px' }}
+        sx={{ position: 'relative', bottom: '25px', right: '10px' }}
         onChange={(event) => {
           onClick(desiredLabel, event.target.checked);
         }}

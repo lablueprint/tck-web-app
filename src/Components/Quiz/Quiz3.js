@@ -51,15 +51,32 @@ export default function Quiz3({
 
   useEffect(getFilters, []);
   return (
-    <div>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
+        <h1 style={{
+          fontFamily: 'DM Sans',
+          marginTop: '20px',
+          color: '#444444',
+        }}
+        >
           {slideCaption}
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
-
-        {bookFilters.genre !== undefined && (
-          <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+        {bookFilters.genre !== undefined && size.width <= 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
+            {filters.map((option) => (
+              <QuizButton
+                desiredLabel={option}
+                buttonCaption={option}
+                key={option}
+                onClick={(name, checked) => HandleClick(name, checked)}
+                desiredArray={bookFilters['race/ethnicity']}
+              />
+            ))}
+          </div>
+        )}
+        {bookFilters.genre !== undefined && size.width > 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 0.6fr))' : 'repeat(3, minmax(0, 0.6fr))' }}>
             {filters.map((option) => (
               <QuizButton
                 desiredLabel={option}

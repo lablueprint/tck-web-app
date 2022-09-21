@@ -1,4 +1,4 @@
-   @media only screen and (min-width: 1025px) {
+   @media only screen and (min-width: 1024px) {
       .Start {
          background-image: url(../../Assets/Images/QuizBackground.svg);
          background-position: top;
@@ -39,7 +39,61 @@
             border: 2.5px solid #393EBA;
       }
 }
-@media only screen and (max-width: 1025px) {
+@media only screen and (min-width: 640px) {
+   .Start {
+      background-image: url(../../Assets/Images/QuizBackground.svg);
+      background-position: top;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: stretch;
+   }
+   .Conscious {
+      position: relative;
+      bottom: 40px;
+      color: #393EBA;
+      font-size: 40px;
+      margin-bottom: 0;
+      right: 60px;
+   }
+   .BookFinder {
+      position: relative;
+      bottom: 40px;
+      color:#333333;
+      font-size: 58px;
+      font-family: Work Sans;
+      letter-spacing: -0.04em;
+      margin-top: 0;
+      right: 60px;
+
+   }
+   .Search {
+      font-family: Work Sans;
+      color: #333333;
+      font-size: 22px;
+      font-weight: normal; 
+      position: relative; 
+      bottom: 50px;
+      right: 60px;
+   }
+   .startButton {
+      position: relative; 
+      bottom: 50px;
+      right:60px;
+      font-family: Work Sans;
+      color: #333333;
+      background: #393EBA;
+      border-radius: 0.6em;
+      letter-spacing: 0.02em;
+      color: white;
+      font-family: Work Sans;
+      font-weight: bold;
+      font-size: 1.3em;
+      width: 234px;
+      height: 67px;
+      border: 2.5px solid #393EBA;
+   }
+}
+@media only screen and (max-width: 640px) {
    .Start {
       background-image: url(../../Assets/Images/MobileQuiz.svg);
       background-position: top;

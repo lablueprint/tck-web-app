@@ -19,15 +19,30 @@ export default function Quiz2Kid({
   };
 
   return (
-    <div style={{ paddingBottom: 200 }}>
-      <h1 style={{ fontFamily: 'DM Sans', marginTop: '80px', color: '#444444' }}>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
+      <h1 style={{
+        fontFamily: 'DM Sans',
+        marginTop: '20px',
+        color: '#444444',
+      }}
+      >
         What grade levels are you comfortable reading at?
       </h1>
-      <Grid container justifyContent="center" sx={{ marginTop: '150px', paddingTop: 10 }}>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{
+          marginTop: '150px',
+          paddingTop: 10,
+        }}
+      >
         <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
       </Grid>
       <div style={{
-        marginTop: '250px', display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0',
+        // marginTop: '250px',
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '3em 0 3em 0',
       }}
       >
         <Button

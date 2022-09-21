@@ -28,15 +28,15 @@ export default function Quiz8Adult({
     }
   }
   return (
-    <div>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
           Please select your preferred book formats
         </h1>
         <p style={{ color: '#444444' }}>These will be used to rank your results but availability is not guaranteed!</p>
-        {bookFilters.book_type !== undefined
+        {bookFilters.book_type !== undefined && size.width <= 640
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Picture Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Chapter Book" buttonCaption="Chapter Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Early Reader Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />
@@ -47,6 +47,20 @@ export default function Quiz8Adult({
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Board Book" buttonCaption="Board Book" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Graphic Novel" buttonCaption="Graphic Novel" onClick={(name, checked) => HandleClick(name, checked)} />
         </div>
+        )}
+        {bookFilters.book_type !== undefined
+        && size.width > 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))' }}>
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Picture Book" buttonCaption="Picture Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Chapter Book" buttonCaption="Chapter Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Early Reader Book" buttonCaption="Early Reader Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Middle Grade Book" buttonCaption="Middle Grade Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="YA Book" buttonCaption="YA Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Series" buttonCaption="Series" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Anthology" buttonCaption="Anthology" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Board Book" buttonCaption="Board Book" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.book_type} desiredLabel="Graphic Novel" buttonCaption="Graphic Novel" onClick={(name, checked) => HandleClick(name, checked)} />
+          </div>
         )}
       </Box>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>

@@ -21,6 +21,7 @@ export default function AvatarButton({
         fontWeight: 'bold',
         color: '#444444',
         textTransform: 'capitalize',
+        fontSize: '1.2rem',
 
         '&.MuiButtonBase-root:hover': {
           bgcolor: '#EAF3FE',
@@ -34,7 +35,7 @@ export default function AvatarButton({
           flexDirection: 'row',
           padding: '1rem 5rem',
           justifyContent: 'space-between',
-          fontSize: '1.5rem',
+          fontSize: '1.2rem',
           margin: '1rem 0',
           height: '9rem',
           borderRadius: '30',
@@ -45,7 +46,7 @@ export default function AvatarButton({
       variant="outlined"
       startIcon={icon}
     >
-      {caption}
+      <p>{caption}</p>
     </Button>
 
   );

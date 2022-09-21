@@ -15,7 +15,7 @@ import Silly from '../../Assets/Images/TCK_Mood - Silly.svg';
 import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
 // import SillyButton from './SillyButton';
 import './QuizGroup.css';
-import { useWindowSize } from '../Navigation/Header';
+// import { useWindowSize } from '../Navigation/Header';
 import AvatarButton from './AvatarButton';
 
 export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
@@ -24,28 +24,20 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
     setSilly(val);
     dispatch({ type: 'child' });
   };
-  const size = useWindowSize();
+  // const size = useWindowSize();
   return (
-    <div style={{ background: '#FCFCFC' }}>
-      <h1 style={{
-        fontFamily: 'DM Sans', marginBottom: size.width > 1024 ? '20px' : '0px', color: '#444444',
-      }}
-      >
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
+      <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
         Which of the following best describes you?
       </h1>
       <Box sx={{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         flexWrap: 'wrap',
         margin: '6rem 1rem 2rem',
       }}
       >
-        {/* <FormControl style={{
-          marginTop: size.width > 1024 ? '50px' : '0px',
-          marginBottom: size.width > 1024 ? '0px' : '50px', position: 'relative', bottom: '4rem',
-        }}
-        > */}
         <AvatarButton
           caption="I am almost
             always serious"
@@ -112,36 +104,6 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             />
             )}
         />
-        {/* <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group"
-            sx={{ flexDirection: 'row', justifyContent: 'center' }}
-          >
-            <SillyButton handleClick={() =>
-              handleClick(1)} value={1} valueSelected={valueSelected}
-              setValueSelected={setValueSelected} caption="I am
-              almost always silly" image={VerySilly} alt="Very Silly Missing" />
-            <SillyButton handleClick={() =>
-              handleClick(2)} value={2} valueSelected={valueSelected}
-              setValueSelected={setValueSelected} caption="I am
-              usually silly, but I can be serious if I need to be"
-              image={Silly} alt="Silly Missing" />
-            <SillyButton handleClick={() =>
-              handleClick(3)} value={3} valueSelected={valueSelected}
-
-              setValueSelected={setValueSelected} caption="I can be
-               either silly or serious" image={Neutral} alt="Neutral Missing" />
-            <SillyButton handleClick={() =>
-              handleClick(4)} value={4} valueSelected={valueSelected}
-              setValueSelected={setValueSelected} caption="I am usually
-               serious, but I can be silly sometimes" image={Serious} alt="Serious Missing" />
-            <SillyButton handleClick={() =>
-              handleClick(5)} value={5} valueSelected={valueSelected}
-               setValueSelected={setValueSelected} caption="I am almost
-               always serious" image={VerySerious} alt="Very Serious Missing" />
-          </RadioGroup> */}
-        {/* </FormControl> */}
       </Box>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
         <Button

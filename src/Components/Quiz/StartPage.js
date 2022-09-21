@@ -10,10 +10,10 @@ export default function StartPage() {
   return (
     <div className="Start">
       <Box sx={{
-        '@media (min-width:680px)(max-width:800px)': {
-          flex: '0 0 70%',
+        '@media (min-width:641px)(max-width:1024px)': {
+          flex: '0 0 100%',
         },
-        '@media (max-width: 680px)': {
+        '@media (max-width: 640px)': {
           flex: '0 0 80%',
         },
         padding: 15,

@@ -24,14 +24,11 @@ export default function Quiz1({
     dispatch(type);
   };
   return (
-    <div style={{ background: '#FAFAFA', height: '100%' }}>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <div>
-        <h2 style={{
-          marginTop: '150px', fontFamily: 'DM Sans', letterSpacing: '-0.02em', margin: '0', paddingTop: '3em', color: '#444444',
-        }}
-        >
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
           Are you a parent, educator, or kid?
-        </h2>
+        </h1>
         <Box sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -41,7 +38,7 @@ export default function Quiz1({
         }}
         >
           <AvatarButton
-            caption="parent"
+            caption="educator"
             handleToggle={() => handleToggle({ type: 'parent' }, false)}
             icon={(
               <Avatar
@@ -53,7 +50,7 @@ export default function Quiz1({
             )}
           />
           <AvatarButton
-            caption="educator"
+            caption="parent/caregiver"
             handleToggle={() => handleToggle({ type: 'parent' }, false)}
             icon={(
               <Avatar

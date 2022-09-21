@@ -27,15 +27,15 @@ export default function Quiz7Kid({
     }
   }
   return (
-    <div>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box sx={{ position: 'relative', bottom: '100px' }}>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
           Which of the following seem fun to you?
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
-        {bookFilters.genre !== undefined
+        {bookFilters.genre !== undefined && size.width <= 640
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Adventure" buttonCaption="Going on a journey to a new place with your friends" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Scary/Horror" buttonCaption="Suspenseful events iwth plot twists that may shock you" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Sci-fi" buttonCaption="Going to outer space and exploring different planets" onClick={(name, checked) => HandleClick(name, checked)} />
@@ -43,6 +43,17 @@ export default function Quiz7Kid({
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Romance" buttonCaption="Having a picnic with someone you really like" onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton desiredArray={bookFilters.genre} desiredLabel="Afro-futurism" buttonCaption="Visiting an African realm with magic and advanced technology" onClick={(name, checked) => HandleClick(name, checked)} />
         </div>
+        )}
+        {bookFilters.genre !== undefined
+        && size.width > 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))' }}>
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Adventure" buttonCaption="Going on a journey to a new place with your friends" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Scary/Horror" buttonCaption="Suspenseful events iwth plot twists that may shock you" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Sci-fi" buttonCaption="Going to outer space and exploring different planets" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Fantasy" buttonCaption="Living in a magical world where you have powers" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Romance" buttonCaption="Having a picnic with someone you really like" onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton desiredArray={bookFilters.genre} desiredLabel="Afro-futurism" buttonCaption="Visiting an African realm with magic and advanced technology" onClick={(name, checked) => HandleClick(name, checked)} />
+          </div>
         )}
       </Box>
       {includeNav ? (

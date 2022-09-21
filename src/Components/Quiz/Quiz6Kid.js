@@ -26,15 +26,20 @@ export default function Quiz6Kid({
     }
   }
   return (
-    <div>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box sx={{ position: 'relative', bottom: '100o' }}>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '150px', color: '#444444' }}>
+        <h1 style={{
+          fontFamily: 'DM Sans',
+          marginTop: '20px',
+          color: '#444444',
+        }}
+        >
           {title}
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
-        {bookFilters.genre !== undefined
+        {bookFilters.genre !== undefined && size.width <= 640
         && (
-        <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
           <QuizButton buttonCaption={buttonCaptions[0]} desiredLabel="Autobiography" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton buttonCaption={buttonCaptions[1]} desiredLabel="Non-fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton buttonCaption={buttonCaptions[2]} desiredLabel="Historical fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
@@ -42,6 +47,17 @@ export default function Quiz6Kid({
           <QuizButton buttonCaption={buttonCaptions[4]} desiredLabel="Mystery" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
           <QuizButton buttonCaption={buttonCaptions[5]} desiredLabel="Poetry" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
         </div>
+        )}
+        {bookFilters.genre !== undefined
+        && size.width > 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))' }}>
+            <QuizButton buttonCaption={buttonCaptions[0]} desiredLabel="Autobiography" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton buttonCaption={buttonCaptions[1]} desiredLabel="Non-fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton buttonCaption={buttonCaptions[2]} desiredLabel="Historical fiction" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton buttonCaption={buttonCaptions[3]} desiredLabel="Memoir" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton buttonCaption={buttonCaptions[4]} desiredLabel="Mystery" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+            <QuizButton buttonCaption={buttonCaptions[5]} desiredLabel="Poetry" desiredArray={bookFilters.genre} onClick={(name, checked) => HandleClick(name, checked)} />
+          </div>
         )}
       </Box>
       {includeButtons ? (
@@ -118,7 +134,12 @@ export default function Quiz6Kid({
               endIcon={<ArrowForwardIcon />}
             >
               <p style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto', textTransform: 'none',
+                fontFamily: 'DM Sans',
+                fontWeight: 'bold',
+                fontSize: '17px',
+                textAlign: 'center',
+                margin: '0 auto 0 auto',
+                textTransform: 'none',
               }}
               >
                 Your Results

@@ -20,9 +20,9 @@ export default function Quiz5({
     dispatch({ type: 'child' });
   };
   return (
-    <div style={{ position: 'relative', bottom: '100px' }}>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ fontFamily: 'DM Sans', color: '#444444' }}>
+        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
           What do you see in the picture below?
         </h1>
         <div><img src={illusion} alt="Illusion Missing" /></div>

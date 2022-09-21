@@ -25,15 +25,32 @@ export default function Quiz6({
     }
   }
   return (
-    <div>
+    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <Box sx={{ padding: 15 }}>
-        <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
+        <h1 style={{
+          fontFamily: 'DM Sans',
+          marginTop: '20px',
+          color: '#444444',
+        }}
+        >
           {title}
         </h1>
         <p style={{ color: '#444444' }}>You can choose more than one.</p>
-
+        {bookFilters.genre !== undefined && size.width <= 640 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
+            {buttonCaptions.map((option) => (
+              <QuizButton
+                desiredLabel={option}
+                buttonCaption={option}
+                desiredArray={bookFilters.genre}
+                key={option}
+                onClick={(name, checked) => HandleClick(name, checked)}
+              />
+            ))}
+          </div>
+        )}
         {bookFilters.genre !== undefined && (
-          <div style={{ display: 'grid', gridTemplateColumns: size.width > 1024 ? 'repeat(3, minmax(0, 1fr))' : 'repeat(1, minmax(0, 1fr))' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))' }}>
             {buttonCaptions.map((option) => (
               <QuizButton
                 desiredLabel={option}
