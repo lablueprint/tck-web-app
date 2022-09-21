@@ -38,7 +38,7 @@ export default function Quiz1({
         }}
         >
           <AvatarButton
-            caption="educator"
+            caption="Educator"
             handleToggle={() => handleToggle({ type: 'parent' }, false)}
             icon={(
               <Avatar
@@ -50,7 +50,7 @@ export default function Quiz1({
             )}
           />
           <AvatarButton
-            caption="parent/caregiver"
+            caption="Parent/Caregiver"
             handleToggle={() => handleToggle({ type: 'parent' }, false)}
             icon={(
               <Avatar
@@ -61,7 +61,7 @@ export default function Quiz1({
             )}
           />
           <AvatarButton
-            caption="kid"
+            caption="Kid"
             handleToggle={() => handleToggle({ type: 'child' }, true)}
             icon={(
               <Avatar

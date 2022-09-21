@@ -40,17 +40,19 @@ export default function Quiz5({
               display: 'flex',
               border: '2px solid #d7d7d7',
               textTransform: 'none',
-              '&:hover': {
-                bgcolor: '#393EBA',
-                color: 'white',
-              },
             }}
             onClick={() => {
               handleClick(2);
             }}
           >
             <p style={{
-              fontFamily: 'DM Sans', color: '#FFFFFF', fontWeight: 'bold', fontSize: '24px', textAlign: 'center', margin: '0 auto 0 auto',
+              fontFamily: 'DM Sans',
+              color: '#FFFFFF',
+              fontWeight: 'bold',
+              fontSize: '24px',
+              textAlign: 'center',
+              margin: '0 auto 0 auto',
+
             }}
             >
               A younger person
@@ -69,10 +71,6 @@ export default function Quiz5({
               display: 'flex',
               border: '2px solid #d7d7d7',
               textTransform: 'none',
-              '&:hover': {
-                bgcolor: '#393EBA',
-                color: 'white',
-              },
             }}
             onClick={() => {
               handleClick(2);

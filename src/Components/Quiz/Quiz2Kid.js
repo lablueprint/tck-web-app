@@ -39,7 +39,7 @@ export default function Quiz2Kid({
         <GradeSlider parentCallbackButton={callbackSlider} parentCallback={callback} />
       </Grid>
       <div style={{
-        // marginTop: '250px',
+        marginTop: '250px',
         display: 'flex',
         justifyContent: 'center',
         padding: '3em 0 3em 0',

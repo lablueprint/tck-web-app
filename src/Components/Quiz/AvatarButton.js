@@ -20,7 +20,7 @@ export default function AvatarButton({
         fontFamily: 'DM Sans',
         fontWeight: 'bold',
         color: '#444444',
-        textTransform: 'capitalize',
+        textTransform: 'none',
         fontSize: '1.2rem',
 
         '&.MuiButtonBase-root:hover': {
@@ -46,7 +46,10 @@ export default function AvatarButton({
       variant="outlined"
       startIcon={icon}
     >
-      <p>{caption}</p>
+      <p sx={{ textTransform: 'lowercase' }}>
+        {caption}
+
+      </p>
     </Button>
 
   );
