@@ -60,6 +60,7 @@ function BookCover({
         sx={styles.bookCover}
         alt={`Book cover for ${title}`}
         src={imageURL}
+        aria-label={`The book cover of ${title}`}
       />
       <BookTags
         identityTags={identityTags}

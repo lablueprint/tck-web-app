@@ -67,7 +67,7 @@ function AdditionalResources({ readAloudURL, educatorURLs }) {
           <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
           <Box sx={styles.sideCardLinkContainer}>
             { (readAloudURL) && (
-            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
+            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank" aria-label="Go to the story read aloud">
               Story Read Aloud
             </LinkUI>
             ) }

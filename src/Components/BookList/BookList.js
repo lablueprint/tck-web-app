@@ -146,6 +146,7 @@ function BookList({ books, NoResults }) {
           options={sortOptions}
           value={sort}
           handleChange={handleSort}
+          label="more sort options"
         />
 
         <ListMenu
@@ -153,6 +154,7 @@ function BookList({ books, NoResults }) {
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}
+          label="more items per page options"
         />
       </div>
 
@@ -164,6 +166,7 @@ function BookList({ books, NoResults }) {
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
             key={book.fields.id}
             id={book.fields.id}
+            label={`Link to ${book.fields.title}`}
           />
         ))}
       </div>

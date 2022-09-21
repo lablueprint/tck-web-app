@@ -289,6 +289,7 @@ function AboutBook({
                     size="large"
                     href={bookshopURL}
                     target="_blank"
+                    aria-label="Go to this book's store listing"
                   >
                     Buy from Bookshop.org
                   </Button>
