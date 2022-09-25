@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Card, CardActions, CardContent, Button, Grid, Avatar,
+  Card, CardActions, CardContent, Button, Grid, Avatar, Typography, Box,
 } from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid';
 import './DictionaryCard.css';
 import LetterA from '../../Assets/Dictionary/LetterA.svg';
@@ -31,6 +32,34 @@ import LetterW from '../../Assets/Dictionary/LetterW.svg';
 import LetterX from '../../Assets/Dictionary/LetterX.svg';
 import LetterY from '../../Assets/Dictionary/LetterY.svg';
 import LetterZ from '../../Assets/Dictionary/LetterZ.svg';
+
+const styles = {
+  seeMoreContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  seeMoreText: {
+    fontFamily: 'DM Sans',
+    fontWeight: 700,
+    fontSize: '0.875em',
+    color: '#0068C9',
+    paddingTop: 2,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+  seeMoreIcon: {
+    fontSize: '1em',
+    color: '#0068C9',
+    paddingTop: 2,
+    paddingLeft: 0.25,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+};
 
 export default function DictionaryCard({
   word, def, links, phoeneticSpelling,
@@ -86,7 +115,6 @@ export default function DictionaryCard({
         marginRight: 5,
         marginLeft: 5,
       },
-      // width: 1262,
     }}
     >
       <CardContent>
@@ -118,10 +146,14 @@ export default function DictionaryCard({
           {def.length < 250 ? def
             : (
               <div>
-                {showMore ? def : `${def.substring(0, 250)}`}
-                <Button style={{ textTransform: 'none', color: '#3477DE' }} onClick={() => setShowMore(!showMore)}>
-                  {showMore ? 'See less' : 'See more'}
-                </Button>
+                {showMore ? def : `${def.substring(0, 250)}...`}
+                <Box sx={styles.seeMoreContainer} onClick={() => setShowMore(!showMore)}>
+                  <Typography sx={styles.seeMoreText}>
+                    {showMore ? 'See Less' : 'See More'}
+                  </Typography>
+                  { (showMore) ? <KeyboardArrowUp sx={styles.seeMoreIcon} />
+                    : <KeyboardArrowDown sx={styles.seeMoreIcon} />}
+                </Box>
               </div>
             )}
         </div>
@@ -141,8 +173,8 @@ export default function DictionaryCard({
                 <div>
                   {linksArray.filter((v) => Object.keys(v).length).map((url) => (
                     <Button
+                      className="more-resources-links"
                       key={uuidv4()}
-                      style={{ textTransform: 'none', color: '#3477DE', fontSize: '15px' }}
                       href={url}
                     >
                       {url}

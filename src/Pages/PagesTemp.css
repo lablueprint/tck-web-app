@@ -11,7 +11,9 @@
     line-height: 23px;
     letter-spacing: 0.2px;
     padding-top: 5%;
-    padding-left: 6%;
+    padding-left: 13%;
+    padding-right: 13%;
+    color: #717171;
 }
 
 .title 
@@ -20,7 +22,8 @@
     font-family: 'DM Sans';
     font-weight: 600;
     text-align: left;
-    padding-left: 6%;
+    padding-left: 13%;
+    padding-right: 13%;
     padding-bottom: 2%;
 }
 
@@ -30,8 +33,8 @@
     font-family: 'DM Sans';
     font-weight: 400;
     text-align: left;
-    padding-left: 6%;
-    padding-right: 6%;
+    padding-left: 13%;
+    padding-right: 13%;
     padding-bottom: 2%;
 }
 

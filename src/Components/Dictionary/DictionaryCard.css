@@ -13,6 +13,7 @@
     font-style: italic;
     letter-spacing: 0.5px;
     padding-top: 5px;
+    color: #3F3F3F;
 }
 
 .body {
@@ -22,7 +23,7 @@
     line-height: 32.13px;
     padding-right: 10%;
     padding-left: 15%;
-    padding-top: 1.5%;
+    padding-top: 1%;
     padding-bottom: 1%;
     text-align: left;
 }
@@ -31,8 +32,15 @@
     font-family: 'DM Sans';
     font-size: 18px;
     font-weight: 700;
-    padding-top: 3%;
+    padding-top: 6%;
     padding-bottom: 25%;
+}
+
+.more-resources-links {
+    text-transform: none !important;
+    color: #3477DE; 
+    font-size: 15px;
+    overflow-wrap: anywhere;
 }
 
 .img {
@@ -44,6 +52,7 @@
 
 .wrapTermAndPhoneticSpelling {
     display:inline-block;
+    text-align: left;
     padding:0px;
     margin:0px;
     padding-left: 40px;
@@ -52,18 +61,34 @@
 @media screen and (max-width: 960px) {
     .term {
         font-size: 20px;
-        padding-top: 10px;
+        padding-top: 20px;
     }
     .phonetic-spelling {
         font-size: 15px;
+        padding-top: 3px;
     }
     .wrapTermAndPhoneticSpelling {
         padding-left: 20px;
     }
     .more-resources {
         font-size: 16px;
+        padding-top: 9.5%;
+    }
+    .more-resources-links {
+        font-size: 10px;
+        line-height: 90%;
     }
     .body {
+        padding-top: 4%;
         font-size: 16px;
+    }
+  }
+
+@media screen and (max-width: 481px) {
+    .term {
+        padding-top: 15px;
+    }
+    .body {
+        padding-top: 8%;
     }
   }

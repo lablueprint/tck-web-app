@@ -1,0 +1,6 @@
+.DictionaryBackground {
+  background-image: url(../Assets/Dictionary/DictionaryBackground.svg);
+  background-position: center; 
+  background-repeat: repeat-y;
+  background-size: 100%;
+}

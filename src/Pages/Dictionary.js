@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import DictionaryCard from '../Components/Dictionary/DictionaryCard';
 import './PagesTemp.css';
+import './DictionaryPage.css';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -28,7 +29,7 @@ function Dictionary() {
   useEffect(getWordInfo, []);
 
   return (
-    <>
+    <div className="DictionaryBackground">
       <div className="tagline">
         TERMS TO KNOW:
       </div>
@@ -36,10 +37,12 @@ function Dictionary() {
         Racial Literacy Dictionary
       </div>
       <div className="subtitle">
-        Racial literacy is the knowledge, skills, advocacy and awareness needed to understand race and disrupt racism on a personal and systemic level. Racial literacy also provides tools to counter, cope and understand the role racism and white supremacy have in the larger society.
+        <b> Racial literacy </b>
+        is the knowledge, skills, advocacy and awareness needed to understand race and disrupt racism on a personal and systemic level. Racial literacy also provides tools to counter, cope and understand the role racism and white supremacy have in the larger society.
       </div>
       <div className="subtitle">
-        Why is racial literacy important? Absence of a shared language can add to dysfunction, misrepresentation and lack of clarity surrounding racial equity.  Clearly defined terminology provides a shared language, and opportunities for solidarity, when engaging in open and honest conversation about issues of race and identity.
+        <b> Why is racial literacy important? </b>
+        Absence of a shared language can add to dysfunction, misrepresentation and lack of clarity surrounding racial equity.  Clearly defined terminology provides a shared language, and opportunities for solidarity, when engaging in open and honest conversation about issues of race and identity.
       </div>
       <div className="subtitle">
         We’ve outlined a list of some key terms to know!
@@ -53,7 +56,7 @@ function Dictionary() {
           phoeneticSpelling={wordInfo.fields.phonetic_spelling !== undefined ? wordInfo.fields.phonetic_spelling : 'Missing phonetic spelling'}
         />
       ))}
-    </>
+    </div>
   );
 }
 
