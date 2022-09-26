@@ -116,5 +116,4 @@ Quiz2Kid.propTypes = {
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }),
   dispatch: propTypes.func.isRequired,
-  // isDisabled02K: propTypes.bool.isRequired,
 };

@@ -2,9 +2,7 @@ import React from 'react';
 import {
   Box, Button, Avatar,
 } from '@mui/material';
-// import RadioGroup from '@mui/material/RadioGroup';
 import propTypes from 'prop-types';
-// import FormControl from '@mui/material/FormControl';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ProgressBar from './ProgressBar';
@@ -13,18 +11,14 @@ import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
 import Silly from '../../Assets/Images/TCK_Mood - Silly.svg';
 import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
-// import SillyButton from './SillyButton';
 import './QuizGroup.css';
-// import { useWindowSize } from '../Navigation/Header';
 import AvatarButton from './AvatarButton';
 
 export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
-  // const [valueSelected, setValueSelected] = useState(0);
   const handleClick = (val) => {
     setSilly(val);
     dispatch({ type: 'child' });
   };
-  // const size = useWindowSize();
   return (
     <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
       <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>

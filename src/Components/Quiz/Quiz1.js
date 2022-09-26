@@ -34,7 +34,7 @@ export default function Quiz1({
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           flexWrap: 'wrap',
-          margin: '6rem 1rem 2rem',
+          margin: '6rem 5rem 2rem',
         }}
         >
           <AvatarButton
