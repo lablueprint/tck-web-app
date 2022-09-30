@@ -35,13 +35,14 @@
 
 .image {
     border-radius:10%;
-    max-width:100%;
+    width:80%;
+    height:auto;
     max-height:100%;
 }
 
 
 .img-container{
-    max-width:220px;
+    width:220px;
     height:200px;
     display:flex;
     justify-content: center;

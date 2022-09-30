@@ -39,6 +39,7 @@ export default function BookCard({
 
   const getAuthor = () => {
     author.forEach((name) => {
+      console.log(author);
       if (name === 'MISSING CREATOR') { setAuthor(name); return; }
       base('Creator').find(name, (err, record) => {
         if (err) { console.error(err); }
@@ -54,6 +55,7 @@ export default function BookCard({
       className="card"
       style={{
         margin: inCarousel ? '0' : '10px 16px 10px 16px',
+
       }}
     >
       <Link className="link" to={`/book/${id}`}>
@@ -66,7 +68,7 @@ export default function BookCard({
             />
           </div>
           <p className="book-card-text">
-            {title}
+            {title.length > 50 ? `${title.substring(0, 50)}...` : title}
           </p>
 
         </div>

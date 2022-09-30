@@ -80,7 +80,7 @@ function Carousel({
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element) => (
-          <SwiperSlide key={uuidv4()} style={{ paddingTop: '20', paddingBottom: '20' }}>
+          <SwiperSlide key={uuidv4()} style={{ width: 'max-content', paddingTop: '20', paddingBottom: '20' }}>
             <BookCard
               id={element.id}
               image={element.image}
