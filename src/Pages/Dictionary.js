@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import DictionaryCard from '../Components/Dictionary/DictionaryCard';
-import './PagesTemp.css';
 import './DictionaryPage.css';
 
 // airtable configuration
@@ -29,7 +28,7 @@ function Dictionary() {
   useEffect(getWordInfo, []);
 
   return (
-    <div className="DictionaryBackground">
+    <div className="dictionary-background">
       <div className="tagline">
         TERMS TO KNOW:
       </div>

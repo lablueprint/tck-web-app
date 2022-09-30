@@ -65,9 +65,11 @@ export default function DictionaryCard({
   word, def, links, phoeneticSpelling,
 }) {
   const [showMore, setShowMore] = useState(false);
-  /* Individualize links */
+
+  /* Split links */
   const linksArray = links.split('\n');
   if (linksArray.length !== 0) { linksArray.pop(); }
+
   /* Map each letter to image */
   const mapping = {
     A: LetterA,
@@ -97,24 +99,16 @@ export default function DictionaryCard({
     Y: LetterY,
     Z: LetterZ,
   };
+
   /* Get first letter and make upper case  */
   const firstLet = (str) => (JSON.stringify(str).substring(9, 10));
   const displayLet = firstLet({ word }).toUpperCase();
+
   return (
     <Card sx={{
       borderRadius: 8,
       margin: 4,
       boxShadow: 2,
-      marginRight: 20,
-      marginLeft: 20,
-      '@media screen and (max-width: 960px)': {
-        marginRight: 10,
-        marginLeft: 10,
-      },
-      '@media screen and (max-width: 768px)': {
-        marginRight: 5,
-        marginLeft: 5,
-      },
     }}
     >
       <CardContent>
