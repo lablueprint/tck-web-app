@@ -160,18 +160,15 @@ function BookList({ books, NoResults }) {
       </div>
 
       <div className="wrapper">
-        {currentBooks.map((book) => {
-          console.log(currentBooks);
-          return (
-            <BookCard
-              title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
-              author={book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR']}
-              image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
-              key={book.fields.id}
-              id={book.fields.id}
-            />
-          );
-        })}
+        {currentBooks.map((book) => (
+          <BookCard
+            title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
+            author={book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR']}
+            image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
+            key={book.fields.id}
+            id={book.fields.id}
+          />
+        ))}
       </div>
       <div className="book-list-pagination">
         <Pagination

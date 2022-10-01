@@ -47,6 +47,21 @@ function CollectionsCarousel({
   };
 
   useEffect(() => {
+    swiperRef.current.swiper.on('breakpoint', () => {
+      const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
+      if (activeSlideId !== null) {
+        swiperRef.current.swiper.slideTo(
+          swiperArray.findIndex((element) => activeSlideId === element),
+        );
+      } else {
+        swiperRef.current.swiper.slideTo(
+          swiperArray.findIndex((element) => initialID === element),
+        );
+      }
+    });
+  }, [activeSlideId]);
+
+  useEffect(() => {
     if (isCollectionPageHeader) {
       const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
       swiperRef.current.swiper.slideTo(
@@ -88,12 +103,12 @@ function CollectionsCarousel({
             breakpoints={isCollectionPageHeader ? {
               320: {
                 slidesPerView: 1,
-                spaceBetween: 10,
+                // spaceBetween: 10,
                 slidesPerGroup: 1,
               },
               768: {
                 slidesPerView: 2,
-                spaceBetween: spaceBetweenEntries,
+                // spaceBetween: spaceBetweenEntries,
                 slidesPerGroup: 1,
               },
               990: {
