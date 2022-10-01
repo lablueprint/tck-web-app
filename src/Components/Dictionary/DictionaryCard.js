@@ -53,7 +53,6 @@ const styles = {
     fontSize: '1em',
     color: '#0068C9',
     paddingTop: 2,
-    paddingLeft: 0.25,
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
@@ -125,7 +124,7 @@ export default function DictionaryCard({
             alt="Dictionary Image"
             src={mapping[displayLet]}
           />
-          <div className="wrapTermAndPhoneticSpelling">
+          <div className="wrap-term-and-phonetic-spelling">
             <div className="term">
               {word}
             </div>
@@ -152,8 +151,8 @@ export default function DictionaryCard({
             )}
         </div>
       </CardContent>
-      <div style={{ padding: 10 }}>
-        <CardActions style={{ justifyContent: 'left', marginLeft: '15%' }}>
+      <div className="wrap-more-resources-and-links">
+        <CardActions sx={{ justifyContent: 'left', marginLeft: '15%' }}>
           <div>
             { linksArray.length !== 0 ? (
               <Grid

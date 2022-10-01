@@ -3,7 +3,7 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 28.15px;
-    padding-top: 30px;
+    padding-top: 28px;
 }
 
 .phonetic-spelling {
@@ -50,12 +50,17 @@
     padding-left: 1.5%;
 }
 
-.wrapTermAndPhoneticSpelling {
+.wrap-term-and-phonetic-spelling {
     display:inline-block;
     text-align: left;
     padding:0px;
     margin:0px;
-    padding-left: 40px;
+    padding-left: 32px;
+}
+
+.wrap-more-resources-and-links {
+    padding-left: 0.3%;
+    padding-bottom: 2%;
 }
 
 @media screen and (max-width: 960px) {
@@ -67,7 +72,7 @@
         font-size: 15px;
         padding-top: 3px;
     }
-    .wrapTermAndPhoneticSpelling {
+    .wrap-term-and-phonetic-spelling {
         padding-left: 20px;
     }
     .more-resources {
@@ -86,9 +91,12 @@
 
 @media screen and (max-width: 481px) {
     .term {
-        padding-top: 15px;
+        padding-top: 13px;
     }
     .body {
         padding-top: 8%;
+    }
+    .wrap-more-resources-and-links {
+        padding-bottom: 3%;
     }
   }
