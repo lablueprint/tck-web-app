@@ -107,8 +107,8 @@ export default function DictionaryCard({
   return (
     <Card sx={{
       borderRadius: 8,
-      margin: 4,
       boxShadow: 2,
+      marginTop: 4,
     }}
     >
       <CardContent>
