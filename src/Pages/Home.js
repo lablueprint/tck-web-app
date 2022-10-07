@@ -23,13 +23,14 @@ const styles = {
     backgroundColor: '#EAF3FE',
     color: '#1A296A',
     padding: '10px',
-    width: '12vw',
+    width: '200px',
     borderRadius: '10px',
     fontfamily: 'Work Sans',
     fontSize: '15px',
     textTransform: 'none',
     fontWeight: 'bold',
     fontStyle: 'normal',
+    margin: '7.5px',
   },
 };
 
@@ -147,38 +148,37 @@ function Home() {
       </div>
       <div className="home-screen-background">
         <div className="hero-text">
-          Discover books by and about
-          <br />
-          marginalized groups
+          Discover books by and about marginalized groups
         </div>
         <div className="subtext">
           Get started with our Book Rec Quiz to get a personalized
-          <br />
           recommendation
           or use our Book Browser to start your search.
         </div>
         <Stack
           direction="row"
-          spacing={3}
           alignSelf="center"
+          className="button-stack-section"
         >
-          <Button component={NavLink} to="/quiz" sx={styles.buttonStack} variant="contained">Take The Quiz</Button>
-          <Button component={NavLink} to="/browser" sx={styles.buttonStack} variant="contained">Start Your Search</Button>
+          <Button className="button-button" component={NavLink} to="/quiz" sx={styles.buttonStack} variant="contained">Take The Quiz</Button>
+          <Button className="button-button" component={NavLink} to="/browser" sx={styles.buttonStack} variant="contained">Start Your Search</Button>
         </Stack>
       </div>
-      {newReleases && (
-        <>
-          <h3 className="headings">New Releases</h3>
-          <Carousel
-            elementArray={newReleases}
-            slidesAtATime={7}
-            prevArrow={LeftArrow}
-            nextArrow={RightArrow}
-            widthPercent={100}
-            spaceBetweenEntries={16}
-          />
-        </>
-      )}
+      {
+        newReleases && (
+          <>
+            <h3 className="headings">New Releases</h3>
+            <Carousel
+              elementArray={newReleases}
+              slidesAtATime={7}
+              prevArrow={LeftArrow}
+              nextArrow={RightArrow}
+              widthPercent={100}
+              spaceBetweenEntries={16}
+            />
+          </>
+        )
+      }
       { /* featuredCollections.length && featuredCollections.map((collection) => (
         <>
           <h2 className="headings">{collection.name}</h2>
