@@ -1,16 +1,12 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import {
   Paper, Box,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
-import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
-// import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
+import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
-import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
 
 const Airtable = require('airtable');
 
@@ -57,26 +53,15 @@ function BookPage() {
   const [book, setBook] = useState();
   const [author, setAuthor] = useState([]); // array holding author records
   const [illustrator, setIllustrator] = useState([]); // array holding illustrator records
-  const [collections, setCollections] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   /*
   We want to know if Airtable call failed       (!book && isLoaded)
       or          if Airtable call succeeded    (book && isLoaded)
       or          if Airtable call in progr4ess (!book && !isLoaded)
   */
- // Instead of using props, we pull bookId from URL
- const params = useParams();
- const { bookId } = params;
-  //  Grab collections for header
-  const getCollections = () => {
-    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
-      .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
-        setCollections(records);
-      });
-  };
-  useEffect(getCollections, []);
-
- 
+  // Instead of using props, we pull bookId from URL
+  const params = useParams();
+  const { bookId } = params;
 
   const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
     base(tableName).find(entryId, (err, entryRecord) => {
@@ -125,7 +110,7 @@ function BookPage() {
     const setNewCreator = (setter) => (newCreator) => {
       setter((prevState) => [...prevState, newCreator]);
     };
-    
+
     const creatorEntries = [];
 
     authorIDs.forEach((id) => {
@@ -137,7 +122,6 @@ function BookPage() {
     });
 
     await Promise.all(creatorEntries);
-    
   };
 
   useEffect(() => {
@@ -263,39 +247,38 @@ function BookPage() {
     datePublished,
   };
 
-  console.log('RENDER HERE');
-
   return (
-    <Paper elevation={0} sx={styles.bookContainer}>
-      <Paper sx={styles.carouselContainer}>
-        <CollectionsCarousel
-          elementArray={collections}
-          slidesAtATime={6}
-          prevArrow={LeftArrow}
-          nextArrow={RightArrow}
-          widthPercent={100}
-          spaceBetweenEntries={16}
-          swiperHeight={120}
-          cardImageHeightPercent={80}
-          cardImageWidthPercent={80}
-        />
-      </Paper>
-      <BookSynopsis {...synopsisProps} />
-      {(readAloudURL) && (
-      <Box sx={styles.readAloud}>
-        <Box sx={styles.iframeContainer}>
-          <iframe
-            style={styles.iframe}
-            src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-          />
+    <>
+      <Paper elevation={0} sx={styles.bookContainer}>
+        <BookSynopsis {...synopsisProps} />
+        {(readAloudURL) && (
+        <Box sx={styles.readAloud}>
+          <Box sx={styles.iframeContainer}>
+            <iframe
+              style={styles.iframe}
+              src={`https://www.youtube.com/embed/${readAloudURL.split('watch?v=')[1]}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </Box>
         </Box>
-      </Box>
-      ) }
-    </Paper>
+        ) }
+      </Paper>
+      {book && (
+      <BooksLikeThis
+        bookId={book.id}
+        minAge={ageMin}
+        maxAge={ageMax}
+        minGrade={gradeMin}
+        maxGrade={gradeMax}
+        raceEthnicity={raceEthnicity}
+        genre={genre}
+        bookType={bookType}
+      />
+      )}
+    </>
   );
 }
 

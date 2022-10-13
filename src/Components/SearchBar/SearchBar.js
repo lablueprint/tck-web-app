@@ -87,15 +87,18 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
         </FormControl>
         <TextField
           sx={styles.searchField}
+          name="search"
           size="small"
-          id="outlined-basic"
           hiddenLabel
           variant="outlined"
           margin="none"
           onKeyUp={handleChange}
           fullWidth
+          id="search-by-label"
+          aria-labelledby="searchbutton"
         />
         <Button
+          id="searchbutton"
           type="submit"
           variant="contained"
           onClick={handleGo}
