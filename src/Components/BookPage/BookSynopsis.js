@@ -112,24 +112,10 @@ BookSynopsis.defaultProps = {
   gradeMax: '',
   authors: [],
   illustrators: [],
-  bookType: '',
+  bookType: [],
   datePublished: '',
 };
 
-/* TO DO
-  1. Books like this
-      Components({bookID}) {
-        use RecFilter to get array of similar books
-        for each similar book, grab creators
-        put in carousel
-      }
-    4. See More and arrow hover needs to be in sync
-      -idk lol not important
-
-  const [readAloudTitle, setReadAloudTitle] = useState('');
-  const getReadAloudTitle = () => {
-    fetch(`https://noembed.com/embed?dataType=json&url=${vidurl}`)
-  .then(res => res.json())
-  .then(data => console.log('fetch', data.title))
-  };
+/*
+  - The <div> around <AboutBook> and <AdditionalResources> is necessary!!!!
 */

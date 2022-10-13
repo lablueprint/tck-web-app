@@ -12,6 +12,7 @@ const styles = {
     display: 'flex',
     margin: '1vh 2vw 1vh 2vw',
     boxShadow: 'none',
+    background: 'none',
     width: '100%',
     '@media (max-width: 960px)': {
       maxWidth: '95vw',
@@ -41,7 +42,7 @@ const styles = {
     fontWeight: 700,
     fontSize: '0.875em',
     color: '#0068C9',
-    paddingTop: 1,
+    paddingTop: 2,
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
@@ -50,7 +51,7 @@ const styles = {
   seeMoreIcon: {
     fontSize: '1em',
     color: '#0068C9',
-    paddingTop: 1,
+    paddingTop: 2,
     paddingLeft: 0.25,
     '&:hover': {
       color: '#669afa',

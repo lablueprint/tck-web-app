@@ -19,6 +19,7 @@ const styles = {
   tagContainer: {
     overflowWrap: 'break-words',
     margin: 'auto',
+    marginBottom: '12vh',
     textAlign: 'left',
     '@media (max-width: 960px)': {
       width: '90%',

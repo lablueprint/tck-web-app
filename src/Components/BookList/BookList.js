@@ -5,7 +5,7 @@ import {
   Sort, SortByAlpha, DateRange, StarBorder,
 } from '@mui/icons-material';
 
-import BookCard from '../bookHub/BookCard';
+import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
 
 import './BookList.css';
@@ -56,27 +56,27 @@ const sortOptions = [
 const pageOptions = [
   {
     id: 1,
-    text: '18 items',
+    text: '15 items',
     icon: null,
-    value: 18,
+    value: 15,
   },
   {
     id: 2,
-    text: '36 items',
+    text: '30 items',
     icon: null,
-    value: 36,
+    value: 30,
   },
   {
     id: 3,
-    text: '54 items',
+    text: '45 items',
     icon: null,
-    value: 54,
+    value: 45,
   },
   {
     id: 4,
-    text: '72 items',
+    text: '60 items',
     icon: null,
-    value: 72,
+    value: 60,
   },
 ];
 
@@ -97,10 +97,14 @@ const PAGINATION_SX = {
   },
 
 };
-
-function BookList({ books }) {
+function defaultNoResults() {
+  return (
+    <h1>Sorry, there&apos;s no books here! 😰</h1>
+  );
+}
+function BookList({ books, NoResults }) {
   const [page, setPage] = useState(1);
-  const [booksPerPage, setBooksPerPage] = useState(18);
+  const [booksPerPage, setBooksPerPage] = useState(15);
 
   // Menu states
   const [sort, setSort] = useState(ALPHA);
@@ -152,11 +156,11 @@ function BookList({ books }) {
         />
       </div>
 
-      <div className="library-display">
+      <div className="wrapper">
         {currentBooks.map((book) => (
           <BookCard
             title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
-            author={book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR']}
+            author={book.fields.author !== undefined ? [book.fields.author[0]] : ['MISSING CREATOR']}
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
             key={book.fields.id}
             id={book.fields.id}
@@ -174,7 +178,7 @@ function BookList({ books }) {
       </div>
     </div>
   ) : (
-    <h1>Sorry, there&apos;s no books here! 😰</h1>
+    <NoResults />
   );
 }
 
@@ -192,6 +196,7 @@ BookList.propTypes = {
       ]),
     }),
   })),
+  NoResults: PropTypes.elementType,
 };
 
 BookList.defaultProps = {
@@ -209,6 +214,7 @@ BookList.defaultProps = {
       },
     },
   ],
+  NoResults: defaultNoResults,
 };
 
 export default BookList;
@@ -216,8 +222,8 @@ export default BookList;
 /* NOTES
     PAGINATION
         - const [page, setPage] = useState(1);
-        - const [postsPerPage, setPostsPerPage] = useState(18);
-        - 18, 36, 54, 72 granularity
+        - const [postsPerPage, setPostsPerPage] = useState(15);
+        - 15, 30, 45, 60 granularity
     SORTING
         - alphabetically (default), release date, recently added
         - sort codes are defined as

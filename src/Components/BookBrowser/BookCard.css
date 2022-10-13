@@ -8,10 +8,9 @@
 .card {
     margin: 30px 16px 10px 16px;
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
     background: none;
     flex-direction: column;
-    
 }
 
 .card-action-area {
@@ -37,8 +36,6 @@
     border-radius:10%;
     max-width:100%;
     max-height:100%;
-
-
 }
 
 
@@ -49,7 +46,6 @@
     justify-content: center;
     align-items:center;
     margin-bottom:20px;
-  
 }
 
 .link {
@@ -68,4 +64,10 @@
     margin-bottom:0;
     font-family:'DM Sans';
     font-weight:bold;
+}
+
+@media only screen and (min-width: 960px) {
+    .card {
+        max-width: 14vw;
+    }
 }
