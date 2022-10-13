@@ -3,23 +3,17 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 28.15px;
-    padding: 35px;
-    padding-bottom: 25px;
-    display: flex;
-    flex-direction: row;
+    padding-top: 28px;
 }
 
 .phonetic-spelling {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 18px;
-    line-height: 23.44px;
-    line-height: 100%;
+    font-style: italic;
     letter-spacing: 0.5px;
-    padding-top: 32px;
-    padding-left: 40px;
-    display: flex;
-    flex-direction: row;
+    padding-top: 5px;
+    color: #3F3F3F;
 }
 
 .body {
@@ -27,8 +21,8 @@
     font-family: 'DM Sans';
     font-weight: 400;
     line-height: 32.13px;
-    padding-right: 13%;
-    padding-left: 13%;
+    padding-right: 10%;
+    padding-left: 15%;
     padding-top: 1%;
     padding-bottom: 1%;
     text-align: left;
@@ -36,18 +30,73 @@
 
 .more-resources {
     font-family: 'DM Sans';
-    font-size: 22px;
-    padding-top: 3%;
-    padding-bottom: 15%;
-    padding-left: 48px;
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 6%;
+    padding-bottom: 25%;
+}
+
+.more-resources-links {
+    text-transform: none !important;
+    color: #3477DE; 
+    font-size: 15px;
+    overflow-wrap: anywhere;
 }
 
 .img {
     display: flex;
     flex-direction: row;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
 }
 
-.card-button{ 
-    text-transform: 'none';
-    color: '#607AAD';
+.wrap-term-and-phonetic-spelling {
+    display:inline-block;
+    text-align: left;
+    padding:0px;
+    margin:0px;
+    padding-left: 32px;
 }
+
+.wrap-more-resources-and-links {
+    padding-left: 0.3%;
+    padding-bottom: 2%;
+}
+
+@media screen and (max-width: 960px) {
+    .term {
+        font-size: 20px;
+        padding-top: 20px;
+    }
+    .phonetic-spelling {
+        font-size: 15px;
+        padding-top: 3px;
+    }
+    .wrap-term-and-phonetic-spelling {
+        padding-left: 20px;
+    }
+    .more-resources {
+        font-size: 16px;
+        padding-top: 9.5%;
+    }
+    .more-resources-links {
+        font-size: 10px;
+        line-height: 90%;
+    }
+    .body {
+        padding-top: 4%;
+        font-size: 16px;
+    }
+  }
+
+@media screen and (max-width: 481px) {
+    .term {
+        padding-top: 13px;
+    }
+    .body {
+        padding-top: 8%;
+    }
+    .wrap-more-resources-and-links {
+        padding-bottom: 3%;
+    }
+  }
