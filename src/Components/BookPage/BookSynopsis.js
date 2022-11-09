@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Box,
@@ -28,8 +28,24 @@ function BookSynopsis({
   genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
   illustrators, bookType, datePublished,
 }) {
-  return (
-    <Box sx={styles.synopsis}>
+  const [width, setWidth] = useState(
+    window.innerWidth,
+  );
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 960;
+  const desktop = (
+    <>
       <BookCover
         title={title}
         imageURL={imageURL}
@@ -38,11 +54,42 @@ function BookSynopsis({
         genre={genre}
         themesLessons={themesLessons}
         religion={religion}
+        isMobile={isMobile}
       />
       <BookDesc
         title={title}
         desc={desc}
       />
+    </>
+  );
+
+  const mobile = (
+    <>
+      <BookDesc
+        title={title}
+        isMobile
+      />
+      <BookCover
+        title={title}
+        imageURL={imageURL}
+        identityTags={identityTags}
+        raceEthnicity={raceEthnicity}
+        genre={genre}
+        themesLessons={themesLessons}
+        religion={religion}
+        isMobile={isMobile}
+      />
+      <BookDesc
+        desc={desc}
+        isMobile
+      />
+
+    </>
+  );
+
+  return (
+    <Box sx={styles.synopsis}>
+      { (isMobile) ? mobile : desktop}
       <div>
         <AboutBook
           authors={authors}

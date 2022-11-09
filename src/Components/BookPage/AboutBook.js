@@ -17,14 +17,15 @@ const styles = {
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
     minWidth: '18vw',
-    width: 'min-content',
     '@media (max-width: 1440px)': {
       minWidth: '22vw',
     },
     '@media (max-width: 960px)': {
-      width: '85%',
-      margin: 'auto',
+      width: '95%',
+      margin: 'auto 2vw',
+      marginBottom: '2vh',
     },
+
   },
   sideCardTitle: {
     textAlign: 'left',
@@ -39,9 +40,11 @@ const styles = {
     textAlign: 'left',
     fontSize: '0.85em',
     margin: '2vh auto 2vh auto',
-    maxWidth: '18vw',
     '@media (max-width: 1440px)': {
       maxWidth: '22vw',
+    },
+    '@media (max-width: 960px)': {
+      maxWidth: '100%',
     },
   },
   creator: {
@@ -286,6 +289,7 @@ function AboutBook({
                     size="large"
                     href={bookshopURL}
                     target="_blank"
+                    aria-label="Go to this book's store listing"
                   >
                     Buy from Bookshop.org
                   </Button>

@@ -60,6 +60,7 @@ function EducatorLink({ url, index }) {
         key={url}
         rel="noreferrer"
         target="_blank"
+        aria-label={`Link for education guide #${index + 1}`}
       >
         {url}
       </LinkUI>

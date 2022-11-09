@@ -23,8 +23,8 @@ const styles = {
       minWidth: '22vw',
     },
     '@media (max-width: 960px)': {
-      width: '85%',
-      margin: 'auto',
+      width: '95%',
+      margin: 'auto 2vw',
     },
   },
   sideCardTitle: {
@@ -44,7 +44,7 @@ const styles = {
   linkUI: {
     textDecoration: 'none',
     color: '#3477DE',
-    fontWeight: '700',
+    fontWeight: '400',
     lineHeight: '1.8em',
     fontSize: '1.05em',
     fontFamily: 'DM Sans',
@@ -67,7 +67,7 @@ function AdditionalResources({ readAloudURL, educatorURLs }) {
           <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
           <Box sx={styles.sideCardLinkContainer}>
             { (readAloudURL) && (
-            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
+            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank" aria-label="Go to the story read aloud">
               Story Read Aloud
             </LinkUI>
             ) }
