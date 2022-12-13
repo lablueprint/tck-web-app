@@ -5,6 +5,9 @@ import {
 } from '@mui/material';
 
 const styles = {
+  root: {
+    alignSelf: 'start',
+  },
   tagHeader: {
     textAlign: 'left',
     fontFamily: 'Work Sans',
@@ -20,6 +23,9 @@ const styles = {
     overflowWrap: 'break-words',
     margin: 'auto',
     textAlign: 'left',
+    '@media (min-width: 960px)': {
+      marginBottom: '12vh',
+    },
     '@media (max-width: 960px)': {
       width: '90%',
     },
@@ -82,7 +88,7 @@ function BookTags({
 }) {
   const tags = createTags(identityTags, raceEthnicity, genre, themesLessons, religion);
   return (
-    <div>
+    <div style={styles.root}>
       <Typography sx={styles.tagHeader}>Tags</Typography>
       <Box sx={styles.tagContainer}>
         {tags}

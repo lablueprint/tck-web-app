@@ -26,10 +26,18 @@ const styles = {
     fontWeight: '600',
     color: '#020202',
   },
+  mobileBookTitle: {
+    display: 'inline',
+    fontFamily: 'DM Sans',
+    fontSize: '1.75em',
+    fontWeight: '600',
+    color: '#444444',
+
+  },
   text: {
     fontFamily: 'DM Sans',
     marginTop: '2vh',
-    lineHeight: '1.3em',
+    lineHeight: '150%',
     color: '#4C4C4C',
     fontWeight: '400',
   },
@@ -39,10 +47,10 @@ const styles = {
   },
   seeMoreText: {
     fontFamily: 'DM Sans',
-    fontWeight: 700,
+    fontWeight: '700',
     fontSize: '0.875em',
     color: '#0068C9',
-    paddingTop: 1,
+    paddingTop: '1vh',
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
@@ -51,30 +59,43 @@ const styles = {
   seeMoreIcon: {
     fontSize: '1em',
     color: '#0068C9',
-    paddingTop: 1,
-    paddingLeft: 0.25,
+    paddingTop: '1vh',
+    paddingLeft: '0.25',
     '&:hover': {
       color: '#669afa',
       cursor: 'pointer',
     },
   },
+  summary: {
+    fontSize: '1.325em',
+    fontWeight: 600,
+    color: '#020202',
+    fontFamily: 'DM Sans',
+    lineHeight: '0.5em',
+    paddingTop: '1vh',
+  },
 };
 
 function BookDesc({
-  title, desc,
+  title, desc, isMobile,
 }) {
   const [seeMore, setSeeMore] = useState(true);
   const toggleSeeMore = () => setSeeMore(!seeMore);
 
-  return (
-    <Card sx={styles.description}>
-      <CardContent>
-        <Box>
-          <Typography sx={styles.bookTitle}>{title}</Typography>
-        </Box>
+  const titleSection = (
+    <Box>
+      {(title) ? (
+        <Typography sx={isMobile ? styles.mobileBookTitle : styles.bookTitle}>
+          {title}
+        </Typography>
+      ) : (
+        <Typography sx={styles.summary}>Summary</Typography>)}
+    </Box>
+  );
 
-        <Box variant="body2">
-          {
+  const descSection = (desc && (
+    <Box variant="body2">
+      {
           (desc.length > 525) ? (
             <Box>
               <Typography sx={styles.text}>
@@ -92,7 +113,14 @@ function BookDesc({
             </Box>
           ) : <Typography sx={styles.text}>{desc}</Typography>
         }
-        </Box>
+    </Box>
+  ));
+
+  return (
+    <Card sx={styles.description}>
+      <CardContent>
+        {titleSection}
+        {descSection}
       </CardContent>
     </Card>
   );
@@ -101,11 +129,17 @@ function BookDesc({
 BookDesc.propTypes = {
   title: PropTypes.string,
   desc: PropTypes.string,
+  isMobile: PropTypes.bool,
 };
 
+// Default are empty stirngs
+// so we can choose when to not display a title/desc
+// Mainly due to new mobile design that reverse
+// these two
 BookDesc.defaultProps = {
-  title: 'Untitled Book',
-  desc: 'It\'s a book. with words. **gasp**',
+  title: '',
+  desc: '',
+  isMobile: false,
 };
 
 export default BookDesc;

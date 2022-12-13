@@ -26,7 +26,7 @@ const styles = {
 };
 
 function ListMenu({
-  menuText, menuIcon, options, value, handleChange,
+  menuText, menuIcon, options, value, handleChange, label,
 }) {
   // Pop-up
   const [anchorEl, setAnchorEl] = useState(null);
@@ -68,6 +68,7 @@ function ListMenu({
         onClick={handleClick}
         endIcon={menuIcon}
         size="small"
+        aria-label={label}
       >
         {menuText}
       </Button>
@@ -106,6 +107,7 @@ ListMenu.propTypes = {
   })).isRequired,
   value: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 /*

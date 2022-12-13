@@ -139,6 +139,7 @@ function BookCardsDisplay({
 
       setFilteredBooks(allBooks.filter(
         (record) => {
+          console.log(record);
           recordGradeIndices[0] = gradeRangeMetadata.indexOf(record.fields.grade_min);
           recordGradeIndices[1] = gradeRangeMetadata.indexOf(record.fields.grade_max);
           recordAgeIndices[0] = ageRangeMetadata.indexOf(record.fields.age_min);
@@ -146,8 +147,8 @@ function BookCardsDisplay({
           return (
             ((incomingGradeIndices[0] + 1) <= recordGradeIndices[1])
             && ((incomingGradeIndices[1] + 1) >= recordGradeIndices[0])
-        && (incomingAgeIndices[0] <= recordAgeIndices[1])
-        && (incomingAgeIndices[1] >= recordAgeIndices[0])
+        && ((incomingAgeIndices[0] + 1) <= recordAgeIndices[1])
+        && ((incomingAgeIndices[1] + 1) >= recordAgeIndices[0])
       && (multiSelectInput['race/ethnicity'].length === 0
          || (record.fields['race/ethnicity'] !== undefined
            ? record.fields['race/ethnicity'].some((value) => multiSelectInput['race/ethnicity'].indexOf(value) !== -1)

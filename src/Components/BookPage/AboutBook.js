@@ -9,7 +9,6 @@ import { CallMade as Away } from '@mui/icons-material';
 const styles = {
   sideCardContainer: {
     margin: 'auto 1vw auto 1vw',
-    minWidth: '18vw',
   },
   sideCard: {
     borderRadius: '1.31em',
@@ -17,10 +16,16 @@ const styles = {
     background: '#FDFDFD',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
-    '@media (max-width: 960px)': {
-      width: '85%',
-      margin: 'auto',
+    minWidth: '18vw',
+    '@media (max-width: 1440px)': {
+      minWidth: '22vw',
     },
+    '@media (max-width: 960px)': {
+      width: '95%',
+      margin: 'auto 2vw',
+      marginBottom: '2vh',
+    },
+
   },
   sideCardTitle: {
     textAlign: 'left',
@@ -35,6 +40,12 @@ const styles = {
     textAlign: 'left',
     fontSize: '0.85em',
     margin: '2vh auto 2vh auto',
+    '@media (max-width: 1440px)': {
+      maxWidth: '22vw',
+    },
+    '@media (max-width: 960px)': {
+      maxWidth: '100%',
+    },
   },
   creator: {
     display: 'inline',
@@ -53,15 +64,15 @@ const styles = {
   blockContainer: {
     margin: '1vh auto',
     border: '1vh 1vw 1vh 1vh',
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: '4vh',
-    flexWrap: 'wrap',
-    justifyContent: 'start',
     '& ::after': {
       content: '',
       flex: 'auto',
     },
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '4vh',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
   },
   block: {
     fontFamily: 'DM Sans',
@@ -69,7 +80,6 @@ const styles = {
     textAlign: 'left',
     order: '1',
     flexGrow: '0',
-    margin: 'auto',
   },
   sub: {
     lineHeight: '1.5em',
@@ -82,6 +92,10 @@ const styles = {
     color: '#3477DE',
     background: 'rgba(52, 119, 222, 0.06)',
     textTransform: 'none',
+    borderRadius: '10px',
+    paddingTop: '1vh',
+    paddingBottom: '1vh',
+    padding: '1vh 2vw 1vh 2w',
     '&:hover': {
       color: '#FFFFFF',
       background: '#3477DE',
@@ -275,6 +289,7 @@ function AboutBook({
                     size="large"
                     href={bookshopURL}
                     target="_blank"
+                    aria-label="Go to this book's store listing"
                   >
                     Buy from Bookshop.org
                   </Button>
