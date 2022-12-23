@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import {
-  Button, Box,
-} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressBar from './ProgressBar';
+import ProgressBar from './ProgressBar2';
 import QuizButton from './QuizButton';
-import { useWindowSize } from '../Navigation/Header';
 
 const Airtable = require('airtable');
 
@@ -19,10 +13,9 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
 export default function Quiz3({
-  slideCaption, setBookFilters, bookFilters,
-  dispatch, type1,
+  setBookFilters, bookFilters,
+  dispatch, isAdult,
 }) {
-  const size = useWindowSize();
   const [filters, setFilters] = useState([]);
   let filterVar;
 
@@ -50,89 +43,40 @@ export default function Quiz3({
   }
 
   useEffect(getFilters, []);
+
+  const handleBack = () => ((isAdult) ? dispatch({ type: 'parent back' }) : dispatch({ type: 'child back' }));
+
+  const handleForward = () => ((isAdult) ? dispatch({ type: 'parent' }) : dispatch({ type: 'child' }));
+
   return (
-    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
-      <Box>
-        <h1 style={{
-          fontFamily: 'DM Sans',
-          marginTop: '20px',
-          color: '#444444',
-        }}
-        >
-          {slideCaption}
-        </h1>
-        <p style={{ color: '#444444' }}>You can choose more than one.</p>
-        {bookFilters.genre !== undefined && size.width <= 640 && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, minmax(0, 1fr))' }}>
-            {filters.map((option) => (
-              <QuizButton
-                desiredLabel={option}
-                buttonCaption={option}
-                key={option}
-                onClick={(name, checked) => HandleClick(name, checked)}
-                desiredArray={bookFilters['race/ethnicity']}
-              />
-            ))}
-          </div>
-        )}
-        {bookFilters.genre !== undefined && size.width > 640 && (
-          <div style={{ display: 'grid', gridTemplateColumns: size.width < 1024 && size.width > 640 ? 'repeat(2, minmax(0, 0.6fr))' : 'repeat(3, minmax(0, 0.6fr))' }}>
-            {filters.map((option) => (
-              <QuizButton
-                desiredLabel={option}
-                buttonCaption={option}
-                key={option}
-                onClick={(name, checked) => HandleClick(name, checked)}
-                desiredArray={bookFilters['race/ethnicity']}
-              />
-            ))}
-          </div>
-        )}
-      </Box>
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
-        <Button
-          variant="contained"
-          onClick={() => dispatch({ type: 'parent back' })}
-          sx={{
-            background: '#f79927',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            boxShadow: 'none',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#F99E16',
-            },
-          }}
-        >
-          <ArrowBackIcon />
-
-        </Button>
-        <ProgressBar variant="determinate" progress={29} sx={{ flex: '0 1 60%' }} />
-        <Button
-          disabled={false}
-          variant="contained"
-          onClick={() => dispatch({ type: type1 })}
-          sx={{
-            background: '#f79927',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            boxShadow: 'none',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#F99E16',
-            },
-          }}
-        >
-          <ArrowForwardIcon />
-
-        </Button>
-
-      </div>
+    <div className="quiz-container">
+      <h1 className="quiz-header">
+        {(isAdult) ? 'Which of these races/ethnicities do you want to see represented?'
+          : 'Which of these races/ethnicities are you interested in reading about?'}
+      </h1>
+      <p className="quiz-caption">You can choose more than one.</p>
+      {bookFilters['race/ethnicity'] !== undefined && (
+        <div className="quiz-check-button-box">
+          {filters.map((option) => (
+            <QuizButton
+              desiredLabel={option}
+              buttonCaption={option}
+              key={option}
+              onClick={(name, checked) => HandleClick(name, checked)}
+              desiredArray={bookFilters['race/ethnicity']}
+            />
+          ))}
+        </div>
+      )}
+      <ProgressBar
+        progress={29}
+        onBack={handleBack}
+        onForward={handleForward}
+      />
     </div>
   );
 }
 Quiz3.propTypes = {
-  slideCaption: propTypes.string.isRequired,
   dispatch: propTypes.func.isRequired,
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
@@ -145,5 +89,5 @@ Quiz3.propTypes = {
     genre: propTypes.arrayOf(propTypes.string).isRequired,
     book_type: propTypes.arrayOf(propTypes.string).isRequired,
   }).isRequired,
-  type1: propTypes.string.isRequired,
+  isAdult: propTypes.bool.isRequired,
 };

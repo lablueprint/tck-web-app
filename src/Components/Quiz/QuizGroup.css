@@ -1,6 +1,6 @@
 .quiz-container {
     background: #FAFAFA;
-    padding: 5vh 0;
+    padding: 5vh 2vw;
 
 }
 
@@ -8,6 +8,14 @@
     font-family: 'DM Sans';
     color: #444444;
     margin-bottom: 12vh;
+}
+
+.quiz-caption {
+    font-family: 'Work Sans';
+    color: #444444;
+    font-size: 1.2rem;
+    margin-top: -10vh;
+    margin-bottom: 10vh;
 }
 
 .avatar-button {
@@ -22,6 +30,7 @@
 .progress-button-box {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 12vh 0em 3em 0;
 }
 
@@ -30,6 +39,16 @@
     align-items: center;
     flex-wrap: wrap; 
     justify-content: center;
+}
+.quiz-check-button-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    width: 90vw;
+    margin: auto;
 }
 
 .buttonText {
@@ -89,6 +108,11 @@
     }
     .progress-button-box {
         margin-top: 5vh;
+    }
+
+    .quiz-caption {
+        margin-top: -4vh;
+        margin-bottom: 5vh;
     }
 }
 

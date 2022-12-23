@@ -78,38 +78,36 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     isParent, isChild, count,
   } = state;
 
+  // Common Parent + Kid Progression
+
   if (count === 2) {
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz2
-          dispatch={dispatch}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-          isAdult={!isChild}
-        />
-      </div>
+      <Quiz2
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        isAdult={!isChild}
+      />
+    );
+  }
+
+  if (count === 3) {
+    setIsChild(isChild);
+    return (
+      <Quiz3
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        dispatch={dispatch}
+        isAdult={!isChild}
+      />
     );
   }
 
   // Parent Quiz Progression
-  if (isParent && count === 3) {
-    setIsChild(isChild);
-    return (
-      <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
-        <Quiz3
-          bookFilters={bookFilters}
-          slideCaption="Which of these races/ethnicities do you want to see represented?"
-          setBookFilters={setBookFilters}
-          dispatch={dispatch}
-          type1="parent"
-        />
-      </div>
-    );
-  }
   if (isParent && count === 4) {
     setIsChild(isChild);
-    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry'];
+    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry', 'Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
     return (
       <div>
         <Quiz6
@@ -117,29 +115,14 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
           dispatch={dispatch}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
-          title="Please select any of the following genres that you are interested in? OR What type of book do you think your kid(s) would be in the mood for right now?"
+          title="What type of book do you think your kid(s) would be in the mood for right now?"
           buttonCaptions={parentButtonCaptions}
         />
       </div>
     );
   }
+
   if (isParent && count === 5) {
-    setIsChild(isChild);
-    const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
-    return (
-      <div>
-        <Quiz6
-          progress={85}
-          dispatch={dispatch}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-          title="Please select any of the following genres that you are interested in? OR What type of book do you think your kid(s) would be in the mood for right now?"
-          buttonCaptions={parentButtonCaptions}
-        />
-      </div>
-    );
-  }
-  if (isParent && count === 6) {
     setIsChild(isChild);
     return (
       <div>
@@ -153,20 +136,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
 
   // Child Quiz Progression
-  if (isChild && count === 3) {
-    setIsChild(isChild);
-    return (
-      <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
-        <Quiz3
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-          slideCaption="Which of these races/ethnicities are you interested in reading about?"
-          dispatch={dispatch}
-          type1="child"
-        />
-      </div>
-    );
-  }
   if (isChild && count === 4) {
     setIsChild(isChild);
     return (

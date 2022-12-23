@@ -2,81 +2,102 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
-import './QuizButton.css';
+
+const styles = {
+  button: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '2em 0.5em 2em 0.5em',
+    width: '250px',
+    height: '100.59px',
+    borderRadius: '20px',
+    fontSize: '1rem',
+
+    '@media (max-width: 750px)': {
+      width: '200px',
+    },
+  },
+
+  checkedButton: {
+    border: '2.5px solid',
+    borderColor: '#393EBA',
+    background: '#393EBA',
+    backgroundColor: '#393EBA',
+    color: 'white',
+
+    '&.MuiButtonBase-root:hover': {
+      backgroundColor: '#EAF3FE',
+      color: '#393EBA',
+      borderColor: '#393EBA',
+    },
+  },
+
+  uncheckedButton: {
+    border: '2.5px solid',
+    borderColor: '#D7D7D7',
+    background: '#ffffff',
+    backgroundColor: 'white',
+    color: '#444444',
+
+    '&.MuiButtonBase-root:hover': {
+      backgroundColor: '#EAF3FE',
+      color: '#393EBA',
+      borderColor: '#393EBA',
+    },
+  },
+
+  checkbox: {
+    position: 'relative',
+    bottom: '30px',
+    right: '10px',
+  },
+
+  uncheckedCheckbox: {
+    color: 'inherit',
+  },
+
+  checkedCheckbox: {
+    color: 'inherit',
+    '&.MuiCheckbox-root:hover': {
+      color: '#393EBA',
+    },
+  },
+
+  buttonCaption: {
+    textTransform: 'none',
+    fontFamily: 'DM Sans',
+    fontWeight: 'bold',
+    flex: '1 0 75%',
+    justifyContent: 'center',
+  },
+};
 
 export default function QuizButton({
   buttonCaption, onClick, desiredArray, desiredLabel,
 }) {
   const [checked, setChecked] = useState(false);
-  const [clicked, setClicked] = useState(false);
+
+  const buttonColor = checked ? styles.checkedButton : styles.uncheckedButton;
+
   return (
     <Button
-      className="QuizButton"
       disableRipple
-      style={clicked ? {
-        padding: '2em 0.5em 2em 0.5em',
-        margin: '1em auto 1em auto',
-        width: '250px',
-        height: '100.59px',
-        borderRadius: '30px',
-        border: '2.5px solid #D7D7D7',
-        background: '#ffffff',
-        display: 'flex',
-        backgroundColor: '#393EBA',
-        color: '#393EBA',
-        '@media (maxWidth: 1295px)': {
-          maxWidth: '100px',
-          flexDirection: 'row',
-          padding: '1rem 5rem',
-          justifyContent: 'space-between',
-          fontSize: '1.5rem',
-          margin: '1rem 0',
-          height: '9rem',
-          borderRadius: '30',
-          width: '95%',
-        },
-      } : {
-        padding: '2em 0.5em 2em 0.5em',
-        margin: '1em auto 1em auto',
-        width: '250px',
-        height: '100.59px',
-        borderRadius: '30px',
-        border: '2.5px solid #D7D7D7',
-        background: '#ffffff',
-        display: 'flex',
-        backgroundColor: 'white',
-        color: '#FFFFFF',
-        '@media (maxWidth: 1295px)': {
-          flexDirection: 'row',
-          padding: '1rem 5rem',
-          justifyContent: 'space-between',
-          fontSize: '1.5rem',
-          margin: '1rem 0',
-          height: '9rem',
-          borderRadius: '30',
-          width: '95%',
-          maxWidth: '100px',
-        },
-      }}
+      sx={[styles.button, buttonColor]}
       onClick={() => {
         setChecked((old) => !old);
-        setClicked(!clicked);
       }}
     >
       <Checkbox
-        style={clicked ? { color: '#393EBA' } : { color: '#444444' }}
-        sx={{ position: 'relative', bottom: '25px', right: '10px' }}
+        sx={styles.checkbox}
+        style={checked ? styles.checkedCheckbox : styles.uncheckedCheckbox}
         onChange={(event) => {
           onClick(desiredLabel, event.target.checked);
         }}
-        checked={desiredArray.indexOf(desiredLabel) > -1 || checked || clicked}
+        checked={desiredArray.indexOf(desiredLabel) > -1 || checked}
+        disableRipple
       />
-      <p style={clicked ? {
-        textTransform: 'none', color: '#FFFFFF', fontFamily: 'DM Sans', fontWeight: 'bold', flex: '0 0 75%', justifyContent: 'center',
-      } : {
-        textTransform: 'none', color: '#444444', fontFamily: 'DM Sans', fontWeight: 'bold', flex: '0 0 75%', justifyContent: 'center',
-      }}
-      >
+      <p style={styles.buttonCaption}>
         {buttonCaption}
       </p>
     </Button>

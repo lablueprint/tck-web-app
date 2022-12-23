@@ -6,6 +6,7 @@ import './QuizGroup.css';
 import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { NavLink } from 'react-router-dom';
 
 const BorderLinearProgress = styled(LinearProgress)(() => ({
   height: 10,
@@ -38,10 +39,26 @@ const styles = {
       bgcolor: '#F99E16',
     },
   },
+  resultsButton: {
+    background: '#F99E16',
+    boxShadow: 'none',
+    borderRadius: '100px',
+    '&.MuiButtonBase-root:hover': {
+      bgcolor: '#F99E16',
+    },
+  },
+  resultsButtonText: {
+    fontFamily: 'DM Sans',
+    fontWeight: 'bold',
+    fontSize: '17px',
+    textAlign: 'center',
+    margin: '0 auto 0 auto',
+    textTransform: 'none',
+  },
 };
 
 export default function ProgressBar({
-  progress, onBack, onForward, forwardDisabled,
+  progress, onBack, onForward, forwardDisabled, lastStep,
 }) {
   return (
     <div className="progress-button-box">
@@ -55,14 +72,33 @@ export default function ProgressBar({
       <div className="progress-bar-box">
         <BorderLinearProgress sx={styles.progressBar} variant="determinate" value={progress} />
       </div>
-      <Button
-        disabled={forwardDisabled}
-        variant="contained"
-        onClick={onForward}
-        sx={styles.progressButton}
-      >
-        <ArrowForwardIcon />
-      </Button>
+      {lastStep
+        ? (
+          <NavLink to="/quiz/results" style={{ textDecoration: 'none' }}>
+            <Button
+              disabled={false}
+              variant="contained"
+              onClick={onForward}
+              sx={styles.resultsButton}
+              endIcon={<ArrowForwardIcon />}
+            >
+              <p style={styles.resultsButtonText}>
+                Your Results
+              </p>
+            </Button>
+          </NavLink>
+        )
+        : (
+          <Button
+            disabled={forwardDisabled}
+            variant="contained"
+            onClick={onForward}
+            sx={styles.progressButton}
+          >
+            <ArrowForwardIcon />
+          </Button>
+        )}
+
     </div>
 
   );
@@ -72,5 +108,11 @@ ProgressBar.propTypes = {
   progress: PropTypes.number.isRequired,
   onBack: PropTypes.func.isRequired,
   onForward: PropTypes.func.isRequired,
-  forwardDisabled: PropTypes.bool.isRequired,
+  forwardDisabled: PropTypes.bool,
+  lastStep: PropTypes.bool,
+};
+
+ProgressBar.defaultProps = {
+  forwardDisabled: false,
+  lastStep: false,
 };
