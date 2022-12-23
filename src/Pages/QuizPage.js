@@ -7,6 +7,7 @@ import StartPage from '../Components/Quiz/StartPage';
 import ResultsPage from '../Components/Quiz/QuizResultsPage';
 
 function QuizPage() {
+  // fetch quiz filters from local storage if available
   const maxGradeVal = localStorage.getItem('maxGrade') !== undefined ? Number(localStorage.getItem('maxGrade')) : 12;
   const minGradeVal = localStorage.getItem('minGrade') !== undefined ? Number(localStorage.getItem('minGrade')) : -1;
   const minAgeVal = localStorage.getItem('minAge') !== undefined ? Number(localStorage.getItem('minAge')) : 0;
@@ -16,6 +17,8 @@ function QuizPage() {
   const raceVal = typeof localStorage.getItem('race/ethnicity') === 'string' ? localStorage.getItem('race/ethnicity').split(',') : [];
   const location = useLocation();
   const lastLocation = typeof localStorage.getItem('lastLocation') === 'string' ? localStorage.getItem('lastLocation') : '';
+
+  // setup state to hold filters + mutate if necessary
   const [bookFilters, setBookFilters] = useState({
     bookId: '',
     minAge: Number.isInteger(minAgeVal) ? minAgeVal : 0,
@@ -26,18 +29,23 @@ function QuizPage() {
     genre: genreVal,
     book_type: bookTypeVal,
   });
+
+  // reload page if any of the filters change! (make sure the pages switch at the right times)
   useEffect(() => {
-
   }, [bookFilters]);
-  const storedValueAsNumber = localStorage.getItem('isChild') === 'true' ? 1 : 0;
 
+  // fetch and initialize state for the quiz type (child or not)
+  const storedValueAsNumber = localStorage.getItem('isChild') === 'true' ? 1 : 0;
   const [isChild, setIsChild] = useState(storedValueAsNumber === 1);
 
   useEffect(() => {
     localStorage.setItem('isChild', String(isChild));
   }, [isChild]);
 
+  // get current url route
   const currentLocation = useLocation();
+
+  // initialize and update local storage
   useEffect(() => {
     if (lastLocation === '/quiz/results' || lastLocation === '/quiz/questions' || currentLocation === '/quiz/questions') {
       localStorage.setItem('maxAge', String(bookFilters.maxAge));
@@ -78,3 +86,5 @@ function QuizPage() {
   );
 }
 export default QuizPage;
+
+// Diya: why is everything going in local storage?

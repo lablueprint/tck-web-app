@@ -2,17 +2,18 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
+import Quiz1 from './Quiz1';
 import Quiz2Adult from './Quiz2Adult';
+import Quiz2Kid from './Quiz2Kid';
 import Quiz3 from './Quiz3';
 import Quiz4Kid from './Quiz4Kid';
 import Quiz5 from './Quiz5Kid';
-import Quiz8Adult from './Quiz8Adult';
-import Quiz2Kid from './Quiz2Kid';
 import Quiz6 from './Quiz6';
-import Quiz7Kid from './Quiz7Kid';
 import Quiz6Kid from './Quiz6Kid';
-import Quiz1 from './Quiz1';
+import Quiz7Kid from './Quiz7Kid';
+import Quiz8Adult from './Quiz8Adult';
 
+// Diya: why do you set isChild/isParent each time?
 function reducer(state, action) {
   switch (action.type) {
     case 'parent':
@@ -20,22 +21,20 @@ function reducer(state, action) {
         ...state,
         isParent: true,
         count: state.count + 1,
-        goneBack: true,
+      };
+    case 'parent back':
+      return {
+        ...state,
+        isParent: true,
+        count: state.count - 1,
       };
     case 'child':
       return {
         ...state,
         isChild: true,
         count: state.count + 1,
-        goneBack: true,
       };
     case 'child back':
-      return {
-        ...state,
-        isChild: true,
-        count: state.count - 1,
-      };
-    case 'parent back':
       return {
         ...state,
         isChild: true,
@@ -49,15 +48,13 @@ function reducer(state, action) {
 const issDisabled = (anArr) => (anArr.length === 0);
 
 export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
+  // state setup
   const initialState = {
     isParent: false,
     isChild: false,
     count: 1,
-    goneBack: false,
   };
-  useEffect(() => {
 
-  }, [bookFilters]);
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
@@ -65,12 +62,14 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   };
   const sillyNotSet = () => (!(sillyLevel[0]));
 
+  // Diya: what's illusion?
   const [illusion, setIllusion] = useState(0);
 
+  // why does the second quiz specifically need this?
   const [isDisabled02A, setIsDisabled02A] = useState(false);
-
   const [isDisabled02K, setisDisabled02K] = useState(false);
 
+  // Diya: these callbacks and state init seem identical, why not use the same state?
   const callback02A = (isDisabledFromChild) => {
     if (isDisabled02A != isDisabledFromChild) {
       setIsDisabled02A(isDisabledFromChild);
@@ -81,11 +80,18 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       setisDisabled02K(isDisabledFromChild);
     }
   };
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+  }, [bookFilters]);
+
+  // deconstruct state for easier references
   const {
-    isParent, isChild, count, goneBack,
+    isParent, isChild, count,
   } = state;
+
+  // Parent Quiz Progression
   if (isParent && count === 2) {
     setIsChild(isChild);
     return (
@@ -105,7 +111,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       <div style={{ background: '#FAFAFA', margin: '0', height: '100%' }}>
         <Quiz3
           bookFilters={bookFilters}
-          slideCaption="Which race(s)/ethnicities do you want to see represented?"
+          slideCaption="Which of these races/ethnicities do you want to see represented?"
           setBookFilters={setBookFilters}
           dispatch={dispatch}
           type1="parent"
@@ -118,7 +124,14 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry'];
     return (
       <div>
-        <Quiz6 progress={70} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6
+          progress={70}
+          dispatch={dispatch}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+          title="Please select any of the following genres that you are interested in? OR What type of book do you think your kid(s) would be in the mood for right now?"
+          buttonCaptions={parentButtonCaptions}
+        />
       </div>
     );
   }
@@ -127,7 +140,14 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     const parentButtonCaptions = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
     return (
       <div>
-        <Quiz6 progress={85} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Please select any of the following genres that you are interested in." buttonCaptions={parentButtonCaptions} />
+        <Quiz6
+          progress={85}
+          dispatch={dispatch}
+          bookFilters={bookFilters}
+          setBookFilters={setBookFilters}
+          title="Please select any of the following genres that you are interested in? OR What type of book do you think your kid(s) would be in the mood for right now?"
+          buttonCaptions={parentButtonCaptions}
+        />
       </div>
     );
   }
@@ -143,6 +163,8 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       </div>
     );
   }
+
+  // Child Quiz Progression
   if (isChild && count === 2) {
     setIsChild(isChild);
     return (
@@ -163,7 +185,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
         <Quiz3
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
-          slideCaption="Which of these races are you interested in reading about?"
+          slideCaption="Which of these races/ethnicities are you interested in reading about?"
           dispatch={dispatch}
           type1="child"
         />
@@ -182,6 +204,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       </div>
     );
   }
+
   if (isChild && count === 5 && sillyLevel[0] == 3) {
     const childButtonCaptions = ['The lives of interesting and influential people',
       'Fascinating facts about different topics such as nature, animals, or space',
@@ -191,7 +214,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz6Kid includeButtons dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
+        <Quiz6Kid includeButtons dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about?" buttonCaptions={childButtonCaptions} />
       </div>
     );
   }
@@ -209,6 +232,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       </div>
     );
   }
+
   if ((isChild && count === 5 && sillyLevel[0] == 5)
   || (isChild && count === 5 && sillyLevel[0] == 3)
   || (isChild && count === 6 && illusion == 2)) {
@@ -224,9 +248,9 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       </div>
     );
   }
-  if ((isChild && count === 5 && sillyLevel[0] == 1)
-    || (isChild && count === 6 && sillyLevel[0] == 3)
-    || (isChild && count === 6 && illusion == 1)) {
+  if (isChild
+    && ((count === 5 && sillyLevel[0] == 1)
+    || (count === 6 && (sillyLevel[0] == 3 || illusion == 1)))) {
     setIsChild(isChild);
     return (
       <div>
@@ -235,8 +259,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     );
   }
   // eslint-disable-next-line eqeqeq
-  if ((isChild && count === 5 && sillyLevel[0] == 2)
-  || (isChild && count === 5 && sillyLevel[0] == 4)) {
+  if (isChild && count === 5 && (sillyLevel[0] == 2 || sillyLevel[0] == 4)) {
     setIsChild(isChild);
     return (
       <div style={{ background: '#FAFAFA' }}>
@@ -247,6 +270,7 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
       </div>
     );
   }
+
   if (isChild && count === 7) {
     setIsChild(isChild);
     return (
@@ -262,7 +286,9 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     );
   }
   setIsChild(isChild);
-  if (count === 1 && goneBack) {
+
+  // First quiz
+  if (count === 1 && (isParent || isChild)) {
     return (
       <div>
         <Quiz1
@@ -274,9 +300,10 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     );
   }
 
+  // First Quiz Question (count==1 and neither isParent/isChild set yet)
   return (
     <div>
-      <Quiz1 isParent={isParent} setDisabled dispatch={dispatch} setIsChild={setIsChild} />
+      <Quiz1 isParent={isParent} isDisabled dispatch={dispatch} setIsChild={setIsChild} />
     </div>
   );
 }

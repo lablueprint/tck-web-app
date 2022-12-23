@@ -26,7 +26,8 @@ export default function Quiz2Kid({
         color: '#444444',
       }}
       >
-        What grade levels are you comfortable reading at?
+        Which grade levels do you feel comfortable reading at?
+        {' '}
       </h1>
       <Grid
         container

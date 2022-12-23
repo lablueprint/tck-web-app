@@ -1,14 +1,35 @@
-.button {
+.quiz-container {
+    background: #FAFAFA;
+    padding: 5vh 0;
+
+}
+
+.quiz-header {
+    font-family: 'DM Sans';
+    color: #444444;
+    margin-bottom: 12vh;
+}
+
+.avatar-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     vertical-align: bottom;
-    text-align: center;
-    min-width: 100%;
-    height: 300px;
+    height: 250px;
     width: 200px;
-    text-transform: lowercase;
+}
 
+.progress-button-box {
+    display: flex;
+    justify-content: center;
+    margin: 12vh 0em 3em 0;
+}
+
+.progress-bar-box {
+    display: flex; 
+    align-items: center;
+    flex-wrap: wrap; 
+    justify-content: center;
 }
 
 .buttonText {
@@ -30,7 +51,6 @@
     background: #ffffff;
     justify-content: center;
     text-transform: none;
-
 }
 
 .silly-button:hover {
@@ -62,5 +82,14 @@
     .gradeSlider {
        width: 400px;
     }
-  }
+}
+
+@media screen and (max-width: 750px) {
+    .quiz-header {
+        margin-bottom: 5vh;
+    }
+    .progress-button-box {
+        margin-top: 5vh;
+    }
+}
 

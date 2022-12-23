@@ -49,10 +49,7 @@ export default function Quiz2Adult({
             },
           }}
         >
-          {' '}
           <ArrowBackIcon />
-          {' '}
-
         </Button>
         <ProgressBar
           progress={17}
