@@ -73,16 +73,15 @@
     background: #ffffff;
 }
 
-.gradeSlider
+.grade-slider
  {
-    width: 550px;
+    margin: auto;
+    height: 40vh;
+    width: 75vw;
+    
+    display: flex;
+    align-items: center;
  }
-
- @media screen and (max-width: 768px) {
-    .gradeSlider {
-       width: 400px;
-    }
-}
 
 @media screen and (max-width: 750px) {
     .quiz-header {

@@ -80,13 +80,10 @@ function valueLabelFormat(value) {
 
 const minDistance = 0;
 
-export default function GradeSlider({ parentCallback, parentCallbackButton }) {
+export default function GradeSlider({ parentCallback }) {
   const [value1, setValue1] = React.useState([-1, 12]);
-  const [isDisabledSlider, setIsDisabledSlider] = React.useState();
 
   const handleChange1 = (event, newValue, activeThumb) => {
-    setIsDisabledSlider(false);
-    parentCallbackButton(isDisabledSlider);
     parentCallback(newValue[0], newValue[1]);
 
     if (!Array.isArray(newValue)) {
@@ -99,34 +96,31 @@ export default function GradeSlider({ parentCallback, parentCallbackButton }) {
       setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
     }
   };
-  return (
-    <div>
-      <Box className="gradeSlider">
-        <CustomRangeSlider
-          name="Grade"
-          getAriaLabel={() => 'Grade'}
-          marks={marks}
-          value={value1}
-          onChange={handleChange1}
-          valueLabelDisplay="on"
-          getAriaValueText={valueLabelFormat}
-          valueLabelFormat={(value) => {
-            if (value === -1 || value === units.length - 2) { return ''; }
-            if (value === 0) { return 'K'; }
-            return `${units[value + 1]}`;
-          }}
-          disableSwap
-          min={-1}
-          max={units.length - 2}
-          label="Minimum distance"
 
-        />
-      </Box>
-    </div>
+  return (
+    <Box className="grade-slider">
+      <CustomRangeSlider
+        name="Grade"
+        getAriaLabel={() => 'Grade'}
+        marks={marks}
+        value={value1}
+        onChange={handleChange1}
+        valueLabelDisplay="on"
+        getAriaValueText={valueLabelFormat}
+        valueLabelFormat={(value) => {
+          if (value === -1 || value === units.length - 2) { return ''; }
+          if (value === 0) { return 'K'; }
+          return `${units[value + 1]}`;
+        }}
+        disableSwap
+        min={-1}
+        max={units.length - 2}
+        label="Minimum distance"
+      />
+    </Box>
   );
 }
 
 GradeSlider.propTypes = {
-  parentCallbackButton: propTypes.func.isRequired,
   parentCallback: propTypes.func.isRequired,
 };

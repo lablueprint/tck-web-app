@@ -3,8 +3,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import propTypes from 'prop-types';
 import './QuizGroup.css';
 import Quiz1 from './Quiz1';
-import Quiz2Adult from './Quiz2Adult';
-import Quiz2Kid from './Quiz2Kid';
+import Quiz2 from './Quiz2';
 import Quiz3 from './Quiz3';
 import Quiz4Kid from './Quiz4Kid';
 import Quiz5 from './Quiz5Kid';
@@ -20,24 +19,28 @@ function reducer(state, action) {
       return {
         ...state,
         isParent: true,
+        isChild: false,
         count: state.count + 1,
       };
     case 'parent back':
       return {
         ...state,
         isParent: true,
+        isChild: false,
         count: state.count - 1,
       };
     case 'child':
       return {
         ...state,
         isChild: true,
+        isParent: false,
         count: state.count + 1,
       };
     case 'child back':
       return {
         ...state,
         isChild: true,
+        isParent: false,
         count: state.count - 1,
       };
     default:
@@ -65,22 +68,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   // Diya: what's illusion?
   const [illusion, setIllusion] = useState(0);
 
-  // why does the second quiz specifically need this?
-  const [isDisabled02A, setIsDisabled02A] = useState(false);
-  const [isDisabled02K, setisDisabled02K] = useState(false);
-
-  // Diya: these callbacks and state init seem identical, why not use the same state?
-  const callback02A = (isDisabledFromChild) => {
-    if (isDisabled02A != isDisabledFromChild) {
-      setIsDisabled02A(isDisabledFromChild);
-    }
-  };
-  const callback02K = (isDisabledFromChild) => {
-    if (isDisabled02K != isDisabledFromChild) {
-      setisDisabled02K(isDisabledFromChild);
-    }
-  };
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -91,20 +78,21 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     isParent, isChild, count,
   } = state;
 
-  // Parent Quiz Progression
-  if (isParent && count === 2) {
+  if (count === 2) {
     setIsChild(isChild);
     return (
       <div>
-        <Quiz2Adult
+        <Quiz2
           dispatch={dispatch}
-          parentCallback02A={callback02A}
           bookFilters={bookFilters}
           setBookFilters={setBookFilters}
+          isAdult={!isChild}
         />
       </div>
     );
   }
+
+  // Parent Quiz Progression
   if (isParent && count === 3) {
     setIsChild(isChild);
     return (
@@ -165,19 +153,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   }
 
   // Child Quiz Progression
-  if (isChild && count === 2) {
-    setIsChild(isChild);
-    return (
-      <div>
-        <Quiz2Kid
-          parentCallback02K={callback02K}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-          dispatch={dispatch}
-        />
-      </div>
-    );
-  }
   if (isChild && count === 3) {
     setIsChild(isChild);
     return (

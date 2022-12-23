@@ -33,14 +33,11 @@ export default function Quiz1({
   const navigate = useNavigate();
 
   const handleToggle = (type, isChild) => {
-    if (isChild) {
-      setIsChild(!isParent);
-    }
+    setIsChild(isChild);
     dispatch(type);
   };
 
   const handleBack = () => {
-    handleToggle({ type: 'child back' }, true);
     navigate('/quiz');
   };
 
