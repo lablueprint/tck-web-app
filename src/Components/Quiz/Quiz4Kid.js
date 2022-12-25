@@ -3,7 +3,7 @@ import {
   Box, Avatar,
 } from '@mui/material';
 import propTypes from 'prop-types';
-import ProgressBar from './ProgressBar2';
+import ProgressBar from './ProgressBar';
 import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.svg';
 import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';

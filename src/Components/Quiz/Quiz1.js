@@ -5,7 +5,7 @@ import {
   Avatar, Box,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import ProgressBar from './ProgressBar2';
+import ProgressBar from './ProgressBar';
 import Child from '../../Assets/Images/Child.svg';
 import Parent from '../../Assets/Images/Parent.svg';
 import Educator from '../../Assets/Images/Educator.svg';

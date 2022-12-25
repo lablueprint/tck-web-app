@@ -27,14 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 12vh 0em 3em 0;
-}
-
-.progress-bar-box {
-    display: flex; 
-    align-items: center;
-    flex-wrap: wrap; 
-    justify-content: center;
+    margin: 12vh auto 3em auto;
 }
 
 .quiz-check-button-box {

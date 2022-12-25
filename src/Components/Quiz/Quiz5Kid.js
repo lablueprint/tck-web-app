@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {
   Button, Box,
 } from '@mui/material';
-import ProgressBar from './ProgressBar2';
+import ProgressBar from './ProgressBar';
 import illusion from '../../Assets/Images/IllusionVector.svg';
 
 const styles = {

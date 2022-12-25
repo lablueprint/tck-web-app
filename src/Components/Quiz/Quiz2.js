@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import ProgressBar from './ProgressBar2';
+import ProgressBar from './ProgressBar';
 import GradeSlider from './GradeSlider';
 import './QuizGroup.css';
 

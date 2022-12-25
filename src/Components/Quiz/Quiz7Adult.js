@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import ProgressBar from './ProgressBar2';
+import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
 
 const Airtable = require('airtable');

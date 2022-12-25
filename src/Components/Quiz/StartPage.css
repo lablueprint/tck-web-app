@@ -1,146 +1,109 @@
-   @media only screen and (min-width: 1024px) {
-      .Start {
-         background-image: url(../../Assets/Images/QuizBackground.svg);
-         background-position: top;
-         background-repeat: no-repeat;
-         display: flex;
-         align-items: stretch;
-      }
-      .Conscious {
-         color: #393EBA;
-         font-size: 40px;
-         margin-bottom: 0;
-      }
-      .BookFinder {
-         color:#333333;
-         font-size: 64px;
-         font-family: Work Sans;
-         letter-spacing: -0.04em;
-         margin-top: 0;
-      }
-      .Search {
-         font-family: Work Sans;
-         color: #333333;
-         font-size: 22px;
-         font-weight: normal; 
-         position: relative; 
-         bottom: 30px;
-      }
-      .startButton {
-            background: #393EBA;
-            border-radius: 0.6em;
-            letter-spacing: 0.02em;
-            color: white;
-            font-family: Work Sans;
-            font-weight: bold;
-            font-size: 1.3em;
-            width: 234px;
-            height: 67px;
-            border: 2.5px solid #393EBA;
-      }
+.quiz-start-background {
+   background-image: url(../../Assets/Images/QuizBackground.svg);
+   background-position: top;
+   background-repeat: no-repeat;
+   height: 90vh;
 }
-@media only screen and (min-width: 640px) {
-   .Start {
-      background-image: url(../../Assets/Images/QuizBackground.svg);
-      background-position: top;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: stretch;
-   }
-   .Conscious {
-      position: relative;
-      bottom: 40px;
-      color: #393EBA;
-      font-size: 40px;
-      margin-bottom: 0;
-      right: 60px;
-   }
-   .BookFinder {
-      position: relative;
-      bottom: 40px;
-      color:#333333;
-      font-size: 58px;
-      font-family: Work Sans;
-      letter-spacing: -0.04em;
-      margin-top: 0;
-      right: 60px;
 
+.quiz-start-header1 {
+   color: #393EBA;
+   font-size: 2.5rem;
+   margin-bottom: 0;
+   margin: auto 0 0 0;
+}
+
+.quiz-start-header2 {
+   color:#333333;
+   font-size: 4rem;
+   font-family: Work Sans;
+   letter-spacing: -0.04em;
+   margin-top: 0;
+}
+.quiz-start-subtitle {
+   font-family: Work Sans;
+   color: #333333;
+   font-size: 1.3rem;
+   font-weight: normal; 
+   position: relative; 
+   bottom: 30px;
+}
+.quiz-start-button {
+   background: #393EBA;
+   border-radius: 0.6em;
+   letter-spacing: 0.02em;
+   color: white;
+   font-family: Work Sans;
+   font-weight: bold;
+   font-size: 1.3rem;
+   min-width: 234px;
+   height: 67px;
+   border: 2.5px solid #393EBA;
+}
+
+.quiz-start-button:hover {
+   background-color: #EAF3FE !important;
+   color: #393EBA !important;
+   border-color: #393EBA !important;
+}
+
+.quiz-start-text-container {
+   padding: 10rem 7rem 0 7rem;
+   width: 47%;
+   text-align: left;
+}
+
+.quiz-start-button-align {
+   width: min-content;
+   margin: 0 auto 0 7rem;
+}
+
+@media only screen and (max-width: 1200px) {
+   .quiz-start-text-container {
+      padding: 8rem 7rem 0 3rem;
    }
-   .Search {
-      font-family: Work Sans;
-      color: #333333;
-      font-size: 22px;
-      font-weight: normal; 
-      position: relative; 
-      bottom: 50px;
-      right: 60px;
-   }
-   .startButton {
-      position: relative; 
-      bottom: 50px;
-      right:60px;
-      font-family: Work Sans;
-      color: #333333;
-      background: #393EBA;
-      border-radius: 0.6em;
-      letter-spacing: 0.02em;
-      color: white;
-      font-family: Work Sans;
-      font-weight: bold;
-      font-size: 1.3em;
-      width: 234px;
-      height: 67px;
-      border: 2.5px solid #393EBA;
+
+   .quiz-start-button-align {
+      width: min-content;
+      margin: 0 auto 0 3rem;
    }
 }
-@media only screen and (max-width: 640px) {
-   .Start {
+@media only screen and (max-width: 1050px) {
+   .quiz-start-text-container {
+      width: 40%;
+   }
+}
+
+@media only screen and (max-width: 850px) {
+   .quiz-start-text-container {
+      padding: 3rem 2rem;
+      width: 90%;
+   }
+   .quiz-start-background {
       background-image: url(../../Assets/Images/MobileQuiz.svg);
-      background-position: top;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: stretch;
    }
-   .Conscious {
-      color: #393EBA;
-      font-size: 26px;
-      position: relative;
-      bottom: 25%;
+   .quiz-start-header1 {
+      font-size: 1.6rem;
    }
-   .BookFinder {
-      color:#333333;
-      font-size: 50px;
-      font-family: Work Sans;
-      letter-spacing: -0.04em;
-      margin-top: 0;
-      position: relative;
-      bottom: 30%;
+   .quiz-start-header2 {
+      font-size: 3rem;
+      padding: .75rem 0;
    }
-   .Search {
-      font-family: Work Sans;
-      color: #333333;
-      font-size: 14px;
-      font-weight: normal; 
-      position: relative; 
-      bottom: 38%;
+   .quiz-start-subtitle {
+      font-size: 1.1rem;
    }
-   .startButton {
-      background: #393EBA;
-      border-radius: 0.6em;
-      letter-spacing: 0.02em;
-      color: white;
-      font-family: Work Sans;
-      font-weight: bold;
-      font-size: 1.1em;
-      width: 20opx;
-      height: 60px;
-      border: 2.5px solid #393EBA;
-      position: relative;
-      bottom: 30%;
+   .quiz-start-button {
+      font-size: 1.1rem;
+   }
+   .quiz-start-button-align {
+      width: min-content;
+      margin: 0 auto 0 2rem;
    }
 }
-   .startButton:hover {
-      background-color: #EAF3FE !important;
-      color: #393EBA !important;
-      border-color: #393EBA !important;
+
+@media only screen and (max-width: 600px) {
+   .quiz-start-button-align {
+      width: min-content;
+      margin: 30vh auto 0 auto;
    }
+}
+
