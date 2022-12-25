@@ -12,7 +12,7 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-export default function Quiz8Adult({
+export default function Quiz7Adult({
   bookFilters, setBookFilters, dispatch,
 }) {
   const [filters, setFilters] = useState([]);
@@ -66,11 +66,16 @@ export default function Quiz8Adult({
           ))}
         </div>
       )}
-      <ProgressBar variant="determinate" progress={95} onBack={handleBack} onForward={handleForward} lastStep />
+      <ProgressBar
+        progress={100}
+        onBack={handleBack}
+        onForward={handleForward}
+        lastStep
+      />
     </div>
   );
 }
-Quiz8Adult.propTypes = {
+Quiz7Adult.propTypes = {
   setBookFilters: propTypes.func.isRequired,
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,

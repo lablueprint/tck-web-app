@@ -24,7 +24,7 @@ export default function Quiz2({
       </h1>
       <GradeSlider parentCallback={callback} />
       <ProgressBar
-        progress={17}
+        progress={20}
         onBack={handleBack}
         onForward={handleForward}
       />

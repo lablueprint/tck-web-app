@@ -6,11 +6,24 @@ import Quiz1 from './Quiz1';
 import Quiz2 from './Quiz2';
 import Quiz3 from './Quiz3';
 import Quiz4Kid from './Quiz4Kid';
-import Quiz5 from './Quiz5Kid';
+import Quiz5Kid from './Quiz5Kid';
 import Quiz6 from './Quiz6';
-import Quiz6Kid from './Quiz6Kid';
-import Quiz7Kid from './Quiz7Kid';
-import Quiz8Adult from './Quiz8Adult';
+import Quiz7Adult from './Quiz7Adult';
+
+const seriousGenres = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry'];
+const seriousGenreCaptions = ['The lives of interesting and influential people',
+  'Fascinating facts about different topics such as nature, animals, or space',
+  'Important events of the past that shaped the world we live in today',
+  'A detailed retelling of a crucial period of time in an individual’s life',
+  'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
+
+const funGenres = ['Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
+const funGenreCaptions = ['Going on a journey to a new place with your friends',
+  'Suspenseful events with plot twists that may shock you',
+  'Going to outer space and exploring different planets',
+  'Living in a magical world where you have powers',
+  'Having a picnic with someone you really like',
+  'Visiting an African realm with magic and advanced technology'];
 
 // Diya: why do you set isChild/isParent each time?
 function reducer(state, action) {
@@ -48,7 +61,7 @@ function reducer(state, action) {
   }
 }
 
-const issDisabled = (anArr) => (anArr.length === 0);
+// const issDisabled = (anArr) => (anArr.length === 0);
 
 export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   // state setup
@@ -80,6 +93,18 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
 
   // Common Parent + Kid Progression
 
+  if (count === 1 && (isParent || isChild)) {
+    return (
+      <div>
+        <Quiz1
+          isParent={isParent}
+          dispatch={dispatch}
+          setIsChild={setIsChild}
+        />
+      </div>
+    );
+  }
+
   if (count === 2) {
     setIsChild(isChild);
     return (
@@ -107,31 +132,29 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   // Parent Quiz Progression
   if (isParent && count === 4) {
     setIsChild(isChild);
-    const parentButtonCaptions = ['Autobiography', 'Non-fiction', 'Historical fiction', 'Memoir', 'Mystery', 'Poetry', 'Adventure', 'Scary/Horror', 'Science fiction', 'Fantasy', 'Romance', 'Afrofuturism', 'Graphic Novel'];
+    const genreCaptions = [...funGenres, ...seriousGenres];
     return (
-      <div>
-        <Quiz6
-          progress={70}
-          dispatch={dispatch}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-          title="What type of book do you think your kid(s) would be in the mood for right now?"
-          buttonCaptions={parentButtonCaptions}
-        />
-      </div>
+      <Quiz6
+        progress={70}
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        title="What type of book do you think your kid(s) would be in the mood for right now?"
+        buttonCaptions={genreCaptions}
+        buttonValues={genreCaptions}
+        isAdult
+      />
     );
   }
 
   if (isParent && count === 5) {
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz8Adult
-          dispatch={dispatch}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-        />
-      </div>
+      <Quiz7Adult
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+      />
     );
   }
 
@@ -139,108 +162,75 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   if (isChild && count === 4) {
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz4Kid
-          setSilly={increment}
-          sillyNotSet={sillyNotSet}
-          dispatch={dispatch}
-        />
-      </div>
+      <Quiz4Kid
+        setSilly={increment}
+        sillyNotSet={sillyNotSet}
+        dispatch={dispatch}
+      />
+    );
+  }
+
+  if (isChild && count === 5 && (sillyLevel[0] == 2 || sillyLevel[0] == 4)) {
+    setIsChild(isChild);
+    return (
+      <Quiz5Kid
+        dispatch={dispatch}
+        setIllusions={setIllusion}
+      />
     );
   }
 
   if (isChild && count === 5 && sillyLevel[0] == 3) {
-    const childButtonCaptions = ['The lives of interesting and influential people',
-      'Fascinating facts about different topics such as nature, animals, or space',
-      'Important events of the past that shaped the world we live in today',
-      'A detailed retelling of a crucial period of time in an individual’s life',
-      'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz6Kid includeButtons dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about?" buttonCaptions={childButtonCaptions} />
-      </div>
-    );
-  }
-  if (isChild && count === 6 && sillyLevel[0] == 3) {
-    setIsChild(isChild);
-    return (
-      <div>
-        <Quiz7Kid
-          includeNav
-          dispatch={dispatch}
-          issDisabled={issDisabled(bookFilters.genre)}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-        />
-      </div>
+      <Quiz6
+        includeButtons
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        title="Which of the following would you be interested in reading about?"
+        buttonValues={[...seriousGenres, ...funGenres]}
+        buttonCaptions={[...seriousGenreCaptions, ...funGenreCaptions]}
+        progress={100}
+        isLastStep
+        hasLargeButtons
+      />
     );
   }
 
-  if ((isChild && count === 5 && sillyLevel[0] == 5)
-  || (isChild && count === 5 && sillyLevel[0] == 3)
-  || (isChild && count === 6 && illusion == 2)) {
-    const childButtonCaptions = ['The lives of interesting and influential people',
-      'Fascinating facts about different topics such as nature, animals, or space',
-      'Important events of the past that shaped the world we live in today',
-      'A detailed retelling of a crucial period of time in an individual’s life',
-      'The case of a mysterious, unnatural phenomenon', 'Stories with poetry'];
+  if (isChild && ((count === 5 && sillyLevel[0] == 1) || (count === 6 && illusion == 2))) {
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz6Kid includeButtons={false} dispatch={dispatch} bookFilters={bookFilters} setBookFilters={setBookFilters} title="Which of the following would you be interested in reading about? " buttonCaptions={childButtonCaptions} />
-      </div>
-    );
-  }
-  if (isChild
-    && ((count === 5 && sillyLevel[0] == 1)
-    || (count === 6 && (sillyLevel[0] == 3 || illusion == 1)))) {
-    setIsChild(isChild);
-    return (
-      <div>
-        <Quiz7Kid dispatch={dispatch} includeNav="false" bookFilters={bookFilters} setBookFilters={setBookFilters} />
-      </div>
-    );
-  }
-  // eslint-disable-next-line eqeqeq
-  if (isChild && count === 5 && (sillyLevel[0] == 2 || sillyLevel[0] == 4)) {
-    setIsChild(isChild);
-    return (
-      <div style={{ background: '#FAFAFA' }}>
-        <Quiz5
-          dispatch={dispatch}
-          setIllusions={setIllusion}
-        />
-      </div>
+      <Quiz6
+        includeButtons
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        title="Which of the following would you be interested in reading about?"
+        buttonValues={seriousGenres}
+        buttonCaptions={seriousGenreCaptions}
+        progress={100}
+        isLastStep
+        hasLargeButtons
+      />
     );
   }
 
-  if (isChild && count === 7) {
+  if (isChild && ((count === 5 && sillyLevel[0] == 5) || (count === 6 && illusion == 1))) {
     setIsChild(isChild);
     return (
-      <div>
-        <Quiz7Kid
-          includeNav
-          dispatch={dispatch}
-          issDisabled={issDisabled(bookFilters.genre)}
-          bookFilters={bookFilters}
-          setBookFilters={setBookFilters}
-        />
-      </div>
-    );
-  }
-  setIsChild(isChild);
-
-  // First quiz
-  if (count === 1 && (isParent || isChild)) {
-    return (
-      <div>
-        <Quiz1
-          isParent={isParent}
-          dispatch={dispatch}
-          setIsChild={setIsChild}
-        />
-      </div>
+      <Quiz6
+        includeButtons
+        dispatch={dispatch}
+        bookFilters={bookFilters}
+        setBookFilters={setBookFilters}
+        title="Which of the following seem fun to you?"
+        buttonValues={funGenres}
+        buttonCaptions={funGenreCaptions}
+        progress={100}
+        isLastStep
+        hasLargeButtons
+      />
     );
   }
 

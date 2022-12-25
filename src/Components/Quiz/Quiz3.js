@@ -69,7 +69,7 @@ export default function Quiz3({
         </div>
       )}
       <ProgressBar
-        progress={29}
+        progress={40}
         onBack={handleBack}
         onForward={handleForward}
       />

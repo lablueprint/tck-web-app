@@ -9,16 +9,23 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '2em 0.5em 2em 0.5em',
-    width: '250px',
-    height: '100.59px',
     borderRadius: '20px',
     fontSize: '1rem',
-
+  },
+  smallButton: {
+    width: '250px',
+    height: '100.59px',
     '@media (max-width: 750px)': {
       width: '200px',
     },
   },
-
+  largeButton: {
+    width: '400px',
+    height: '100.59px',
+    '@media (max-width: 750px)': {
+      width: '100%',
+    },
+  },
   checkedButton: {
     border: '2.5px solid',
     borderColor: '#393EBA',
@@ -74,16 +81,17 @@ const styles = {
 };
 
 export default function QuizButton({
-  buttonCaption, onClick, desiredArray, desiredLabel,
+  buttonCaption, onClick, desiredArray, desiredLabel, large,
 }) {
   const [checked, setChecked] = useState(false);
 
   const buttonColor = checked ? styles.checkedButton : styles.uncheckedButton;
+  const buttonSize = large ? styles.largeButton : styles.smallButton;
 
   return (
     <Button
       disableRipple
-      sx={[styles.button, buttonColor]}
+      sx={[styles.button, buttonColor, buttonSize]}
       onClick={() => {
         setChecked((old) => !old);
       }}
@@ -103,9 +111,15 @@ export default function QuizButton({
     </Button>
   );
 }
+
 QuizButton.propTypes = {
   buttonCaption: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   desiredArray: PropTypes.arrayOf(PropTypes.string).isRequired,
   desiredLabel: PropTypes.string.isRequired,
+  large: PropTypes.bool,
+};
+
+QuizButton.defaultProps = {
+  large: false,
 };

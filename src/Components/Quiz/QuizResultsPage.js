@@ -13,7 +13,6 @@ import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
 import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
-import './QuizButton.css';
 
 // import BookList from '../BookList/BookList';
 function HandleClickToTop() {

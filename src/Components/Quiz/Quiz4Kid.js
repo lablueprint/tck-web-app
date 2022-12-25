@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  Box, Button, Avatar,
+  Box, Avatar,
 } from '@mui/material';
 import propTypes from 'prop-types';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProgressBar from './ProgressBar';
+import ProgressBar from './ProgressBar2';
 import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.svg';
 import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
 import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
@@ -14,76 +12,91 @@ import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
 import './QuizGroup.css';
 import AvatarButton from './AvatarButton';
 
+const styles = {
+  avatarButtonBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    columnGap: '3rem',
+    rowGap: '1rem',
+  },
+  avatarIcon: {
+    width: 125,
+    height: 125,
+    borderRadius: 0,
+    '@media (max-width: 750px)': {
+      width: 100,
+      height: 100,
+    },
+  },
+};
+
 export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
   const handleClick = (val) => {
     setSilly(val);
     dispatch({ type: 'child' });
   };
+
+  const handleBack = () => dispatch({ type: 'child back' });
+
+  const handleForward = () => dispatch({ type: 'child' });
+
   return (
-    <div style={{ paddingBottom: 200, background: '#FAFAFA' }}>
-      <h1 style={{ fontFamily: 'DM Sans', marginTop: '20px', color: '#444444' }}>
+    <div className="quiz-container">
+      <h1 className="quiz-header">
         Which of the following best describes you?
       </h1>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-        margin: '6rem 1rem 2rem',
-      }}
-      >
+      <Box sx={styles.avatarButtonBox}>
         <AvatarButton
-          caption="I am almost
-            always serious"
+          caption="I am almost always serious"
           handleToggle={() => handleClick(1)}
           icon={(
             <Avatar
-              sx={{ width: 100, height: 100 }}
+              sx={styles.avatarIcon}
               src={VerySerious}
-              style={{ borderRadius: 0 }}
               alt="Very Serious"
             />
             )}
+          isSillyButton
         />
         <AvatarButton
-          caption="I am usually
-            serious, but I can be silly sometimes"
+          caption="I am usually serious, but I can be silly sometimes"
           handleToggle={() => handleClick(2)}
           icon={(
             <Avatar
-              sx={{ width: 100, height: 100 }}
+              sx={styles.avatarIcon}
               src={Serious}
-              style={{ borderRadius: 0 }}
               alt="Serious"
             />
             )}
+          isSillyButton
         />
         <AvatarButton
-          caption="I can be
-            either silly or serious"
+          caption="I can be either silly or serious"
           handleToggle={() => handleClick(3)}
           icon={(
             <Avatar
-              sx={{ width: 100, height: 100 }}
+              sx={styles.avatarIcon}
               src={Neutral}
-              style={{ borderRadius: 0 }}
               alt="Neutral"
             />
             )}
+          isSillyButton
         />
         <AvatarButton
           caption="I am
             usually silly, but I can be serious if I need to be"
-            // handleToggle={handleClick(4)}
           handleToggle={() => handleClick(4)}
           icon={(
             <Avatar
-              sx={{ width: 100, height: 100 }}
+              sx={styles.avatarIcon}
               src={Silly}
-              style={{ borderRadius: 0 }}
               alt="Silly"
             />
             )}
+          isSillyButton
+
         />
         <AvatarButton
           caption="I am
@@ -91,52 +104,21 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
           handleToggle={() => handleClick(5)}
           icon={(
             <Avatar
-              sx={{ width: 100, height: 100 }}
+              sx={styles.avatarIcon}
               src={VerySilly}
-              style={{ borderRadius: 0 }}
               alt="Very Silly"
             />
             )}
+          isSillyButton
+
         />
       </Box>
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '3em 0 3em 0' }}>
-        <Button
-          variant="contained"
-          onClick={() => dispatch({ type: 'child back' })}
-          sx={{
-            background: '#f79927',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            boxShadow: 'none',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#F99E16',
-            },
-          }}
-        >
-          <ArrowBackIcon />
-
-        </Button>
-        <ProgressBar variant="determinate" progress={41} sx={{ flex: '0 1 60%' }} />
-        <Button
-          disabled={sillyNotSet()}
-          variant="contained"
-          onClick={() => dispatch({ type: 'child' })}
-          sx={{
-            background: '#f79927',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            boxShadow: 'none',
-            '&.MuiButtonBase-root:hover': {
-              bgcolor: '#F99E16',
-            },
-          }}
-        >
-          <ArrowForwardIcon />
-
-        </Button>
-      </div>
+      <ProgressBar
+        progress={60}
+        onBack={handleBack}
+        onForward={handleForward}
+        forwardDisabled={sillyNotSet()}
+      />
     </div>
   );
 }
