@@ -71,15 +71,13 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
     count: 1,
   };
 
+  const [illusion, setIllusion] = useState(0);
   const sillyLevel = React.useState(0);
   const increment = (value) => {
     sillyLevel[0] = value;
     sillyLevel[1](value);
   };
   const sillyNotSet = () => (!(sillyLevel[0]));
-
-  // Diya: what's illusion?
-  const [illusion, setIllusion] = useState(0);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -92,7 +90,6 @@ export default function Quiz({ bookFilters, setBookFilters, setIsChild }) {
   } = state;
 
   // Common Parent + Kid Progression
-
   if (count === 1 && (isParent || isChild)) {
     return (
       <div>

@@ -32,6 +32,7 @@ function QuizPage() {
 
   // reload page if any of the filters change! (make sure the pages switch at the right times)
   useEffect(() => {
+    console.log(bookFilters);
   }, [bookFilters]);
 
   // fetch and initialize state for the quiz type (child or not)
@@ -54,7 +55,7 @@ function QuizPage() {
       localStorage.setItem('minGrade', String(bookFilters.minGrade));
       localStorage.setItem('genres', String(bookFilters.genre.join(',')));
       localStorage.setItem('race/ethnicity', String(bookFilters['race/ethnicity'].join(',')));
-      localStorage.setItem('bookType', String(bookFilters['race/ethnicity'].join(',')));
+      localStorage.setItem('bookType', String(bookFilters.book_type.join(',')));
     } else {
       localStorage.setItem('maxAge', '18');
       localStorage.setItem('minAge', '0');
@@ -75,7 +76,7 @@ function QuizPage() {
       });
     }
     localStorage.setItem('lastLocation', location.pathname);
-  }, [location]);
+  }, [location, bookFilters]);
 
   return (
     <Routes>
@@ -86,5 +87,3 @@ function QuizPage() {
   );
 }
 export default QuizPage;
-
-// Diya: why is everything going in local storage?

@@ -66,7 +66,7 @@ const styles = {
 
   checkedCheckbox: {
     color: 'inherit',
-    '&.MuiCheckbox-root:hover': {
+    '&.MuiCheckboxRoot:hover': {
       color: '#393EBA',
     },
   },
@@ -83,26 +83,26 @@ const styles = {
 export default function QuizButton({
   buttonCaption, onClick, desiredArray, desiredLabel, large,
 }) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(desiredArray.indexOf(desiredLabel) > -1);
 
   const buttonColor = checked ? styles.checkedButton : styles.uncheckedButton;
   const buttonSize = large ? styles.largeButton : styles.smallButton;
+
+  const handleClick = () => {
+    onClick(desiredLabel, !checked);
+    setChecked((old) => !old);
+  };
 
   return (
     <Button
       disableRipple
       sx={[styles.button, buttonColor, buttonSize]}
-      onClick={() => {
-        setChecked((old) => !old);
-      }}
+      onClick={handleClick}
     >
       <Checkbox
         sx={styles.checkbox}
         style={checked ? styles.checkedCheckbox : styles.uncheckedCheckbox}
-        onChange={(event) => {
-          onClick(desiredLabel, event.target.checked);
-        }}
-        checked={desiredArray.indexOf(desiredLabel) > -1 || checked}
+        checked={checked}
         disableRipple
       />
       <p style={styles.buttonCaption}>

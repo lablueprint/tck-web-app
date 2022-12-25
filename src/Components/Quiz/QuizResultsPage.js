@@ -14,47 +14,59 @@ import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
 import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
 
-// import BookList from '../BookList/BookList';
-function HandleClickToTop() {
-  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-}
-
 function ResultsPage({ bookFilters, isChild }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
   let gradeDisplayed = '';
   let raceMessage = '';
   let genreMessage = '';
   const myRef = useRef(null);
 
-  function HandleClickToBottom() {
+  // handle clicks to top and bottom section in kid version
+  function handleClickToBottom() {
     if (myRef && myRef.current) {
       myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  setTimeout(HandleClickToBottom, 2000);
+
+  function handleClickToTop() {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }
+
+  // fetch recommendations given current filter
+  const getBooksLikeThis = async () => {
+    if (bookFilters) {
+      const recList = await RecFilter(
+        bookFilters.bookId,
+        bookFilters.minAge,
+        bookFilters.maxAge,
+        bookFilters.minGrade,
+        bookFilters.maxGrade,
+        bookFilters['race/ethnicity'],
+        bookFilters.genre,
+        bookFilters.book_type,
+      );
+      setRecommendedBooks(recList.map((element) => ({
+        author: (element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR']),
+        image: (element.fields.image !== undefined ? element.fields.image[0].url : ''),
+        title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
+        id: element.id,
+      })));
+    }
+  };
+
+  // fetch if bookFilters change and on mount
   useEffect(() => {
-    const getBooksLikeThis = async () => {
-      if (bookFilters) {
-        const recList = await RecFilter(
-          bookFilters.bookId,
-          bookFilters.minAge,
-          bookFilters.maxAge,
-          bookFilters.minGrade,
-          bookFilters.maxGrade,
-          bookFilters['race/ethnicity'],
-          bookFilters.genre,
-          bookFilters.book_type,
-        );
-        setRecommendedBooks(recList.map((element) => ({
-          author: (element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR']),
-          image: (element.fields.image !== undefined ? element.fields.image[0].url : ''),
-          title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
-          id: element.id,
-        })));
-      }
-    };
     getBooksLikeThis();
   }, [bookFilters]);
+
+  // once loaded,
+  useEffect(() => {
+    if (recommendedBooks.length === 0) { setLoading(true); } else {
+      setLoading(false);
+      if (isChild) { setTimeout(handleClickToBottom, 2000); }
+    }
+  }, [recommendedBooks]);
 
   if (bookFilters.maxGrade === -1) {
     gradeDisplayed = '0 to Pre-K';
@@ -75,6 +87,11 @@ function ResultsPage({ bookFilters, isChild }) {
   } else {
     genreMessage = `${bookFilters.genre.slice(-1)}`;
   }
+
+  if (loading) {
+    return <div> loading</div>;
+  }
+
   return (
     <div style={{
       background: '#cbe7ee', padding: isChild ? '5em 0 0em 0' : '2em 0 8em 0',
@@ -129,7 +146,7 @@ function ResultsPage({ bookFilters, isChild }) {
           style={{
             border: 'none', background: 'none', position: 'relative', bottom: '300px',
           }}
-          onClick={HandleClickToBottom}
+          onClick={handleClickToBottom}
         >
           <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
         </button>
@@ -145,7 +162,7 @@ function ResultsPage({ bookFilters, isChild }) {
       >
         {isChild
         && (
-        <button type="button" style={{ border: 'none', background: 'none' }} onClick={HandleClickToTop}>
+        <button type="button" style={{ border: 'none', background: 'none' }} onClick={handleClickToTop}>
           <img
             src={UpArrow}
             alt="bouncing arrow pointing upwards"
@@ -248,6 +265,7 @@ function ResultsPage({ bookFilters, isChild }) {
     </div>
   );
 }
+
 ResultsPage.propTypes = {
   bookFilters: propTypes.shape({
     bookId: propTypes.string.isRequired,
