@@ -101,12 +101,12 @@ function CollectionsCarousel({
             on="true"
             onSwiper={setSwiper}
             breakpoints={isCollectionPageHeader ? {
+              // 320: {
+              //   slidesPerView: 1,
+              //   // spaceBetween: 10,
+              //   slidesPerGroup: 1,
+              // },
               320: {
-                slidesPerView: 1,
-                // spaceBetween: 10,
-                slidesPerGroup: 1,
-              },
-              768: {
                 slidesPerView: 2,
                 // spaceBetween: spaceBetweenEntries,
                 slidesPerGroup: 1,

@@ -27,6 +27,11 @@
   min-width:0;
 }
 
+.collection-image-container-mobile{
+  flex: 0 0 40%;
+  margin-left:2em;
+}
+
 
 .card-text-wrapper{
     display: flex;

@@ -49,13 +49,15 @@ function CollectionPage() {
     getCollections();
   }, []);
   return (
-    <div style={{ margin: size.width > 500 ? '0 6em 0 6em' : '0 1em 0 0' }}>
+    <div style={{ margin: size.width > 600 ? '3em 6em 0 6em' : '3em 1em 0 0' }}>
+      {size.width > 600 && (
       <p style={{
-        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: size.width > 500 ? '3em 0 1em 7em' : '3em 0 1em 10vw',
+        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: size.width > 500 ? '0 0 1em 7em' : '0 0 1em 10vw',
       }}
       >
         Please select a collection
       </p>
+      )}
       {collecID !== null && collecID !== 'init' && collections !== null ? (
         <CollectionsCarousel
           elementArray={collections}
@@ -64,7 +66,7 @@ function CollectionPage() {
           nextArrow={NextArrow}
           widthPercent={100}
           spaceBetweenEntries={15}
-          swiperHeight={170}
+          swiperHeight={size.width > 600 ? 170 : 100}
           cardImageHeightPercent={55}
           cardImageWidthPercent={55}
           cardFontSize={100}

@@ -2,11 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Collection.css';
+import { useWindowSize } from '../Navigation/Header';
 
 export default function Collection({
   collectionId, image, bigLine, imageHeightPercent,
   imageWidthPercent, isCollectionPageHeader, color, // isSlideActive
 }) {
+  const size = useWindowSize();
+
   return (
 
   // WARNING: IF YOU RESTYLE THIS, IT WILL BREAK THE COLLECTION PAGE'S ONSLIDECHANGE FUNCTION!!
@@ -29,7 +32,7 @@ export default function Collection({
         </div>
       ) : (<div style={{ marginTop: '3em' }} />)} */}
 
-      <div className="collection-image-container">
+      <div className={size.width > 600 ? 'collection-image-container' : 'collection-image-container collection-image-container-mobile'}>
         <img
           src={image}
           style={{
@@ -43,18 +46,20 @@ export default function Collection({
       {isCollectionPageHeader
         ? (
           <div className="card-text-wrapper">
+            {size.width > 600 && (
             <p style={{
               fontFamily: 'Work Sans', fontWeight: 'bold', fontSize: '1em', textAlign: 'start', margin: '0em 0 0.5em 0',
             }}
             >
               Stories From
             </p>
+            )}
             <p
               className="card-title"
               style={{
-                fontSize: `${1.55 - ((bigLine.length / 22) / 10.0)}em`,
+                fontSize: size.width > 600 ? `${1.55 - ((bigLine.length / 22) / 10.0)}em` : '0.9em',
                 overflowWrap: 'break-word',
-                width: '100%',
+                width: size.width > 600 ? '100%' : '90%',
               }}
             >
               {bigLine}
