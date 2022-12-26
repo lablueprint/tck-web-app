@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import propTypes from 'prop-types';
-import './QuizResultsPage.css';
 import {
-  Button, Box,
+  Button,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
@@ -11,8 +10,37 @@ import RecFilter from '../Recommendations/BookRec';
 import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
-import CloudImage from '../../Assets/Images/results-cloud-illustration.svg';
-import AdultCloudImage from '../../Assets/Images/Adult_recommendations_clouds.svg';
+import CloudImage from '../../Assets/Images/quiz-results-cloud.png';
+import './QuizResultsPage.css';
+
+const styles = {
+  button: {
+    border: '2.5px solid #D7D7D7',
+    borderRadius: '21px',
+    background: '#ffffff',
+    fontFamily: 'DM Sans',
+    fontWeight: 'bold',
+    color: '#444444',
+    textTransform: 'none',
+    fontSize: '1.2rem',
+    textAlign: 'center',
+    padding: '2em 0.5em 2em 0.5em',
+    height: '4rem',
+    width: '16rem',
+    textDecoration: 'none',
+
+    '&:hover': {
+      bgcolor: '#EAF3FE',
+      color: '#393EBA',
+      borderColor: '#393EBA',
+    },
+    '@media (max-width: 750px)': {
+      fontSize: '1rem',
+      height: '2.5rem',
+      width: '12.5rem',
+    },
+  },
+};
 
 function ResultsPage({ bookFilters, isChild }) {
   const [recommendedBooks, setRecommendedBooks] = useState([]);
@@ -60,14 +88,15 @@ function ResultsPage({ bookFilters, isChild }) {
     getBooksLikeThis();
   }, [bookFilters]);
 
-  // once loaded,
+  // set loading and time bottom movement once loaded
   useEffect(() => {
     if (recommendedBooks.length === 0) { setLoading(true); } else {
       setLoading(false);
-      if (isChild) { setTimeout(handleClickToBottom, 2000); }
+      if (isChild) { setTimeout(handleClickToBottom, 3000); }
     }
   }, [recommendedBooks]);
 
+  // initialize values for child results text
   if (bookFilters.maxGrade === -1) {
     gradeDisplayed = '0 to Pre-K';
   } else if (bookFilters.maxGrade === 0) {
@@ -88,181 +117,123 @@ function ResultsPage({ bookFilters, isChild }) {
     genreMessage = `${bookFilters.genre.slice(-1)}`;
   }
 
+  // if loading just display the loading graphic
   if (loading) {
     return <div> loading</div>;
   }
 
+  // once loaded, show appropriate results!
   return (
-    <div style={{
-      background: '#cbe7ee', padding: isChild ? '5em 0 0em 0' : '2em 0 8em 0',
-    }}
-    >
+    <>
       {isChild
       && (
-      <div className="results-wrapper">
-        <p className="results-title" id="result-text">Your Results</p>
-        <div className="results-text-wrapper">
-          <p className="results-text">
-            You are
-            {' '}
-            <span style={{ color: '#3477DE', fontWeight: 'bold' }}>smart</span>
-            {' '}
-            - - you can read up to a
-            {' '}
-            <span style={{ color: '#E85757', fontWeight: 'bold' }}>
-              {gradeDisplayed}
-              {' '}
-              grade
-            </span>
-            {' '}
-            level!
-          </p>
-          <p className="results-text fade-in-animation-delay-4s">
-            You are
-            {' '}
-            <span style={{ color: '#20B28F', fontWeight: 'bold' }}>curious</span>
-            {' '}
-            -- you have expressed interest in
-            {' '}
-            <span style={{ color: '#F99E16', fontWeight: 'bold' }}>
-              {raceMessage}
-            </span>
-            {' '}
-            {(bookFilters['race/ethnicity'].length > 1) ? ' cultures.' : ' culture.'}
-          </p>
-          <p className="results-text fade-in-animation-delay-6s">
-            We think you would enjoy the
-            {' '}
-            <span style={{ color: '#393EBA', fontWeight: 'bold' }}>
-              {genreMessage}
-            </span>
-            {(bookFilters.genre.length > 1) ? ' genres ' : ' genre '}
-            based on your answers.
-          </p>
+        <div className="results-bg">
+          <div className="results-wrapper">
+            <p className="results-title">Your Results</p>
+            <div className="results-text-wrapper">
+              <p className="results-text">
+                You are
+                {' '}
+                <span className="blue-bold">smart</span>
+                {' '}
+                - - you can read up to a
+                {' '}
+                <span className="red-bold">
+                  {gradeDisplayed}
+                  {' '}
+                  grade
+                </span>
+                {' '}
+                level!
+              </p>
+              <p className="results-text fade-in-animation-delay-4s">
+                You are
+                {' '}
+                <span className="green-bold">curious</span>
+                {' '}
+                -- you have expressed interest in
+                {' '}
+                <span className="yellow-bold">
+                  {raceMessage}
+                </span>
+                {' '}
+                {(bookFilters['race/ethnicity'].length > 1) ? ' cultures.' : ' culture.'}
+              </p>
+              <p className="results-text fade-in-animation-delay-6s">
+                We think you would enjoy the
+                {' '}
+                <span className="dark-blue-bold">
+                  {genreMessage}
+                </span>
+                {(bookFilters.genre.length > 1) ? ' genres ' : ' genre '}
+                based on your answers.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="arrow-button"
+              onClick={handleClickToBottom}
+            >
+              <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
+            </button>
+          </div>
+          <img className="cloud-image" src={CloudImage} alt="sky illustration with clouds" />
         </div>
-        <img style={{ position: 'relative', bottom: '2.5em', right: '15em' }} src={CloudImage} alt="sky illustration with clouds" />
-        <button
-          type="button"
-          style={{
-            border: 'none', background: 'none', position: 'relative', bottom: '300px',
-          }}
-          onClick={handleClickToBottom}
-        >
-          <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
-        </button>
-      </div>
       )}
       {/* here */}
       <div
         className="recommended-books-section-wrapper"
         style={{
-          background: isChild ? '#ffffff' : '#cbe7ee', height: isChild ? '100vh' : '70vh', marginTop: isChild ? '40vh' : '0',
+          background: isChild ? '#ffffff' : '#cbe7ee',
         }}
         ref={myRef}
       >
-        {isChild
-        && (
-        <button type="button" style={{ border: 'none', background: 'none' }} onClick={handleClickToTop}>
-          <img
-            src={UpArrow}
-            alt="bouncing arrow pointing upwards"
-            className="down-arrow-image"
-          />
-
-        </button>
-        )}
-        <div className="recommended-books-section-title-wrapper">
-          {isChild && <h2 className="results-text recommended-books-section-text">Here are some books we think you would love!</h2>}
-        </div>
-        <div className="recommended-books-wrapper">
-          <div style={{
-            margin: '0 auto', maxWidth: '100%', background: isChild ? 'default' : '#ffffff', borderRadius: isChild ? '0' : '30px',
-          }}
-          >
-            {!isChild && <p className="adult-results-text">Here are some books we think you would love!</p>}
-            {/* <BookList books={recommendedBooks} /> */}
-            <Carousel
-              elementArray={recommendedBooks}
-              slidesAtATime={6}
-              prevArrow={LeftArrow}
-              nextArrow={RightArrow}
-              widthPercent={100}
-              spaceBetweenEntries={16}
+        {isChild && (
+          <button type="button" className="arrow-button" onClick={handleClickToTop}>
+            <img
+              src={UpArrow}
+              alt="bouncing arrow pointing upwards"
+              className="down-arrow-image"
             />
-          </div>
-        </div>
-        <Box
-          component="span"
-          m={1}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+          </button>
+        )}
+        <div
+          style={{ background: isChild ? 'default' : '#ffffff' }}
+          className="recommended-books-wrapper"
         >
+          <p className="recommended-books-text">Here are some books we think you would love!</p>
+          <Carousel
+            elementArray={recommendedBooks}
+            slidesAtATime={6}
+            prevArrow={LeftArrow}
+            nextArrow={RightArrow}
+            widthPercent={100}
+            spaceBetweenEntries={16}
+          />
+        </div>
+        <div className="results-button-container">
           <NavLink style={{ textDecoration: 'none' }} to="/quiz">
             <Button
-              className="QuizButton"
-              style={{
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#ffffff',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                marginRight: '50px',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              }}
+              sx={styles.button}
             >
-              <p style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
-              }}
-              >
+              <p>
                 Re-take quiz
-
               </p>
-
             </Button>
           </NavLink>
           <NavLink style={{ textDecoration: 'none' }} to="/browser">
             <Button
-              className="QuizButton"
-              style={{
-                color: '#444444',
-                padding: '2em 0.5em 2em 0.5em',
-                margin: '1em auto 1em auto',
-                width: '300px',
-                height: '80.59px',
-                borderRadius: '30px',
-                background: '#ffffff',
-                display: 'flex',
-                border: '2px solid #d7d7d7',
-                textTransform: 'none',
-                '&:hover': {
-                  bgcolor: '#393EBA',
-                  color: 'white',
-                },
-              }}
+              sx={styles.button}
             >
-              <p style={{
-                fontFamily: 'DM Sans', fontWeight: 'bold', fontSize: '17px', textAlign: 'center', margin: '0 auto 0 auto',
-              }}
-              >
+              <p>
                 Search for Books
               </p>
             </Button>
           </NavLink>
-
-        </Box>
-
-        {!isChild && <img src={AdultCloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
+        </div>
+        {!isChild && <img src={CloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
       </div>
-    </div>
+    </>
   );
 }
 
