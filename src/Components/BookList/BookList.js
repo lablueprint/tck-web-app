@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination } from '@mui/material';
@@ -7,7 +8,7 @@ import {
 
 import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
-// import { useWindowSize } from '../Navigation/Header';
+import { useWindowSize } from '../Navigation/Header';
 import './BookList.css';
 
 // Sort functions for each sorting mode
@@ -103,6 +104,7 @@ function defaultNoResults() {
   );
 }
 function BookList({ books, NoResults }) {
+  const size = useWindowSize();
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(15);
 
@@ -159,7 +161,15 @@ function BookList({ books, NoResults }) {
         />
       </div>
 
-      <div className="wrapper">
+      <div
+        className="wrapper"
+        style={{
+          gridTemplateColumns: size.width > 1200 ? 'repeat(5, 1fr)'
+            : size.width > 1100 ? 'repeat(4, 1fr)'
+              : size.width > 850 ? 'repeat(3, 1fr)'
+                : size.width > 500 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
+        }}
+      >
         {currentBooks.map((book) => (
           <BookCard
             title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}

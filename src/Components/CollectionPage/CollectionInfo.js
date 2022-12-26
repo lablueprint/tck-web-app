@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useWindowSize } from '../Navigation/Header';
 import './CollectionPage.css';
 
@@ -36,8 +38,37 @@ export default function CollectionInfo({ name, description }) {
       && (
       <div>
         {isExpanded
-          ? (<button type="button" onClick={handleContract} style={{ background: 'none', border: 'none' }}><p className="collection-paragraph" style={{ fontFamily: 'DM Sans', color: '#006bc9', fontWeight: 'bold' }}>See less</p></button>)
-          : (<button type="button" onClick={handleExpand}>See more</button>)}
+          ? (
+            <button
+              type="button"
+              onClick={handleContract}
+              style={{
+                display: 'flex', flexDirection: 'row', background: 'none', border: 'none',
+              }}
+            >
+              <p className="collection-paragraph" style={{ fontFamily: 'DM Sans', color: '#006bc9', fontWeight: 'bold' }}>See Less</p>
+              <ExpandLessIcon style={{ color: '#006bc9' }} />
+            </button>
+          )
+          : (
+            <button
+              type="button"
+              onClick={handleExpand}
+              style={{
+                display: 'flex', flexDirection: 'row', background: 'none', border: 'none',
+              }}
+            >
+              <p
+                className="collection-paragraph"
+                style={{
+                  fontFamily: 'DM Sans', color: '#006bc9', fontWeight: 'bold', padding: '0',
+                }}
+              >
+                See More
+              </p>
+              <ExpandMoreIcon style={{ color: '#006bc9' }} />
+            </button>
+          )}
 
       </div>
       )}
