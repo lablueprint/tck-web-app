@@ -95,13 +95,14 @@ const PAGINATION_SX = {
     fontFamily: 'Work Sans',
     fontWeight: '600',
   },
-
 };
+
 function defaultNoResults() {
   return (
     <h1>Sorry, there&apos;s no books here! 😰</h1>
   );
 }
+
 function BookList({ books, NoResults }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(15);
@@ -146,6 +147,7 @@ function BookList({ books, NoResults }) {
           options={sortOptions}
           value={sort}
           handleChange={handleSort}
+          label="more sort options"
         />
 
         <ListMenu
@@ -153,9 +155,9 @@ function BookList({ books, NoResults }) {
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}
+          label="more items per page options"
         />
       </div>
-
       <div className="wrapper">
         {currentBooks.map((book) => (
           <BookCard
@@ -164,6 +166,7 @@ function BookList({ books, NoResults }) {
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
             key={book.fields.id}
             id={book.fields.id}
+            label={`Link to ${book.fields.title}`}
           />
         ))}
       </div>
