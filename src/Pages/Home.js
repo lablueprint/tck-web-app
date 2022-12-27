@@ -22,7 +22,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 
 const styles = {
   buttons: {
-    backgroundColor: '#EAF3FE',
+    backgroundColor: '#FFFFFF',
     color: '#1A296A',
     padding: '10px',
     width: '200px',
@@ -35,6 +35,11 @@ const styles = {
     margin: '7.5px',
     '@media (max-width: 700px)': {
       width: '90vw',
+    },
+    '&.MuiButtonBase-root:hover': {
+      bgcolor: '#EAF3FE',
+      color: '#393EBA',
+      borderColor: '#393EBA',
     },
   },
   buttonStack: {
