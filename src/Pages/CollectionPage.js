@@ -23,6 +23,7 @@ function CollectionPage() {
   const [collecID, setCollecID] = useState(null);
   const [collections, setCollections] = useState(null);
   const size = useWindowSize();
+
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
@@ -30,6 +31,7 @@ function CollectionPage() {
         setCollecID((params.id === 'init' ? records[0].id : params.id));
       });
   };
+
   const getCollectionFromID = () => {
     if (collecID !== null && collecID !== 'init') {
       base('Collection').find(
@@ -49,10 +51,10 @@ function CollectionPage() {
     getCollections();
   }, []);
   return (
-    <div style={{ margin: size.width > 600 ? '3em 6em 0 6em' : '3em 1em 0 0' }}>
+    <div style={{ margin: '1rem auto', width: size.width > 600 ? '85vw' : '95vw' }}>
       {size.width > 600 && (
       <p style={{
-        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: size.width > 500 ? '0 0 1em 7em' : '0 0 1em 10vw',
+        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '2rem 51px 1rem',
       }}
       >
         Please select a collection
@@ -79,7 +81,7 @@ function CollectionPage() {
       )
         : <p>An error might have occurred or the content requested is too big in size</p>}
 
-      <div style={{ margin: '0 0 0 3em' }}>
+      <div style={{ margin: '1rem auto', width: size.width > 600 ? '77vw' : '83vw' }}>
         { CollectionDetails !== null && CollectionDetails !== undefined
           ? (
             <CollectionInfo
