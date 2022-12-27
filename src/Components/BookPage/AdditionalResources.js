@@ -10,17 +10,21 @@ import EducatorLink from './EducatorLink';
 const styles = {
   sideCardContainer: {
     margin: 'auto 1vw auto 1vw',
-    minWidth: '18vw',
   },
   sideCard: {
+    minWidth: '18vw',
+    width: 'min-content',
     borderRadius: '1.31em',
     marginBottom: '4vh',
     background: '#FDFDFD',
     boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.05)',
     border: '0.5px solid #E8E8E8',
+    '@media (max-width: 1440px)': {
+      minWidth: '22vw',
+    },
     '@media (max-width: 960px)': {
-      width: '85%',
-      margin: 'auto',
+      width: '95%',
+      margin: 'auto 2vw',
     },
   },
   sideCardTitle: {
@@ -40,10 +44,10 @@ const styles = {
   linkUI: {
     textDecoration: 'none',
     color: '#3477DE',
-    fontWeight: '700',
+    fontWeight: '400',
     lineHeight: '1.8em',
     fontSize: '1.05em',
-    display: 'block',
+    fontFamily: 'DM Sans',
   },
 };
 
@@ -55,14 +59,15 @@ function AdditionalResources({ readAloudURL, educatorURLs }) {
       key={uuidv4()}
     />
   ));
-  return (
+  const hydrated = readAloudURL || educatorURLs.length !== 0;
+  return hydrated && (
     <Card sx={styles.sideCard}>
       <CardContent>
         <Box sx={styles.sideCardContainer}>
           <Typography sx={styles.sideCardTitle}>Additional Resources</Typography>
           <Box sx={styles.sideCardLinkContainer}>
             { (readAloudURL) && (
-            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank">
+            <LinkUI sx={styles.linkUI} href={readAloudURL} rel="noreferrer" target="_blank" aria-label="Go to the story read aloud">
               Story Read Aloud
             </LinkUI>
             ) }

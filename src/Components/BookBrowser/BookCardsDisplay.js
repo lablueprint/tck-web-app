@@ -134,7 +134,6 @@ function BookCardsDisplay({
   // Filter function
   useEffect(() => {
     if (alignment === 'Filter') {
-      console.log(multiSelectInput);
       incomingGradeIndices = rangeInput.grade;
       incomingAgeIndices = rangeInput.age;
 

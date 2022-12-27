@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Box,
@@ -28,8 +28,24 @@ function BookSynopsis({
   genre, themesLessons, religion, ageMin, ageMax, gradeMin, gradeMax, authors,
   illustrators, bookType, datePublished,
 }) {
-  return (
-    <Box sx={styles.synopsis}>
+  const [width, setWidth] = useState(
+    window.innerWidth,
+  );
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 960;
+  const desktop = (
+    <>
       <BookCover
         title={title}
         imageURL={imageURL}
@@ -38,11 +54,42 @@ function BookSynopsis({
         genre={genre}
         themesLessons={themesLessons}
         religion={religion}
+        isMobile={isMobile}
       />
       <BookDesc
         title={title}
         desc={desc}
       />
+    </>
+  );
+
+  const mobile = (
+    <>
+      <BookDesc
+        title={title}
+        isMobile
+      />
+      <BookCover
+        title={title}
+        imageURL={imageURL}
+        identityTags={identityTags}
+        raceEthnicity={raceEthnicity}
+        genre={genre}
+        themesLessons={themesLessons}
+        religion={religion}
+        isMobile={isMobile}
+      />
+      <BookDesc
+        desc={desc}
+        isMobile
+      />
+
+    </>
+  );
+
+  return (
+    <Box sx={styles.synopsis}>
+      { (isMobile) ? mobile : desktop}
       <div>
         <AboutBook
           authors={authors}
@@ -116,20 +163,6 @@ BookSynopsis.defaultProps = {
   datePublished: '',
 };
 
-/* TO DO
-  1. Books like this
-      Components({bookID}) {
-        use RecFilter to get array of similar books
-        for each similar book, grab creators
-        put in carousel
-      }
-    4. See More and arrow hover needs to be in sync
-      -idk lol not important
-
-  const [readAloudTitle, setReadAloudTitle] = useState('');
-  const getReadAloudTitle = () => {
-    fetch(`https://noembed.com/embed?dataType=json&url=${vidurl}`)
-  .then(res => res.json())
-  .then(data => console.log('fetch', data.title))
-  };
+/*
+  - The <div> around <AboutBook> and <AdditionalResources> is necessary!!!!
 */
