@@ -95,13 +95,14 @@ const PAGINATION_SX = {
     fontFamily: 'Work Sans',
     fontWeight: '600',
   },
-
 };
+
 function defaultNoResults() {
   return (
     <h1>Sorry, there&apos;s no books here! 😰</h1>
   );
 }
+
 function BookList({ books, NoResults }) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(15);
@@ -157,7 +158,6 @@ function BookList({ books, NoResults }) {
           label="more items per page options"
         />
       </div>
-
       <div className="wrapper">
         {currentBooks.map((book) => (
           <BookCard

@@ -1,7 +1,6 @@
 .menu-wrapper{
     display: flex;
     flex-direction: column;
-    row-gap: 10; 
 }
 
 .multiselect-grid{
@@ -36,6 +35,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
     width: 99%;
     margin-bottom: 1vh;
 }
@@ -43,8 +43,7 @@
 .cancel-and-go-button-wrapper{
     text-align: right;
     text-transform: none;
-    margin: 1vh 2vw 1vh 2vw;
-    padding: 2vh 1vw 2vh 5vw;
+    margin: 2vh 2vw 1vh 6vw;
 }
 
 .filterlabel-text{
