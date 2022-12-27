@@ -11,6 +11,7 @@ import RightArrow from '../../Assets/Images/right-arrow.svg';
 import LeftArrow from '../../Assets/Images/left-arrow.svg';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/quiz-results-cloud.png';
+
 import './QuizResultsPage.css';
 
 const styles = {
@@ -28,6 +29,7 @@ const styles = {
     height: '4rem',
     width: '16rem',
     textDecoration: 'none',
+    zIndex: 'inherit',
 
     '&:hover': {
       bgcolor: '#EAF3FE',
@@ -185,6 +187,7 @@ function ResultsPage({ bookFilters, isChild }) {
         className="recommended-books-section-wrapper"
         style={{
           background: isChild ? '#ffffff' : '#cbe7ee',
+          minHeight: isChild ? '85vh' : '60vh',
         }}
         ref={myRef}
       >
@@ -217,7 +220,7 @@ function ResultsPage({ bookFilters, isChild }) {
               sx={styles.button}
             >
               <p>
-                Re-take quiz
+                Retake quiz
               </p>
             </Button>
           </NavLink>
@@ -231,7 +234,6 @@ function ResultsPage({ bookFilters, isChild }) {
             </Button>
           </NavLink>
         </div>
-        {!isChild && <img src={CloudImage} style={{ position: 'relative', bottom: '160px' }} alt="clouds enveloping the recommendations" />}
       </div>
     </>
   );

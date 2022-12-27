@@ -80,8 +80,8 @@ function valueLabelFormat(value) {
 
 const minDistance = 0;
 
-export default function GradeSlider({ parentCallback }) {
-  const [value1, setValue1] = React.useState([-1, 12]);
+export default function GradeSlider({ parentCallback, minInit, maxInit }) {
+  const [value1, setValue1] = React.useState([minInit, maxInit]);
 
   const handleChange1 = (event, newValue, activeThumb) => {
     parentCallback(newValue[0], newValue[1]);
@@ -123,4 +123,6 @@ export default function GradeSlider({ parentCallback }) {
 
 GradeSlider.propTypes = {
   parentCallback: propTypes.func.isRequired,
+  minInit: propTypes.number.isRequired,
+  maxInit: propTypes.number.isRequired,
 };

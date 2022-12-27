@@ -22,7 +22,11 @@ export default function Quiz2({
           ? 'What grade levels are you looking for?'
           : 'Which grade levels do you feel comfortable reading at?'}
       </h1>
-      <GradeSlider parentCallback={callback} />
+      <GradeSlider
+        parentCallback={callback}
+        minInit={bookFilters.minGrade}
+        maxInit={bookFilters.maxGrade}
+      />
       <ProgressBar
         progress={20}
         onBack={handleBack}
