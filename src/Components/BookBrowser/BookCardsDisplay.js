@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
 import NoResults from '../BookList/NoResults';
+import Loading from '../Loading/Loading';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -170,7 +171,7 @@ function BookCardsDisplay({
   }, [rangeInput, multiSelectInput, alignment]);
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading />;
   }
 
   return (
