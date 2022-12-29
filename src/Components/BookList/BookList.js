@@ -163,12 +163,12 @@ function BookList({ books, NoResults }) {
 
       <div
         className="wrapper"
-        style={{
-          gridTemplateColumns: size.width > 1200 ? 'repeat(5, 1fr)'
-            : size.width > 1100 ? 'repeat(4, 1fr)'
-              : size.width > 850 ? 'repeat(3, 1fr)'
-                : size.width > 500 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
-        }}
+        // style={{
+        //   gridTemplateColumns: size.width > 1200 ? 'repeat(5, 1fr)'
+        //     : size.width > 1100 ? 'repeat(4, 1fr)'
+        //       : size.width > 850 ? 'repeat(3, 1fr)'
+        //         : size.width > 500 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
+        // }}
       >
         {currentBooks.map((book) => (
           <BookCard

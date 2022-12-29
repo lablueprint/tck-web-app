@@ -20,8 +20,12 @@
 }
 
 .wrapper {
-    display: grid;
-    grid-auto-rows: minmax(100px, auto);
+    display: flex;
+    flex-direction: row;
+    column-gap: 1fr;
+    flex-flow:row wrap;
+    /* width:100%; */
+    /* grid-auto-rows: minmax(100px, auto); */
     /* border: 2px solid red; */
     margin-left: -23px;
     
