@@ -59,7 +59,7 @@ const styles = {
   header: {
     background: 'white',
     boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
-    minHeight: '50px',
+    minHeight: '64px',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
@@ -67,6 +67,14 @@ const styles = {
     alignItems: 'center',
     padding: '0 2%',
     zIndex: (theme) => theme.zIndex.drawer + 1,
+  },
+  drawerContainer: {
+    width: { xs: '100vw', sm: 300 },
+    marginTop: { xs: '8rem', sm: '6rem' },
+  },
+  drawer: {
+    display: { sm: 'block', md: 'none' },
+    '& .MuiDrawer-paper': { boxSizing: 'border-box' },
   },
 };
 
@@ -112,10 +120,7 @@ function Header() {
     <Box
       role="presentation"
       onClick={handleDrawerToggle}
-      sx={{
-        width: { xs: '100vw', sm: 300 },
-        marginTop: { xs: '8rem', sm: '6rem' },
-      }}
+      sx={styles.drawerContainer}
     >
       {options.map((option) => (
         <NavLink
@@ -144,7 +149,7 @@ function Header() {
 
   const size = useWindowSize();
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <AppBar position="fixed" sx={styles.header}>
         <NavLink
           to="/"
@@ -152,7 +157,7 @@ function Header() {
         >
           <img src={Logo} className="logo" alt="The Conscious Kid logo" />
         </NavLink>
-        { size.width > 910 ? (
+        { size.width > 900 ? (
           <HeaderTabs value={location.pathname}>
             {options.map((option) => (
               <HeaderTab
@@ -183,10 +188,7 @@ function Header() {
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
-          sx={{
-            display: { sm: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box' },
-          }}
+          sx={styles.drawer}
         >
           {drawer}
         </Drawer>
@@ -196,38 +198,3 @@ function Header() {
 }
 
 export default Header;
-
-// <Tabs
-// color="primary"
-// value={alignment}
-// onChange={handleChange}
-// sx={styles.tabGroup}
-// >
-// <Tab
-//   value="Filter"
-//   label="Filter"
-//   icon={<Tune />}
-//   iconPosition="start"
-//   sx={styles.tab}
-// />
-// <Tab
-//   value="Search"
-//   label="Search"
-//   icon={<Search />}
-//   iconPosition="start"
-//   sx={styles.tab}
-// />
-// </Tabs>
-
-// const styles = {
-//   tab: {
-//     textTransform: 'none',
-//     font: 'DM Sans',
-//     fontWeight: 'bold',
-//     fontSize: '15px',
-//     paddingBottom: '0px',
-//   },
-//   tabGroup: {
-//     margin: '1vh auto 4vh 4vw',
-//   },
-// };
