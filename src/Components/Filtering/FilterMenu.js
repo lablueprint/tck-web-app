@@ -21,7 +21,6 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 const styles = {
   homepageButton: {
     textTransform: 'none',
-    marginLeft: '3vw',
     fontFamily: 'DM Sans',
   },
   resetButton: {
@@ -143,7 +142,6 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
           </Button>
         </div>
       </div>
-
     </div>
   );
 }

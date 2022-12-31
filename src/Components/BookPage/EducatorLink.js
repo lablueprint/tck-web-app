@@ -11,7 +11,7 @@ const styles = {
     fontWeight: '700',
     lineHeight: '1.8em',
     fontSize: '1.05em',
-    display: 'block',
+    display: 'inline-block',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -60,6 +60,7 @@ function EducatorLink({ url, index }) {
         key={url}
         rel="noreferrer"
         target="_blank"
+        aria-label={`Link for education guide #${index + 1}`}
       >
         {url}
       </LinkUI>

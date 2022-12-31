@@ -1,65 +1,173 @@
-/* eslint-disable react/button-has-type */
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
-  Card, CardActions, CardContent, Button, Grid, Avatar,
+  Card, CardActions, CardContent, Button, Grid, Avatar, Typography, Box,
 } from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid';
 import './DictionaryCard.css';
+import LetterA from '../../Assets/Dictionary/LetterA.svg';
+import LetterB from '../../Assets/Dictionary/LetterB.svg';
+import LetterC from '../../Assets/Dictionary/LetterC.svg';
+import LetterD from '../../Assets/Dictionary/LetterD.svg';
+import LetterE from '../../Assets/Dictionary/LetterE.svg';
+import LetterF from '../../Assets/Dictionary/LetterF.svg';
+import LetterG from '../../Assets/Dictionary/LetterG.svg';
+import LetterH from '../../Assets/Dictionary/LetterH.svg';
+import LetterI from '../../Assets/Dictionary/LetterI.svg';
+import LetterJ from '../../Assets/Dictionary/LetterJ.svg';
+import LetterK from '../../Assets/Dictionary/LetterK.svg';
+import LetterL from '../../Assets/Dictionary/LetterL.svg';
+import LetterM from '../../Assets/Dictionary/LetterM.svg';
+import LetterN from '../../Assets/Dictionary/LetterN.svg';
+import LetterO from '../../Assets/Dictionary/LetterO.svg';
+import LetterP from '../../Assets/Dictionary/LetterP.svg';
+import LetterQ from '../../Assets/Dictionary/LetterQ.svg';
+import LetterR from '../../Assets/Dictionary/LetterR.svg';
+import LetterS from '../../Assets/Dictionary/LetterS.svg';
+import LetterT from '../../Assets/Dictionary/LetterT.svg';
+import LetterU from '../../Assets/Dictionary/LetterU.svg';
+import LetterV from '../../Assets/Dictionary/LetterV.svg';
+import LetterW from '../../Assets/Dictionary/LetterW.svg';
+import LetterX from '../../Assets/Dictionary/LetterX.svg';
+import LetterY from '../../Assets/Dictionary/LetterY.svg';
+import LetterZ from '../../Assets/Dictionary/LetterZ.svg';
+
+const styles = {
+  seeMoreContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  seeMoreText: {
+    fontFamily: 'DM Sans',
+    fontWeight: 700,
+    fontSize: '0.875em',
+    color: '#0068C9',
+    paddingTop: 2,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+  seeMoreIcon: {
+    fontSize: '1em',
+    color: '#0068C9',
+    paddingTop: 2,
+    '&:hover': {
+      color: '#669afa',
+      cursor: 'pointer',
+    },
+  },
+};
 
 export default function DictionaryCard({
   word, def, links, phoeneticSpelling,
 }) {
   const [showMore, setShowMore] = useState(false);
+
+  /* Split links */
   const linksArray = links.split('\n');
   if (linksArray.length !== 0) { linksArray.pop(); }
+
+  /* Map each letter to image */
+  const mapping = {
+    A: LetterA,
+    B: LetterB,
+    C: LetterC,
+    D: LetterD,
+    E: LetterE,
+    F: LetterF,
+    G: LetterG,
+    H: LetterH,
+    I: LetterI,
+    J: LetterJ,
+    K: LetterK,
+    L: LetterL,
+    M: LetterM,
+    N: LetterN,
+    O: LetterO,
+    P: LetterP,
+    Q: LetterQ,
+    R: LetterR,
+    S: LetterS,
+    T: LetterT,
+    U: LetterU,
+    V: LetterV,
+    W: LetterW,
+    X: LetterX,
+    Y: LetterY,
+    Z: LetterZ,
+  };
+
+  /* Get first letter and make upper case  */
+  const firstLet = (str) => (JSON.stringify(str).substring(9, 10));
+  const displayLet = firstLet({ word }).toUpperCase();
+
   return (
     <Card sx={{
-      borderRadius: 8, margin: 4, boxShadow: 5, marginRight: 20, marginLeft: 20,
+      borderRadius: 8,
+      boxShadow: 2,
+      marginTop: 4,
     }}
     >
       <CardContent>
         <div className="img">
-          <Avatar sx={{ height: '88px', width: '106px' }} alt="Dictionary Image" src="https://s3-alpha-sig.figma.com/img/cdf3/8f12/dd7dc80a699c7b042305b07487abb14a?Expires=1651449600&Signature=G5zsVsD1S2f55Nby1uu~w87yOv71xEx9cVIEgw3Xvn5ekN~9j~FHizLWiY1~NP9ojNWN7nnaqAscFx8~6Y1Km8aZdtnfnUVKfZDgrVY~yzteGQ8XBgqEVs4N-LTx8YJzuzKjPH2Dv0BgQD-axt40s3-JKScphqgm-6v7YFhl1bqsvWUtdgDtvwitalLNqG-e9tqLzTxm57swJqJA6rxmcVRJhe4B-s7~ib0WUcZd~ztQDs2Pl4cN2tI4J-lS~VZON3q-aEGmudube7W9Ox6oCIC1oOikLy1R4cmWhv-o7ZWJ-10vLTONAvaBN5Sg07sygqekuoz~GmU-GxCk1ThKBw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
-          <div className="term">
-            {word}
-          </div>
-          <div className="phonetic-spelling">
-            [
-            {phoeneticSpelling}
-            ]
+          <Avatar
+            sx={{
+              height: '110px',
+              width: '110px',
+              '@media screen and (max-width: 960px)': {
+                height: '75px',
+                width: '75px',
+              },
+            }}
+            alt="Dictionary Image"
+            src={mapping[displayLet]}
+          />
+          <div className="wrap-term-and-phonetic-spelling">
+            <div className="term">
+              {word}
+            </div>
+            <div className="phonetic-spelling">
+              [
+              {phoeneticSpelling}
+              ]
+            </div>
           </div>
         </div>
         <div className="body">
           {def.length < 250 ? def
             : (
               <div>
-                {showMore ? def : `${def.substring(0, 250)}`}
-                <Button className="card-button" onClick={() => setShowMore(!showMore)}>
-                  {showMore ? 'See less' : 'See more'}
-                </Button>
+                {showMore ? def : `${def.substring(0, 250)}...`}
+                <Box sx={styles.seeMoreContainer} onClick={() => setShowMore(!showMore)}>
+                  <Typography sx={styles.seeMoreText}>
+                    {showMore ? 'See Less' : 'See More'}
+                  </Typography>
+                  { (showMore) ? <KeyboardArrowUp sx={styles.seeMoreIcon} />
+                    : <KeyboardArrowDown sx={styles.seeMoreIcon} />}
+                </Box>
               </div>
             )}
         </div>
       </CardContent>
-      <div style={{ padding: 10 }}>
-        <CardActions style={{ justifyContent: 'left', marginLeft: 75 }}>
+      <div className="wrap-more-resources-and-links">
+        <CardActions sx={{ justifyContent: 'left', marginLeft: '15%' }}>
           <div>
             { linksArray.length !== 0 ? (
               <Grid
-                style={{ paddingLeft: 15 }}
                 sx={{
                   display: 'grid', gridTemplateColumns: 'repeat(4, auto)', rowGap: 2, columnGap: 2,
                 }}
               >
                 <div className="more-resources">
-                  More Resources:
+                  Resources:
                 </div>
                 <div>
                   {linksArray.filter((v) => Object.keys(v).length).map((url) => (
                     <Button
+                      className="more-resources-links"
                       key={uuidv4()}
-                      style={{ textTransform: 'none', color: '#607AAD', fontSize: '15px' }}
                       href={url}
                     >
                       {url}

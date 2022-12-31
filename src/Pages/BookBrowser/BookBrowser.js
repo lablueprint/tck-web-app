@@ -13,13 +13,14 @@ const styles = {
     textTransform: 'none',
     font: 'DM Sans',
     fontWeight: 'bold',
-    fontSize: '15px',
+    fontSize: '1em',
     paddingBottom: '0px',
   },
   tabGroup: {
-    margin: '1vh auto 4vh 4vw',
+    margin: '0 auto 3vh 4vw',
   },
 };
+
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Filter');
 
@@ -92,7 +93,6 @@ function BookBrowser() {
               />
             )
         }
-
           </div>
         </div>
       </div>
