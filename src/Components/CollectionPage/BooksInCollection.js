@@ -13,11 +13,21 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
 function BooksInCollection({ authorId }) {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState('init');
+  const [loadingMsg, setLoadingMsg] = useState('Loading ...');
+
+  // useEffect(() => {
+  //   if (loadingMsg === 'Loading ...') {
+  //     console.log('are we here?');
+  //     setTimeout(() => setLoadingMsg('Sorry, there\'s no books here! 😰'), 5000);
+  //   }
+  // }, [loadingMsg]);
+
   function FindPosts() {
     const id = authorId;
     base('Collection').find(id, (err, records) => {
       if (err) {
+        setLoadingMsg('Sorry, an error occurred :(');
         console.error(err);
       }
       const bookid = records.fields.books;
@@ -25,6 +35,7 @@ function BooksInCollection({ authorId }) {
         bookid.forEach((element) => {
           base('Book').find(element, (error, record) => {
             if (error) {
+              setLoadingMsg('Sorry, an error occurred :(');
               console.error(err);
             }
             setBooks((prevBooks) => [...prevBooks, record]);
@@ -32,16 +43,19 @@ function BooksInCollection({ authorId }) {
         });
       }
     });
+    if (!books.length) { setLoadingMsg('Sorry, there\'s no books here! 😰'); }
   }
 
   useEffect(() => {
+    setLoadingMsg('Loading ...');
     setBooks([]);
     FindPosts();
   }, [authorId]);
 
   return (
+
     <div style={{ margin: '0' }}>
-      <BookList books={books} />
+      {books !== 'init' && books.length ? <BookList books={books} /> : <h1>{loadingMsg}</h1>}
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Typography, Link } from '@mui/material';
-import NoResultsPicture from '../../Assets/Images/no-results.svg';
+import NoResultsPicture from '../../Assets/Images/no-results.png';
 import { useNavigate } from 'react-router-dom';
 
 

@@ -8,8 +8,8 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import LeftArrow from '../Assets/Images/left-arrow-author-page.svg';
-import RightArrow from '../Assets/Images/right-arrow-author-page.svg';
+import LeftArrow from '../Assets/Images/left-arrow-author-page.png';
+import RightArrow from '../Assets/Images/right-arrow-author-page.png';
 
 const Airtable = require('airtable');
 

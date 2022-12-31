@@ -11,7 +11,15 @@
     justify-content:flex-start;
     background: none;
     flex-direction: column;
-    max-width:220px;
+    max-width:200px;
+}
+
+.card-in-carousel{
+    margin: 0;
+    display: flex;
+    justify-content:flex-start;
+    background: none;
+    flex-direction: column;
 }
 
 .card-action-area {

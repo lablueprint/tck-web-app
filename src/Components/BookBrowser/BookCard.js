@@ -37,9 +37,10 @@ export default function BookCard({
 
   const [authorVar, setAuthor] = useState([]);
 
+  // retrieving ids of authors from names
   const getAuthor = () => {
     author.forEach((name) => {
-      console.log(author);
+      // console.log(author);
       if (name === 'MISSING CREATOR') { setAuthor(name); return; }
       base('Creator').find(name, (err, record) => {
         if (err) { console.error(err); }
@@ -52,11 +53,7 @@ export default function BookCard({
 
   return ( // horizontal scroll not implemented
     <div
-      className="card"
-      style={{
-        margin: inCarousel ? '0' : '10px 32px 10px 0px',
-
-      }}
+      className={`card${inCarousel ? '-in-carousel' : ''}`}
     >
       <Link className="link" to={`/book/${id}`}>
         <div className="card-action-area">

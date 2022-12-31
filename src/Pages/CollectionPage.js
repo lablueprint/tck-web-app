@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
-import PrevArrow from '../Assets/Images/left-arrow-author-page.svg';
-import NextArrow from '../Assets/Images/right-arrow-author-page.svg';
+import PrevArrow from '../Assets/Images/left-arrow-author-page.png';
+import NextArrow from '../Assets/Images/right-arrow-author-page.png';
 import { useWindowSize } from '../Components/Navigation/Header';
 // airtable configuration
 const Airtable = require('airtable');
@@ -17,12 +17,30 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
+// function LoadingMsg() {
+//   const [loadingMsg, setLoadingMsg] = useState('Loading ...');
+//   useEffect(() => {
+//     const timer = setTimeout(setLoadingMsg('No such collection found!'), 5000);
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   return (
+//     <p>{loadingMsg}</p>
+//   );
+// }
 function CollectionPage() {
   const [CollectionDetails, setCollectionDetails] = useState(null);
   const params = useParams();
   const [collecID, setCollecID] = useState(null);
   const [collections, setCollections] = useState(null);
   const size = useWindowSize();
+  const [loadingMsg, setLoadingMsg] = useState('Loading ...');
+
+  // useEffect(() => {
+  //   if (loadingMsg === 'Loading ...') {
+  //     setTimeout(() => setLoadingMsg('No such collection found!'), 3000);
+  //   }
+  // }, [loadingMsg]);
 
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
@@ -33,20 +51,29 @@ function CollectionPage() {
   };
 
   const getCollectionFromID = () => {
+    setLoadingMsg('Loading ...');
+    // setTimeout(setLoadingMsg('No such collection found!'), 5000);
     if (collecID !== null && collecID !== 'init') {
-      base('Collection').find(
-        collecID,
-        (err, record) => {
-          if (err) { console.error(err); }
-          setCollectionDetails(record);
-        },
-      );
+      const record = collections.find((element) => element.id === collecID);
+      setCollectionDetails(record);
+      // base('Collection').find(
+      //   collecID,
+      //   (err, record) => {
+      //     if (err) {
+      //       setLoadingMsg('Cannot find that collection right now! Check back in later!');
+      //       console.error(err);
+      //     }
+      //     setCollectionDetails(record);
+      //   },
+      // );
     }
   };
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
-  useEffect(getCollectionFromID, [collecID]);
+  useEffect(() => {
+    getCollectionFromID();
+  }, [collecID]);
   useEffect(() => {
     getCollections();
   }, []);
@@ -82,18 +109,19 @@ function CollectionPage() {
         : <p>An error might have occurred or the content requested is too big in size</p>}
 
       <div style={{ margin: '1rem auto', width: size.width > 600 ? '77vw' : '83vw' }}>
-        { CollectionDetails !== null && CollectionDetails !== undefined
-          ? (
+        {CollectionDetails !== undefined && CollectionDetails !== null
+         && CollectionDetails.id === collecID
+          ? ((
             <CollectionInfo
               name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
               description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
               picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
             />
-          ) : <p>No such collection found!</p> }
+          )) : <p>{loadingMsg}</p> }
         { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
           ? (
             <BooksInCollection authorId={collecID} />
-          ) : <p>No such collection found!</p> }
+          ) : <p>{loadingMsg}</p> }
 
       </div>
     </div>

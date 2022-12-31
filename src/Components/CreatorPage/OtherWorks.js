@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import propTypes from 'prop-types';
 import './OtherWorks.css';
-import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
-import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
+import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.png';
+import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.png';
 import Carousel from './BookCarousel';
 
 const styles = {

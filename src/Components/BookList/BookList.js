@@ -8,7 +8,7 @@ import {
 
 import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
-import { useWindowSize } from '../Navigation/Header';
+// import { useWindowSize } from '../Navigation/Header';
 import './BookList.css';
 
 // Sort functions for each sorting mode
@@ -104,7 +104,7 @@ function defaultNoResults() {
   );
 }
 function BookList({ books, NoResults }) {
-  const size = useWindowSize();
+  // const size = useWindowSize();
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(15);
 

@@ -10,15 +10,15 @@ import SwiperCore, {
 } from 'swiper';
 import { v4 as uuidv4 } from 'uuid';
 import CollectionCard from './CollectionCard';
-import primaryBlueIcon from '../../Assets/Images/collection-header-primary-blue-icon.svg';
-import blackIcon from '../../Assets/Images/black-card-icon-collection-header.svg';
-import redIcon from '../../Assets/Images/red-card-icon-collection-header.svg';
-import orangeIcon from '../../Assets/Images/orange-card-icon-collection-header.svg';
-import greenIcon from '../../Assets/Images/green-card-icon-collection-header.svg';
-import royalBlueIcon from '../../Assets/Images/royal-blue-card-icon-collection-header.svg';
-import pinkIcon from '../../Assets/Images/pink-icon-card-collection-header.svg';
-import maroonIcon from '../../Assets/Images/maroon-icon-card-collection-header.svg';
-import purpleIcon from '../../Assets/Images/purple-icon-card-collection-header.svg';
+import primaryBlueIcon from '../../Assets/Images/collection-header-primary-blue-icon.png';
+import blackIcon from '../../Assets/Images/black-card-icon-collection-header.png';
+import redIcon from '../../Assets/Images/red-card-icon-collection-header.png';
+import orangeIcon from '../../Assets/Images/orange-card-icon-collection-header.png';
+import greenIcon from '../../Assets/Images/green-card-icon-collection-header.png';
+import royalBlueIcon from '../../Assets/Images/royal-blue-card-icon-collection-header.png';
+import pinkIcon from '../../Assets/Images/pink-icon-card-collection-header.png';
+import maroonIcon from '../../Assets/Images/maroon-icon-card-collection-header.png';
+import purpleIcon from '../../Assets/Images/purple-icon-card-collection-header.png';
 
 export const collectionCardColors = [{ backgroundColor: '#393EBA', icon: primaryBlueIcon }, { backgroundColor: '#333333', icon: blackIcon }, { backgroundColor: '#F99E16', icon: orangeIcon }, { backgroundColor: '#3477DE', icon: royalBlueIcon }, { backgroundColor: '#E85757', icon: redIcon }, { backgroundColor: '#20B28F', icon: greenIcon }, { backgroundColor: '#E375DF', icon: pinkIcon }, { backgroundColor: '#B5387C', icon: maroonIcon }, { backgroundColor: '#963CB6', icon: purpleIcon }];
 

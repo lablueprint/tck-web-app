@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { Typography } from '@mui/material';
-import RightArrow from '../../Assets/Images/right-arrow.svg';
-import LeftArrow from '../../Assets/Images/left-arrow.svg';
+import RightArrow from '../../Assets/Images/right-arrow.png';
+import LeftArrow from '../../Assets/Images/left-arrow.png';
 import Carousel from '../CreatorPage/BookCarousel';
 import RecFilter from '../Recommendations/BookRec';
 

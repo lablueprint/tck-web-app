@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import Carousel from '../Components/CreatorPage/BookCarousel';
-import LeftArrow from '../Assets/Images/left-arrow.svg';
-import RightArrow from '../Assets/Images/right-arrow.svg';
+import LeftArrow from '../Assets/Images/left-arrow.png';
+import RightArrow from '../Assets/Images/right-arrow.png';
 import './PagesTemp.css';
 
 // Airtable Configuration
