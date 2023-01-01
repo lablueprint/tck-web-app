@@ -5,6 +5,7 @@ import {
 import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
+import Loading from '../Components/Loading/Loading';
 
 import Logo from '../Assets/Images/TCK PNG Logo.png';
 
@@ -132,7 +133,7 @@ function BookPage() {
   // This is for when we are WAITING for Airtable response
   // We return here before we try to do any bad data accesses
   if (!book && !isLoaded) {
-    return <div>Loading! 🤖</div>;
+    return <Loading />;
   }
   // This is for when Airtable call fails
   if (!book && isLoaded) {

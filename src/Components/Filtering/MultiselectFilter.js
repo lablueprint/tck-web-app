@@ -8,18 +8,9 @@ import { styled } from '@mui/material/styles';
 const CustomAutocomplete = styled(Autocomplete)({
   background: '#FFFFFF',
   border: '0.5px solid rgba(0, 0, 0, 0.3)',
-  height: '50px',
   borderRadius: '5px',
-  '& .MuiAutocomplete-inputRoot': {
-    height: '100%',
-  },
 });
 
-const styles = {
-  textField: {
-    height: '50px',
-  },
-};
 export default function MultiselectFilter({
   filterOptions, input, setInput, filterLabel, filterName,
 }) {
@@ -37,17 +28,17 @@ export default function MultiselectFilter({
           multiple
           options={result}
           filterSelectedOptions
+          limitTags={1}
           onChange={(event, value) => handleToggle(
             value,
             filterName,
             event,
           )}
+          value={input[filterName]}
           renderInput={(params) => (
             <TextField
               {...params}
-              // placeholder={filterOptions ? `'${result[0]}...'` : null}
               size="small"
-              sx={styles.textField}
             />
           )}
         />

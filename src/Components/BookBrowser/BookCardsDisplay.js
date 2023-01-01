@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
 import NoResults from '../BookList/NoResults';
+import Loading from '../Loading/Loading';
 
 // airtable configuration
 const Airtable = require('airtable');
@@ -18,6 +19,7 @@ const base = new Airtable({ apiKey: airtableConfig.apiKey })
 function BookCardsDisplay({
   searchTerms, searchCategory, alignment, rangeInput, multiSelectInput,
 }) {
+  const [loading, setLoading] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   let incomingGradeIndices = [0, 0];
@@ -30,6 +32,7 @@ function BookCardsDisplay({
       .then((records) => {
         setAllBooks(records);
         setFilteredBooks(records);
+        setLoading(false);
       });
   };
 
@@ -124,12 +127,18 @@ function BookCardsDisplay({
   useEffect(() => {
     if (alignment === 'Search') {
       if (searchTerms) {
-        (async () => searchByTerm())();
+        setLoading(true);
+        (async () => searchByTerm().then(setLoading(false)))();
       } else {
         setFilteredBooks(allBooks);
       }
     }
   }, [allBooks, searchTerms, searchCategory, alignment]);
+
+  const multiSelectFilter = (record, field) => multiSelectInput[field].length === 0
+    || (record.fields[field] !== undefined
+      ? record.fields[field].some((value) => multiSelectInput[field].indexOf(value) !== -1)
+      : false);
 
   // Filter function
   useEffect(() => {
@@ -137,9 +146,8 @@ function BookCardsDisplay({
       incomingGradeIndices = rangeInput.grade;
       incomingAgeIndices = rangeInput.age;
 
-      setFilteredBooks(allBooks.filter(
+      const tempBooks = allBooks.filter(
         (record) => {
-          console.log(record);
           recordGradeIndices[0] = gradeRangeMetadata.indexOf(record.fields.grade_min);
           recordGradeIndices[1] = gradeRangeMetadata.indexOf(record.fields.grade_max);
           recordAgeIndices[0] = ageRangeMetadata.indexOf(record.fields.age_min);
@@ -147,45 +155,24 @@ function BookCardsDisplay({
           return (
             ((incomingGradeIndices[0] + 1) <= recordGradeIndices[1])
             && ((incomingGradeIndices[1] + 1) >= recordGradeIndices[0])
-        && ((incomingAgeIndices[0] + 1) <= recordAgeIndices[1])
-        && ((incomingAgeIndices[1] + 1) >= recordAgeIndices[0])
-      && (multiSelectInput['race/ethnicity'].length === 0
-         || (record.fields['race/ethnicity'] !== undefined
-           ? record.fields['race/ethnicity'].some((value) => multiSelectInput['race/ethnicity'].indexOf(value) !== -1)
-           : false))
-      && (multiSelectInput.religion.length === 0
-        || (record.fields.religion !== undefined
-          ? record.fields.religion.some((value) => multiSelectInput.religion.indexOf(value) !== -1)
-          : false))
-      && (multiSelectInput.identity_tags.length === 0
-        || (record.fields.identity_tags !== undefined
-          ? record.fields.identity_tags.some(
-            (value) => multiSelectInput.identity_tags.indexOf(value)
-           !== -1,
-          )
-          : false
-        ))
-      && (multiSelectInput['theme/lessons'].length === 0
-        || (record.fields['theme/lessons'] !== undefined
-          ? record.fields['theme/lessons'].some((value) => multiSelectInput['theme/lessons'].indexOf(value)
-           !== -1)
-          : false
-        ))
-      && (multiSelectInput.book_type.length === 0
-        || (record.fields.book_type !== undefined
-          ? record.fields.book_type.some((value) => multiSelectInput.book_type.indexOf(value)
-           !== -1)
-          : false
-        ))
-      && (multiSelectInput.genre.length === 0
-        || (record.fields.genre !== undefined
-          ? record.fields.genre.some((value) => multiSelectInput.genre.indexOf(value) !== -1)
-          : false)));
+            && ((incomingAgeIndices[0] + 1) <= recordAgeIndices[1])
+            && ((incomingAgeIndices[1] + 1) >= recordAgeIndices[0])
+            && multiSelectFilter(record, 'race/ethnicity')
+            && multiSelectFilter(record, 'religion')
+            && multiSelectFilter(record, 'identity_tags')
+            && multiSelectFilter(record, 'theme/lessons')
+            && multiSelectFilter(record, 'book_type')
+            && multiSelectFilter(record, 'book_type')
+            && multiSelectFilter(record, 'genre'));
         },
-
-      ));
+      );
+      setFilteredBooks(tempBooks);
     }
   }, [rangeInput, multiSelectInput, alignment]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>

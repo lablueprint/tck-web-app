@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, Box, CircularProgress } from '@mui/material';
+import { Card } from '@mui/material';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/CreatorPage/CreatedWorksCard';
+import Loading from '../Components/Loading/Loading';
 
 const styles = {
   root: {
@@ -61,9 +62,7 @@ function CreatorPage() {
   return (
     <Card sx={styles.root}>
       {loading && (
-        <Box sx={styles.loadingBox}>
-          <CircularProgress />
-        </Box>
+        <Loading />
       )}
       {creatorDetails !== undefined && !loading && (
         <>
