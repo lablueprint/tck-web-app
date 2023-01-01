@@ -99,12 +99,25 @@ function ResultsPage({ bookFilters, isChild }) {
   }, [recommendedBooks]);
 
   // initialize values for child results text
-  if (bookFilters.maxGrade === -1) {
-    gradeDisplayed = '0 to Pre-K';
-  } else if (bookFilters.maxGrade === 0) {
-    gradeDisplayed = 'Kindergarten';
-  } else {
-    gradeDisplayed = `${bookFilters.maxGrade}th`;
+  switch (bookFilters.maxGrade) {
+    case -1:
+      gradeDisplayed = '0 to Pre-K';
+      break;
+    case 0:
+      gradeDisplayed = 'Kindergarten ';
+      break;
+    case 1:
+      gradeDisplayed = '1st grade';
+      break;
+    case 2:
+      gradeDisplayed = '2nd grade ';
+      break;
+    case 3:
+      gradeDisplayed = '3rd grade ';
+      break;
+    default:
+      gradeDisplayed = `${bookFilters.maxGrade}th grade `;
+      break;
   }
 
   if (bookFilters['race/ethnicity'].length > 1) {
@@ -114,9 +127,11 @@ function ResultsPage({ bookFilters, isChild }) {
   }
 
   if (bookFilters.genre.length > 1) {
-    genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)}`;
+    genreMessage = `${bookFilters.genre.slice(0, -1).join(', ')} and ${bookFilters.genre.slice(-1)} genres `;
+  } else if (bookFilters.genre.length === 1) {
+    genreMessage = `${bookFilters.genre.slice(-1)} genre `;
   } else {
-    genreMessage = `${bookFilters.genre.slice(-1)}`;
+    genreMessage = 'these books ';
   }
 
   // if loading just display the loading graphic
@@ -138,14 +153,11 @@ function ResultsPage({ bookFilters, isChild }) {
                 {' '}
                 <span className="blue-bold">smart</span>
                 {' '}
-                - - you can read up to a
+                -- you can read up to a
                 {' '}
                 <span className="red-bold">
                   {gradeDisplayed}
-                  {' '}
-                  grade
                 </span>
-                {' '}
                 level!
               </p>
               <p className="results-text fade-in-animation-delay-4s">
@@ -162,12 +174,11 @@ function ResultsPage({ bookFilters, isChild }) {
                 {(bookFilters['race/ethnicity'].length > 1) ? ' cultures.' : ' culture.'}
               </p>
               <p className="results-text fade-in-animation-delay-6s">
-                We think you would enjoy the
+                We think you would enjoy
                 {' '}
                 <span className="dark-blue-bold">
                   {genreMessage}
                 </span>
-                {(bookFilters.genre.length > 1) ? ' genres ' : ' genre '}
                 based on your answers.
               </p>
             </div>
@@ -182,13 +193,8 @@ function ResultsPage({ bookFilters, isChild }) {
           <img className="cloud-image" src={CloudImage} alt="sky illustration with clouds" />
         </div>
       )}
-      {/* here */}
       <div
-        className="recommended-books-section-wrapper"
-        style={{
-          background: isChild ? '#ffffff' : '#cbe7ee',
-          minHeight: isChild ? '85vh' : '60vh',
-        }}
+        className={isChild ? 'recommended-books-section-wrapper-kid' : 'recommended-books-section-wrapper-adult'}
         ref={myRef}
       >
         {isChild && (

@@ -72,9 +72,8 @@
 .grade-slider
  {
     margin: auto;
-    height: 40vh;
-    width: 75vw;
-    
+    height: 30vh;
+    width: 70vw;
     display: flex;
     align-items: center;
  }
@@ -86,10 +85,12 @@
     .progress-button-box {
         margin-top: 5vh;
     }
-
     .quiz-caption {
         margin-top: -4vh;
         margin-bottom: 5vh;
+    }
+    .grade-slider {
+        height: 50vh;
     }
 }
 

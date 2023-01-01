@@ -119,10 +119,23 @@
   animation: bounce 0.75s infinite;
 }
 
-.recommended-books-section-wrapper{
+.recommended-books-section-wrapper-kid {
   padding-top: 8vh;
   overflow: hidden;
   padding-bottom: 2rem;
+  background: #ffffff;
+  min-height: '85vh';
+}
+
+.recommended-books-section-wrapper-adult {
+  padding-top: 8vh;
+  overflow: hidden;
+  padding-bottom: 2rem;
+  min-height: '85vh';
+  background-image: url(../../Assets/Images/QuizAdultBackground.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .recommended-books-wrapper{
@@ -132,6 +145,7 @@
   border-radius: 30px;
   display: flex;
   flex-direction:column;
+  padding: 0 1rem;
 }
 
 .recommended-books-text {
@@ -168,7 +182,10 @@
     top: -18vh;
     left: -10vw;
   }
-  .recommended-books-section-wrapper{
+  .recommended-books-section-wrapper-kid{
+    padding-top: 5vh;
+  }
+  .recommended-books-section-wrapper-adult{
     padding-top: 5vh;
   }
 }
@@ -188,7 +205,10 @@
   .recommended-books-wrapper{
     width: 90%;
   }
-  .recommended-books-section-wrapper{
+  .recommended-books-section-wrapper-kid{
+    padding-top: 2vh;
+  }
+  .recommended-books-section-wrapper-adult{
     padding-top: 2vh;
   }
 }
