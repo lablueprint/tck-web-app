@@ -56,24 +56,21 @@ function CollectionPage() {
     if (collecID !== null && collecID !== 'init') {
       const record = collections.find((element) => element.id === collecID);
       setCollectionDetails(record);
-      // base('Collection').find(
-      //   collecID,
-      //   (err, record) => {
-      //     if (err) {
-      //       setLoadingMsg('Cannot find that collection right now! Check back in later!');
-      //       console.error(err);
-      //     }
-      //     setCollectionDetails(record);
-      //   },
-      // );
     }
   };
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
+  // useEffect(() => {
+  //   if (params.id !== 'init' && collections) {
+  //     setCollecID(params.id);
+  //   }
+  // }, [params.id]);
+
   useEffect(() => {
     getCollectionFromID();
   }, [collecID]);
+
   useEffect(() => {
     getCollections();
   }, []);
