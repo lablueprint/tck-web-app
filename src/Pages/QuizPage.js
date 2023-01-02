@@ -46,13 +46,11 @@ function QuizPage() {
       book_type: bookTypeVal,
     });
     setIsChild(storedValueAsNumber === 1);
-    console.log('init!');
   };
 
   // reload page if any of the filters change! (make sure the pages switch at the right times)
   useEffect(() => {
-    console.log(bookFilters);
-  }, [bookFilters]);
+  }, [bookFilters, isChild]);
 
   // fetch and initialize state for the quiz type (child or not)
 
