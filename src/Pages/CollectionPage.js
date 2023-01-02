@@ -1,11 +1,12 @@
+/* eslint-disable no-unreachable-loop */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
-import BooksInCollection from '../Components/CollectionPage/BooksInCollection';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/left-arrow-author-page.png';
 import NextArrow from '../Assets/Images/right-arrow-author-page.png';
-import { useWindowSize } from '../Components/Navigation/Header';
+import useWindowSize from '../Components/Hooks/useWindowSize';
+import BookList from '../Components/BookList/BookList';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -33,15 +34,24 @@ function CollectionPage() {
   const params = useParams();
   const [collecID, setCollecID] = useState(null);
   const [collections, setCollections] = useState(null);
+  const [allBooks, setAllBooks] = useState(null);
+  const [collectionBooks, setCollectionBooks] = useState(null);
   const size = useWindowSize();
   const [loadingMsg, setLoadingMsg] = useState('Loading ...');
+  const [headerLoadingMsg, setHeaderLoadingMsg] = useState('Loading ...');
 
-  // useEffect(() => {
-  //   if (loadingMsg === 'Loading ...') {
-  //     setTimeout(() => setLoadingMsg('No such collection found!'), 3000);
-  //   }
-  // }, [loadingMsg]);
+  useEffect(() => {
+    if (headerLoadingMsg === 'Loading ...') {
+      setTimeout(() => setHeaderLoadingMsg('An error might have occurred or the content requested is too big in size'), 10000);
+    }
+  }, [headerLoadingMsg]);
 
+  const getAllBooks = () => {
+    base('Book').select({ view: 'Grid view' }).all() // Gets + returns all records
+      .then((records) => {
+        setAllBooks(records);
+      });
+  };
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
@@ -59,6 +69,20 @@ function CollectionPage() {
     }
   };
 
+  const getBooksFromCollecID = () => {
+    if (CollectionDetails !== null
+      && CollectionDetails.fields !== undefined && allBooks) {
+      if (CollectionDetails.fields.books !== undefined) {
+        const filteredData = allBooks.filter(
+          (book) => CollectionDetails.fields.books.includes(book.id),
+        );
+        setCollectionBooks(filteredData);
+      } else {
+        setCollectionBooks([]);
+      }
+    }
+  };
+
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
   // useEffect(() => {
@@ -72,8 +96,17 @@ function CollectionPage() {
   }, [collecID]);
 
   useEffect(() => {
-    getCollections();
+    getAllBooks();
   }, []);
+
+  useEffect(() => {
+    if (allBooks) {
+      getCollections();
+    }
+  }, [allBooks]);
+
+  useEffect(() => { getBooksFromCollecID(); }, [CollectionDetails]);
+
   return (
     <div style={{ margin: '1rem auto', width: size.width > 600 ? '85vw' : '95vw' }}>
       {size.width > 600 && (
@@ -103,7 +136,7 @@ function CollectionPage() {
           initialID={collecID}
         />
       )
-        : <p>An error might have occurred or the content requested is too big in size</p>}
+        : <h1>{headerLoadingMsg}</h1>}
 
       <div style={{ margin: '1rem auto', width: size.width > 600 ? '77vw' : '83vw' }}>
         {CollectionDetails !== undefined && CollectionDetails !== null
@@ -114,11 +147,11 @@ function CollectionPage() {
               description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
               picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
             />
-          )) : <p>{loadingMsg}</p> }
-        { BooksInCollection !== undefined && collecID !== null && collecID !== 'init'
+          )) : <h2>{loadingMsg}</h2> }
+        { collectionBooks && collecID !== null && collecID !== 'init'
           ? (
-            <BooksInCollection authorId={collecID} />
-          ) : <p>{loadingMsg}</p> }
+            <BookList books={collectionBooks} />
+          ) : <h2>{loadingMsg}</h2> }
 
       </div>
     </div>

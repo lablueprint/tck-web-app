@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { useWindowSize } from '../Navigation/Header';
+import useWindowSize from '../Hooks/useWindowSize';
 import './CollectionPage.css';
 
 // Collection name/picture/description components

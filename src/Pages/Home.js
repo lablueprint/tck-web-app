@@ -57,7 +57,7 @@ function Home() {
       let tempArr = [];
       records.forEach((record) => {
         const tempObj = {
-          author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+          author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
           image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
           title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
           id: record.id,

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Collection.css';
-import { useWindowSize } from '../Navigation/Header';
+import './CollectionCard.css';
+import useWindowSize from '../Hooks/useWindowSize';
 
-export default function Collection({
+export default function CollectionCard({
   collectionId, image, bigLine, imageHeightPercent,
   imageWidthPercent, isCollectionPageHeader, color, // isSlideActive
 }) {
@@ -90,7 +90,7 @@ export default function Collection({
   );
 }
 
-Collection.propTypes = {
+CollectionCard.propTypes = {
   collectionId: PropTypes.string.isRequired,
   image: PropTypes.string,
   bigLine: PropTypes.string,
@@ -101,7 +101,7 @@ Collection.propTypes = {
   color: PropTypes.string,
 };
 
-Collection.defaultProps = {
+CollectionCard.defaultProps = {
   image: 'MISSING IMAGE',
   bigLine: 'MISSING NAME',
   isCollectionPageHeader: false,

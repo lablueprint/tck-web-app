@@ -5,10 +5,9 @@ import { Pagination } from '@mui/material';
 import {
   Sort, SortByAlpha, DateRange, StarBorder,
 } from '@mui/icons-material';
-
+import { v4 as uuidv4 } from 'uuid';
 import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
-// import { useWindowSize } from '../Navigation/Header';
 import './BookList.css';
 
 // Sort functions for each sorting mode
@@ -173,9 +172,9 @@ function BookList({ books, NoResults }) {
         {currentBooks.map((book) => (
           <BookCard
             title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
-            author={book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR']}
+            author={{ name: book.fields.author_name !== undefined ? book.fields.author_name : ['MISSING CREATOR'], id: book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR'] }}
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
-            key={book.fields.id}
+            key={uuidv4()}
             id={book.fields.id}
           />
         ))}
@@ -217,7 +216,7 @@ BookList.defaultProps = {
     {
       fields: {
         title: 'MISSING TITLE',
-        author: ['MISSING CREATOR'],
+        author_name: { name: ['MISSING CREATOR'], id: ['MISSING CREATOR'] },
         image: [
           {
             url: 'MISSING IMAGE',

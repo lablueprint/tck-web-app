@@ -5,15 +5,15 @@ import './BookCard.css';
 import { makeStyles } from '@mui/styles';
 
 // airtable configuration
-const Airtable = require('airtable');
+// const Airtable = require('airtable');
 
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
+// const airtableConfig = {
+//   apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
+//   baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
+// };
 
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
+// const base = new Airtable({ apiKey: airtableConfig.apiKey })
+//   .base(airtableConfig.baseKey);
 
 const useStyles = makeStyles({
   title: {
@@ -39,13 +39,14 @@ export default function BookCard({
 
   // retrieving ids of authors from names
   const getAuthor = () => {
-    author.forEach((name) => {
+    author.name.forEach((elem, index) => {
       // console.log(author);
-      if (name === 'MISSING CREATOR') { setAuthor(name); return; }
-      base('Creator').find(name, (err, record) => {
-        if (err) { console.error(err); }
-        setAuthor((prevValue) => prevValue.concat(record));
-      });
+      if (elem.name === 'MISSING CREATOR') { setAuthor(elem); return; }
+      setAuthor((prevValue) => prevValue.concat({ id: author.id[index], name: elem }));
+      // base('Creator').find(name, (err, record) => {
+      //   if (err) { console.error(err); }
+      //   setAuthor((prevValue) => prevValue.concat(record));
+      // });
     });
   };
 
@@ -77,7 +78,7 @@ export default function BookCard({
           if (index < 2) {
             return (
               <Link key={element.id} className="link" to={`/creator/${element.id}`}>
-                {element.fields.name}
+                {element.name}
                 <br />
               </Link>
             );
@@ -109,7 +110,10 @@ BookCard.defaultProps = {
 BookCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  author: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+  author: PropTypes.shape({
+    name: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+  }).isRequired,
   image: PropTypes.string,
   inCarousel: PropTypes.bool,
 };

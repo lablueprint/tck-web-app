@@ -47,7 +47,7 @@ function BooksLikeThis({
     );
 
     setSimilarBooks(recList.map((element) => ({
-      author: (element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR']),
+      author: { name: element.fields.author_name !== undefined ? element.fields.author_name : ['MISSING CREATOR'], id: element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR'] },
       image: (element.fields.image !== undefined ? element.fields.image[0].url : ''),
       title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
       id: element.id,

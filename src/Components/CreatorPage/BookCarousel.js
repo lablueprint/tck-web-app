@@ -109,7 +109,10 @@ function Carousel({
 
 Carousel.propTypes = {
   elementArray: propTypes.arrayOf(propTypes.shape({
-    author: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]),
+    author: propTypes.shape({
+      name: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]).isRequired,
+      id: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]).isRequired,
+    }).isRequired,
     image: propTypes.string,
     title: propTypes.string,
     id: propTypes.string,
