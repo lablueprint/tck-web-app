@@ -112,9 +112,7 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
+  const [[, currentRoot]] = location.pathname.matchAll(/^(\/[^/]*)/g);
 
   const drawer = (
     <Box
@@ -158,7 +156,7 @@ function Header() {
           <img src={Logo} className="logo" alt="The Conscious Kid logo" />
         </NavLink>
         { size.width > 900 ? (
-          <HeaderTabs value={location.pathname}>
+          <HeaderTabs value={currentRoot}>
             {options.map((option) => (
               <HeaderTab
                 key={uuidv4()}
