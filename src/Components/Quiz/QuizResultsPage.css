@@ -24,6 +24,7 @@
   height: min-content;
   width:62%;
   margin:auto;
+  padding-bottom: 5rem;
   background:#ffffff;
   border-radius:30px;
 }
@@ -97,7 +98,7 @@
 .cloud-image {
   width: 97vw;
   position: relative;
-  top: -20vh;
+  top: -25vh;
   z-index: 1;
 }
 
@@ -108,7 +109,16 @@
   z-index: 1;
 }
 
-.arrow-button {
+.down-arrow-button {
+  position: relative;
+  border: none;
+  background: none;
+  margin: 2rem auto 1rem auto;
+  top: -5rem;
+  z-index: 4 !important;
+}
+
+.up-arrow-button {
   border: none;
   background: none;
   margin: 2rem auto 1rem auto;
@@ -122,7 +132,7 @@
 .recommended-books-section-wrapper-kid {
   padding-top: 8vh;
   overflow: hidden;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   background: #ffffff;
   min-height: '85vh';
 }
@@ -179,7 +189,7 @@
   }
   .cloud-image {
     width: 120vw;
-    top: -18vh;
+    top: -24vh;
     left: -10vw;
   }
   .recommended-books-section-wrapper-kid{
@@ -192,14 +202,14 @@
 
 @media screen and (max-width: 750px) {
   .results-bg {
-    padding-top: 5vh;
+    padding-top: 7vh;
   }
   .results-wrapper {
     width: 90%;
   }
   .cloud-image {
     width: 150vw;
-    top: -17vh;
+    top: -23vh;
     left: -25vw;
   }
   .recommended-books-wrapper{

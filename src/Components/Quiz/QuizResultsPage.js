@@ -182,14 +182,14 @@ function ResultsPage({ bookFilters, isChild }) {
                 based on your answers.
               </p>
             </div>
-            <button
-              type="button"
-              className="arrow-button"
-              onClick={handleClickToBottom}
-            >
-              <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
-            </button>
           </div>
+          <button
+            type="button"
+            className="down-arrow-button"
+            onClick={handleClickToBottom}
+          >
+            <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
+          </button>
           <img className="cloud-image" src={CloudImage} alt="sky illustration with clouds" />
         </div>
       )}
@@ -198,7 +198,7 @@ function ResultsPage({ bookFilters, isChild }) {
         ref={myRef}
       >
         {isChild && (
-          <button type="button" className="arrow-button" onClick={handleClickToTop}>
+          <button type="button" className="up-arrow-button" onClick={handleClickToTop}>
             <img
               src={UpArrow}
               alt="bouncing arrow pointing upwards"
