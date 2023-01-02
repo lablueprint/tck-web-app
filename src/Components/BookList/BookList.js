@@ -96,13 +96,14 @@ const PAGINATION_SX = {
     fontFamily: 'Work Sans',
     fontWeight: '600',
   },
-
 };
+
 function defaultNoResults() {
   return (
     <h1>Sorry, there&apos;s no books here! 😰</h1>
   );
 }
+
 function BookList({ books, NoResults }) {
   // const size = useWindowSize();
   const [page, setPage] = useState(1);
@@ -158,18 +159,10 @@ function BookList({ books, NoResults }) {
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}
+          label="more items per page options"
         />
       </div>
-
-      <div
-        className="wrapper"
-        // style={{
-        //   gridTemplateColumns: size.width > 1200 ? 'repeat(5, 1fr)'
-        //     : size.width > 1100 ? 'repeat(4, 1fr)'
-        //       : size.width > 850 ? 'repeat(3, 1fr)'
-        //         : size.width > 500 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)',
-        // }}
-      >
+      <div className="wrapper">
         {currentBooks.map((book) => (
           <BookCard
             title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
@@ -177,6 +170,7 @@ function BookList({ books, NoResults }) {
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
             key={book.fields.id}
             id={book.fields.id}
+            label={`Link to ${book.fields.title}`}
           />
         ))}
       </div>

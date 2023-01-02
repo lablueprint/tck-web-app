@@ -4,7 +4,7 @@ import { Slider } from '@mui/material';
 import './Filtering.css';
 import { styled } from '@mui/material/styles';
 
-const CustomRangeSlider = styled(Slider)({
+export const CustomRangeSlider = styled(Slider)({
   '& .MuiSlider-rail': {
     height: '2.5px',
   },
