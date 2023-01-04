@@ -58,6 +58,15 @@
     margin-bottom:20px;
 }
 
+.img-container-in-quiz{
+    max-width:220px;
+    height:240px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-bottom:20px;
+}
+
 .link {
     text-decoration: none;
     color: black;
@@ -74,4 +83,10 @@
     margin-bottom:0;
     font-family:'DM Sans';
     font-weight:bold;
+}
+
+@media only screen and (min-width: 960px) {
+    .card {
+        max-width: 14vw;
+    }
 }

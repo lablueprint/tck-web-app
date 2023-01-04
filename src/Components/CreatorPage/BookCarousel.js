@@ -13,7 +13,7 @@ import BookCard from '../BookBrowser/BookCard';
 
 // Authored and illustrated work components
 function Carousel({
-  elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries,
+  elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries, inQuiz,
 }) {
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
@@ -87,6 +87,7 @@ function Carousel({
               title={element.title}
               author={element.author}
               inCarousel
+              inQuiz={inQuiz}
             />
           </SwiperSlide>
 
@@ -123,11 +124,13 @@ Carousel.propTypes = {
   nextArrow: propTypes.string.isRequired,
   widthPercent: propTypes.number,
   spaceBetweenEntries: propTypes.number,
+  inQuiz: propTypes.bool,
 };
 
 Carousel.defaultProps = {
   widthPercent: 100,
   spaceBetweenEntries: 0,
+  inQuiz: false,
 };
 
 export default Carousel;

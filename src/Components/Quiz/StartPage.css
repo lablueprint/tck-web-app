@@ -1,0 +1,114 @@
+.quiz-start-background {
+   background-image: url(../../Assets/Images/QuizBackground.svg);
+   background-position: top;
+   background-repeat: no-repeat;
+   height: 90vh;
+}
+
+.quiz-start-header1 {
+   color: #393EBA;
+   font-size: 2.5rem;
+   margin-bottom: 0;
+   margin: auto 0 0 0;
+}
+
+.quiz-start-header2 {
+   color:#333333;
+   font-size: 4rem;
+   font-family: Work Sans;
+   letter-spacing: -0.04em;
+   margin-top: 0;
+}
+.quiz-start-subtitle {
+   font-family: Work Sans;
+   color: #333333;
+   font-size: 1.3rem;
+   font-weight: normal; 
+   position: relative; 
+   bottom: 30px;
+}
+.quiz-start-button {
+   background: #393EBA;
+   border-radius: 0.6em;
+   letter-spacing: 0.02em;
+   color: white;
+   font-family: Work Sans;
+   font-weight: bold;
+   font-size: 1.3rem;
+   min-width: 234px;
+   height: 67px;
+   border: 2.5px solid #393EBA;
+}
+
+.quiz-start-button:hover {
+   background-color: #EAF3FE !important;
+   color: #393EBA !important;
+   border-color: #393EBA !important;
+}
+
+.quiz-start-text-container {
+   padding: 10rem 7rem 0 7rem;
+   width: 47%;
+   text-align: left;
+}
+
+.quiz-start-button-align {
+   width: min-content;
+   margin: 0 auto 0 7rem;
+}
+
+.quiz-mobile-graphic {
+   width: 80%;
+   margin: 0 auto;
+}
+
+@media only screen and (max-width: 1200px) {
+   .quiz-start-text-container {
+      padding: 8rem 7rem 0 3rem;
+   }
+
+   .quiz-start-button-align {
+      width: min-content;
+      margin: 0 auto 0 3rem;
+   }
+}
+@media only screen and (max-width: 1050px) {
+   .quiz-start-text-container {
+      width: 40%;
+   }
+}
+
+@media only screen and (max-width: 850px) {
+   .quiz-start-text-container {
+      padding: 3rem 2.5rem 0;
+      width: 90%;
+   }
+   .quiz-start-background {
+      background-image: url(../../Assets/Images/MobileQuizBackground.png);
+   }
+   .quiz-start-header1 {
+      font-size: 1.6rem;
+   }
+   .quiz-start-header2 {
+      font-size: 3rem;
+      padding: .75rem 0;
+   }
+   .quiz-start-subtitle {
+      font-size: 1.1rem;
+   }
+   .quiz-start-button {
+      font-size: 1.1rem;
+   }
+   .quiz-start-button-align {
+      width: min-content;
+      margin: 1.5rem auto 0 auto;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .quiz-mobile-graphic {
+      width: 90%;
+   }
+}
+
+
