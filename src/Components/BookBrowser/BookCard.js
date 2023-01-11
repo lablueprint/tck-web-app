@@ -4,17 +4,6 @@ import React, { useState, useEffect } from 'react';
 import './BookCard.css';
 import { makeStyles } from '@mui/styles';
 
-// airtable configuration
-// const Airtable = require('airtable');
-
-// const airtableConfig = {
-//   apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-//   baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-// };
-
-// const base = new Airtable({ apiKey: airtableConfig.apiKey })
-//   .base(airtableConfig.baseKey);
-
 const useStyles = makeStyles({
   title: {
     gridRowStart: 3,
@@ -39,18 +28,24 @@ export default function BookCard({
 
   // retrieving ids of authors from names
   const getAuthor = () => {
+    if (author.name[0] === 'MISSING CREATOR') { setAuthor(author.name[0]); return; }
+
+    setAuthor([]);
+
     author.name.forEach((elem, index) => {
-      // console.log(author);
-      if (elem.name === 'MISSING CREATOR') { setAuthor(elem); return; }
       setAuthor((prevValue) => prevValue.concat({ id: author.id[index], name: elem }));
-      // base('Creator').find(name, (err, record) => {
-      //   if (err) { console.error(err); }
-      //   setAuthor((prevValue) => prevValue.concat(record));
-      // });
     });
   };
 
   useEffect(getAuthor, []);
+
+  const punctuation = (index) => {
+    switch (author.name.length - index - 1) {
+      case 0: return '';
+      case 1: return ' & ';
+      default: return ', ';
+    }
+  };
 
   return ( // horizontal scroll not implemented
     <div
@@ -69,7 +64,6 @@ export default function BookCard({
           <p className="book-card-text">
             {title.length > 50 ? `${title.substring(0, 50)}...` : title}
           </p>
-
         </div>
       </Link>
       <div className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
@@ -80,17 +74,16 @@ export default function BookCard({
             return (
               <Link key={element.id} className="link" to={`/creator/${element.id}`}>
                 {element.name}
-                <br />
+                {punctuation(index)}
               </Link>
             );
           }
           if (index === 2) {
-            return ('and more');
+            return (' & more');
           }
 
-          return (<div />);
+          return (null);
         })
-
           : (
             <div className="link">
               Unknown

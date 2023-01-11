@@ -46,20 +46,36 @@ function CollectionsCarousel({
     }
   };
 
+  const updateActiveSlide = () => {
+    const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
+    if (activeSlideId !== null) {
+      swiperRef.current.swiper.slideTo(
+        swiperArray.findIndex((element) => activeSlideId === element),
+      );
+    } else {
+      swiperRef.current.swiper.slideTo(
+        swiperArray.findIndex((element) => initialID === element),
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (initialID !== null) {
+      setActiveSlideId(initialID);
+    }
+  }, [initialID]);
+
+  useEffect(() => {
+    if (activeSlideId !== null) {
+      updateActiveSlide();
+    }
+  }, [activeSlideId]);
+
   useEffect(() => {
     swiperRef.current.swiper.on('breakpoint', () => {
-      const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
-      if (activeSlideId !== null) {
-        swiperRef.current.swiper.slideTo(
-          swiperArray.findIndex((element) => activeSlideId === element),
-        );
-      } else {
-        swiperRef.current.swiper.slideTo(
-          swiperArray.findIndex((element) => initialID === element),
-        );
-      }
+      updateActiveSlide();
     });
-  }, [activeSlideId]);
+  }, []);
 
   useEffect(() => {
     if (isCollectionPageHeader) {
@@ -71,8 +87,8 @@ function CollectionsCarousel({
       setCollecID(initialID);
     }
   }, [elementArray]);
-  return (
 
+  return (
     <div
       className="collection-carousel-wrapper"
       style={{
@@ -101,11 +117,6 @@ function CollectionsCarousel({
             on="true"
             onSwiper={setSwiper}
             breakpoints={isCollectionPageHeader ? {
-              // 320: {
-              //   slidesPerView: 1,
-              //   // spaceBetween: 10,
-              //   slidesPerGroup: 1,
-              // },
               320: {
                 slidesPerView: 2,
                 // spaceBetween: spaceBetweenEntries,
@@ -278,7 +289,6 @@ CollectionsCarousel.propTypes = {
   isCollectionPageHeader: propTypes.bool,
   setCollecID: propTypes.func,
   initialID: propTypes.string,
-  // activeSlideString: propTypes.string,
 };
 
 CollectionsCarousel.defaultProps = {
@@ -290,7 +300,6 @@ CollectionsCarousel.defaultProps = {
   isCollectionPageHeader: false,
   setCollecID: defaultOnSlideChange,
   initialID: '',
-  // activeSlideString: '',
 };
 
 export default CollectionsCarousel;

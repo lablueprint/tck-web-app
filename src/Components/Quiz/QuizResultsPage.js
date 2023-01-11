@@ -11,6 +11,7 @@ import RightArrow from '../../Assets/Images/right-arrow.png';
 import LeftArrow from '../../Assets/Images/left-arrow.png';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/quiz-results-cloud.png';
+import Loading from '../Loading/Loading';
 
 import './QuizResultsPage.css';
 
@@ -136,7 +137,7 @@ function ResultsPage({ bookFilters, isChild }) {
 
   // if loading just display the loading graphic
   if (loading) {
-    return <div> loading</div>;
+    return <Loading />;
   }
 
   // once loaded, show appropriate results!

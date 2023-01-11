@@ -69,7 +69,6 @@ export default function CollectionInfo({ name, description }) {
               <ExpandMoreIcon style={{ color: '#006bc9' }} />
             </button>
           )}
-
       </div>
       )}
     </div>

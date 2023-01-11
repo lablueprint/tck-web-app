@@ -18,24 +18,15 @@ const airtableConfig = {
 const base = new Airtable({ apiKey: airtableConfig.apiKey })
   .base(airtableConfig.baseKey);
 
-// function LoadingMsg() {
-//   const [loadingMsg, setLoadingMsg] = useState('Loading ...');
-//   useEffect(() => {
-//     const timer = setTimeout(setLoadingMsg('No such collection found!'), 5000);
-//     return () => clearTimeout(timer);
-//   }, []);
-
-//   return (
-//     <p>{loadingMsg}</p>
-//   );
-// }
 function CollectionPage() {
-  const [CollectionDetails, setCollectionDetails] = useState(null);
   const params = useParams();
-  const [collecID, setCollecID] = useState(null);
-  const [collections, setCollections] = useState(null);
   const [allBooks, setAllBooks] = useState(null);
+  const [collections, setCollections] = useState(null);
+
+  const [collecID, setCollecID] = useState(null);
+  const [CollectionDetails, setCollectionDetails] = useState(null);
   const [collectionBooks, setCollectionBooks] = useState(null);
+
   const size = useWindowSize();
   const [loadingMsg, setLoadingMsg] = useState('Loading ...');
   const [headerLoadingMsg, setHeaderLoadingMsg] = useState('Loading ...');
@@ -47,13 +38,13 @@ function CollectionPage() {
   }, [headerLoadingMsg]);
 
   const getAllBooks = () => {
-    base('Book').select({ view: 'Grid view' }).all() // Gets + returns all records
+    base('Book').select({ view: 'Grid view' }).all() // Gets + returns all Book records
       .then((records) => {
         setAllBooks(records);
       });
   };
   const getCollections = () => {
-    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
+    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all Collection records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
         setCollections(records);
         setCollecID((params.id === 'init' ? records[0].id : params.id));
@@ -85,11 +76,11 @@ function CollectionPage() {
 
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
-  // useEffect(() => {
-  //   if (params.id !== 'init' && collections) {
-  //     setCollecID(params.id);
-  //   }
-  // }, [params.id]);
+  useEffect(() => {
+    if (params.id !== 'init' && collections) {
+      setCollecID(params.id);
+    }
+  }, [params]);
 
   useEffect(() => {
     getCollectionFromID();
@@ -108,7 +99,7 @@ function CollectionPage() {
   useEffect(() => { getBooksFromCollecID(); }, [CollectionDetails]);
 
   return (
-    <div style={{ margin: '1rem auto', width: size.width > 600 ? '85vw' : '95vw' }}>
+    <div style={{ padding: '1rem 0', margin: '0 auto', width: size.width > 600 ? '85vw' : '95vw' }}>
       {size.width > 600 && (
       <p style={{
         color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '2rem 51px 1rem',
@@ -132,8 +123,8 @@ function CollectionPage() {
           centeredSlides
           shouldLoop
           isCollectionPageHeader
-          setCollecID={updateCollecID}
           initialID={collecID}
+          setCollecID={updateCollecID}
         />
       )
         : <h1>{headerLoadingMsg}</h1>}

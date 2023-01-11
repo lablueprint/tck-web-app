@@ -1,5 +1,4 @@
 .book-list {
-    /* align-items: center; */
     width: 82vw;
     margin: auto;
     border: '2px solid green';
@@ -23,10 +22,8 @@
     display: flex;
     flex-direction: row;
     column-gap: 1fr;
-    flex-flow:row wrap;
-    /* width:100%; */
-    /* grid-auto-rows: minmax(100px, auto); */
-    /* border: 2px solid red; */
-    margin-left: -23px;
-    
+    flex-flow: row wrap;
+    margin: 0 -23px;
+    /*chanty do you prefer space-between or evenly? */
+    justify-content: space-between;
 }

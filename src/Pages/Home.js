@@ -140,7 +140,7 @@ function Home() {
             <h3 className="headings">New Releases</h3>
             <Carousel
               elementArray={newReleases}
-              slidesAtATime={7}
+              slidesAtATime={6}
               prevArrow={LeftArrow}
               nextArrow={RightArrow}
               widthPercent={100}

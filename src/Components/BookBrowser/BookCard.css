@@ -6,12 +6,13 @@
 }
 
 .card {
-    margin: 30px 16px 10px 16px;
+    margin-top: 30px;
     display: flex;
     justify-content:flex-start;
     background: none;
     flex-direction: column;
-    max-width:200px;
+    min-width: 220px;
+    width: 220px;
 }
 
 .card-in-carousel{
@@ -24,22 +25,12 @@
 
 .card-action-area {
     width: 100%;
-    height:100%;
+    height: 100%;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
 }
-
-/* .cover {
-    grid-row-start: 1;
-    height: 227.5px;
-    font-size: 12px;
-} */
-
-/* .content {
-    grid-row-start: 5;
-} */
 
 .image {
     border-radius:10%;

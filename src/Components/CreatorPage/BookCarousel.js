@@ -38,6 +38,7 @@ function Carousel({
         </button>
       </div>
       <Swiper
+        // centerInsufficientSlides
         style={{
           zIndex: '0',
           width: '100%',
@@ -57,7 +58,6 @@ function Carousel({
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          // when window width is >= 480px
           840: {
             slidesPerView: 4,
             spaceBetween: 20,
@@ -66,7 +66,6 @@ function Carousel({
             slidesPerView: 5,
             spaceBetween: 20,
           },
-          // when window width is >= 640px
           1150: {
             slidesPerView: slidesAtATime,
             spaceBetween: spaceBetweenEntries,

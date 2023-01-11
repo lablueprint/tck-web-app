@@ -175,9 +175,7 @@ function BookCardsDisplay({
   }
 
   return (
-    <div>
-      <BookList books={filteredBooks} NoResults={NoResults} />
-    </div>
+    <BookList books={filteredBooks} NoResults={NoResults} />
   );
 }
 
