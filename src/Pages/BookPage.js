@@ -47,6 +47,7 @@ const styles = {
   },
   bookContainer: {
     background: 'linear-gradient(180deg, rgba(204, 216, 218, 0) 0%, rgba(204, 216, 218, 0.15) 100%)',
+    paddingTop: '.5em',
   },
 };
 
