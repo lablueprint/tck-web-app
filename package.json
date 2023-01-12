@@ -1,7 +1,7 @@
 {
   "name": "tck-web-app",
   "version": "0.1.0",
-  "homepage": "https://lablueprint.github.io/tck-web-app",
+  "homepage": "https://lablueprint.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
