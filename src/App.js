@@ -17,8 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dictionary" element={<Dictionary />} />
           <Route path="/browser" element={<BrowserPage />} />
-          <Route exact path="/book/:bookId" element={<BookPage />} />
-          <Route exact path="/creator/:id" element={<CreatorPage />} />
+          <Route exact path="/browser/book/:bookId" element={<BookPage />} />
+          <Route exact path="/browser/creator/:id" element={<CreatorPage />} />
           <Route exact path="/collection" element={<CollectionPage />} />
           <Route exact path="/collection/:id" element={<CollectionPage />} />
           <Route path="/quiz/*" element={<QuizPage />} />

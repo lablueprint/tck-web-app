@@ -53,8 +53,6 @@ const styles = {
 
 function BookPage() {
   const [book, setBook] = useState();
-  const [author, setAuthor] = useState([]); // array holding author records
-  const [illustrator, setIllustrator] = useState([]); // array holding illustrator records
   const [isLoaded, setIsLoaded] = useState(false);
   /*
   We want to know if Airtable call failed       (!book && isLoaded)
@@ -75,6 +73,7 @@ function BookPage() {
       resolve(entryRecord);
     });
   });
+
   // Add book to localStorage
   function pushToStorage() {
     const bookArr = JSON.parse(localStorage.getItem('Recently Viewed'));
@@ -104,26 +103,7 @@ function BookPage() {
   // This is similar to promise chaining with .then() calls,
   // but in a (hopefully) more succinct way
   const getEntries = async () => {
-    const bookRecord = await getEntry('Book', bookId, setBook);
-    const authorIDs = bookRecord.get('author');
-    const illustratorIDs = bookRecord.get('illustrator');
-
-    // Curried function so we can create different function compositions as seen below
-    const setNewCreator = (setter) => (newCreator) => {
-      setter((prevState) => [...prevState, newCreator]);
-    };
-
-    const creatorEntries = [];
-
-    authorIDs.forEach((id) => {
-      creatorEntries.push(getEntry('Creator', id, setNewCreator(setAuthor)));
-    });
-
-    illustratorIDs.forEach((id) => {
-      creatorEntries.push(getEntry('Creator', id, setNewCreator(setIllustrator)));
-    });
-
-    await Promise.all(creatorEntries);
+    await getEntry('Book', bookId, setBook);
   };
 
   useEffect(() => {
@@ -167,6 +147,8 @@ function BookPage() {
   let gradeMax;
   let bookType;
   let datePublished;
+  let authors = [];
+  let illustrators = [];
 
   if (book) {
     // Cautiously pull data from book if we got something not undefined
@@ -187,26 +169,14 @@ function BookPage() {
     gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
     bookType = (book.get('book_type')) ? book.get('book_type') : [];
     datePublished = (book.get('date_published')) ? book.get('date_published') : '';
-  }
 
-  let authors = [];
-  if (author) {
-    // Cautiously pull data from author array if we got nonempty array
-    // and format into neater object
-    authors = author.map((x) => ({
-      name: (x.get('name')) ? x.get('name') : authorName,
-      id: (x.id) ? x.id : authorID,
-    }));
-  }
+    if (book.get('author_name')) {
+      authors = book.get('author_name').map((elem, index) => ({ id: book.get('author')[index], name: elem }));
+    }
 
-  let illustrators = [];
-  if (illustrator) {
-    // Cautiously pull data from illustrator array if we got nonempty array
-    // and format into neater object
-    illustrators = illustrator.map((x) => ({
-      name: (x.get('name')) ? x.get('name') : illustratorName,
-      id: (x.id) ? x.id : illustratorID,
-    }));
+    if (book.get('illustrator_name')) {
+      illustrators = book.get('illustrator_name').map((elem, index) => ({ id: book.get('illustrator')[index], name: elem }));
+    }
   }
 
   const imageURL = image[0].url;

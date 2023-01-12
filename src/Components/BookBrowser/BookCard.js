@@ -24,6 +24,7 @@ export default function BookCard({
 }) {
   const classes = useStyles();
 
+  // reformatted author for easier iterating
   const [authorVar, setAuthor] = useState([]);
 
   // retrieving ids of authors from names
@@ -51,7 +52,7 @@ export default function BookCard({
     <div
       className={`card${inCarousel ? '-in-carousel' : ''}`}
     >
-      <Link className="link" to={`/book/${id}`}>
+      <Link className="link" to={`/browser/book/${id}`}>
         <div className="card-action-area">
           <div className={`img-container${inQuiz ? '-in-quiz' : ''}`}>
             <img
@@ -72,7 +73,7 @@ export default function BookCard({
         {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element, index) => {
           if (index < 2) {
             return (
-              <Link key={element.id} className="link" to={`/creator/${element.id}`}>
+              <Link key={element.id} className="link" to={`/browser/creator/${element.id}`}>
                 {element.name}
                 {punctuation(index)}
               </Link>
