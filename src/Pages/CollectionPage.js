@@ -7,6 +7,7 @@ import PrevArrow from '../Assets/Images/left-arrow-author-page.png';
 import NextArrow from '../Assets/Images/right-arrow-author-page.png';
 import useWindowSize from '../Components/Hooks/useWindowSize';
 import BookList from '../Components/BookList/BookList';
+import Loading from '../Components/Loading/Loading';
 // airtable configuration
 const Airtable = require('airtable');
 
@@ -28,14 +29,6 @@ function CollectionPage() {
   const [collectionBooks, setCollectionBooks] = useState(null);
 
   const size = useWindowSize();
-  const [loadingMsg, setLoadingMsg] = useState('Loading ...');
-  const [headerLoadingMsg, setHeaderLoadingMsg] = useState('Loading ...');
-
-  useEffect(() => {
-    if (headerLoadingMsg === 'Loading ...') {
-      setTimeout(() => setHeaderLoadingMsg('An error might have occurred or the content requested is too big in size'), 10000);
-    }
-  }, [headerLoadingMsg]);
 
   const getAllBooks = () => {
     base('Book').select({ view: 'Grid view' }).all() // Gets + returns all Book records
@@ -47,14 +40,13 @@ function CollectionPage() {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all Collection records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
         setCollections(records);
-        setCollecID((params.id === 'init' ? records[0].id : params.id));
+        setCollecID((params.id === undefined ? records[0].id : params.id));
       });
   };
 
   const getCollectionFromID = () => {
-    setLoadingMsg('Loading ...');
     // setTimeout(setLoadingMsg('No such collection found!'), 5000);
-    if (collecID !== null && collecID !== 'init') {
+    if (collecID !== null && collecID !== undefined) {
       const record = collections.find((element) => element.id === collecID);
       setCollectionDetails(record);
     }
@@ -77,7 +69,7 @@ function CollectionPage() {
   const updateCollecID = useCallback((newValue) => setCollecID(newValue), [setCollecID]);
 
   useEffect(() => {
-    if (params.id !== 'init' && collections) {
+    if (params.id !== undefined && collections) {
       setCollecID(params.id);
     }
   }, [params]);
@@ -98,54 +90,55 @@ function CollectionPage() {
 
   useEffect(() => { getBooksFromCollecID(); }, [CollectionDetails]);
 
+  const subtitle = size.width > 600 ? (
+    <p style={{
+      color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '2rem 51px 1rem',
+    }}
+    >
+      Please select a collection
+    </p>
+  ) : null;
+
   return (
-    <div style={{ padding: '1rem 0', margin: '0 auto', width: size.width > 600 ? '85vw' : '95vw' }}>
-      {size.width > 600 && (
-      <p style={{
-        color: '#3f3f3f', fontFamily: 'DM Sans', textAlign: 'left', margin: '2rem 51px 1rem',
-      }}
-      >
-        Please select a collection
-      </p>
+    <>
+      {collecID !== null && collecID !== undefined && collections !== null && (
+        <div style={{ padding: '1rem 0', margin: '0 auto', width: size.width > 600 ? '90vw' : '95vw' }}>
+          {subtitle}
+          <CollectionsCarousel
+            elementArray={collections}
+            slidesAtATime={3.15}
+            prevArrow={PrevArrow}
+            nextArrow={NextArrow}
+            widthPercent={100}
+            spaceBetweenEntries={15}
+            swiperHeight={size.width > 600 ? 170 : 100}
+            cardImageHeightPercent={55}
+            cardImageWidthPercent={55}
+            cardFontSize={100}
+            centeredSlides
+            shouldLoop
+            isCollectionPageHeader
+            initialID={collecID}
+            setCollecID={updateCollecID}
+          />
+        </div>
       )}
-      {collecID !== null && collecID !== 'init' && collections !== null ? (
-        <CollectionsCarousel
-          elementArray={collections}
-          slidesAtATime={3.15}
-          prevArrow={PrevArrow}
-          nextArrow={NextArrow}
-          widthPercent={100}
-          spaceBetweenEntries={15}
-          swiperHeight={size.width > 600 ? 170 : 100}
-          cardImageHeightPercent={55}
-          cardImageWidthPercent={55}
-          cardFontSize={100}
-          centeredSlides
-          shouldLoop
-          isCollectionPageHeader
-          initialID={collecID}
-          setCollecID={updateCollecID}
-        />
-      )
-        : <h1>{headerLoadingMsg}</h1>}
 
-      <div style={{ margin: '1rem auto', width: size.width > 600 ? '77vw' : '83vw' }}>
-        {CollectionDetails !== undefined && CollectionDetails !== null
-         && CollectionDetails.id === collecID
-          ? ((
-            <CollectionInfo
-              name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
-              description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
-              picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
-            />
-          )) : <h2>{loadingMsg}</h2> }
-        { collectionBooks && collecID !== null && collecID !== 'init'
-          ? (
+      {CollectionDetails !== null && CollectionDetails.id === collecID && collectionBooks
+        ? (
+          <>
+            <div style={{ margin: '0 auto', width: '83vw' }}>
+              <CollectionInfo
+                name={CollectionDetails.fields.name !== undefined ? CollectionDetails.fields.name : ''}
+                description={CollectionDetails.fields.description !== undefined ? CollectionDetails.fields.description : ''}
+                picture={CollectionDetails.fields.image !== undefined ? CollectionDetails.fields.image[0].url : ''}
+              />
+            </div>
             <BookList books={collectionBooks} />
-          ) : <h2>{loadingMsg}</h2> }
-
-      </div>
-    </div>
+          </>
+        )
+        : <Loading /> }
+    </>
   );
 }
 

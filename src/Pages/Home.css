@@ -2,8 +2,8 @@
 .home-screen-carousel {
     margin-left: 0;
     margin-right: 0;
-    margin-top: 2.5vh;
-    margin-bottom: 2.5vh;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
 }
 
 .home-screen-background {
@@ -46,6 +46,17 @@
     margin: 2vh auto 5vh auto;
 }
 
+.headings {
+    text-align: start;
+    color: #2F2F2F;
+    font-family: 'Work Sans';
+    font-size: 24px;
+    padding-left: 2rem;
+    margin-bottom: 0;
+    margin-top: 7vh;
+}
+
+
 .about-section-header {
     text-align: center;
     color: #2F2F2F;
@@ -53,7 +64,7 @@
     font-size: 40px;
     padding-left: 2vw;
     margin-bottom: 0;
-    padding-top: 40px;
+    padding-top: 5vh;
 }
 
 .about-section {
@@ -76,6 +87,7 @@
 .about-image {
     padding: 2%;
     width: 49%;
+    height: 50vh;
     height: fit;
     object-fit: cover;
 }

@@ -19,6 +19,7 @@ function App() {
           <Route path="/browser" element={<BrowserPage />} />
           <Route exact path="/book/:bookId" element={<BookPage />} />
           <Route exact path="/creator/:id" element={<CreatorPage />} />
+          <Route exact path="/collection" element={<CollectionPage />} />
           <Route exact path="/collection/:id" element={<CollectionPage />} />
           <Route path="/quiz/*" element={<QuizPage />} />
         </Routes>

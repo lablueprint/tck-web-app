@@ -6,9 +6,6 @@ import CollectionsCarousel from '../Components/CollectionsComponents/Collections
 import Carousel from '../Components/CreatorPage/BookCarousel';
 import LeftArrow from '../Assets/Images/left-arrow.png';
 import RightArrow from '../Assets/Images/right-arrow.png';
-// import './PagesTemp.css';
-// import LeftArrow from '../Assets/Images/left-arrow.svg';
-// import RightArrow from '../Assets/Images/right-arrow.svg';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
 
@@ -37,7 +34,7 @@ const styles = {
     fontStyle: 'normal',
     margin: '7.5px',
     '@media (max-width: 700px)': {
-      width: '90vw',
+      width: '80vw',
     },
     '&.MuiButtonBase-root:hover': {
       bgcolor: '#EAF3FE',

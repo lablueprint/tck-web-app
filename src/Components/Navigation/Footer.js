@@ -45,7 +45,7 @@ function Footer() {
           Book Finder Quiz
         </NavLink>
         <NavLink
-          to="/collection/init"
+          to="/collection"
           className={({ isActive }) => (isActive ? 'footer-text-active' : 'footer-text')}
         >
           Collections

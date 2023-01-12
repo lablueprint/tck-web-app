@@ -19,7 +19,7 @@ const options = [
   { name: 'Home', nav: '/' },
   { name: 'Book Search', nav: '/browser' },
   { name: 'Book Finder Quiz', nav: '/quiz' },
-  { name: 'Collections', nav: '/collection/init' },
+  { name: 'Collections', nav: '/collection' },
   { name: 'Terms to Know', nav: '/dictionary' },
 ];
 
