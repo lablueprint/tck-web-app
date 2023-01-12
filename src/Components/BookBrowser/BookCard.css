@@ -21,6 +21,8 @@
     justify-content:flex-start;
     background: none;
     flex-direction: column;
+    min-width: 160px;
+    width: 160px;
 }
 
 .card-action-area {
@@ -39,7 +41,6 @@
     max-height:100%;
 }
 
-
 .img-container{
     width:220px;
     height:200px;
@@ -50,8 +51,8 @@
 }
 
 .img-container-in-quiz{
-    max-width:220px;
-    height:240px;
+    max-width:160px;
+    height:200px;
     display:flex;
     justify-content: center;
     align-items:center;
@@ -74,10 +75,4 @@
     margin-bottom:0;
     font-family:'DM Sans';
     font-weight:bold;
-}
-
-@media only screen and (min-width: 960px) {
-    .card {
-        max-width: 14vw;
-    }
 }
