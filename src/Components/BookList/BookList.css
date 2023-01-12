@@ -1,7 +1,6 @@
 .book-list {
-    align-items: center;
-    width: 82vw;
-    margin: auto;
+    width: 83vw;
+    margin: 1rem auto 5rem;
     border: '2px solid green';
 }
 
@@ -9,6 +8,8 @@
     display: flex;
     flex-direction: row;
     font-family: Work Sans;
+    justify-content: start;
+    column-gap: 1vw;
 }
 
 .book-list-pagination {
@@ -18,8 +19,10 @@
 }
 
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(100px, auto);
-    border: '2px solid red';
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  grid-gap: 1fr;
+  /*chanty do you prefer space-between or evenly?*/
+  justify-content: space-between;
+  margin: 0 -23px 3rem;
 }

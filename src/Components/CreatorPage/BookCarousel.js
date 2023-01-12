@@ -13,11 +13,59 @@ import BookCard from '../BookBrowser/BookCard';
 
 // Authored and illustrated work components
 function Carousel({
-  elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries,
+  elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries, inQuiz,
+  inAuthorPage,
 }) {
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+    },
+    468: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    650: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    840: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+    1000: {
+      slidesPerView: 5,
+      spaceBetween: 20,
+    },
+    1150: {
+      slidesPerView: slidesAtATime,
+      spaceBetween: spaceBetweenEntries,
+    },
+  };
+
+  const authorBreakpoints = {
+    320: {
+      slidesPerView: 1,
+    },
+    468: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    650: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    960: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    1300: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  };
 
   return (
     <div
@@ -38,29 +86,15 @@ function Carousel({
         </button>
       </div>
       <Swiper
+        // centerInsufficientSlides
         style={{
           zIndex: '0',
           width: '100%',
           height: '400px',
         }}
         on="true"
-        centerInsufficientSlides
-        breakpoints={{
-          320: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          // when window width is >= 480px
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 30,
-          },
-          // when window width is >= 640px
-          1024: {
-            slidesPerView: slidesAtATime,
-            spaceBetween: spaceBetweenEntries,
-          },
-        }}
+        // centeredSlides
+        breakpoints={inAuthorPage ? authorBreakpoints : breakpoints}
         direction="horizontal"
         navigation={{
           prevEl: navigationPrevRef.current,
@@ -69,13 +103,14 @@ function Carousel({
         modules={[Navigation, A11y]}
       >
         {elementArray.map((element) => (
-          <SwiperSlide key={uuidv4()} style={{ paddingTop: '20', paddingBottom: '20' }}>
+          <SwiperSlide key={uuidv4()} style={{ width: 'max-content', paddingTop: '20', paddingBottom: '20' }}>
             <BookCard
               id={element.id}
               image={element.image}
               title={element.title}
               author={element.author}
               inCarousel
+              inQuiz={inQuiz}
             />
           </SwiperSlide>
 
@@ -98,7 +133,10 @@ function Carousel({
 
 Carousel.propTypes = {
   elementArray: propTypes.arrayOf(propTypes.shape({
-    author: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]),
+    author: propTypes.shape({
+      name: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]).isRequired,
+      id: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.string]).isRequired,
+    }).isRequired,
     image: propTypes.string,
     title: propTypes.string,
     id: propTypes.string,
@@ -109,11 +147,15 @@ Carousel.propTypes = {
   nextArrow: propTypes.string.isRequired,
   widthPercent: propTypes.number,
   spaceBetweenEntries: propTypes.number,
+  inQuiz: propTypes.bool,
+  inAuthorPage: propTypes.bool,
 };
 
 Carousel.defaultProps = {
   widthPercent: 100,
   spaceBetweenEntries: 0,
+  inQuiz: false,
+  inAuthorPage: false,
 };
 
 export default Carousel;

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import {
   NavLink, useLocation, useNavigate,
@@ -12,40 +12,16 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import { v4 as uuidv4 } from 'uuid';
 import NorthEastIcon from '@mui/icons-material/NorthEast';
-import Logo from '../../Assets/Images/TCK SVG Logo.svg';
+import Logo from '../../Assets/Images/TCK SVG Logo.png';
+import useWindowSize from '../Hooks/useWindowSize';
 
 const options = [
   { name: 'Home', nav: '/' },
   { name: 'Book Search', nav: '/browser' },
   { name: 'Book Finder Quiz', nav: '/quiz' },
-  { name: 'Collections', nav: '/collection/init' },
+  { name: 'Collections', nav: '/collection' },
   { name: 'Terms to Know', nav: '/dictionary' },
 ];
-
-function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
-}
 
 const styles = {
   drawerNavLink: {

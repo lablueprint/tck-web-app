@@ -7,10 +7,11 @@ import { NavLink } from 'react-router-dom';
 import DownArrow from '../../Assets/Images/down-arrow.svg';
 import UpArrow from '../../Assets/Images/up-arrow.svg';
 import RecFilter from '../Recommendations/BookRec';
-import RightArrow from '../../Assets/Images/right-arrow.svg';
-import LeftArrow from '../../Assets/Images/left-arrow.svg';
+import RightArrow from '../../Assets/Images/right-arrow.png';
+import LeftArrow from '../../Assets/Images/left-arrow.png';
 import Carousel from '../CreatorPage/BookCarousel';
 import CloudImage from '../../Assets/Images/quiz-results-cloud.png';
+import Loading from '../Loading/Loading';
 
 import './QuizResultsPage.css';
 
@@ -77,7 +78,7 @@ function ResultsPage({ bookFilters, isChild }) {
         bookFilters.book_type,
       );
       setRecommendedBooks(recList.map((element) => ({
-        author: (element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR']),
+        author: { name: element.fields.author_name !== undefined ? element.fields.author_name : ['MISSING CREATOR'], id: element.fields.author !== undefined ? element.fields.author : ['MISSING CREATOR'] },
         image: (element.fields.image !== undefined ? element.fields.image[0].url : ''),
         title: (element.fields.title !== undefined ? element.fields.title : 'No Title'),
         id: element.id,
@@ -136,7 +137,7 @@ function ResultsPage({ bookFilters, isChild }) {
 
   // if loading just display the loading graphic
   if (loading) {
-    return <div> loading</div>;
+    return <Loading />;
   }
 
   // once loaded, show appropriate results!
@@ -218,6 +219,7 @@ function ResultsPage({ bookFilters, isChild }) {
             nextArrow={RightArrow}
             widthPercent={100}
             spaceBetweenEntries={16}
+            inQuiz
           />
         </div>
         <div className="results-button-container">

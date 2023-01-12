@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import Carousel from '../Components/CreatorPage/BookCarousel';
-import LeftArrow from '../Assets/Images/left-arrow.svg';
-import RightArrow from '../Assets/Images/right-arrow.svg';
+import LeftArrow from '../Assets/Images/left-arrow.png';
+import RightArrow from '../Assets/Images/right-arrow.png';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
 
@@ -34,7 +34,7 @@ const styles = {
     fontStyle: 'normal',
     margin: '7.5px',
     '@media (max-width: 700px)': {
-      width: '90vw',
+      width: '80vw',
     },
     '&.MuiButtonBase-root:hover': {
       bgcolor: '#EAF3FE',
@@ -76,7 +76,7 @@ function Home() {
       let tempArr = [];
       records.forEach((record) => {
         const tempObj = {
-          author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+          author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
           image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
           title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
           id: record.id,
@@ -137,7 +137,7 @@ function Home() {
             <h3 className="headings">New Releases</h3>
             <Carousel
               elementArray={newReleases}
-              slidesAtATime={7}
+              slidesAtATime={6}
               prevArrow={LeftArrow}
               nextArrow={RightArrow}
               widthPercent={100}

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import propTypes from 'prop-types';
 import './CreatedWorksCard.css';
-import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.svg';
-import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.svg';
+import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.png';
+import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.png';
 import Carousel from './BookCarousel';
 
 const styles = {
@@ -31,7 +31,6 @@ const styles = {
     lineHeight: '28px',
     textAlign: 'center',
     color: '#444444',
-    paddingBottom: 2,
     '@media (max-width: 960px)': {
       padding: 2,
     },
@@ -71,7 +70,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
           }
           setAuthoredWorks((prevValue) => prevValue.concat(
             {
-              author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+              author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
               image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
               title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
               id: element,
@@ -88,7 +87,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
           }
           setillustratedWorks((prevValue) => prevValue.concat(
             {
-              author: (record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR']),
+              author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
               image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
               title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
               id: element,
@@ -112,7 +111,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
     };
   }, []);
 
-  const isMobile = width <= 768;
+  const isMobile = width <= 960;
 
   return (
     <Box style={isMobile ? styles.mobileRoot : styles.root}>
@@ -127,6 +126,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
            nextArrow={RightArrowAuthorPage}
            widthPercent={100}
            spaceBetweenEntries={16}
+           inAuthorPage
          />
        </>
        )}
@@ -140,6 +140,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
             nextArrow={RightArrowAuthorPage}
             widthPercent={100}
             spaceBetweenEntries={16}
+            inAuthorPage
           />
         </>
       )}

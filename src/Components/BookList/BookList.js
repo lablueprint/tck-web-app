@@ -1,13 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination } from '@mui/material';
 import {
   Sort, SortByAlpha, DateRange, StarBorder,
 } from '@mui/icons-material';
-
+import { v4 as uuidv4 } from 'uuid';
 import BookCard from '../BookBrowser/BookCard';
 import ListMenu from './ListMenu';
-
 import './BookList.css';
 
 // Sort functions for each sorting mode
@@ -104,6 +104,7 @@ function defaultNoResults() {
 }
 
 function BookList({ books, NoResults }) {
+  // const size = useWindowSize();
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(15);
 
@@ -124,7 +125,6 @@ function BookList({ books, NoResults }) {
   const indexOfLastBook = page * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
-
   const count = Math.ceil(books.length / booksPerPage);
 
   const handleSort = (sortBy) => {
@@ -147,11 +147,15 @@ function BookList({ books, NoResults }) {
           options={sortOptions}
           value={sort}
           handleChange={handleSort}
+          style={{
+            fontFamily: 'Work Sans',
+            fontWeight: 'bold',
+          }}
           label="more sort options"
         />
 
         <ListMenu
-          menuText="items per page"
+          menuText="Items Per Page"
           options={pageOptions}
           value={booksPerPage}
           handleChange={handleBooksPerPage}
@@ -162,9 +166,9 @@ function BookList({ books, NoResults }) {
         {currentBooks.map((book) => (
           <BookCard
             title={book.fields.title !== undefined ? book.fields.title : 'MISSING TITLE'}
-            author={book.fields.author !== undefined ? [book.fields.author[0]] : ['MISSING CREATOR']}
+            author={{ name: book.fields.author_name !== undefined ? book.fields.author_name : ['MISSING CREATOR'], id: book.fields.author !== undefined ? book.fields.author : ['MISSING CREATOR'] }}
             image={book.fields.image !== undefined ? book.fields.image[0].url : 'MISSING IMAGE'}
-            key={book.fields.id}
+            key={uuidv4()}
             id={book.fields.id}
             label={`Link to ${book.fields.title}`}
           />
@@ -207,7 +211,7 @@ BookList.defaultProps = {
     {
       fields: {
         title: 'MISSING TITLE',
-        author: ['MISSING CREATOR'],
+        author_name: { name: ['MISSING CREATOR'], id: ['MISSING CREATOR'] },
         image: [
           {
             url: 'MISSING IMAGE',

@@ -25,7 +25,6 @@ const styles = {
       margin: 'auto 2vw',
       marginBottom: '2vh',
     },
-
   },
   sideCardTitle: {
     textAlign: 'left',
@@ -211,7 +210,7 @@ function AboutBook({
     const link = (i !== authors.length - 1) ? `${author.name}, ` : author.name;
     return (
       <span key={author.id}>
-        <Link style={styles.link} to={`/creator/${author.id}`}>
+        <Link style={styles.link} to={`/browser/creator/${author.id}`}>
           {link}
         </Link>
       </span>
@@ -222,23 +221,32 @@ function AboutBook({
     const link = (i !== illustrators.length - 1) ? `${illustrator.name}, ` : illustrator.name;
     return (
       <span key={illustrator.id}>
-        <Link style={styles.link} to={`/creator/${illustrator.id}`}>
+        <Link style={styles.link} to={`/browser/creator/${illustrator.id}`}>
           {link}
         </Link>
       </span>
     );
   });
   return (
+
     <Card sx={styles.sideCard}>
       <CardContent>
         <Box sx={styles.sideCardContainer}>
           <Typography sx={styles.sideCardTitle}>About This Book</Typography>
           <Box sx={styles.sideCardLinkContainer}>
-            <Typography sx={styles.creator}> Written by:&nbsp;&nbsp;</Typography>
-            {authorLinks}
-            <br />
-            <Typography sx={styles.creator}> Illustrated by:&nbsp;&nbsp;</Typography>
-            {illustratorLinks}
+            {authorLinks.length !== 0 && (
+              <>
+                <Typography sx={styles.creator}> Written by:&nbsp;&nbsp;</Typography>
+                {authorLinks}
+                <br />
+              </>
+            )}
+            {illustratorLinks.length !== 0 && (
+              <>
+                <Typography sx={styles.creator}> Illustrated by:&nbsp;&nbsp;</Typography>
+                {illustratorLinks}
+              </>
+            )}
           </Box>
           <div style={styles.blockContainer}>
             <div style={styles.block}>
@@ -262,7 +270,7 @@ function AboutBook({
                   (bookType.length) ? (
                     <div style={styles.block}>
                       <Box sx={styles.bolded}>
-                        {bookType}
+                        {bookType.join(', ')}
                         {' '}
                       </Box>
                       <p style={styles.sub}>Book Format</p>

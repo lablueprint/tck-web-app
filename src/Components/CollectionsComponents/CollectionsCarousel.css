@@ -20,7 +20,7 @@
     justify-content: end;
     flex-grow: 1;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 
 .carousel-button-next{
@@ -28,7 +28,7 @@
     justify-content: start;
     flex-grow: 1;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .carousel-button-next button{

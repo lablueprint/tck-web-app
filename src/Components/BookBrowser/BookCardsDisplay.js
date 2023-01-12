@@ -175,7 +175,7 @@ function BookCardsDisplay({
   }
 
   return (
-    <div>
+    <div style={{ marginTop: '2rem' }}>
       <BookList books={filteredBooks} NoResults={NoResults} />
     </div>
   );

@@ -4,17 +4,6 @@ import React, { useState, useEffect } from 'react';
 import './BookCard.css';
 import { makeStyles } from '@mui/styles';
 
-// airtable configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
-
 const useStyles = makeStyles({
   title: {
     gridRowStart: 3,
@@ -31,34 +20,41 @@ const useStyles = makeStyles({
 });
 
 export default function BookCard({
-  id, title, author, image, inCarousel, label,
+  id, title, author, image, inCarousel, label, inQuiz,
 }) {
   const classes = useStyles();
 
+  // reformatted author for easier iterating
   const [authorVar, setAuthor] = useState([]);
 
+  // retrieving ids of authors from names
   const getAuthor = () => {
-    author.forEach((name) => {
-      if (name === 'MISSING CREATOR') { setAuthor(name); return; }
-      base('Creator').find(name, (err, record) => {
-        if (err) { console.error(err); }
-        setAuthor((prevValue) => prevValue.concat(record));
-      });
+    if (author.name[0] === 'MISSING CREATOR') { setAuthor(author.name[0]); return; }
+
+    setAuthor([]);
+
+    author.name.forEach((elem, index) => {
+      setAuthor((prevValue) => prevValue.concat({ id: author.id[index], name: elem }));
     });
   };
 
   useEffect(getAuthor, []);
 
+  const punctuation = (index) => {
+    switch (author.name.length - index - 1) {
+      case 0: return '';
+      case 1: return ' & ';
+      default: return ', ';
+    }
+  };
+
   return ( // horizontal scroll not implemented
     <div
-      className="card"
-      style={{
-        margin: inCarousel ? '0' : '30px 16px 10px 16px',
-      }}
+      className={`card${inCarousel ? '-in-carousel' : ''}`}
     >
-      <Link className="link" to={`/book/${id}`}>
+      <Link className="link" to={`/browser/book/${id}`}>
         <div className="card-action-area">
-          <div className="img-container">
+          <div className={`img-container${inQuiz ? '-in-quiz' : ''}`}>
             <img
               className="image"
               src={image}
@@ -67,26 +63,35 @@ export default function BookCard({
             />
           </div>
           <p className="book-card-text">
-            {title}
+            {title.length > 50 ? `${title.substring(0, 50)}...` : title}
           </p>
-
         </div>
       </Link>
       <div className={classes.author} color="text.secondary" style={{ fontFamily: 'DM Sans' }}>
         By
         {' '}
-        {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element) => (
-          <Link key={element.id} className="link" to={`/creator/${element.id}`}>
-            {element.fields.name}
-            <br />
-          </Link>
-        ))
+        {authorVar !== undefined && (authorVar !== 'MISSING CREATOR' ? authorVar.map((element, index) => {
+          if (index < 2) {
+            return (
+              <Link key={element.id} className="link" to={`/browser/creator/${element.id}`}>
+                {element.name}
+                {punctuation(index)}
+              </Link>
+            );
+          }
+          if (index === 2) {
+            return (' & more');
+          }
+
+          return (null);
+        })
           : (
             <div className="link">
               Unknown
               <br />
             </div>
-          ))}
+          )
+        )}
       </div>
 
     </div>
@@ -101,13 +106,18 @@ BookCard.defaultProps = {
 BookCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  author: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+  author: PropTypes.shape({
+    name: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]).isRequired,
+  }).isRequired,
   image: PropTypes.string,
   inCarousel: PropTypes.bool,
   label: PropTypes.string,
+  inQuiz: PropTypes.bool,
 };
 
 BookCard.defaultProps = {
   inCarousel: false,
   image: '',
+  inQuiz: false,
 };
