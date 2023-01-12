@@ -6,32 +6,32 @@ import {
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid';
 import './DictionaryCard.css';
-import LetterA from '../../Assets/Dictionary/LetterA.svg';
-import LetterB from '../../Assets/Dictionary/LetterB.svg';
-import LetterC from '../../Assets/Dictionary/LetterC.svg';
-import LetterD from '../../Assets/Dictionary/LetterD.svg';
-import LetterE from '../../Assets/Dictionary/LetterE.svg';
-import LetterF from '../../Assets/Dictionary/LetterF.svg';
-import LetterG from '../../Assets/Dictionary/LetterG.svg';
-import LetterH from '../../Assets/Dictionary/LetterH.svg';
-import LetterI from '../../Assets/Dictionary/LetterI.svg';
-import LetterJ from '../../Assets/Dictionary/LetterJ.svg';
-import LetterK from '../../Assets/Dictionary/LetterK.svg';
-import LetterL from '../../Assets/Dictionary/LetterL.svg';
-import LetterM from '../../Assets/Dictionary/LetterM.svg';
-import LetterN from '../../Assets/Dictionary/LetterN.svg';
-import LetterO from '../../Assets/Dictionary/LetterO.svg';
-import LetterP from '../../Assets/Dictionary/LetterP.svg';
-import LetterQ from '../../Assets/Dictionary/LetterQ.svg';
-import LetterR from '../../Assets/Dictionary/LetterR.svg';
-import LetterS from '../../Assets/Dictionary/LetterS.svg';
-import LetterT from '../../Assets/Dictionary/LetterT.svg';
-import LetterU from '../../Assets/Dictionary/LetterU.svg';
-import LetterV from '../../Assets/Dictionary/LetterV.svg';
-import LetterW from '../../Assets/Dictionary/LetterW.svg';
-import LetterX from '../../Assets/Dictionary/LetterX.svg';
-import LetterY from '../../Assets/Dictionary/LetterY.svg';
-import LetterZ from '../../Assets/Dictionary/LetterZ.svg';
+import LetterA from '../../Assets/Dictionary/Letter A.png';
+import LetterB from '../../Assets/Dictionary/Letter B.png';
+import LetterC from '../../Assets/Dictionary/Letter C.png';
+import LetterD from '../../Assets/Dictionary/Letter D.png';
+import LetterE from '../../Assets/Dictionary/Letter E.png';
+import LetterF from '../../Assets/Dictionary/Letter F.png';
+import LetterG from '../../Assets/Dictionary/Letter G.png';
+import LetterH from '../../Assets/Dictionary/Letter H.png';
+import LetterI from '../../Assets/Dictionary/Letter I.png';
+import LetterJ from '../../Assets/Dictionary/Letter J.png';
+import LetterK from '../../Assets/Dictionary/Letter K.png';
+import LetterL from '../../Assets/Dictionary/Letter L.png';
+import LetterM from '../../Assets/Dictionary/Letter M.png';
+import LetterN from '../../Assets/Dictionary/Letter N.png';
+import LetterO from '../../Assets/Dictionary/Letter O.png';
+import LetterP from '../../Assets/Dictionary/Letter P.png';
+import LetterQ from '../../Assets/Dictionary/Letter Q.png';
+import LetterR from '../../Assets/Dictionary/Letter R.png';
+import LetterS from '../../Assets/Dictionary/Letter S.png';
+import LetterT from '../../Assets/Dictionary/Letter T.png';
+import LetterU from '../../Assets/Dictionary/Letter U.png';
+import LetterV from '../../Assets/Dictionary/Letter V.png';
+import LetterW from '../../Assets/Dictionary/Letter W.png';
+import LetterX from '../../Assets/Dictionary/Letter X.png';
+import LetterY from '../../Assets/Dictionary/Letter Y.png';
+import LetterZ from '../../Assets/Dictionary/Letter Z.png';
 
 const styles = {
   seeMoreContainer: {
@@ -57,6 +57,24 @@ const styles = {
       color: '#669afa',
       cursor: 'pointer',
     },
+  },
+  avatar: {
+    height: '110px',
+    width: '110px',
+    '@media screen and (max-width: 960px)': {
+      height: '75px',
+      width: '75px',
+    },
+  },
+  cardActions: {
+    justifyContent: 'left',
+    marginLeft: '15%',
+  },
+  resourceGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, auto)',
+    rowGap: 2,
+    columnGap: 2,
   },
 };
 
@@ -113,14 +131,7 @@ export default function DictionaryCard({
       <CardContent>
         <div className="img">
           <Avatar
-            sx={{
-              height: '110px',
-              width: '110px',
-              '@media screen and (max-width: 960px)': {
-                height: '75px',
-                width: '75px',
-              },
-            }}
+            sx={styles.avatar}
             alt="Dictionary Image"
             src={mapping[displayLet]}
           />
@@ -152,13 +163,11 @@ export default function DictionaryCard({
         </div>
       </CardContent>
       <div className="wrap-more-resources-and-links">
-        <CardActions sx={{ justifyContent: 'left', marginLeft: '15%' }}>
+        <CardActions sx={styles.cardActions}>
           <div>
             { linksArray.length !== 0 ? (
               <Grid
-                sx={{
-                  display: 'grid', gridTemplateColumns: 'repeat(4, auto)', rowGap: 2, columnGap: 2,
-                }}
+                sx={styles.resourceGrid}
               >
                 <div className="more-resources">
                   Resources:

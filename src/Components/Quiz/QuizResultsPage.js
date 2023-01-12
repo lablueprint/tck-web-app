@@ -4,8 +4,8 @@ import {
   Button,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import DownArrow from '../../Assets/Images/down-arrow.svg';
-import UpArrow from '../../Assets/Images/up-arrow.svg';
+import DownArrow from '../../Assets/Images/down-arrow.png';
+import UpArrow from '../../Assets/Images/up-arrow.png';
 import RecFilter from '../Recommendations/BookRec';
 import RightArrow from '../../Assets/Images/right-arrow.png';
 import LeftArrow from '../../Assets/Images/left-arrow.png';
@@ -189,7 +189,7 @@ function ResultsPage({ bookFilters, isChild }) {
             className="down-arrow-button"
             onClick={handleClickToBottom}
           >
-            <img src={DownArrow} alt="bouncing arrow pointing downwards" className="down-arrow-image" />
+            <img src={DownArrow} alt="bouncing arrow pointing downwards" className="arrow-button-image" />
           </button>
           <img className="cloud-image" src={CloudImage} alt="sky illustration with clouds" />
         </div>
@@ -203,7 +203,7 @@ function ResultsPage({ bookFilters, isChild }) {
             <img
               src={UpArrow}
               alt="bouncing arrow pointing upwards"
-              className="down-arrow-image"
+              className="arrow-button-image"
             />
           </button>
         )}

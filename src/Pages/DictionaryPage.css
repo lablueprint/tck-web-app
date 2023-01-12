@@ -41,8 +41,8 @@
 }
 
 .dictionary-background {
-  background-image: url(../Assets/Dictionary/DictionaryBackground.svg);
-  background-position: center; 
+  background-image: url(../Assets/Dictionary/DictionaryBackground.png);
+  background-position: top; 
   background-repeat: repeat-y;
   background-size: 100%;
   padding: 5% 13%;

@@ -6,9 +6,9 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
-import Child from '../../Assets/Images/Child.svg';
-import Parent from '../../Assets/Images/Parent.svg';
-import Educator from '../../Assets/Images/Educator.svg';
+import Child from '../../Assets/Images/Child.png';
+import Parent from '../../Assets/Images/Parent.png';
+import Educator from '../../Assets/Images/Educator.png';
 import AvatarButton from './AvatarButton';
 import './QuizGroup.css';
 
@@ -22,8 +22,8 @@ const styles = {
     rowGap: '1rem',
   },
   avatarIcon: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
   },
 };
 
