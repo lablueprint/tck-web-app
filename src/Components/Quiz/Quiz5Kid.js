@@ -4,7 +4,7 @@ import {
   Button, Box,
 } from '@mui/material';
 import ProgressBar from './ProgressBar';
-import illusion from '../../Assets/Images/IllusionVector.svg';
+import illusion from '../../Assets/Images/illusion.png';
 
 const styles = {
   button: {
@@ -60,7 +60,7 @@ export default function Quiz5Kid({
       <h1 className="quiz-header">
         What do you see in the picture below?
       </h1>
-      <img style={{ height: '275px', marginTop: '-3vh' }} src={illusion} alt="Illusion Missing" />
+      <img style={{ height: '300px', marginTop: '-4vh' }} src={illusion} alt="Illusion Missing" />
       <Box sx={styles.buttonContainer}>
         <Button
           sx={styles.button}

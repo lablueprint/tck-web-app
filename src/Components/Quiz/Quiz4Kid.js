@@ -4,11 +4,11 @@ import {
 } from '@mui/material';
 import propTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
-import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.svg';
-import Serious from '../../Assets/Images/TCK_Mood - Serious.svg';
-import Neutral from '../../Assets/Images/TCK_Mood - Neutral.svg';
-import Silly from '../../Assets/Images/TCK_Mood - Silly.svg';
-import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.svg';
+import VerySerious from '../../Assets/Images/TCK_Mood - Very Serious.png';
+import Serious from '../../Assets/Images/TCK_Mood - Serious.png';
+import Neutral from '../../Assets/Images/TCK_Mood - Neutral.png';
+import Silly from '../../Assets/Images/TCK_Mood - Silly.png';
+import VerySilly from '../../Assets/Images/TCK_Mood - Very Silly.png';
 import './QuizGroup.css';
 import AvatarButton from './AvatarButton';
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './StartPage.css';
-import mobileGraphic from '../../Assets/Images/MobileQuizForeground.svg';
+import mobileGraphic from '../../Assets/Images/MobileQuizForeground.png';
 
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match

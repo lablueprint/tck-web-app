@@ -1,7 +1,8 @@
 .quiz-start-background {
-   background-image: url(../../Assets/Images/QuizBackground.svg);
+   background-image: url(../../Assets/Images/QuizBackground.png);
    background-position: top;
    background-repeat: no-repeat;
+   background-size: cover;
    height: 90vh;
 }
 

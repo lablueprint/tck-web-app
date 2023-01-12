@@ -125,7 +125,8 @@
   z-index: 4 !important;
 }
 
-.down-arrow-image{
+.arrow-button-image{
+  height: 20px;
   animation: bounce 0.75s infinite;
 }
 
