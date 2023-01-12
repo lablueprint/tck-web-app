@@ -31,7 +31,6 @@ const styles = {
     lineHeight: '28px',
     textAlign: 'center',
     color: '#444444',
-    paddingBottom: 2,
     '@media (max-width: 960px)': {
       padding: 2,
     },
@@ -112,7 +111,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
     };
   }, []);
 
-  const isMobile = width <= 768;
+  const isMobile = width <= 960;
 
   return (
     <Box style={isMobile ? styles.mobileRoot : styles.root}>
@@ -127,6 +126,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
            nextArrow={RightArrowAuthorPage}
            widthPercent={100}
            spaceBetweenEntries={16}
+           inAuthorPage
          />
        </>
        )}
@@ -140,6 +140,7 @@ function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
             nextArrow={RightArrowAuthorPage}
             widthPercent={100}
             spaceBetweenEntries={16}
+            inAuthorPage
           />
         </>
       )}

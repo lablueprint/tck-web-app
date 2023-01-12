@@ -25,7 +25,6 @@ const styles = {
       margin: 'auto 2vw',
       marginBottom: '2vh',
     },
-
   },
   sideCardTitle: {
     textAlign: 'left',
@@ -235,14 +234,14 @@ function AboutBook({
         <Box sx={styles.sideCardContainer}>
           <Typography sx={styles.sideCardTitle}>About This Book</Typography>
           <Box sx={styles.sideCardLinkContainer}>
-            {authorLinks.length && (
+            {authorLinks.length !== 0 && (
               <>
                 <Typography sx={styles.creator}> Written by:&nbsp;&nbsp;</Typography>
                 {authorLinks}
                 <br />
               </>
             )}
-            {illustratorLinks.length && (
+            {illustratorLinks.length !== 0 && (
               <>
                 <Typography sx={styles.creator}> Illustrated by:&nbsp;&nbsp;</Typography>
                 {illustratorLinks}

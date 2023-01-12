@@ -14,10 +14,58 @@ import BookCard from '../BookBrowser/BookCard';
 // Authored and illustrated work components
 function Carousel({
   elementArray, slidesAtATime, prevArrow, nextArrow, widthPercent, spaceBetweenEntries, inQuiz,
+  inAuthorPage,
 }) {
   SwiperCore.use([Navigation, A11y]);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+    },
+    468: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    650: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    840: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+    1000: {
+      slidesPerView: 5,
+      spaceBetween: 20,
+    },
+    1150: {
+      slidesPerView: slidesAtATime,
+      spaceBetween: spaceBetweenEntries,
+    },
+  };
+
+  const authorBreakpoints = {
+    320: {
+      slidesPerView: 1,
+    },
+    468: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    650: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    960: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    1300: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  };
 
   return (
     <div
@@ -46,31 +94,7 @@ function Carousel({
         }}
         on="true"
         // centeredSlides
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-          },
-          468: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          650: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          840: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-          1000: {
-            slidesPerView: 5,
-            spaceBetween: 20,
-          },
-          1150: {
-            slidesPerView: slidesAtATime,
-            spaceBetween: spaceBetweenEntries,
-          },
-        }}
+        breakpoints={inAuthorPage ? authorBreakpoints : breakpoints}
         direction="horizontal"
         navigation={{
           prevEl: navigationPrevRef.current,
@@ -124,12 +148,14 @@ Carousel.propTypes = {
   widthPercent: propTypes.number,
   spaceBetweenEntries: propTypes.number,
   inQuiz: propTypes.bool,
+  inAuthorPage: propTypes.bool,
 };
 
 Carousel.defaultProps = {
   widthPercent: 100,
   spaceBetweenEntries: 0,
   inQuiz: false,
+  inAuthorPage: false,
 };
 
 export default Carousel;
