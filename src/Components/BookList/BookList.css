@@ -1,5 +1,5 @@
 .book-list {
-    width: 82vw;
+    width: 83vw;
     margin: 1rem auto 5rem;
     border: '2px solid green';
 }
@@ -19,11 +19,10 @@
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: row;
-    column-gap: 1fr;
-    flex-flow: row wrap;
-    margin: 0 -23px 3rem;
-    /*chanty do you prefer space-between or evenly? */
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  grid-gap: 1fr;
+  /*chanty do you prefer space-between or evenly?*/
+  justify-content: space-between;
+  margin: 0 -23px 3rem;
 }
