@@ -1,6 +1,7 @@
 {
   "name": "tck-web-app",
   "version": "0.1.0",
+  "homepage": "https://lablueprint.github.io/tck-web-app",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -23,6 +24,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,6 +55,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^4.0.0"
   }
 }
