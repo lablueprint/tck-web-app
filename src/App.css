@@ -64,7 +64,5 @@
 }
 
 .screen-container {
-  margin-top: 64px 0 0;
-  position: relative;
-  min-height: 100vh;
+  margin: 64px 0 0;
 }

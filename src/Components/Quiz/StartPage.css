@@ -81,7 +81,8 @@
 
 @media only screen and (max-width: 850px) {
    .quiz-start-text-container {
-      padding: 3rem 2.5rem 0;
+      padding: 3rem 0 0;
+      margin: auto;
       width: 90%;
    }
    .quiz-start-background {

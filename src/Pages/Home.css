@@ -64,13 +64,12 @@
     font-size: 40px;
     padding-left: 2vw;
     margin-bottom: 0;
-    padding-top: 5vh;
 }
 
 .about-section {
     display: flex;
     justify-content: center;
-    padding: 2rem 5%;
+    padding: 2rem 5% 5rem;
 }
 
 .about-section-text {
@@ -120,5 +119,9 @@
     .subtext {
         width: 90vw;
         font-size: 16px;
+    }
+
+    .about-section-header {
+        font-size: 30px;
     }
 }
