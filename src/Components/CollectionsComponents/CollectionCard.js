@@ -28,7 +28,7 @@ export default function CollectionCard({
             maxWidth: `${imageWidthPercent}%`,
             maxHeight: `${imageHeightPercent}%`,
           }}
-          alt="description"
+          alt=""
         />
       </div>
 

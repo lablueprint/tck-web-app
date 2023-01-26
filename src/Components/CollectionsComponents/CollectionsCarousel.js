@@ -103,7 +103,6 @@ function CollectionsCarousel({
           type="button"
         >
           <img src={prevArrow} alt="Left navigation arrow" />
-
         </button>
       </div>
       {isCollectionPageHeader

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 export default function BookCard({
-  id, title, author, image, inCarousel, label, inQuiz,
+  id, title, author, image, inCarousel, inQuiz,
 }) {
   const classes = useStyles();
 
@@ -58,8 +58,8 @@ export default function BookCard({
             <img
               className="image"
               src={image}
-              alt="missing_book_cover"
-              aria-label={`${label}`}
+              alt=""
+              // alt text is redundant as title is provided!
             />
           </div>
           <p className="book-card-text">
@@ -98,11 +98,6 @@ export default function BookCard({
   );
 }
 
-BookCard.defaultProps = {
-  image: '',
-  label: '', // This is temporary, should we want all book cards to have title in aria-label? if so, make this req
-};
-
 BookCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -112,7 +107,6 @@ BookCard.propTypes = {
   }).isRequired,
   image: PropTypes.string,
   inCarousel: PropTypes.bool,
-  label: PropTypes.string,
   inQuiz: PropTypes.bool,
 };
 

@@ -101,8 +101,9 @@ export default function NoResults() {
         <Box
           component="img"
           sx={styles.noResultsPicture}
-          alt="No Results Picture"
           src={NoResultsPicture}
+          alt=""
+          // purely decorative
         />
     </Box>
   );

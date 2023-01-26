@@ -56,7 +56,7 @@ export default function Quiz1({
             <Avatar
               sx={styles.avatarIcon}
               src={Parent}
-              alt="Educator icon"
+              alt=""
             />
           )}
         />
@@ -67,7 +67,7 @@ export default function Quiz1({
             <Avatar
               sx={styles.avatarIcon}
               src={Educator}
-              alt="Parent/Caregiver icon"
+              alt=""
             />
           )}
         />
@@ -78,7 +78,7 @@ export default function Quiz1({
             <Avatar
               sx={styles.avatarIcon}
               src={Child}
-              alt="Child icon"
+              alt=""
             />
           )}
         />
