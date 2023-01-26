@@ -22,7 +22,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 220px);
   grid-gap: 1fr;
-  /*chanty do you prefer space-between or evenly?*/
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 0 -23px 3rem;
 }

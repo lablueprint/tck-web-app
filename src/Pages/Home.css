@@ -69,7 +69,8 @@
 .about-section {
     display: flex;
     justify-content: center;
-    padding: 2rem 5% 5rem;
+    padding: 2rem 0 5rem;
+    margin: auto;
 }
 
 .about-section-text {
@@ -98,11 +99,18 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        padding: 2rem 2rem 5rem;
+
     }
 
     .about-image {
         width: 100%;
+        padding: 0;
     }
+    .about-section-text {
+        padding: 2rem 0;
+    }
+
 
     .about-section-text {
         width: 100%;

@@ -21,18 +21,7 @@ export default function CollectionCard({
       id="collection-card-wrapper"
       style={{ background: color, columnGap: isCollectionPageHeader ? '15px' : '3px' }}
     >
-
-      {/* { isCollectionPageHeader ? (
-        <div className="card-description-wrapper" style={{
-           background: isSlideActive ? 'rgba(255, 255, 255, 0.25)' : color,
-          marginBottom: bigLine.length > 40 && isCollectionPageHeader ? '0' : '1.5em' }}>
-          <p className="card-description" style={{ color: isSlideActive ? '#FAFAFA' : color }}>
-            Currently Viewing
-          </p>
-        </div>
-      ) : (<div style={{ marginTop: '3em' }} />)} */}
-
-      <div className={size.width > 600 ? 'collection-image-container' : 'collection-image-container collection-image-container-mobile'}>
+      <div className="collection-image-container">
         <img
           src={image}
           style={{
