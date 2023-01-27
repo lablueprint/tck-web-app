@@ -6,13 +6,8 @@ import { useParams } from 'react-router-dom';
 import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 import Loading from '../Components/Loading/Loading';
-
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-
-const Airtable = require('airtable');
-
-const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY })
-  .base(process.env.REACT_APP_AIRTABLE_BASE_KEY);
+import base from '../airtable';
 
 const styles = {
   readAloud: {

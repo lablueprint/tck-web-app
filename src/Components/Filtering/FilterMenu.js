@@ -7,16 +7,7 @@ import MultiselectFilter from './MultiselectFilter';
 import RangeFilter from './RangeFilter';
 import './Filtering.css';
 import { ageRangeMetadata, gradeRangeMetadata } from '../../Constants';
-
-// airtable configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
+import base from '../../airtable';
 
 const styles = {
   homepageButton: {

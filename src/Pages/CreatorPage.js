@@ -4,6 +4,7 @@ import { Card } from '@mui/material';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/CreatorPage/CreatedWorksCard';
 import Loading from '../Components/Loading/Loading';
+import base from '../airtable';
 
 const styles = {
   root: {
@@ -17,17 +18,6 @@ const styles = {
     width: '40%',
   },
 };
-
-// airtable configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
 
 function CreatorPage() {
   const [creatorDetails, setCreatorDetails] = useState();
