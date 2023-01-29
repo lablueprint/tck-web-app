@@ -8,11 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 const styles = {
     root: {
-      width: '100%',
+      width: '90%',
+      margin: 'auto',
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+      padding: '5rem 0 7rem',
+      '@media (max-width: 800px)': {
+        padding: '3rem 0 5rem',
+        flexDirection: 'column',
+      },
     },
     sorryText: {
       textAlign: 'left',
@@ -31,14 +37,6 @@ const styles = {
       paddingTop: 3,
       paddingBottom: 2,
     },
-    contactBlurbText: {
-      textAlign: 'left',
-      fontFamily: 'DM Sans',
-      fontWeight: 400,
-      fontSize: '18px',
-      color: '#3E3E3E',
-      paddingTop: 3,
-    },
     linkText: {
       textAlign: 'left',
       fontFamily: 'DM Sans',
@@ -56,12 +54,6 @@ const styles = {
       alignItems: 'center',
       paddingTop: 1,
     },
-    columnBox: {
-      width: '90%',
-      display: 'flex',
-      flexDirectoon: 'column',
-      alignItems: 'center',
-    },
     contactEmail: {
       textAlign: 'left',
       fontFamily: 'DM Sans',
@@ -75,8 +67,11 @@ const styles = {
       },
     },
     noResultsPicture: {
-      height: '50%',
       width: '50%',
+      '@media (max-width: 800px)': {
+        width: '100%',
+        paddingTop: '2rem',
+      },
     },
   };
 
@@ -92,7 +87,6 @@ export default function NoResults() {
   };
   return (
     <Box sx={styles.root}>
-      <Box sx={styles.columnBox}>
         <Box>
           <Typography sx={styles.sorryText}>Sorry!</Typography>
           <Typography sx={styles.blurbText}>Unfortunately, your search did not return any results. Try simplifying your filters, fixing the punctuation, or searching one keyword at a time.  If you can’t find books that represent your identity, submit a request below!</Typography>
@@ -102,15 +96,15 @@ export default function NoResults() {
           <Box sx={styles.linkBox}>
             <Typography sx={styles.linkText} onClick={onResetSearchText}>Reset Search</Typography>
           </Box>
-            <Typography sx={styles.contactBlurbText}>If you'd like to contact TCK, email <Link sx={styles.contactEmail} href={`mailto:contacttheconsciouskid@gmail.com`}> contacttheconsciouskid@gmail.com </Link></Typography>
+            <Typography sx={styles.blurbText}>If you'd like to contact TCK, email <Link sx={styles.contactEmail} href={`mailto:contacttheconsciouskid@gmail.com`}> contacttheconsciouskid@gmail.com </Link></Typography>
         </Box>
         <Box
           component="img"
           sx={styles.noResultsPicture}
-          alt="No Results Picture"
           src={NoResultsPicture}
+          alt=""
+          // purely decorative
         />
-      </Box>
     </Box>
   );
 }

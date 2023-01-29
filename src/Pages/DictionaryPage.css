@@ -31,6 +31,15 @@
   padding-bottom: 2%;
 }
 
+.dictionary-background {
+  background-image: url(../Assets/Dictionary/DictionaryBackground.png);
+  background-position: top; 
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-color: #EAF3FE;
+  padding: 5% 13%;
+}
+
 @media screen and (max-width: 960px) {
   .title {
       font-size: 26px;
@@ -38,12 +47,9 @@
   .tagline {
       font-size: 16px;
   }
+
+  .dictionary-background {
+    padding: 3% 10%;
+  }
 }
 
-.dictionary-background {
-  background-image: url(../Assets/Dictionary/DictionaryBackground.png);
-  background-position: top; 
-  background-repeat: repeat-y;
-  background-size: 100%;
-  padding: 5% 13%;
-}

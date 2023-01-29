@@ -189,7 +189,7 @@ function ResultsPage({ bookFilters, isChild }) {
             className="down-arrow-button"
             onClick={handleClickToBottom}
           >
-            <img src={DownArrow} alt="bouncing arrow pointing downwards" className="arrow-button-image" />
+            <img src={DownArrow} alt="down arrow to suggested books" className="arrow-button-image" />
           </button>
           <img className="cloud-image" src={CloudImage} alt="sky illustration with clouds" />
         </div>
@@ -202,7 +202,7 @@ function ResultsPage({ bookFilters, isChild }) {
           <button type="button" className="up-arrow-button" onClick={handleClickToTop}>
             <img
               src={UpArrow}
-              alt="bouncing arrow pointing upwards"
+              alt="up arrow to results description"
               className="arrow-button-image"
             />
           </button>

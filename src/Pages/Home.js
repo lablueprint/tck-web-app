@@ -35,6 +35,7 @@ const styles = {
     margin: '7.5px',
     '@media (max-width: 700px)': {
       width: '80vw',
+      margin: '7.5px auto',
     },
     '&.MuiButtonBase-root:hover': {
       bgcolor: '#EAF3FE',

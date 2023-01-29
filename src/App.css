@@ -64,6 +64,5 @@
 }
 
 .screen-container {
-  margin-top: 64px;
-  margin-bottom: 0;
+  margin: 64px 0 0;
 }

@@ -196,7 +196,7 @@ export default function CreatorInfoCard({
             <CardMedia
               component="img"
               image={creatorImage}
-              alt="Creator Picture"
+              alt={`Picture of ${creatorName}`}
               sx={styles.cardImage}
             />
             )}

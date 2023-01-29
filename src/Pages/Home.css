@@ -64,13 +64,13 @@
     font-size: 40px;
     padding-left: 2vw;
     margin-bottom: 0;
-    padding-top: 5vh;
 }
 
 .about-section {
     display: flex;
     justify-content: center;
-    padding: 2rem 5%;
+    padding: 2rem 0 5rem;
+    margin: auto;
 }
 
 .about-section-text {
@@ -99,11 +99,18 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        padding: 2rem 2rem 5rem;
+
     }
 
     .about-image {
         width: 100%;
+        padding: 0;
     }
+    .about-section-text {
+        padding: 2rem 0;
+    }
+
 
     .about-section-text {
         width: 100%;
@@ -120,5 +127,9 @@
     .subtext {
         width: 90vw;
         font-size: 16px;
+    }
+
+    .about-section-header {
+        font-size: 30px;
     }
 }

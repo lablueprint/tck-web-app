@@ -132,7 +132,7 @@ export default function DictionaryCard({
         <div className="img">
           <Avatar
             sx={styles.avatar}
-            alt="Dictionary Image"
+            alt=""
             src={mapping[displayLet]}
           />
           <div className="wrap-term-and-phonetic-spelling">

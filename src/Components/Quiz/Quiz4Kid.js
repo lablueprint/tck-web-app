@@ -55,7 +55,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             <Avatar
               sx={styles.avatarIcon}
               src={VerySerious}
-              alt="Very Serious"
+              alt=""
             />
             )}
           isSillyButton
@@ -67,7 +67,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             <Avatar
               sx={styles.avatarIcon}
               src={Serious}
-              alt="Serious"
+              alt=""
             />
             )}
           isSillyButton
@@ -79,7 +79,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             <Avatar
               sx={styles.avatarIcon}
               src={Neutral}
-              alt="Neutral"
+              alt=""
             />
             )}
           isSillyButton
@@ -92,7 +92,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             <Avatar
               sx={styles.avatarIcon}
               src={Silly}
-              alt="Silly"
+              alt=""
             />
             )}
           isSillyButton
@@ -106,7 +106,7 @@ export default function Quiz4Kid({ setSilly, dispatch, sillyNotSet }) {
             <Avatar
               sx={styles.avatarIcon}
               src={VerySilly}
-              alt="Very Silly"
+              alt=""
             />
             )}
           isSillyButton
