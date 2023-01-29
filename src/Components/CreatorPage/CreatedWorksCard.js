@@ -5,6 +5,7 @@ import './CreatedWorksCard.css';
 import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.png';
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.png';
 import Carousel from './BookCarousel';
+import base from '../../airtable';
 
 const styles = {
   root: {
@@ -44,15 +45,6 @@ const styles = {
     color: '#444444',
   },
 };
-
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey }).base(airtableConfig.baseKey);
 
 function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
   const [authoredWorks, setAuthoredWorks] = useState([]);

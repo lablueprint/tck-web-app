@@ -4,17 +4,7 @@ import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
 import NoResults from '../BookList/NoResults';
 import Loading from '../Loading/Loading';
-
-// airtable configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
+import base from '../../airtable';
 
 function BookCardsDisplay({
   searchTerms, searchCategory, alignment, rangeInput, multiSelectInput,

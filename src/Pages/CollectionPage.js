@@ -8,16 +8,7 @@ import NextArrow from '../Assets/Images/right-arrow-author-page.png';
 import useWindowSize from '../Components/Hooks/useWindowSize';
 import BookList from '../Components/BookList/BookList';
 import Loading from '../Components/Loading/Loading';
-// airtable configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
+import base from '../airtable';
 
 function CollectionPage() {
   const params = useParams();

@@ -8,17 +8,7 @@ import LeftArrow from '../Assets/Images/left-arrow.png';
 import RightArrow from '../Assets/Images/right-arrow.png';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
-
-// Airtable Configuration
-const Airtable = require('airtable');
-
-const airtableConfig = {
-  apiKey: process.env.REACT_APP_AIRTABLE_USER_KEY,
-  baseKey: process.env.REACT_APP_AIRTABLE_BASE_KEY,
-};
-
-const base = new Airtable({ apiKey: airtableConfig.apiKey })
-  .base(airtableConfig.baseKey);
+import base from '../airtable';
 
 const styles = {
   buttons: {
