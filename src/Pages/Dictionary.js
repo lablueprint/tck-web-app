@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import DictionaryCard from '../Components/Dictionary/DictionaryCard';
 import './DictionaryPage.css';
-import base from '../airtable';
+import base from '../Airtable';
 
 function Dictionary() {
   const [definitions, setDefinitions] = useState([]);

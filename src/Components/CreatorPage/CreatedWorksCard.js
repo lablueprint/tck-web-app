@@ -5,7 +5,7 @@ import './CreatedWorksCard.css';
 import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.png';
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.png';
 import Carousel from './BookCarousel';
-import base from '../../airtable';
+import base from '../../Airtable';
 
 const styles = {
   root: {

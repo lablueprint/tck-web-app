@@ -4,7 +4,7 @@ import { Card } from '@mui/material';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/CreatorPage/CreatedWorksCard';
 import Loading from '../Components/Loading/Loading';
-import base from '../airtable';
+import base from '../Airtable';
 
 const styles = {
   root: {

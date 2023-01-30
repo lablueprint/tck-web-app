@@ -8,7 +8,7 @@ import LeftArrow from '../Assets/Images/left-arrow.png';
 import RightArrow from '../Assets/Images/right-arrow.png';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
-import base from '../airtable';
+import base from '../Airtable';
 
 const styles = {
   buttons: {

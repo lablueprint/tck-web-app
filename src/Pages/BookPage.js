@@ -7,7 +7,7 @@ import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 import Loading from '../Components/Loading/Loading';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import base from '../airtable';
+import base from '../Airtable';
 
 const styles = {
   readAloud: {

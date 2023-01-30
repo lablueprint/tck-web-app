@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
-import base from '../../airtable';
+import base from '../../Airtable';
 
 export default function Quiz3({
   setBookFilters, bookFilters,

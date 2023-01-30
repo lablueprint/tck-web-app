@@ -8,7 +8,7 @@ import NextArrow from '../Assets/Images/right-arrow-author-page.png';
 import useWindowSize from '../Components/Hooks/useWindowSize';
 import BookList from '../Components/BookList/BookList';
 import Loading from '../Components/Loading/Loading';
-import base from '../airtable';
+import base from '../Airtable';
 
 function CollectionPage() {
   const params = useParams();

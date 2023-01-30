@@ -7,7 +7,7 @@ import MultiselectFilter from './MultiselectFilter';
 import RangeFilter from './RangeFilter';
 import './Filtering.css';
 import { ageRangeMetadata, gradeRangeMetadata } from '../../Constants';
-import base from '../../airtable';
+import base from '../../Airtable';
 
 const styles = {
   homepageButton: {

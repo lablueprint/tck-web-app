@@ -1,5 +1,5 @@
 import { gradeRangeMetadata } from '../../Constants';
-import base from '../../airtable';
+import base from '../../Airtable';
 
 export default function RecFilter(
   bookId,
