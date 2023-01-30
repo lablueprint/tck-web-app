@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import propTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
-import base from '../../Airtable';
+import { MetadataContext } from '../../Contexts';
 
 export default function Quiz7Adult({
   bookFilters, setBookFilters, dispatch,
 }) {
+  const { metadata } = useContext(MetadataContext);
   const [filters, setFilters] = useState([]);
-  let filterVar;
 
   const getFilters = () => {
-    base('Book Tag Metadata').select({
-      filterByFormula: `IF(FIND("${'book_type'}", name) !=0, options, '')`,
-      view: 'Grid view',
-    }).all()
-      .then((records) => {
-        filterVar = records[0].fields.options.split(',').map((element) => element.trim());
-        setFilters(filterVar);
-      });
+    const raceMetadata = metadata.find((el) => el.fields.name === 'book_type');
+    if (raceMetadata) setFilters(raceMetadata.fields.options.split(',').map((element) => element.trim()));
   };
 
-  useEffect(getFilters, []);
+  useEffect(getFilters, [metadata]);
 
   function HandleClick(name, checked) {
     if (checked) {

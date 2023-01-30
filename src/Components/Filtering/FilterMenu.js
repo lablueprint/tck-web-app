@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
 import propTypes from 'prop-types';
@@ -7,7 +7,7 @@ import MultiselectFilter from './MultiselectFilter';
 import RangeFilter from './RangeFilter';
 import './Filtering.css';
 import { ageRangeMetadata, gradeRangeMetadata } from '../../Constants';
-import base from '../../Airtable';
+import { MetadataContext } from '../../Contexts';
 
 const styles = {
   homepageButton: {
@@ -28,6 +28,7 @@ const styles = {
 };
 
 export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
+  const { metadata } = useContext(MetadataContext);
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age: [-1, 17],
     grade: [-1, 12],
@@ -41,15 +42,6 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
     'theme/lessons': [],
     book_type: [],
   });
-
-  const [multiselectMetadata, setMultiselectMetadata] = useState([]);
-
-  const getMetadata = () => {
-    base('Book Tag Metadata').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setMultiselectMetadata(records);
-      });
-  };
 
   const handleSave = () => {
     setRangeState(tempRangeFilterData);
@@ -83,8 +75,6 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
     });
   };
 
-  useEffect(getMetadata, []);
-
   return (
     <div className="menu-wrapper">
       <div className="range-filter-grid">
@@ -102,7 +92,7 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
         />
       </div>
       <div className="multiselect-grid">
-        {multiselectMetadata && multiselectMetadata.map((option) => (
+        {metadata && metadata.map((option) => (
           <div className="multi-select-component" key={option.fields.id}>
             <MultiselectFilter
               filterLabel={option.fields.display}

@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import propTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 import QuizButton from './QuizButton';
-import base from '../../Airtable';
+import { MetadataContext } from '../../Contexts';
 
 export default function Quiz3({
   setBookFilters, bookFilters,
   dispatch, isAdult,
 }) {
+  const { metadata } = useContext(MetadataContext);
   const [filters, setFilters] = useState([]);
-  let filterVar;
 
   const getFilters = () => {
-    base('Book Tag Metadata').select({
-      filterByFormula: `IF(FIND("${'race/ethnicity'}", name) !=0, options, '')`,
-      view: 'Grid view',
-    }).all()
-      .then((records) => {
-        filterVar = records[0].fields.options.split(',').map((element) => element.trim());
-        setFilters(filterVar);
-      });
+    const raceMetadata = metadata.find((el) => el.fields.name === 'race/ethnicity');
+    if (raceMetadata) setFilters(raceMetadata.fields.options.split(',').map((element) => element.trim()));
   };
 
   function HandleClick(name, checked) {
@@ -34,7 +28,7 @@ export default function Quiz3({
     }
   }
 
-  useEffect(getFilters, []);
+  useEffect(getFilters, [metadata]);
 
   const handleBack = () => ((isAdult) ? dispatch({ type: 'parent back' }) : dispatch({ type: 'child back' }));
 
