@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Paper, Box,
 } from '@mui/material';
@@ -7,7 +7,7 @@ import BookSynopsis from '../Components/BookPage/BookSynopsis';
 import BooksLikeThis from '../Components/BookPage/BooksLikeThis';
 import Loading from '../Components/Loading/Loading';
 import Logo from '../Assets/Images/TCK PNG Logo.png';
-import base from '../Airtable';
+import { BooksContext } from '../Contexts';
 
 const styles = {
   readAloud: {
@@ -47,27 +47,21 @@ const styles = {
 };
 
 function BookPage() {
+  const { books, booksLoading } = useContext(BooksContext);
   const [book, setBook] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+
   /*
-  We want to know if Airtable call failed       (!book && isLoaded)
-      or          if Airtable call succeeded    (book && isLoaded)
-      or          if Airtable call in progr4ess (!book && !isLoaded)
+  We want to know if Airtable call failed       (!book && !booksLoading)
+      or          if Airtable call succeeded    (book && !booksLoading)
+      or          if Airtable call in progr4ess (!book && booksLoading)
   */
   // Instead of using props, we pull bookId from URL
   const params = useParams();
   const { bookId } = params;
 
-  const getEntry = async (tableName, entryId, setter) => new Promise((resolve, reject) => {
-    base(tableName).find(entryId, (err, entryRecord) => {
-      if (tableName === 'Book') setIsLoaded(true);
-      if (err) {
-        reject();
-      }
-      setter(entryRecord);
-      resolve(entryRecord);
-    });
-  });
+  const getBook = () => {
+    setBook(books.find((el) => el.id === bookId));
+  };
 
   // Add book to localStorage
   function pushToStorage() {
@@ -95,24 +89,18 @@ function BookPage() {
     }
   }
 
-  // This is similar to promise chaining with .then() calls,
-  // but in a (hopefully) more succinct way
-  const getEntries = async () => {
-    await getEntry('Book', bookId, setBook);
-  };
-
   useEffect(() => {
     pushToStorage();
-    getEntries();
-  }, [bookId]); // Runs on mount and on change of bookId
+    getBook();
+  }, [bookId, books]); // Runs on mount and on change of bookId or books
 
   // This is for when we are WAITING for Airtable response
   // We return here before we try to do any bad data accesses
-  if (!book && !isLoaded) {
+  if (!book && booksLoading) {
     return <Loading />;
   }
   // This is for when Airtable call fails
-  if (!book && isLoaded) {
+  if (!book && !booksLoading) {
     return (<h1>{'Sorry, we couldn\'t retrieve this book from our library 😔'}</h1>);
   }
 

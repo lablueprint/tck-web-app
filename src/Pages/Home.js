@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -8,6 +8,7 @@ import LeftArrow from '../Assets/Images/left-arrow.png';
 import RightArrow from '../Assets/Images/right-arrow.png';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
+import { BooksContext } from '../Contexts';
 import base from '../Airtable';
 
 const styles = {
@@ -45,6 +46,7 @@ const styles = {
 
 // main function
 function Home() {
+  const { books } = useContext(BooksContext);
   const [collections, setCollections] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
 
@@ -58,37 +60,25 @@ function Home() {
 
   // New Releases filter function
   // filters for the first 14 books sorted by latest publishing date
-  const NewReleasesFunction = () => new Promise((resolve, reject) => {
-    base('Book').select({
-      sort: [{ field: 'date_published', direction: 'desc' }],
-      maxRecords: 14,
-      view: 'Grid view',
-    }).all().then((records) => {
-      let tempArr = [];
-      records.forEach((record) => {
-        const tempObj = {
+  const getNewReleases = () => {
+    setNewReleases(
+      books.sort((a, b) => b.fields.date_published - a.fields.date_published).slice(0, 14)
+        .map((record) => ({
           author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
           image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
           title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
           id: record.id,
-        };
-        tempArr = [...tempArr, tempObj];
-      });
-      resolve(tempArr);
-    }, (err) => {
-      if (err) { reject(err); }
-    });
-  });
-
-  const fetchNewReleases = async () => {
-    const tempReleases = await NewReleasesFunction();
-    setNewReleases(tempReleases);
+        })),
+    );
   };
 
   useEffect(() => {
     getCollections();
-    fetchNewReleases();
   }, []);
+
+  useEffect(() => {
+    getNewReleases();
+  }, [books]);
 
   return (
     <div>

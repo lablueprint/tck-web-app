@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Typography, Box } from '@mui/material';
 import propTypes from 'prop-types';
 import './CreatedWorksCard.css';
 import RightArrowAuthorPage from '../../Assets/Images/right-arrow-author-page.png';
 import LeftArrowAuthorPage from '../../Assets/Images/left-arrow-author-page.png';
 import Carousel from './BookCarousel';
-import base from '../../Airtable';
+import { BooksContext } from '../../Contexts';
 
 const styles = {
   root: {
@@ -47,50 +47,39 @@ const styles = {
 };
 
 function CreatedWorksCard({ authoredBookIds, illustratedBookIds }) {
+  const { books, booksLoading } = useContext(BooksContext);
   const [authoredWorks, setAuthoredWorks] = useState([]);
-  const [illustratedWorks, setillustratedWorks] = useState([]);
+  const [illustratedWorks, setIllustratedWorks] = useState([]);
   const [width, setWidth] = useState(
     window.innerWidth,
   );
 
   function FindWorks() {
     if (authoredBookIds) {
-      authoredBookIds.forEach((element) => {
-        base('Book').find(element, (error, record) => {
-          if (error) {
-            console.error(error);
-          }
-          setAuthoredWorks((prevValue) => prevValue.concat(
-            {
-              author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
-              image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
-              title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-              id: element,
-            },
-          ));
-        });
-      });
+      books.filter((book) => authoredBookIds.includes(book.id))
+        .map((record) => setAuthoredWorks((prevValue) => prevValue.concat(
+          {
+            author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
+            image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
+            title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+            id: record.id,
+          },
+        )));
     }
     if (illustratedBookIds) {
-      illustratedBookIds.forEach((element) => {
-        base('Book').find(element, (error, record) => {
-          if (error) {
-            console.error(error);
-          }
-          setillustratedWorks((prevValue) => prevValue.concat(
-            {
-              author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
-              image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
-              title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
-              id: element,
-            },
-          ));
-        });
-      });
+      books.filter((book) => illustratedBookIds.includes(book.id))
+        .map((record) => setIllustratedWorks((prevValue) => prevValue.concat(
+          {
+            author: { name: record.fields.author_name !== undefined ? record.fields.author_name : ['MISSING CREATOR'], id: record.fields.author !== undefined ? record.fields.author : ['MISSING CREATOR'] },
+            image: (record.fields.image !== undefined ? record.fields.image[0].url : ''),
+            title: (record.fields.title !== undefined ? record.fields.title : 'No Title'),
+            id: record.id,
+          },
+        )));
     }
   }
 
-  useEffect(FindWorks, [authoredBookIds, illustratedBookIds]);
+  useEffect(FindWorks, [authoredBookIds, illustratedBookIds, booksLoading]);
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);

@@ -1,5 +1,7 @@
 /* eslint-disable no-unreachable-loop */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState, useContext,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
@@ -8,11 +10,12 @@ import NextArrow from '../Assets/Images/right-arrow-author-page.png';
 import useWindowSize from '../Components/Hooks/useWindowSize';
 import BookList from '../Components/BookList/BookList';
 import Loading from '../Components/Loading/Loading';
+import { BooksContext } from '../Contexts';
 import base from '../Airtable';
 
 function CollectionPage() {
   const params = useParams();
-  const [allBooks, setAllBooks] = useState(null);
+  const { books } = useContext(BooksContext);
   const [collections, setCollections] = useState(null);
 
   const [collecID, setCollecID] = useState(null);
@@ -20,13 +23,6 @@ function CollectionPage() {
   const [collectionBooks, setCollectionBooks] = useState(null);
 
   const size = useWindowSize();
-
-  const getAllBooks = () => {
-    base('Book').select({ view: 'Grid view' }).all() // Gets + returns all Book records
-      .then((records) => {
-        setAllBooks(records);
-      });
-  };
   const getCollections = () => {
     base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all Collection records
       .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
@@ -45,9 +41,9 @@ function CollectionPage() {
 
   const getBooksFromCollecID = () => {
     if (CollectionDetails !== null
-      && CollectionDetails.fields !== undefined && allBooks) {
+      && CollectionDetails.fields !== undefined && books) {
       if (CollectionDetails.fields.books !== undefined) {
-        const filteredData = allBooks.filter(
+        const filteredData = books.filter(
           (book) => CollectionDetails.fields.books.includes(book.id),
         );
         setCollectionBooks(filteredData);
@@ -70,14 +66,10 @@ function CollectionPage() {
   }, [collecID]);
 
   useEffect(() => {
-    getAllBooks();
-  }, []);
-
-  useEffect(() => {
-    if (allBooks) {
+    if (books) {
       getCollections();
     }
-  }, [allBooks]);
+  }, [books]);
 
   useEffect(() => { getBooksFromCollecID(); }, [CollectionDetails]);
 
