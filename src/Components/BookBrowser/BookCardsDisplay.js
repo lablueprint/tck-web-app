@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { PropTypes } from 'prop-types';
 import BookList from '../BookList/BookList';
 import { gradeRangeMetadata, ageRangeMetadata } from '../../Constants';
 import NoResults from '../BookList/NoResults';
 import Loading from '../Loading/Loading';
-import base from '../../airtable';
+import { BooksContext } from '../../Contexts';
 
 function BookCardsDisplay({
   searchTerms, searchCategory, alignment, rangeInput, multiSelectInput,
 }) {
-  const [loading, setLoading] = useState(true);
-  const [allBooks, setAllBooks] = useState([]);
-  const [filteredBooks, setFilteredBooks] = useState([]);
+  const { books, booksLoading } = useContext(BooksContext);
+  const [filteredBooks, setFilteredBooks] = useState(books);
+  const [loading, setLoading] = useState(false);
+
   let incomingGradeIndices = [0, 0];
   let incomingAgeIndices = [0, 0];
   const recordAgeIndices = [0, 0];
   const recordGradeIndices = [0, 0];
 
-  const getCards = () => {
-    base('Book').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setAllBooks(records);
-        setFilteredBooks(records);
-        setLoading(false);
-      });
-  };
-
-  const isMatchTitleDescIdentity = (book) => {
+  const stringFieldSearch = (book) => {
     // Filter function for books stored in 'books' state
     if (!book) return false;
     let title = book.get('title');
@@ -44,7 +36,6 @@ function BookCardsDisplay({
     if (searchCategory === 'title') match = title.includes(lowercaseTerms);
     if (searchCategory === 'description') match = desc.includes(lowercaseTerms);
     if (searchCategory === 'identity') match = identity.includes(lowercaseTerms);
-
     if (searchCategory === 'keyword') {
       match = title.includes(lowercaseTerms)
               || desc.includes(lowercaseTerms)
@@ -54,28 +45,23 @@ function BookCardsDisplay({
     return match;
   };
 
-  const SearchFilter = (table, field) => new Promise((resolve, reject) => {
-    // Query Airtable {table} for records whose {field} value matches the search term
-    // This will mainly be for Creator table
+  const creatorSearch = (book) => {
+    // Filter function for books stored in 'books' state
+    if (!book) return false;
+    const authors = book.get('author_name');
+    const illustrators = book.get('illustrator_name');
+
+    let match = false;
     const lowercaseTerms = searchTerms.toLowerCase();
 
-    base(table).select({
-      filterByFormula: `IF(FIND(LOWER("${lowercaseTerms}"), LOWER(name)) != 0, ${field}, '')`,
-      view: 'Grid view',
-    }).all()
-      .then((records) => {
-        const res = [];
-        records.forEach((record) => {
-          const bookIds = record.get(field); // array of strings (bookId)
-          bookIds.forEach((bookId) => {
-            const book = allBooks.find((x) => x.get('id') === bookId);
-            res.push(book);
-          });
-        });
-        resolve(res);
-      })
-      .catch((err) => { reject(err); });
-  });
+    if (searchCategory === 'author' && authors) match = authors.findIndex((el) => el.toLowerCase().includes(lowercaseTerms)) !== -1;
+    if (searchCategory === 'illustrator' && illustrators) match = illustrators.findIndex((el) => el.toLowerCase().includes(lowercaseTerms)) !== -1;
+    if (searchCategory === 'keyword') {
+      match = (authors && authors.findIndex((el) => el.includes(lowercaseTerms)) !== -1)
+            || (illustrators && illustrators.findIndex((el) => el.includes(lowercaseTerms)) !== -1);
+    }
+    return match;
+  };
 
   const searchByTerm = async () => {
     let matched = [];
@@ -89,29 +75,16 @@ function BookCardsDisplay({
                               || searchCategory === 'illustrator';
 
     if (isTitleDescIdentity) {
-      matched.push(...allBooks.filter(isMatchTitleDescIdentity));
+      matched.push(...books.filter(stringFieldSearch));
     }
     if (isAuthorIllustrator) {
-      let res;
-      if (searchCategory === 'author' || searchCategory === 'keyword') {
-        res = await SearchFilter('Creator', 'authored');
-        matched.push(...res);
-      }
-      if (searchCategory === 'illustrator' || searchCategory === 'keyword') {
-        res = await SearchFilter('Creator', 'illustrated');
-        matched.push(...res);
-      }
-
-      matched.filter((book) => book); // Remove undefined values
-      matched = [...new Set(matched)]; // Remove duplicates
+      matched.push(...books.filter(creatorSearch));
     }
 
+    matched.filter((book) => book); // Remove undefined values
+    matched = [...new Set(matched)]; // Remove duplicates
     setFilteredBooks(matched);
   };
-
-  /* We will separate useEffect for *hopefully* clearer code */
-  // Grab books from Airtable if nothing is in local state
-  useEffect(() => { if (!allBooks.length) { getCards(); } }, [allBooks]);
 
   // Search function
   useEffect(() => {
@@ -120,10 +93,10 @@ function BookCardsDisplay({
         setLoading(true);
         (async () => searchByTerm().then(setLoading(false)))();
       } else {
-        setFilteredBooks(allBooks);
+        setFilteredBooks(books);
       }
     }
-  }, [allBooks, searchTerms, searchCategory, alignment]);
+  }, [books, searchTerms, searchCategory, alignment]);
 
   const multiSelectFilter = (record, field) => multiSelectInput[field].length === 0
     || (record.fields[field] !== undefined
@@ -136,7 +109,7 @@ function BookCardsDisplay({
       incomingGradeIndices = rangeInput.grade;
       incomingAgeIndices = rangeInput.age;
 
-      const tempBooks = allBooks.filter(
+      const tempBooks = books.filter(
         (record) => {
           recordGradeIndices[0] = gradeRangeMetadata.indexOf(record.fields.grade_min);
           recordGradeIndices[1] = gradeRangeMetadata.indexOf(record.fields.grade_max);
@@ -158,9 +131,9 @@ function BookCardsDisplay({
       );
       setFilteredBooks(tempBooks);
     }
-  }, [rangeInput, multiSelectInput, alignment]);
+  }, [books, rangeInput, multiSelectInput, alignment]);
 
-  if (loading) {
+  if (loading || booksLoading) {
     return <Loading />;
   }
 
