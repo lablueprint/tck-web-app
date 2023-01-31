@@ -23,11 +23,16 @@ app.use(cors({
 
 //express only serves static assets in productions
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname,"client", "build")));
+  app.use(express.static(path.join(__dirname,'client', 'build')));
 }
+
++app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 //api calls
 app.get('/api/health', (req: Request, res: Response) => res.send("ok"));
+
 
 for (const config of airtableConfigs) {
   const airtable = new AirtableService(config);
