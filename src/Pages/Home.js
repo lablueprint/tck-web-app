@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import axios from 'axios';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import Carousel from '../Components/CreatorPage/BookCarousel';
 import LeftArrow from '../Assets/Images/left-arrow.png';
@@ -9,7 +10,6 @@ import RightArrow from '../Assets/Images/right-arrow.png';
 import AboutTCK from '../Assets/Images/about-tck.png';
 import './Home.css';
 import { BooksContext } from '../Contexts';
-import base from '../Airtable';
 
 const styles = {
   buttons: {
@@ -52,10 +52,21 @@ function Home() {
 
   // Collections Carousel part
   const getCollections = () => {
-    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all records
-      .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
-        setCollections(records);
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+
+    axios.get('/api/collections', { cancelToken: source.token })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.err('successfully aborted');
+        } else console.err(err);
+      // add other error handling
+      })
+      .then((response) => {
+        setCollections(response.data);
       });
+
+    return () => { source.cancel(); };
   };
 
   // New Releases filter function

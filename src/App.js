@@ -2,12 +2,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   Route, Routes,
 } from 'react-router-dom';
+import axios from 'axios';
 import {
   Dictionary, Home, CreatorPage, BookPage, CollectionPage, BrowserPage, QuizPage,
 } from './Pages';
 import { Header, Footer } from './Components/index';
 import { BooksContext, MetadataContext } from './Contexts';
-import base from './Airtable';
 import './App.css';
 
 function App() {
@@ -17,19 +17,26 @@ function App() {
   const [metadataLoading, setMetadataLoading] = useState(true);
 
   useEffect(() => {
-    base('Book').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setBooks(records);
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    axios.all([
+      axios.get('/api/books'),
+      axios.get('/api/metadata'),
+    ], { cancelToken: source.token })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.err('successfully aborted');
+        } else console.err(err);
+        // add other error handling
+      })
+      .then(axios.spread((booksResponse, metadataResponse) => {
+        setBooks(booksResponse.data);
         setBooksLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    base('Book Tag Metadata').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setMetadata(records);
+        setMetadata(metadataResponse.data);
         setMetadataLoading(false);
-      });
+      }));
+
+    return () => { source.cancel(); };
   }, []);
 
   const bookContextVal = useMemo(() => ({ books, booksLoading }), [books, booksLoading]);

@@ -21,9 +21,9 @@ function BookCardsDisplay({
   const stringFieldSearch = (book) => {
     // Filter function for books stored in 'books' state
     if (!book) return false;
-    let title = book.get('title');
-    let desc = book.get('description');
-    let identity = book.get('identity_description');
+    let { title } = book.fields;
+    let desc = book.fields.description;
+    let identity = book.fields.identity_description;
 
     // need to error check before using toLowerCase()
     title = (title) ? title.toLowerCase() : '';
@@ -48,8 +48,8 @@ function BookCardsDisplay({
   const creatorSearch = (book) => {
     // Filter function for books stored in 'books' state
     if (!book) return false;
-    const authors = book.get('author_name');
-    const illustrators = book.get('illustrator_name');
+    const authors = book.fields.author_name;
+    const illustrators = book.fields.illustrator_name;
 
     let match = false;
     const lowercaseTerms = searchTerms.toLowerCase();
