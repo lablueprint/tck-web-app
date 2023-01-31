@@ -48,7 +48,6 @@ function CollectionsCarousel({
 
   const updateActiveSlide = () => {
     const swiperArray = swiperRef.current.swiper.slides.map((element) => element.innerHTML.split('/')[2].split('" ')[0].split('"')[0]);
-    console.log(swiperArray);
     if (activeSlideId !== null) {
       swiperRef.current.swiper.slideTo(
         swiperArray.findIndex((element) => activeSlideId === element),
