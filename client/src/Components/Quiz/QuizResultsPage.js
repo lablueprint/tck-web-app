@@ -212,15 +212,17 @@ function ResultsPage({ bookFilters, isChild }) {
           className="recommended-books-wrapper"
         >
           <p className="recommended-books-text">Here are some books we think you would love!</p>
-          <Carousel
-            elementArray={recommendedBooks}
-            slidesAtATime={5}
-            prevArrow={LeftArrow}
-            nextArrow={RightArrow}
-            widthPercent={100}
-            spaceBetweenEntries={16}
-            inQuiz
-          />
+          <div style={{ margin: '3rem 0 2rem' }}>
+            <Carousel
+              elementArray={recommendedBooks}
+              slidesAtATime={5}
+              prevArrow={LeftArrow}
+              nextArrow={RightArrow}
+              widthPercent={100}
+              spaceBetweenEntries={16}
+              inQuiz
+            />
+          </div>
         </div>
         <div className="results-button-container">
           <NavLink style={{ textDecoration: 'none' }} to="/quiz">

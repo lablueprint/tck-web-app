@@ -44,7 +44,7 @@ function Dictionary() {
       <div className="subtitle">
         We’ve outlined a list of some key terms to know!
       </div>
-      {definitions ? definitions.map((wordInfo) => (
+      {definitions.map((wordInfo) => (
         <DictionaryCard
           key={wordInfo.id}
           word={wordInfo.fields.word !== undefined ? wordInfo.fields.word : 'MISSING WORD'}
@@ -52,7 +52,7 @@ function Dictionary() {
           links={wordInfo.fields.links !== undefined ? wordInfo.fields.links : 'MISSING LINK'}
           phoeneticSpelling={wordInfo.fields.phonetic_spelling !== undefined ? wordInfo.fields.phonetic_spelling : 'Missing phonetic spelling'}
         />
-      )) : null}
+      ))}
     </div>
   );
 }

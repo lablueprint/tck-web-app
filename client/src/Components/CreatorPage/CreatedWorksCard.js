@@ -9,7 +9,7 @@ import { BooksContext } from '../../Contexts';
 
 const styles = {
   root: {
-    width: '45%',
+    width: '50%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

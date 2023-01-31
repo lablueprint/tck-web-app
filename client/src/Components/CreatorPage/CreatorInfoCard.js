@@ -8,8 +8,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const styles = {
   root: {
-    width: '40%',
-    padding: 8,
+    width: '45%',
+    padding: 4,
     '@media (max-width: 960px)': {
       width: '100%',
       padding: 0,
@@ -17,7 +17,7 @@ const styles = {
   },
   card: {
     backgroundColor: '#FAFAFA',
-    padding: 6,
+    padding: 3,
     boxShadow: 'none',
     '@media (max-width: 960px)': {
       padding: 1,
@@ -46,7 +46,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'left',
     paddingBottom: 1.5,
-    paddingTop: 2,
+    paddingTop: 1,
     '@media (max-width: 960px)': {
       display: 'block',
       textAlign: 'left',
@@ -55,7 +55,8 @@ const styles = {
   cardImage: {
     width: 'auto',
     borderRadius: '15px',
-    maxHeight: '250px',
+    height: '50vh',
+    maxWidth: '100%',
     '@media (max-width: 960px)': {
       maxHeight: 'none',
       maxWidth: '90vw',
@@ -67,7 +68,7 @@ const styles = {
     fontStyle: 'normal',
     lineHeight: '35px',
     fontWeight: 600,
-    fontSize: '27px',
+    fontSize: '2rem',
     color: '#333333',
     paddingTop: 3,
     '@media (max-width: 960px)': {
@@ -79,8 +80,7 @@ const styles = {
   mediumText: {
     fontFamily: 'Work Sans',
     fontWeight: 500,
-    fontSize: '21px',
-    lineHeight: '35px',
+    fontSize: '1.3rem',
     color: '#333333',
     paddingTop: 3,
     '@media (max-width: 960px)': {
@@ -185,7 +185,7 @@ export default function CreatorInfoCard({
     };
   }, []);
 
-  const isMobile = width <= 768;
+  const isMobile = width <= 960;
 
   return (
     <Box sx={styles.root}>

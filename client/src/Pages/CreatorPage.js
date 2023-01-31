@@ -14,9 +14,6 @@ const styles = {
       flexDirection: 'column',
     },
   },
-  loadingBox: {
-    width: '40%',
-  },
 };
 
 function CreatorPage() {
@@ -54,11 +51,10 @@ function CreatorPage() {
     return () => { source.cancel(); };
   }, [creatorId]);
 
+  if (loading) return <Loading />;
+
   return (
     <Card sx={styles.root}>
-      {loading && (
-        <Loading />
-      )}
       {creatorDetails !== undefined && !loading && (
         <>
           <CreatorInfoCard

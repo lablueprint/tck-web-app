@@ -9,6 +9,7 @@ import RecFilter from '../Recommendations/BookRec';
 const styles = {
   container: {
     margin: '5vh 2vw 0 2vw',
+    paddingBottom: '4rem',
   },
   header: {
     textAlign: 'start',

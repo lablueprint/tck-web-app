@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a17b28a2.css",
-    "main.js": "/static/js/main.67dd6be8.js",
+    "main.css": "/static/css/main.9a342645.css",
+    "main.js": "/static/js/main.2069a7aa.js",
     "static/media/home-page-bg.png": "/static/media/home-page-bg.1f519a226d53adf3cbdd.png",
     "static/media/about-tck.png": "/static/media/about-tck.3362294fca0b85985e1c.png",
     "static/media/WorkSans-SemiBold.svg": "/static/media/WorkSans-SemiBold.1a8e58bff38f7028ea76.svg",
@@ -86,11 +86,11 @@
     "static/media/Letter E.png": "/static/media/Letter E.edcc7b82e1ec8c5b92b1.png",
     "static/media/Letter H.png": "/static/media/Letter H.1d138ddc17d1df20330c.png",
     "index.html": "/index.html",
-    "main.a17b28a2.css.map": "/static/css/main.a17b28a2.css.map",
-    "main.67dd6be8.js.map": "/static/js/main.67dd6be8.js.map"
+    "main.9a342645.css.map": "/static/css/main.9a342645.css.map",
+    "main.2069a7aa.js.map": "/static/js/main.2069a7aa.js.map"
   },
   "entrypoints": [
-    "static/css/main.a17b28a2.css",
-    "static/js/main.67dd6be8.js"
+    "static/css/main.9a342645.css",
+    "static/js/main.2069a7aa.js"
   ]
 }
