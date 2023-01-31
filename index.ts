@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
 import express from 'express';
 import dotenv from 'dotenv';
-import helmet from 'helmet';
 import cors from "cors";
+import path from "path";
 import AirtableService from "./server/service/AirtableService";
 import { airtableConfigs } from "./server/airtableConfig";
 dotenv.config();
 
 const app: express.Application = express();
-app.use(helmet());
 app.use(cors({
   allowedHeaders: [
     'Origin',
@@ -24,7 +23,7 @@ app.use(cors({
 
 //express only serves static assets in productions
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build/"));
+  app.use(express.static(path.join(__dirname,"client", "build")));
 }
 
 //api calls
