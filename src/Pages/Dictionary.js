@@ -1,20 +1,29 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import DictionaryCard from '../Components/Dictionary/DictionaryCard';
 import './DictionaryPage.css';
-import base from '../Airtable';
 
 function Dictionary() {
   const [definitions, setDefinitions] = useState([]);
 
-  const getWordInfo = () => {
-    base('Definition').select({ view: 'Grid view' }).all()
-      .then((records) => {
-        setDefinitions(records);
-      });
-  };
+  useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
 
-  useEffect(getWordInfo, []);
+    axios.get('/api/dictionary', { cancelToken: source.token })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.err('successfully aborted');
+        } else console.err(err);
+        // add other error handling
+      })
+      .then((response) => {
+        setDefinitions(response.data);
+      });
+
+    return () => { source.cancel(); };
+  }, []);
 
   return (
     <div className="dictionary-background">

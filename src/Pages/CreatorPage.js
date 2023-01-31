@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card } from '@mui/material';
+import axios from 'axios';
 import CreatorInfoCard from '../Components/CreatorPage/CreatorInfoCard';
 import CreatedWorksCard from '../Components/CreatorPage/CreatedWorksCard';
 import Loading from '../Components/Loading/Loading';
-import base from '../Airtable';
 
 const styles = {
   root: {
@@ -26,13 +26,21 @@ function CreatorPage() {
   const params = useParams();
   const creatorId = params.id;
 
-  const getCreatorDetails = () => {
-    base('Creator').find(
-      creatorId,
-      (err, record) => {
-        console.error(err);
+  useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+
+    axios.get(`/api/creator/${creatorId}`, { cancelToken: source.token })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.err('successfully aborted');
+        } else console.err(err);
+        // add other error handling
+      })
+      .then((response) => {
+        const record = response.data;
         setCreatorDetails(record);
-        if (record.fields.authored !== undefined) {
+        if (record.fields.authored) {
           if (record.fields.illustrated !== undefined) {
             setCreatorRole('Author, Illustrator');
           }
@@ -41,12 +49,9 @@ function CreatorPage() {
           setCreatorRole('Illustrator');
         }
         setLoading(false);
-      },
-    );
-  };
+      });
 
-  useEffect(() => {
-    getCreatorDetails();
+    return () => { source.cancel(); };
   }, [creatorId]);
 
   return (

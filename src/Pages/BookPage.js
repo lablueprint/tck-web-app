@@ -135,30 +135,34 @@ function BookPage() {
 
   if (book) {
     // Cautiously pull data from book if we got something not undefined
-    title = (book.get('title')) ? book.get('title') : title;
-    desc = (book.get('description')) ? book.get('description') : desc;
-    image = (book.get('image')) ? book.get('image') : [{ url: Logo }];
-    readAloudURL = (book.get('read_aloud_link')) ? book.get('read_aloud_link') : null;
-    bookshopURL = (book.get('bookshop_link')) ? book.get('bookshop_link') : null;
-    educatorURLs = (book.get('educator_guide_link')) ? book.get('educator_guide_link').split('\n') : [];
-    identityTags = (book.get('identity_tags')) ? book.get('identity_tags') : [];
-    raceEthnicity = (book.get('race/ethnicity')) ? book.get('race/ethnicity') : [];
-    genre = (book.get('genre')) ? book.get('genre') : [];
-    themesLessons = (book.get('themes/lessons')) ? book.get('themes/lessons') : [];
-    religion = (book.get('religion')) ? book.get('religion') : [];
-    ageMin = (book.get('age_min')) ? book.get('age_min') : -1;
-    ageMax = (book.get('age_max')) ? book.get('age_max') : -1;
-    gradeMin = (book.get('grade_min')) ? book.get('grade_min') : -1;
-    gradeMax = (book.get('grade_max')) ? book.get('grade_max') : -1;
-    bookType = (book.get('book_type')) ? book.get('book_type') : [];
-    datePublished = (book.get('date_published')) ? book.get('date_published') : '';
+    title = (book.fields.title) ? book.fields.title : title;
+    desc = (book.fields.description) ? book.fields.description : desc;
+    image = (book.fields.image) ? book.fields.image : [{ url: Logo }];
+    readAloudURL = (book.fields.read_aloud_link) ? book.fields.read_aloud_link : null;
+    bookshopURL = (book.fields.bookshop_link) ? book.fields.bookshop_link : null;
+    educatorURLs = (book.fields.educator_guide_link) ? book.fields.educator_guide_link.split('\n') : [];
+    identityTags = (book.fields.identity_tags) ? book.fields.identity_tags : [];
+    raceEthnicity = (book.fields['race/ethnicity']) ? book.fields['race/ethnicity'] : [];
+    genre = (book.fields.genre) ? book.fields.genre : [];
+    themesLessons = (book.fields['themes/lessons']) ? book.fields['themes/lessons'] : [];
+    religion = (book.fields.religion) ? book.fields.religion : [];
+    ageMin = (book.fields.age_min) ? book.fields.age_min : -1;
+    ageMax = (book.fields.age_max) ? book.fields.age_max : -1;
+    gradeMin = (book.fields.grade_min) ? book.fields.grade_min : -1;
+    gradeMax = (book.fields.grade_max) ? book.fields.grade_max : -1;
+    bookType = (book.fields.book_type) ? book.fields.book_type : [];
+    datePublished = (book.fields.date_published) ? book.fields.date_published : '';
 
-    if (book.get('author_name')) {
-      authors = book.get('author_name').map((elem, index) => ({ id: book.get('author')[index], name: elem }));
+    if (book.fields.author_name) {
+      authors = book.fields.author_name.map(
+        (elem, index) => ({ id: book.fields.author[index], name: elem }),
+      );
     }
 
-    if (book.get('illustrator_name')) {
-      illustrators = book.get('illustrator_name').map((elem, index) => ({ id: book.get('illustrator')[index], name: elem }));
+    if (book.fields.illustrator_name) {
+      illustrators = book.fields.illustrator_name.map(
+        (elem, index) => ({ id: book.fields.illustrator[index], name: elem }),
+      );
     }
   }
 

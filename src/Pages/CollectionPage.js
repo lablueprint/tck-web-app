@@ -3,6 +3,7 @@ import React, {
   useCallback, useEffect, useState, useContext,
 } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import CollectionInfo from '../Components/CollectionPage/CollectionInfo';
 import CollectionsCarousel from '../Components/CollectionsComponents/CollectionsCarousel';
 import PrevArrow from '../Assets/Images/left-arrow-author-page.png';
@@ -11,7 +12,6 @@ import useWindowSize from '../Components/Hooks/useWindowSize';
 import BookList from '../Components/BookList/BookList';
 import Loading from '../Components/Loading/Loading';
 import { BooksContext } from '../Contexts';
-import base from '../Airtable';
 
 function CollectionPage() {
   const params = useParams();
@@ -23,12 +23,24 @@ function CollectionPage() {
   const [collectionBooks, setCollectionBooks] = useState(null);
 
   const size = useWindowSize();
+
   const getCollections = () => {
-    base('Collection').select({ view: 'Grid view' }).all() // Gets + returns all Collection records
-      .then((records) => { // Takes in returned records + calls setPosts to store in posts arr
-        setCollections(records);
-        setCollecID((params.id === undefined ? records[0].id : params.id));
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+
+    axios.get('/api/collections', { cancelToken: source.token })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.err('successfully aborted');
+        } else console.err(err);
+      // add other error handling
+      })
+      .then((response) => {
+        setCollections(response.data);
+        setCollecID((params.id === undefined ? response.data[0].id : params.id));
       });
+
+    return () => { source.cancel(); };
   };
 
   const getCollectionFromID = () => {
@@ -66,12 +78,14 @@ function CollectionPage() {
   }, [collecID]);
 
   useEffect(() => {
-    if (books) {
-      getCollections();
-    }
-  }, [books]);
+    getCollections();
+  }, []);
 
-  useEffect(() => { getBooksFromCollecID(); }, [CollectionDetails]);
+  useEffect(() => {
+    if (books) {
+      getBooksFromCollecID();
+    }
+  }, [CollectionDetails, books]);
 
   const subtitle = size.width > 600 ? (
     <p style={{
