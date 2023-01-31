@@ -2,13 +2,18 @@
   "name": "airtable-proxy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon ./index.ts",
     "client": "node start-client.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "npm run webpack",
+    "webpack": "webpack"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "author": "",
   "license": "ISC",
