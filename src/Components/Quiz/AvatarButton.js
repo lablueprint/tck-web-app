@@ -29,7 +29,7 @@ const styles = {
     },
     '@media (max-width: 750px)': {
       flexDirection: 'row',
-      padding: '1rem 3rem 1rem 3rem',
+      padding: '1rem',
       justifyContent: 'space-between',
       fontSize: '1.2rem',
       minHeight: '8.5rem',
@@ -37,7 +37,6 @@ const styles = {
       borderRadius: '30',
       width: '92%',
       '& .MuiButton-startIcon': {
-        marginRight: '1.5rem',
         marginTop: 0,
       },
     },
@@ -52,6 +51,7 @@ const styles = {
   },
   caption: {
     margin: 'auto',
+
   },
 };
 

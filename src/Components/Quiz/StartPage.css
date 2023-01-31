@@ -3,7 +3,9 @@
    background-position: top;
    background-repeat: no-repeat;
    background-size: cover;
-   height: 90vh;
+   min-height: 90vh;
+   height: min-content;
+   padding: 0 0 5rem;
 }
 
 .quiz-start-header1 {
