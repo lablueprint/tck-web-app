@@ -25,11 +25,6 @@ app.use(cors({
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname,'client', 'build')));
 }
-
-+app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-});
-
 //api calls
 app.get('/api/health', (req: Request, res: Response) => res.send("ok"));
 
@@ -57,6 +52,10 @@ for (const config of airtableConfigs) {
     }
   });
 }
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`[server]: Server is running at https://localhost:${process.env.PORT}`, `${new Date()}`);
