@@ -8,9 +8,7 @@
     "server": "nodemon ./index.ts",
     "client": "node start-client.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "postinstall": "npm run webpack",
-    "webpack": "webpack"
+    "build": "tsc"
   },
   "engines": {
     "node": "18.x"
