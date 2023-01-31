@@ -20,35 +20,52 @@ function Carousel({
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const breakpoints = {
-    320: {
-      slidesPerView: 1,
-    },
-    468: {
+    450: {
       slidesPerView: 2,
       spaceBetween: 20,
     },
-    650: {
+    670: {
       slidesPerView: 3,
       spaceBetween: 20,
     },
-    840: {
+    890: {
       slidesPerView: 4,
       spaceBetween: 20,
     },
-    1000: {
+    1150: {
       slidesPerView: 5,
       spaceBetween: 20,
     },
+    1320: {
+      slidesPerView: slidesAtATime,
+      spaceBetween: spaceBetweenEntries,
+    },
+  };
+
+  const quizBreakpoints = {
+    450: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    670: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    890: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
     1150: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+    1320: {
       slidesPerView: slidesAtATime,
       spaceBetween: spaceBetweenEntries,
     },
   };
 
   const authorBreakpoints = {
-    320: {
-      slidesPerView: 1,
-    },
     468: {
       slidesPerView: 2,
       spaceBetween: 20,
@@ -66,6 +83,11 @@ function Carousel({
       spaceBetween: 20,
     },
   };
+
+  let bp;
+  if (inQuiz) bp = quizBreakpoints;
+  else if (inAuthorPage) bp = authorBreakpoints;
+  else bp = breakpoints;
 
   return (
     <div
@@ -86,15 +108,12 @@ function Carousel({
         </button>
       </div>
       <Swiper
-        // centerInsufficientSlides
         style={{
           zIndex: '0',
           width: '100%',
-          height: '400px',
         }}
         on="true"
-        // centeredSlides
-        breakpoints={inAuthorPage ? authorBreakpoints : breakpoints}
+        breakpoints={bp}
         direction="horizontal"
         navigation={{
           prevEl: navigationPrevRef.current,

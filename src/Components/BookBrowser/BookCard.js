@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 export default function BookCard({
-  id, title, author, image, inCarousel, inQuiz,
+  id, title, author, image, inCarousel,
 }) {
   const classes = useStyles();
 
@@ -54,7 +54,7 @@ export default function BookCard({
     >
       <Link className="link" to={`/browser/book/${id}`}>
         <div className="card-action-area">
-          <div className={`img-container${inQuiz ? '-in-quiz' : ''}`}>
+          <div className={`img-container${inCarousel ? '-in-carousel' : ''}`}>
             <img
               className="image"
               src={image}
@@ -107,11 +107,9 @@ BookCard.propTypes = {
   }).isRequired,
   image: PropTypes.string,
   inCarousel: PropTypes.bool,
-  inQuiz: PropTypes.bool,
 };
 
 BookCard.defaultProps = {
   inCarousel: false,
   image: '',
-  inQuiz: false,
 };

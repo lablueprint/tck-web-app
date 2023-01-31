@@ -50,6 +50,6 @@
 .book-carousel-wrapper{
     display: flex;
     flex-direction: row;
-    height: 200px;
-    margin: 3em 0 10em 0;
+    height: min-content;
+    margin: 3em 0 7em 0;
 }

@@ -214,7 +214,7 @@ function ResultsPage({ bookFilters, isChild }) {
           <p className="recommended-books-text">Here are some books we think you would love!</p>
           <Carousel
             elementArray={recommendedBooks}
-            slidesAtATime={6}
+            slidesAtATime={5}
             prevArrow={LeftArrow}
             nextArrow={RightArrow}
             widthPercent={100}

@@ -92,6 +92,10 @@
     object-fit: cover;
 }
 
+.home-container {
+    margin: 5vh 2vw 0 2vw;
+}
+
 @media screen and (max-width: 1000px) {
 
     .about-section {

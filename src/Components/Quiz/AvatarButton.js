@@ -32,7 +32,8 @@ const styles = {
       padding: '1rem 3rem 1rem 3rem',
       justifyContent: 'space-between',
       fontSize: '1.2rem',
-      height: '8.5rem',
+      minHeight: '8.5rem',
+      height: 'min-content',
       borderRadius: '30',
       width: '92%',
       '& .MuiButton-startIcon': {

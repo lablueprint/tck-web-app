@@ -42,6 +42,7 @@ const styles = {
       justifyContent: 'center',
     },
   },
+
 };
 
 // main function
@@ -112,7 +113,8 @@ function Home() {
           <Button component={NavLink} to="/browser" sx={styles.buttons} variant="contained">Start Your Search</Button>
         </Stack>
       </div>
-      {
+      <div className="home-container">
+        {
         newReleases && (
           <>
             <h3 className="headings">New Releases</h3>
@@ -127,32 +129,33 @@ function Home() {
           </>
         )
       }
-      <h2 className="about-section-header">About The Conscious Kid</h2>
-      <div className="about-section">
-        <img
-          className="about-image"
-          src={AboutTCK}
-          alt="Covers of books TCK has recommended tiled diagonally, signifying TCK's commitment to increasing access to accessible books"
-        />
-        <div className="about-section-text">
-          The Conscious Kid supports families and educators in fostering healthy identity
-          development and taking action to disrupt racism, inequity and bias. Through our
-          Anti-Racist Children&apos;s Book Fund, we have donated over 200,000 children&apos;s
-          books to 5,000 schools in all 50 states. Learn more about our work and find additional
-          resources
-          {' '}
-          <a href="https://www.theconsciouskid.org/">here</a>
-          .
-          <br />
-          <br />
-          The purpose of this database is to create a space where kids, families and educators can
-          find empowering books by and about underrepresented and marginalized communities. These
-          books are not always included or centered in classrooms, homes or libraries, and we wanted
-          to create a free and accessible way to identify and increase awareness of these titles.
-          The site was developed and designed by UCLA student-group,
-          {' '}
-          <a href="https://lablueprint.org/">LA Blueprint</a>
-          .
+        <h2 className="about-section-header">About The Conscious Kid</h2>
+        <div className="about-section">
+          <img
+            className="about-image"
+            src={AboutTCK}
+            alt="Covers of books TCK has recommended tiled diagonally, signifying TCK's commitment to increasing access to accessible books"
+          />
+          <div className="about-section-text">
+            The Conscious Kid supports families and educators in fostering healthy identity
+            development and taking action to disrupt racism, inequity and bias. Through our
+            Anti-Racist Children&apos;s Book Fund, we have donated over 200,000 children&apos;s
+            books to 5,000 schools in all 50 states. Learn more about our work and find additional
+            resources
+            {' '}
+            <a href="https://www.theconsciouskid.org/">here</a>
+            .
+            <br />
+            <br />
+            The purpose of this database is to create a space where kids, families and educators can
+            find empowering books by and about underrepresented and marginalized communities. These
+            books are not always included or centered in classrooms, homes or libraries, and we
+            wanted to create a free and accessible way to identify and increase awareness of
+            these titles. The site was developed and designed by UCLA student-group,
+            {' '}
+            <a href="https://lablueprint.org/">LA Blueprint</a>
+            .
+          </div>
         </div>
       </div>
     </div>

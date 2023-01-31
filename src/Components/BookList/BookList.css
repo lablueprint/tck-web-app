@@ -25,3 +25,10 @@
   justify-content: space-evenly;
   margin: 0 -23px 3rem;
 }
+
+
+@media screen and (max-width: 481px) {
+    .wrapper {
+        grid-template-columns: repeat(auto-fill, 170px);
+    }
+}

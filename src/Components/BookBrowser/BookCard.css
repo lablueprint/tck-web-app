@@ -2,7 +2,6 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card {
@@ -15,14 +14,32 @@
     width: 220px;
 }
 
-.card-in-carousel{
-    margin: 0;
+.img-container{
+    width:220px;
+    height:200px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.card-in-carousel {
+    margin-top: 30px;
     display: flex;
     justify-content:flex-start;
     background: none;
     flex-direction: column;
-    min-width: 160px;
-    width: 160px;
+    min-width: 220px;
+    width: 220px;
+}
+
+.img-container-in-carousel {
+    width:220px;
+    height:200px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-bottom:20px;
 }
 
 .card-action-area {
@@ -41,24 +58,6 @@
     max-height:100%;
 }
 
-.img-container{
-    width:220px;
-    height:200px;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.img-container-in-quiz{
-    max-width:160px;
-    height:200px;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    margin-bottom:20px;
-}
-
 .link {
     text-decoration: none;
     color: black;
@@ -75,4 +74,15 @@
     margin-bottom:0;
     font-family:'DM Sans';
     font-weight:bold;
+}
+
+@media screen and (max-width: 450px) {
+    .card {
+        min-width: 170px;
+        width: 170px;
+    }
+    .img-container{
+        width:170px;
+        height:170px;
+    }
 }

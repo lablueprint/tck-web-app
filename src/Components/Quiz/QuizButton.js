@@ -8,20 +8,20 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '2em 0.5em 2em 0.5em',
+    padding: '1.5em 0.5em',
     borderRadius: '20px',
     fontSize: '1rem',
   },
   smallButton: {
     width: '250px',
-    height: '100.59px',
-    '@media (max-width: 750px)': {
-      width: '200px',
+    height: '90px',
+    '@media (max-width: 480px)': {
+      width: '100%',
+      height: '80px',
     },
   },
   largeButton: {
     width: '400px',
-    height: '100.59px',
     '@media (max-width: 750px)': {
       width: '100%',
     },
@@ -55,9 +55,9 @@ const styles = {
   },
 
   checkbox: {
-    position: 'relative',
-    bottom: '30px',
-    right: '10px',
+    position: 'absolute',
+    top: '0',
+    left: '0',
   },
 
   uncheckedCheckbox: {
@@ -75,8 +75,9 @@ const styles = {
     textTransform: 'none',
     fontFamily: 'DM Sans',
     fontWeight: 'bold',
-    flex: '1 0 75%',
     justifyContent: 'center',
+    width: '80%',
+    margin: 'auto',
   },
 };
 
