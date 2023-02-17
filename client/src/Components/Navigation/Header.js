@@ -29,7 +29,7 @@ const styles = {
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '1.3rem',
-    color: '#292929',
+    color: '#333333',
     paddingLeft: '2rem',
   },
   header: {
