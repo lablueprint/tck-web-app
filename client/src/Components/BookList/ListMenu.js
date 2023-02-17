@@ -20,7 +20,9 @@ const styles = {
   },
   menuItem: {
     minWidth: '15vw',
-    fontFamily: 'Work Sans',
+  },
+  menuItemText: {
+    fontFamily: 'DM Sans',
     fontWeight: '600',
   },
 };
@@ -49,13 +51,9 @@ function ListMenu({
       onClick={handleChoose}
       sx={styles.menuItem}
     >
-      {
-                (option.icon) ? <ListItemIcon>{option.icon}</ListItemIcon> : <div />
-            }
-      <ListItemText>{option.text}</ListItemText>
-      {
-                (value === option.value) ? <ListItemIcon><Check /></ListItemIcon> : <div />
-            }
+      {(option.icon) ? <ListItemIcon>{option.icon}</ListItemIcon> : null}
+      <ListItemText sx={styles.menuItemText}>{option.text}</ListItemText>
+      {(value === option.value) ? <ListItemIcon><Check /></ListItemIcon> : null}
     </MenuItem>
   ));
 

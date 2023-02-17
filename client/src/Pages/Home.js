@@ -13,16 +13,17 @@ import { BooksContext } from '../Contexts';
 
 const styles = {
   buttons: {
+    fontFamily: 'Work Sans',
+    fontSize: '15px',
+    textTransform: 'none',
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+
     backgroundColor: '#FFFFFF',
     color: '#1A296A',
     padding: '10px',
     width: '200px',
     borderRadius: '10px',
-    fontfamily: 'Work Sans',
-    fontSize: '15px',
-    textTransform: 'none',
-    fontWeight: 'bold',
-    fontStyle: 'normal',
     margin: '7.5px',
     '@media (max-width: 700px)': {
       width: '80vw',

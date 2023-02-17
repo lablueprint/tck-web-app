@@ -108,7 +108,7 @@ function Footer() {
               <img className="blueprint-logo" src={blueprintLogo} alt="facebook icon linking to the TCK facebook page" />
             </a>
           </div>
-          &#169; 2022 The Conscious Kid
+          &#169; 2023 The Conscious Kid
         </div>
       </div>
 

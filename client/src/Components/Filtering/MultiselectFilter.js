@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 
 const CustomAutocomplete = styled(Autocomplete)({
   background: '#FFFFFF',
-  border: '0.5px solid rgba(0, 0, 0, 0.3)',
+  border: '0.5px solid #333333',
   borderRadius: '5px',
 });
 

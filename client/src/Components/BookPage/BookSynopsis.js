@@ -19,6 +19,7 @@ const styles = {
     '@media (max-width: 960px)': {
       flexDirection: 'column',
       width: '100%',
+      margin: '1vh auto',
     },
   },
 };

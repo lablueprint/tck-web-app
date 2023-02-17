@@ -12,7 +12,7 @@
     display: flex;
     height: 16.5em;
     background: #FCFCFC;
-    box-shadow: 0 -7px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     align-items: start;
     justify-content: space-between;
     padding: 0 2% 2em;

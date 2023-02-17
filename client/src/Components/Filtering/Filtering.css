@@ -47,7 +47,7 @@
 }
 
 .filterlabel-text{
-    color: rgba(0, 0, 0, 0.5);
+    color: #333333;
     font-family: DM Sans;
     font-weight: normal;
     text-align: left;
@@ -65,6 +65,6 @@
     font-family: DM Sans;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
+    color: #333333;
     margin-left: -.5em;
 }
