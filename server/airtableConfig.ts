@@ -40,6 +40,8 @@ export const airtableConfigs: Array<AirtableConfig> = [
             'educator_guide_link',
             'collections',
         ],
+        view: "Grid view",
+
     },
     {
         route: "collections",
@@ -52,6 +54,7 @@ export const airtableConfigs: Array<AirtableConfig> = [
             'links',
             'featured',
         ],
+        view: "Grid view",
     },
     {
         route: "dictionary",
@@ -62,6 +65,7 @@ export const airtableConfigs: Array<AirtableConfig> = [
             'links',
             'phonetic_spelling',
         ],
+        view: "Grid view",
     },
     {
         route: "metadata",
@@ -72,6 +76,7 @@ export const airtableConfigs: Array<AirtableConfig> = [
             'options',
             'display',
         ],
+        view: "Grid view",
     },
         {
         route: "creator",
@@ -85,5 +90,6 @@ export const airtableConfigs: Array<AirtableConfig> = [
             'personal_site',
             'image',
         ],
+        view: "Grid view",
     },
 ];

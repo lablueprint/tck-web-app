@@ -19,6 +19,7 @@ function Dictionary() {
         // add other error handling
       })
       .then((response) => {
+        console.log(response.data);
         setDefinitions(response.data);
       });
 

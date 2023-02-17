@@ -36,6 +36,7 @@ for (const config of airtableConfigs) {
   app.get(`/api/${config.route}`, async (req: Request, res: Response) => {
     try {
       const r = await airtable.getCachedTableContent();
+      console.log(r);
       return res.send(r);
     } catch(e) {
       return res.status(500).send(e);

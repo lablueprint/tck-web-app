@@ -11,7 +11,7 @@ import './BookBrowser.css';
 const styles = {
   tab: {
     textTransform: 'none',
-    font: 'DM Sans',
+    fontFamily: 'DM Sans',
     fontWeight: 'bold',
     fontSize: '1em',
     paddingBottom: '0px',
