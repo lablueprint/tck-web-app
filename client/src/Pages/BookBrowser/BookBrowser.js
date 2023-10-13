@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Tabs, Tab,
 } from '@mui/material';
@@ -23,6 +23,7 @@ const styles = {
 
 function BookBrowser() {
   const [alignment, setAlignment] = useState('Filter');
+  const myRef = useRef(null);
 
   // Searching
   const [searchTerms, setSearchTerms] = useState('');
@@ -42,9 +43,16 @@ function BookBrowser() {
     book_type: [],
   });
 
-  const handleChange = (event, newAlignment) => {
+  // Handlers
+  const handleAlignmentChange = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
+    }
+  };
+
+  const handleScroll = () => {
+    if (myRef && myRef.current) {
+      myRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -57,7 +65,7 @@ function BookBrowser() {
             <Tabs
               color="primary"
               value={alignment}
-              onChange={handleChange}
+              onChange={handleAlignmentChange}
               sx={styles.tabGroup}
             >
               <Tab
@@ -84,25 +92,29 @@ function BookBrowser() {
                 setSearchTerms={setSearchTerms}
                 searchCategory={searchCategory}
                 setSearchCategory={setSearchCategory}
+                handleScroll={handleScroll}
               />
             )
             : (
               <FilterMenu
                 setRangeState={setRangeInput}
                 setMultiSelectInput={setMultiSelectInput}
+                handleScroll={handleScroll}
               />
             )
         }
           </div>
         </div>
       </div>
-      <BookCardsDisplay
-        searchTerms={searchTerms}
-        searchCategory={searchCategory}
-        alignment={alignment}
-        rangeInput={rangeInput}
-        multiSelectInput={multiSelectInput}
-      />
+      <div ref={myRef} style={{ scrollMargin: '6em' }}>
+        <BookCardsDisplay
+          searchTerms={searchTerms}
+          searchCategory={searchCategory}
+          alignment={alignment}
+          rangeInput={rangeInput}
+          multiSelectInput={multiSelectInput}
+        />
+      </div>
     </div>
   );
 }

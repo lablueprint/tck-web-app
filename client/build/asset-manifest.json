@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.4367acb7.css",
-    "main.js": "/static/js/main.e686a87d.js",
+    "main.js": "/static/js/main.0d862f2d.js",
     "static/media/home-page-bg.png": "/static/media/home-page-bg.1f519a226d53adf3cbdd.png",
     "static/media/about-tck.png": "/static/media/about-tck.3362294fca0b85985e1c.png",
     "static/media/WorkSans-SemiBold.svg": "/static/media/WorkSans-SemiBold.1a8e58bff38f7028ea76.svg",
@@ -87,10 +87,10 @@
     "static/media/Letter H.png": "/static/media/Letter H.1d138ddc17d1df20330c.png",
     "index.html": "/index.html",
     "main.4367acb7.css.map": "/static/css/main.4367acb7.css.map",
-    "main.e686a87d.js.map": "/static/js/main.e686a87d.js.map"
+    "main.0d862f2d.js.map": "/static/js/main.0d862f2d.js.map"
   },
   "entrypoints": [
     "static/css/main.4367acb7.css",
-    "static/js/main.e686a87d.js"
+    "static/js/main.0d862f2d.js"
   ]
 }

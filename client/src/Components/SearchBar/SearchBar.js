@@ -39,7 +39,9 @@ const styles = {
   },
 };
 
-function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
+function SearchBar({
+  setSearchTerms, searchCategory, setSearchCategory, handleScroll,
+}) {
   const [value, setValue] = useState('');
 
   const handleSelect = (e) => {
@@ -50,12 +52,14 @@ function SearchBar({ setSearchTerms, searchCategory, setSearchCategory }) {
     if (e.key === 'Enter') {
       e.preventDefault();
       setSearchTerms(e.target.value);
+      handleScroll();
     }
     setValue(e.target.value);
   };
 
   const handleGo = () => {
     setSearchTerms(value);
+    handleScroll();
   };
 
   return (
@@ -120,4 +124,5 @@ SearchBar.propTypes = {
   setSearchTerms: PropTypes.func.isRequired,
   searchCategory: PropTypes.string.isRequired,
   setSearchCategory: PropTypes.func.isRequired,
+  handleScroll: PropTypes.func.isRequired,
 };

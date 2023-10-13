@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
+export default function FilterMenu({ setRangeState, setMultiSelectInput, handleScroll }) {
   const { metadata } = useContext(MetadataContext);
   const [tempRangeFilterData, setTempRangeFilterData] = useState({
     age: [-1, 17],
@@ -46,6 +46,7 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
   const handleSave = () => {
     setRangeState(tempRangeFilterData);
     setMultiSelectInput(tempMultiSelect);
+    handleScroll();
   };
 
   const handleCancel = () => {
@@ -130,4 +131,5 @@ export default function FilterMenu({ setRangeState, setMultiSelectInput }) {
 FilterMenu.propTypes = {
   setMultiSelectInput: propTypes.func.isRequired,
   setRangeState: propTypes.func.isRequired,
+  handleScroll: propTypes.func.isRequired,
 };
